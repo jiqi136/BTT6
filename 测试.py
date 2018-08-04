@@ -313,7 +313,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         规则 = '.{1,}hread'
         for 各帖子链接 in 网址列表:
             if 'thread' in 各帖子链接:
-                各帖子链接 = re.sub(规则, 'http://91btbtt.com/?thread', 各帖子链接)  # 替换ht
+                各帖子链接 = re.sub(规则, 'http://91btbtt.com/?thread', 各帖子链接)  # 替换htk
                 # if 各帖子链接 in self.过滤帖子网址:
                 # continue  # 跳过当前循环,继续进行下一轮循环
             print('各帖子链接', 各帖子链接)
