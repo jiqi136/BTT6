@@ -139,6 +139,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机11位数", 随机11位数)  # 替换   , 1) 次数 1
         头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机2位数", 随机2位数)  # 替换   , 1) 次数 1
         头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机3位数", 随机3位数)  # 替换   , 1) 次数 1
+        self.头部信息=头部信息
         print(头部信息)
 
     def 模具一一打开的网址请求返回网页内容(self,网址):  # self.返回网页内容
@@ -197,7 +198,7 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
         开始时间计数 = int(time.time())
 
         # self.模具一一易码短信平台()
-        self.模具一一手机模式访问并注册知乎()
+        self.模具一一浏览器访问并注册知乎()
 
         结束时间计数 = int(time.time())
         用时 = 结束时间计数 - 开始时间计数
@@ -278,14 +279,15 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
         随机手机型号 = random.choice(
             ["iPhone 5", "iPhone 6", "iPhone 6 Plus", "iPad Pro", "iPad"])
 
-        随机手机型号 = "iPhone 7"
+        随机手机型号 = "iPhone 6"
         print('随机手机型号', 随机手机型号)
 
 
         mobile_emulation = {"deviceName":随机手机型号}# 设置成手机模式
         options = Options()
+        options = webdriver.ChromeOptions()  # 设置中文
         options.add_experimental_option("mobileEmulation",mobile_emulation)# 更改 浏览头部信息为手机模式
-        options.add_argument(头部信息)
+        #options.add_argument(头部信息)
 
         #options.add_argument('disable-infobars')# 加启动配置 去除正在受到自动软件的控制
         #options.add_argument('headless')  # 静默模式
@@ -340,6 +342,27 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
         time.sleep(1000)  # 等待
 
         #操作.quit()  # 关闭浏览器
+
+    def 模具一一浏览器访问并注册知乎(self):
+        self.模具一一换头部信息()
+
+        头部信息 = str(self.头部信息).replace("'User-Agent':", "user-agent=")  # 替换   , 1) 次数 1
+        头部信息 = 头部信息.replace("{", "")  # 替换   , 1) 次数 1
+        头部信息 = 头部信息.replace("}", "")  # 替换   , 1) 次数 1
+        后缀='user-agent=Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'
+
+        options = webdriver.ChromeOptions()  # 设置中文
+        options = Options()
+        options.add_argument('disable-infobars')  # 加启动配置 去除正在受到自动软件的控制
+        print('头部信息:', 头部信息)
+        print('后缀:', 后缀)
+        options.add_argument(后缀)
+
+        浏览器操作 = webdriver.Chrome(chrome_options=options)  # 打开chrome浏览器
+
+        url = "http://www.zhihu.com"
+        浏览器操作.get(url)
+        time.sleep(500)  # 等待
 
 
 
