@@ -1,0 +1,26 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+
+<h1>{{ question.question_text }}有误</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+
+<form action="{% url '说明页:vote' question.id %}" method="post">
+{% csrf_token %}
+    <h1>为何没有显示</h1>
+    <h1>len(question.choice_set.all)</h1>
+
+
+
+
+
+{% for choice in question.objects.all() %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+{% endfor %}
+<input type="submit" value="Vote" />
+</form>
+
+
+

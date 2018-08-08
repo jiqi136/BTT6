@@ -32,8 +32,6 @@ class 类一一上传目录链接网页: #调用 类的模具 self.模具_数据
 
                 print('self.二级子目录文件:', self.二级子目录文件)
                 self.模具一一提取保存目录()
-                self.模具一一ftp的目录文件文本()
-
 
                 self.模具一一读取文本每一行()
 
@@ -57,11 +55,15 @@ class 类一一上传目录链接网页: #调用 类的模具 self.模具_数据
 
     def 模具一一读取文本每一行(self):
         self.上传等待数 = 0
-        for 网盘文件名与链接 in fileinput.input(self.二级子目录文件):
-            self.网盘文件名与链接 = str(网盘文件名与链接).replace(r"\n", "")
-            if len(self.网盘文件名与链接)==0:
+        with open(self.二级子目录文件, 'r') as 文本内容:
+            if len(文本内容) == 0:
                 print('空文本文件')
-                break  # 结束循环
+                return  #  结束循环  返回
+
+        self.模具一一ftp的目录文件文本()
+
+        for self.网盘文件名与链接 in 文本内容.split(r"\n"):
+
             self.模具一一读取文件名与http网页()
             if self.文件名 in self.目录与文件列表文本: #  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
 

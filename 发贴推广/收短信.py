@@ -15,6 +15,7 @@ from selenium import webdriver  # 浏览的驱动
 from selenium.webdriver.common.touch_actions import TouchActions
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
+import pyautogui as pag
 
 
 class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
@@ -198,7 +199,8 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
         开始时间计数 = int(time.time())
 
         # self.模具一一易码短信平台()
-        self.模具一一浏览器访问并注册知乎()
+        # self.模具一一浏览器访问并注册知乎()
+        self.模具一一键盘操作()
 
         结束时间计数 = int(time.time())
         用时 = 结束时间计数 - 开始时间计数
@@ -263,11 +265,11 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
         释放手机号码网址内容 = self.模具一一打开的网址请求返回网页内容(释放手机号码接口)
 
     def 模具一一知乎短信内容清洗(self):
-        规则 = '，.{1,}'
-        文本 = re.sub(规则, '', self.短信内容)  # 替换   ,count=0,re.S|re.I
-        规则 = '.{1,}是'
-        文本 = re.sub(规则, '', 文本)  # 替换   ,count=0,re.S|re.I
-        self.短信内容 = 文本.strip()  # 默认则是去除空格
+
+        规则 = '\d{6}'
+        内容列表 = re.findall(规则, self.短信内容)  # 提取
+        self.短信内容 = 内容列表[0]
+
 
     def 模具一一手机模式访问并注册知乎(self):
         头部信息="user - agent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_5 like Mac OS X) AppleWebKit/612.1.60(KHTML, like Gecko) CriOS/66.0.2524.75 Mobile/15E5239e Safari/612.1'"
@@ -352,7 +354,7 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
         后缀='user-agent=Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'
 
         options = webdriver.ChromeOptions()  # 设置中文
-        options = Options()
+        # options = Options()
         options.add_argument('disable-infobars')  # 加启动配置 去除正在受到自动软件的控制
         print('头部信息:', 头部信息)
         print('后缀:', 后缀)
@@ -360,9 +362,100 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
 
         浏览器操作 = webdriver.Chrome(chrome_options=options)  # 打开chrome浏览器
 
-        url = "http://www.zhihu.com"
+        url = "https://www.zhihu.com"#注册页面  https://www.zhihu.com/signup?next=%2Fexplore
         浏览器操作.get(url)
         time.sleep(500)  # 等待
+
+    def 模具一一随机取女名(self):
+        内容 = """柔蓉安蓝春语彤晴语菱霜紫莲翠烟南寻慕蕊雪海沛宛晓菡巧
+        听卉靖枫梓晨丽丹佩惠月玉婉晓玲倩瑞静颖棋芹萍幻露灵含雅薇瑶丹丽云亿仪伊伶佳依俞俪倩偲兰冰凝凡凤叆呤
+        爱姿惠娇媛妩萱娈瑷悠源赫晗贻楚梦琪忆柳桃慕兰岚香沛菡珊曼菱寒薇忆旋芷蕾代
+        芙盼蝶筠瑶珍谷荷画嘉囡女如妃妍妙妮妹姐姑姗姝姞姣梅梦楠檀欢欣歆毓水洁涵淑清滟滢漪漫澜灵煜燕
+        玉玥玫环玲珂珊珍珠姬娅娆娇娉娜娟娣娥娴婉婕婧婵婷媚媛嫔嫣嫱安宛宜宝容巧希彤彩心忆念怀怜思怡情惠
+        慧敏旭春晴曼月琦琪琬琰琳琴琼瑗瑛瑜瑶瑾璇璐璟白盈盼碧秀筠红绮美翠艳芃芊芝芬芮芯芳芷芸苑若苹茗茜茵茹荔荭
+        荷莉莎莲莹菁菡菲萍萱蓉蓓蔓蕊蕾薇诗语贞采钰银雅雨雪雯霏霖霜霞露青靖静音韵颖颜香馨黛"""
+
+        内容 = 内容.replace("\n", "")
+        合名 = ''
+
+        for i in '12300':
+            名 = random.choice(内容)
+            合名 = 合名 + 名
+        print('随机取女名',合名)
+        return 合名#返回
+
+    def 模具一一键盘操作(self):  # VK_CODE为键盘encoding='UTF-8'
+        # @Keyboard
+        win32api.ShellExecute(0, 'open',
+                              'https://www.zhihu.com/signup?next=%2Fexplore',
+                              '', '', 1)
+        print('已启动浏览器,耐心等待........')
+        time.sleep(10)
+
+        self.模具一一获取接收的手机号码()
+
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.moveTo(754, 396)  # 鼠标移动X.Y 方位
+        pag.rightClick()  # 右击pag.rightClick() 左击pag.leftClick() 中击 pag.middleClick()
+        pag.typewrite(self.手机号码)  # 输入手机号码
+
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.moveTo(750, 453)  # 鼠标移动X.Y 方位  发送验证码 按钮
+        pag.rightClick()  # 右击pag.rightClick() 左击pag.leftClick() 中击 pag.middleClick()
+
+        self.模具一一获取短信()
+        self.模具一一知乎短信内容清洗()
+
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.moveTo(596, 450)  # 鼠标移动X.Y 方位
+        pag.rightClick()  # 右击
+        pag.typewrite(self.短信内容)  # 输入 短信内容
+
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.moveTo(626, 539)  # 鼠标移动X.Y 方位  注册 按钮
+        pag.rightClick()  # 右击
+
+        """设置用户名与密码"""
+
+        取女名=self.模具一一随机取女名()
+        pag.PAUSE = 1  # 增加延迟
+        pag.moveTo(518, 400)  # 鼠标移动X.Y 方位
+        pag.rightClick()  # 右击
+        pag.typewrite(取女名)  # 输入 用户名
+
+
+        密码数字 = random.randrange(100000, 1000000)
+        密码 = "qq{}Q%".format(密码数字)
+        print('密码:', 密码)
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.moveTo(518, 466)  # 鼠标移动X.Y 方位
+        pag.rightClick()  # 右击
+        pag.typewrite(密码)  # 输入 密码
+
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.moveTo(621, 532)  # 鼠标移动X.Y 方位  进入知乎 按钮
+        pag.rightClick()  # 右击
+
+        """你的职业或专业是什么？"""
+
+        pag.PAUSE = 1  # 增加延迟
+        pag.moveTo(812, 273)  # 鼠标移动X.Y 方位  完成 按钮
+        pag.rightClick()  # 右击
+
+        """你想关注哪些话题？"""
+        话题方位组列表=[(256,305),(432,326),(620,326),(800,326),(991,326),
+                        (256,522),(432,522),(620,522),(800,522),(991,522),
+                        (256,696),(432,696),(620,696),(800,696),(991696,)]
+
+        话题方位组 = random.choice(话题方位组列表)
+
+        pag.PAUSE = 1  # 增加延迟
+        pag.moveTo(话题方位组[0], 话题方位组[1])  # 鼠标移动X.Y 方位  完成 按钮
+        pag.rightClick()  # 右击
+
+        pag.PAUSE =0.5  # 增加延迟
+        pag.moveTo(632, 877)  # 鼠标移动X.Y 方位  进入知乎 按钮
+        pag.rightClick()  # 右击
 
 
 

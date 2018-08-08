@@ -499,7 +499,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         # driver.maximize_window() 浏览器全屏显示,不带参数
         driver.implicitly_wait(10)  # 设置 隐式等待.单位是秒(s),
         driver.find_element_by_xpath('//*[@id="login-box"]/div[2]/form/dl/dd[1]/input').send_keys(
-            "ad38min")  # 定位用户名
+            "ad38min")  # 定位用户名每日最新剧集一批量一并发.类一一公共库#模具一一浏览器输入验证码提取cookies
         driver.find_element_by_xpath('//*[@id="login-box"]/div[2]/form/dl/dd[2]/input').send_keys(
             "qq962962")  # 定位密码
         print('输入验证码')
@@ -1954,10 +1954,6 @@ class 类一一综合影视类型(类一一公共库):  # 调用 类的模具 se
         self.集数sql句后条件 = ''
         self.过滤sql句后条件列表 = []
 
-
-
-
-        self.模具一一换头部信息()
         print('========================等待==============================')
         print(self.电视剧类型, '=剧集数=', len(self.页面提取帖子链接列表))
         self.页面提取帖子链接列表=list(self.页面提取帖子链接列表)

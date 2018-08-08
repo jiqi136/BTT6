@@ -1241,6 +1241,10 @@ def 模拟鼠标键盘操作():
     pag.hotkey('winleft', 'd')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：热键函数 。keyDown()按下某个键。keyUp()松开某个键。
 
 
+
+    pag.typewrite('Hello world')#输入字符串
+
+
 def 分支异步打开网页():
     import asyncio
     import aiohttp
