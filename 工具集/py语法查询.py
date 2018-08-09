@@ -792,8 +792,8 @@ def MySQL数据库():
                 SET B列='方格数据2', D列='方格数据4' #想要修改的内容
                 WHERE A='方格数据1';"""#条件查找后，行的位置，重要
                     #省略了 WHERE 子句没有具体条件的更新，将会修改表中所有 列的 数据
-        替换数据库中的中间字段=
-        """UPDATE `测试表` SET `插入中文列`= replace(`插入中文列`,'91btbtt','91btbtt.com/upload')"""
+        替换数据库中的中间字段= """
+        UPDATE `测试表` SET `插入中文列`= replace(`插入中文列`,'91btbtt','91btbtt.com/upload')"""
 
 
         将数据库中的两个表合并成一张表="""insert into 表2(字段1,字段2) select 字段1,字段2 from 表1
@@ -806,7 +806,7 @@ def MySQL数据库():
             删除同时符合两个条件的数据 = """DELETE FROM 中文表
                                WHERE A列='中文条件' AND B列=10086';"""  #WHERE 子句规定哪条记录或者哪些记录需要删除。
             # 如果您省略了 WHERE 子句，所有的记录都将被删除！
-            删除表中多余的重复记录 只留有rowid最小的记录 = """delete from 表名 where  ID not in 
+            删除表中多余的重复记录一只留有rowid最小的记录 = """delete from 表名 where  ID not in 
             (select * from (select  id from 表名 group by 分组的列名)AS 别名)"""# 别名则是 A列 ，B 列
             清空数据表="TRUNCATE `测试表`"
 
@@ -886,7 +886,7 @@ def 网页文件的解析():
 
     if '直接解读网页文件'==0:
         网页 = ''
-        网页 = (网页.text)
+        网页 = 网页.text
 
     def 直接解读网页文件():
         网页=''
