@@ -16,6 +16,7 @@ from selenium.webdriver.common.touch_actions import TouchActions
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
 import pyautogui as pag
+import pyautogui
 
 
 class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
@@ -186,25 +187,38 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         time.sleep(3)
         print('换ip再连接完成')
         # ============内容页过滤与提取===================================================
+    def 模具一一换ip连接二(self):
+        # coding:gbk
+        循环 = 0
+        次数循环 = 0
 
+        while 循环 == 0:  # 条件循环  post
+            print('宽带连接进行时.....')
+            os.system(r"rasphone -h 宽带连接")  # xxx0是你的拨号名称,xp下默认是"宽带连接”.
+            os.system(r"rasdial 宽带连接 02007044432@163.gd  77341859")  # xxx0同上,xxx1 拨号用户名 ,xxx2拨号密码.
+            time.sleep(3)
+            print('换ip再连接完成')
 
+            try:
+                返回网页内容 = requests.post('https://www.baidu.com/', headers=头部信息, timeout=3)
+            except (requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout,
+                    requests.exceptions.ConnectionError, requests.exceptions.ConnectTimeout,
+                    requests.exceptions.ChunkedEncodingError, requests.exceptions.InvalidSchema) as 异常:
+                次数循环 += 1
+                print('网络异常等待', 异常)
+                print('倒数60秒再连接', 次数循环, '次')
+                time.sleep(60)
+                if 'None, 10053,' in str(异常):
+                    pass
+            else:
+                if '200' in str(返回网页内容):
+                    break  # 结束循环
+                else:
+                    print('网站网络异常,状态码:', 返回网页内容)
+                    print('等待60秒')
+                    time.sleep(60)
 
-
-    """============测试库================"""
-
-
-class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
-    def __init__(self):
-        self.模具一一换头部信息()
-        开始时间计数 = int(time.time())
-
-        # self.模具一一易码短信平台()
-        # self.模具一一浏览器访问并注册知乎()
-        self.模具一一键盘操作()
-
-        结束时间计数 = int(time.time())
-        用时 = 结束时间计数 - 开始时间计数
-        print('易码短信:', 用时, '秒')
+    """============短信平台================"""
 
     def 模具一一易码短信平台账户信息(self):
         通信令牌token = '00285014c8a4ce850ee48bcfdd205a14751a49ed'
@@ -225,58 +239,118 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
 
     def 模具一一获取接收的手机号码(self):
         self.通信令牌token = '00285014c8a4ce850ee48bcfdd205a14751a49ed'
-        self.项目编号="891"
-        排除号段=''
-        获取手机号码接口网址 ="http://api.fxhyd.cn/UserInterface.aspx?action=getmobile&token={}&itemid={}&excludeno={}".format(self.通信令牌token,self.项目编号,排除号段)
+        self.项目编号 = "891"
+        排除号段 = ''
+        获取手机号码接口网址 = "http://api.fxhyd.cn/UserInterface.aspx?action=getmobile&token={}&itemid={}&excludeno={}".format(
+            self.通信令牌token, self.项目编号, 排除号段)
         网址内容 = self.模具一一打开的网址请求返回网页内容(获取手机号码接口网址)
 
-        self.手机号码 = 网址内容.text.replace("success|", "") #替换   , 1) 次数 1
+        self.手机号码 = 网址内容.text.replace("success|", "")  # 替换   , 1) 次数 1
         print('手机号码:', self.手机号码)
-
-
 
     def 模具一一获取短信(self):
         self.通信令牌token = '00285014c8a4ce850ee48bcfdd205a14751a49ed'
         self.项目编号 = "891"
 
-        获取短信网址 = "http://api.fxhyd.cn/UserInterface.aspx?action=getsms&token={}&itemid={}&mobile={}".format(self.通信令牌token,
-                                                                                                            self.项目编号, self.手机号码)
+        获取短信网址 = "http://api.fxhyd.cn/UserInterface.aspx?action=getsms&token={}&itemid={}&mobile={}".format(
+            self.通信令牌token,
+            self.项目编号, self.手机号码)
         """&release=1  自动释放号码标识符 若该参数值为1时,获取到短信的同时系统将自己释放该手机号码.若要继续使用该号码,请勿带入该参数."""
 
-        for i in 'few':
-            print('等待 10秒:')
-            time.sleep(10)  # 等待
+        
+        条件循环 =0
+        while 条件循环 < 3:  # 条件循环  break # 结束循环 continue # 跳过当前循环，继续进行下一轮循环
+            self.短信内容 = ''
 
-            网址内容 = self.模具一一打开的网址请求返回网页内容(获取短信网址)
+            for i in 'fewt':
+                print('等待 15秒:')
+                time.sleep(14)  # 等待
+                网址内容 = self.模具一一打开的网址请求返回网页内容(获取短信网址)
+                if 'success' in 网址内容.text:  # break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
+                    self.短信内容 = 网址内容.text.replace("success|", "")  # 替换   , 1) 次数 1
+                    print('短信内容:', self.短信内容)
+                    条件循环 = 998
+                    break  # 结束循环
+                elif '3001' in 网址内容.text:  # 其它条件.
+                    print('短信尚未到达:3001,应继续调用取短信接口,直到超时为止.')
 
-            if 'success' in 网址内容.text:  # break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
-                self.短信内容 = 网址内容.text.replace("success|", "")  # 替换   , 1) 次数 1
-                print('短信内容:', self.短信内容)
-                break  # 结束循环
+                else:  # 否则
+                    print('请求失败:', 网址内容.text)
+            条件循环 =条件循环+1
+            pag.PAUSE = 5  # 增加延迟
+            pag.moveTo(740, 456)  # 鼠标移动X.Y 方位  发送验证码 按钮
+            pag.rightClick()  # 右击pag.rightClick()
 
-            elif '3001' in 网址内容.text:  # 其它条件.
-                print('短信尚未到达:3001,应继续调用取短信接口,直到超时为止.')
 
-            else:  # 否则
-                print('请求失败:', 网址内容.text)
 
         释放手机号码接口 = "http://api.fxhyd.cn/UserInterface.aspx?action=release&token={}&itemid={}&mobile={}".format(
             self.通信令牌token, self.项目编号, self.手机号码)
         释放手机号码网址内容 = self.模具一一打开的网址请求返回网页内容(释放手机号码接口)
 
-    def 模具一一知乎短信内容清洗(self):
+    """===========共用库================"""
 
-        规则 = '\d{6}'
-        内容列表 = re.findall(规则, self.短信内容)  # 提取
-        self.短信内容 = 内容列表[0]
+    def 模具一一启动浏览器Chrome68(self):
+        win32api.ShellExecute(0, 'open', r'E:\下载\Google Chrome68\Chrome.exe', '', '', 1)  # 主页已经设置为 注册知乎页
 
+        time.sleep(8)
+
+    def 模具一一随机取女名(self):
+        内容 = """柔蓉安蓝春语彤晴语菱霜紫莲翠烟南寻慕蕊雪海沛宛晓菡巧
+        听卉靖枫梓晨丽丹佩惠月玉婉晓玲倩瑞静颖棋芹萍幻露灵含雅薇瑶丹丽云亿仪伊伶佳依俞俪倩偲兰冰凝凡凤叆呤
+        爱姿惠娇媛妩萱娈瑷悠源赫晗贻楚梦琪忆柳桃慕兰岚香沛菡珊曼菱寒薇忆旋芷蕾代
+        芙盼蝶筠瑶珍谷荷画嘉囡女如妃妍妙妮妹姐姑姗姝姞姣梅梦楠檀欢欣歆毓水洁涵淑清滟滢漪漫澜灵煜燕
+        玉玥玫环玲珂珊珍珠姬娅娆娇娉娜娟娣娥娴婉婕婧婵婷媚媛嫔嫣嫱安宛宜宝容巧希彤彩心忆念怀怜思怡情惠
+        慧敏旭春晴曼月琦琪琬琰琳琴琼瑗瑛瑜瑶瑾璇璐璟白盈盼碧秀筠红绮美翠艳芃芊芝芬芮芯芳芷芸苑若苹茗茜茵茹荔荭
+        荷莉莎莲莹菁菡菲萍萱蓉蓓蔓蕊蕾薇诗语贞采钰银雅雨雪雯霏霖霜霞露青靖静音韵颖颜香馨黛"""
+
+        内容 = 内容.replace("\n", "")
+        内容 = 内容.replace(" ", "")
+        合名 = ''
+
+        for i in '12350':
+            名 = random.choice(内容)
+            合名 = 合名 + 名
+
+
+        f = open(r'E:\PY学习文件\BTT影视剧\发贴推广\复制内容.txt', "w")  # 保存cookie 文件
+        f.write(合名)
+        f.close()
+
+        self.取女名=合名
+
+        print('随机取女名', self.取女名)
+        return  # 返回
+
+    def 模具一一随机职业名(self):
+
+        职业列表=['作者','作家','资料登录员','壮工','主管','主编','钟表匠','置景工','职员','执行官',
+              '园丁','宇航员','渔夫','油漆匠','邮政工人','银行经理','银行出纳员','医生','业务经理','药剂师','演员',
+              '学生','心理学者','鞋店鞋匠','小学生','消防人员','洗碗机','舞蹈演员','维修工程师','外科医生','土木工程师',
+              '屠宰商','小贩','统计员','速记打字员','私人司机','司仪','司机','水手长','水手','水管工人','兽医','售货员','收票员','摄影师',
+              '摄影记者','上班一族','仆人','女演员','女侍者','服务生','女仆','内科医师助理','内科医师','奶妈','牧羊人','牧师','木匠',
+              '模特儿','面包师','秘书','美容师','律师','旅行团的服务员','旅行社','临时照顾幼儿者','理发师','老师','垃圾清洁工','矿工',
+              '客机服务员','科学家','看管者','卡车司机','酒店业主','酒吧招待','酒吧侍者','精神病医师','节目主持人','接待员','教授','技师','记者',
+              '计划员','计程车司机','机械工','机车司机','会计','换工住宿的女孩','护士','航海家','行政助理','行李管理者','焊接工','海员','雇员',
+              '顾问','公交司机','工程师','歌手','副驾驶员','服务员','飞行员','房地产经纪人','翻译者','发型师','发报员','儿科医师','店员',
+              '电影制片人','电台的音乐节目主持人','电工','导演','导师','档案管理者','大厨','打扫房屋者','船长','厨师','出租车司机',
+              '产科医师','叉式升降机操作员','测量技师','餐厅侍者助手','餐馆老板','裁缝师','宝石商']
+        职业名 = random.choice(职业列表)
+        print('职业名', 职业名)
+        f = open(r'E:\PY学习文件\BTT影视剧\发贴推广\复制内容.txt', "w")  # 保存cookie 文件
+        f.write(职业名)
+        f.close()
+        return  # 返回
+
+
+
+    """============旧模具================"""
 
     def 模具一一手机模式访问并注册知乎(self):
-        头部信息="user - agent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_5 like Mac OS X) AppleWebKit/612.1.60(KHTML, like Gecko) CriOS/66.0.2524.75 Mobile/15E5239e Safari/612.1'"
+        头部信息 = "user - agent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_5 like Mac OS X) AppleWebKit/612.1.60(KHTML, like Gecko) CriOS/66.0.2524.75 Mobile/15E5239e Safari/612.1'"
 
-        #url = "http://www.sunchateau.com/free/UA.htm"#  浏览器UA头部信息 在线查询
+        # url = "http://www.sunchateau.com/free/UA.htm"#  浏览器UA头部信息 在线查询
         url = "https://www.zhihu.com/signin?next=https://www.zhihu.com/"
-        #随机手机型号= random.choice(["iPhone 5","iPhone 6","iPhone 6 Plus","iPhone 7","iPhone 7 Plus","iPhone 8","iPhone 8 Plus","iPhone X"])
+        # 随机手机型号= random.choice(["iPhone 5","iPhone 6","iPhone 6 Plus","iPhone 7","iPhone 7 Plus","iPhone 8","iPhone 8 Plus","iPhone X"])
 
         随机手机型号 = random.choice(
             ["iPhone 5", "iPhone 6", "iPhone 6 Plus", "iPad Pro", "iPad"])
@@ -284,46 +358,40 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
         随机手机型号 = "iPhone 6"
         print('随机手机型号', 随机手机型号)
 
-
-        mobile_emulation = {"deviceName":随机手机型号}# 设置成手机模式
+        mobile_emulation = {"deviceName": 随机手机型号}  # 设置成手机模式
         options = Options()
         options = webdriver.ChromeOptions()  # 设置中文
-        options.add_experimental_option("mobileEmulation",mobile_emulation)# 更改 浏览头部信息为手机模式
-        #options.add_argument(头部信息)
+        options.add_experimental_option("mobileEmulation", mobile_emulation)  # 更改 浏览头部信息为手机模式
+        # options.add_argument(头部信息)
 
-        #options.add_argument('disable-infobars')# 加启动配置 去除正在受到自动软件的控制
-        #options.add_argument('headless')  # 静默模式
+        # options.add_argument('disable-infobars')# 加启动配置 去除正在受到自动软件的控制
+        # options.add_argument('headless')  # 静默模式
 
-        #prefs = {"profile.managed_default_content_settings.images": 2}#配置不加载图片
-        #options.add_experimental_option("prefs", prefs)#配置不加载图片
+        # prefs = {"profile.managed_default_content_settings.images": 2}#配置不加载图片
+        # options.add_experimental_option("prefs", prefs)#配置不加载图片
 
-        操作 = webdriver.Chrome(chrome_options=options) # 打开chrome浏览器
-        #driver = webdriver.Chrome(chrome_options=options)
+        操作 = webdriver.Chrome(chrome_options=options)  # 打开chrome浏览器
+        # driver = webdriver.Chrome(chrome_options=options)
 
         # self.模具一一获取接收的手机号码()
         # self.手机号码='17131632268'
 
-
-        操作.get(url)# 访问网址
+        操作.get(url)  # 访问网址
 
         time.sleep(1000)  # 等待
-
-
 
         time.sleep(5)  # 等待
         # 操作.find_element_by_xpath("//*[@id=\"address\"]").send_keys(Keys.CONTROL,'DELETE') # 键盘按击或输入  请空输入框:clear()
         # 操作.find_element_by_xpath("//*[@id=\"address\"]").click()# 光标 点击.click()
         # 操作.find_element_by_xpath("//*[@id=\"root\"]/div/div[2]/header/div/div/div/a[2]").click()  # 光标 点击.click()
 
-
-
-        #操作.find_element_by_name("username").send_keys(self.手机号码)  # 键盘按击或输入  请空输入框:clear()
-        操作.find_element_by_xpath("//*[@id=\"root\"]/div/main/div/form/div[1]/div[1]/div[2]/div[1]/input").send_keys(self.手机号码)  # 键盘按击或输入  请空输入框:clear()
+        # 操作.find_element_by_name("username").send_keys(self.手机号码)  # 键盘按击或输入  请空输入框:clear()
+        操作.find_element_by_xpath("//*[@id=\"root\"]/div/main/div/form/div[1]/div[1]/div[2]/div[1]/input").send_keys(
+            self.手机号码)  # 键盘按击或输入  请空输入框:clear()
         time.sleep(1)  # 等待
-        #操作.find_element_by_class_name("CountingDownButton").click() # 光标 点击.click()
+        # 操作.find_element_by_class_name("CountingDownButton").click() # 光标 点击.click()
 
-
-        定位 = 操作.find_element_by_xpath('//*[@id="root"]/div/main/div/form/div[1]/div[2]/button')# 触摸事件 发送验证码 按扭
+        定位 = 操作.find_element_by_xpath('//*[@id="root"]/div/main/div/form/div[1]/div[2]/button')  # 触摸事件 发送验证码 按扭
         TouchActions(操作).tap(定位).perform()
         time.sleep(1)  # 等待
 
@@ -339,11 +407,11 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
         time.sleep(5)  # 等待
 
         保存cookie = [item["name"] + ":" + item["value"] for item in 操作.get_cookies()]
-        print('保存cookie:\n',保存cookie)
+        print('保存cookie:\n', 保存cookie)
 
         time.sleep(1000)  # 等待
 
-        #操作.quit()  # 关闭浏览器U
+        # 操作.quit()  # 关闭浏览器U
 
     def 模具一一浏览器访问并注册知乎(self):
         self.模具一一换头部信息()
@@ -351,7 +419,7 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
         头部信息 = str(self.头部信息).replace("'User-Agent':", "user-agent=")  # 替换   , 1) 次数 1
         头部信息 = 头部信息.replace("{", "")  # 替换   , 1) 次数 1
         头部信息 = 头部信息.replace("}", "")  # 替换   , 1) 次数 1
-        后缀='user-agent=Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'
+        后缀 = 'user-agent=Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'
 
         options = webdriver.ChromeOptions()  # 设置中文
         # options = Options()
@@ -362,49 +430,47 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
 
         浏览器操作 = webdriver.Chrome(chrome_options=options)  # 打开chrome浏览器
 
-        url = "https://www.zhihu.com"#注册页面  https://www.zhihu.com/signup?next=%2Fexplore
+        url = "https://www.zhihu.com"  # 注册页面  https://www.zhihu.com/signup?next=%2Fexplore
         浏览器操作.get(url)
         time.sleep(500)  # 等待
 
-    def 模具一一随机取女名(self):
-        内容 = """柔蓉安蓝春语彤晴语菱霜紫莲翠烟南寻慕蕊雪海沛宛晓菡巧
-        听卉靖枫梓晨丽丹佩惠月玉婉晓玲倩瑞静颖棋芹萍幻露灵含雅薇瑶丹丽云亿仪伊伶佳依俞俪倩偲兰冰凝凡凤叆呤
-        爱姿惠娇媛妩萱娈瑷悠源赫晗贻楚梦琪忆柳桃慕兰岚香沛菡珊曼菱寒薇忆旋芷蕾代
-        芙盼蝶筠瑶珍谷荷画嘉囡女如妃妍妙妮妹姐姑姗姝姞姣梅梦楠檀欢欣歆毓水洁涵淑清滟滢漪漫澜灵煜燕
-        玉玥玫环玲珂珊珍珠姬娅娆娇娉娜娟娣娥娴婉婕婧婵婷媚媛嫔嫣嫱安宛宜宝容巧希彤彩心忆念怀怜思怡情惠
-        慧敏旭春晴曼月琦琪琬琰琳琴琼瑗瑛瑜瑶瑾璇璐璟白盈盼碧秀筠红绮美翠艳芃芊芝芬芮芯芳芷芸苑若苹茗茜茵茹荔荭
-        荷莉莎莲莹菁菡菲萍萱蓉蓓蔓蕊蕾薇诗语贞采钰银雅雨雪雯霏霖霜霞露青靖静音韵颖颜香馨黛"""
 
-        内容 = 内容.replace("\n", "")
-        合名 = ''
+class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
+    def __init__(self):
+        self.模具一一换头部信息()
+        开始时间计数 = int(time.time())
 
-        for i in '12300':
-            名 = random.choice(内容)
-            合名 = 合名 + 名
-        print('随机取女名',合名)
-        return 合名#返回
+        # self.模具一一易码短信平台()
+        # self.模具一一浏览器访问并注册知乎()
+        self.模具一一鼠标操作浏览器()
 
-    def 模具一一键盘操作(self):  # VK_CODE为键盘encoding='UTF-8'
-        # @Keyboard
-        win32api.ShellExecute(0, 'open',
-                              'https://www.zhihu.com/signup?next=%2Fexplore',
-                              '', '', 1)
-        print('已启动浏览器,耐心等待........')
-        time.sleep(10)
+        结束时间计数 = int(time.time())
+        用时 = 结束时间计数 - 开始时间计数
+        print('操作:', 用时, '秒')
+        print('等待5000秒:')
+        time.sleep(5000) # 等待
 
+
+
+    def 模具一一输入手机号码并验证(self):
         self.模具一一获取接收的手机号码()
 
         pag.PAUSE = 0.5  # 增加延迟
-        pag.moveTo(754, 396)  # 鼠标移动X.Y 方位
+        pag.moveTo(643, 396)  # 鼠标移动X.Y 方位
         pag.rightClick()  # 右击pag.rightClick() 左击pag.leftClick() 中击 pag.middleClick()
         pag.typewrite(self.手机号码)  # 输入手机号码
 
         pag.PAUSE = 0.5  # 增加延迟
-        pag.moveTo(750, 453)  # 鼠标移动X.Y 方位  发送验证码 按钮
-        pag.rightClick()  # 右击pag.rightClick() 左击pag.leftClick() 中击 pag.middleClick()
-
+        pag.moveTo(740, 456)  # 鼠标移动X.Y 方位  发送验证码 按钮
+        pag.rightClick()  # 右击pag.rightClick()
+    def 模具一一输入短信内容并注册(self):
         self.模具一一获取短信()
-        self.模具一一知乎短信内容清洗()
+
+
+
+        规则 = '\d{6}'
+        内容列表 = re.findall(规则, self.短信内容)  # 提取
+        self.短信内容 = 内容列表[0]
 
         pag.PAUSE = 0.5  # 增加延迟
         pag.moveTo(596, 450)  # 鼠标移动X.Y 方位
@@ -415,49 +481,157 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
         pag.moveTo(626, 539)  # 鼠标移动X.Y 方位  注册 按钮
         pag.rightClick()  # 右击
 
+    def 模具一一设置用户名与密码(self):
         """设置用户名与密码"""
-
-        取女名=self.模具一一随机取女名()
-        pag.PAUSE = 1  # 增加延迟
-        pag.moveTo(518, 400)  # 鼠标移动X.Y 方位
-        pag.rightClick()  # 右击
-        pag.typewrite(取女名)  # 输入 用户名
-
-
+        pag.PAUSE = 5  # 增加延迟
         密码数字 = random.randrange(100000, 1000000)
-        密码 = "qq{}Q%".format(密码数字)
-        print('密码:', 密码)
+        self.密码 = "qq{}Q%".format(密码数字)
+        print('密码:', self.密码)
         pag.PAUSE = 0.5  # 增加延迟
         pag.moveTo(518, 466)  # 鼠标移动X.Y 方位
         pag.rightClick()  # 右击
-        pag.typewrite(密码)  # 输入 密码
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.typewrite(self.密码)  # 输入 密码
+
+
+
+        self.模具一一随机取女名()
+        win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\发贴推广\复制内容.txt', '', '', 1)
+        time.sleep(1)  # 等待
+        pag.hotkey('ctrlleft', 'a')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.hotkey('ctrlleft', 'c')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.hotkey('altleft', 'F4')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
+
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.moveTo(538, 403)  # 鼠标移动X.Y 方位
+        pag.rightClick()  # 右击
+        pag.PAUSE = 0.5  # 增加延迟
+
+        pag.hotkey('ctrlleft', 'v')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
+
+
 
         pag.PAUSE = 0.5  # 增加延迟
         pag.moveTo(621, 532)  # 鼠标移动X.Y 方位  进入知乎 按钮
         pag.rightClick()  # 右击
 
-        """你的职业或专业是什么？"""
+    def 模具一一选择职业或专业(self):
+        """你的职业或专业是什么?"""
+        print('选择职业或专业')
+        self.模具一一随机职业名()
 
-        pag.PAUSE = 1  # 增加延迟
+        pag.PAUSE =5  # 增加延迟
+        win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\发贴推广\复制内容.txt', '', '', 1)
+        time.sleep(1)  # 等待
+        pag.hotkey('ctrlleft', 'a')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.hotkey('ctrlleft', 'c')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.hotkey('altleft', 'F4')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
+
+
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.moveTo(612, 273)  # 鼠标移动X.Y 方位
+        pag.rightClick()  # 右击
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.hotkey('ctrlleft', 'v')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
+
+
+
+        pag.PAUSE = 0.5  # 增加延迟
         pag.moveTo(812, 273)  # 鼠标移动X.Y 方位  完成 按钮
         pag.rightClick()  # 右击
 
-        """你想关注哪些话题？"""
-        话题方位组列表=[(256,305),(432,326),(620,326),(800,326),(991,326),
-                        (256,522),(432,522),(620,522),(800,522),(991,522),
-                        (256,696),(432,696),(620,696),(800,696),(991696,)]
+    def 模具一一点击选择关注话题(self):
+        print('点击选择关注话题')
+        """你想关注哪些话题?"""
+        话题方位组列表 = [(256, 305), (432, 326), (620,326), (800, 326), (991,326),
+                   (256, 522), (432, 522), (620, 522), (800, 522), (991,522),
+                   (256, 696), (432, 696), (620, 696), (800, 696), (991,696,)]
 
         话题方位组 = random.choice(话题方位组列表)
 
-        pag.PAUSE = 1  # 增加延迟
+        pag.PAUSE = 2  # 增加延迟
         pag.moveTo(话题方位组[0], 话题方位组[1])  # 鼠标移动X.Y 方位  完成 按钮
         pag.rightClick()  # 右击
 
-        pag.PAUSE =0.5  # 增加延迟
+        pag.PAUSE = 0.5  # 增加延迟
         pag.moveTo(632, 877)  # 鼠标移动X.Y 方位  进入知乎 按钮
         pag.rightClick()  # 右击
 
+    def 模具一一保存数据库一知乎用户密码等(self):
+        print('打开数据库连接')
+        # 打开数据库连接,
+        今天时间 = str(time.strftime("%y-%m-%d", time.localtime()))
 
+        db = pymysql.connect("localhost", "root", "", "影视发帖推广", charset="utf8")
+        # 使用cursor()方法获取操作游标
+        cursor = db.cursor()
+        # SQL 插入语句
+        sql = """INSERT INTO `知乎帐号`(`帐号`, `密码`, `注册手机号`, `注册日期`) 
+        VALUES ("{}","{}","{}","{}")""" .format(self.取女名,self.密码,self.手机号码,今天时间)#不换行 end=""
+
+        try:
+            # 执行sql语句
+            cursor.execute(sql)
+            # 提交到数据库执行
+            db.commit()
+            print('=保存数据库一知乎用户密码')
+        except:
+            # 如果发生错误则回滚
+            print('=====================数据库执行发生错误:===============')
+            db.rollback()
+        # 关闭数据库连接
+        db.close()
+
+
+    def 模具一一清除浏览器历史缓存(self):
+        print('清除浏览器历史缓存')
+
+
+
+        pag.PAUSE = 2  # 增加延迟
+        pag.moveTo(172, 78)  # 鼠标移动X.Y 方位  清除浏览历史书签 按钮
+        pag.rightClick()  # 右击
+
+        pag.PAUSE = 4  # 增加延迟 等待清除新窗口
+        pag.moveTo(813, 725)  # 鼠标移动X.Y 方位  清除浏览历史书签 按钮
+        pag.rightClick()  # 右击
+
+
+        pag.PAUSE = 2  # 增加延迟 等待清除新窗口
+        pag.hotkey('ctrlleft','F4')  # 确认  关闭当前标签页   按钮
+
+        pag.PAUSE = 2  # 增加延迟 等待清除新窗口
+        pag.moveTo(102, 48)  # 鼠标移动X.Y 方位  打开主页 按钮
+        pag.rightClick()  # 右击
+        time.sleep(3)
+
+
+
+    def 模具一一鼠标操作浏览器(self):  # VK_CODE为键盘encoding='UTF-8'
+        # @Keyboard
+        self.模具一一启动浏览器Chrome68()
+
+        
+        条件循环 = 1
+        while 条件循环 == 1:  # 条件循环  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
+            self.模具一一输入手机号码并验证()
+
+            self.模具一一输入短信内容并注册()
+            if len(self.短信内容) !=0:
+                self.模具一一设置用户名与密码()
+                self.模具一一选择职业或专业()
+
+                self.模具一一点击选择关注话题()
+
+                self.模具一一保存数据库一知乎用户密码等()
+
+            self.模具一一清除浏览器历史缓存()
+
+            self.模具一一换ip连接二()
 
 
 类 = 类一一测试库()

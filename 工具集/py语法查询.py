@@ -1244,6 +1244,28 @@ def 模拟鼠标键盘操作():
 
     pag.typewrite('Hello world')#输入字符串
 
+    def 键盘表():
+        键盘表="""
+        字符串 	代表按键
+        ‘enter’(或‘return’ 或 ‘\n’) 	回车
+        ‘esc’ 	ESC键
+        ‘shiftleft’, ‘shiftright’ 	左右SHIFT键
+        ‘altleft’, ‘altright’ 	左右ALT键
+        ‘ctrlleft’, ‘ctrlright’ 	左右CTRL键
+        ‘tab’ (‘\t’) 	TAB键
+        ‘backspace’, ‘delete’ 	BACKSPACE 、DELETE键
+        ‘pageup’, ‘pagedown’ 	PAGE UP 和 PAGE DOWN键
+        ‘home’, ‘end’ 	HOME 和 END键
+        ‘up’, ‘down’, ‘left’,‘right’ 	箭头键
+        ‘f1’, ‘f2’, ‘f3’…. 	F1…….F12键
+        ‘volumemute’, ‘volumedown’,‘volumeup’ 	有些键盘没有
+        ‘pause’ 	PAUSE键
+        ‘capslock’, ‘numlock’,‘scrolllock’ 	CAPS LOCK, NUM LOCK, 和 SCROLLLOCK 键
+        ‘insert’ 	INS或INSERT键
+        ‘printscreen’ 	PRTSC 或 PRINT SCREEN键
+        ‘winleft’, ‘winright’ 	Win键
+        ‘command’ 	Mac OS X command键"""
+
 
 def 分支异步打开网页():
     import asyncio
