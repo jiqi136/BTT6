@@ -2,26 +2,22 @@ import pyautogui as pag
 import win32api
 import time
 import os
+import re
+
+链接文件名='【AngelEcho】アイドル事変IdolIncidents偶像事变第07话.torrent: https://u13288317.ctfile.com/fs/13288317-302962076'
+规则 = ': https.{1,}'  #
+文件名 = re.sub(规则,'',链接文件名)  #
 
 
-import pyautogui as pag
-import pyautogui
-img=pag.screenshot()
-
-合名='旷尽管BTT影视'
+文件名 = 文件名.replace(".zip", "") #替换   , 1) 次数 1
+文件名 = 文件名.rstrip()  # 指定删除的字符串末尾的字符（默认为空格）
+print('文件名',文件名)
 
 
-f = open(r'E:\PY学习文件\BTT影视剧\发贴推广\复制内容.txt', "w")  # 保存cookie 文件
-f.write(合名)
-f.close()
-
-win32api.ShellExecute(0, 'open',  r'E:\PY学习文件\BTT影视剧\发贴推广\复制内容.txt','', '', 1)
-time.sleep(2)  # 等待
-pag.hotkey('ctrlleft', 'a')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
-pag.PAUSE = 0.5  # 增加延迟
-pag.hotkey('ctrlleft', 'c')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
-pag.PAUSE = 0.5  # 增加延迟
-pag.hotkey('altleft', 'F4')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
+规则 = '.{1,}: https'  #
+目录链接 = re.sub(规则, 'https',链接文件名)  #
+目录链接 = 目录链接.rstrip()  # 指定删除的字符串末尾的字符（默认为空格）
+print('目录链接',目录链接)
 
 
 

@@ -1,0 +1,29 @@
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>
+       提交表单
+    </title>
+</head>
+<body>
+
+
+<form method='post'>
+
+{% csrf_token %} <!-- 防止伪装提交请求的功能 -->
+
+{{ form }}
+
+    <p>
+<input type="submit" value="提交">
+
+</form>
+</p>
+<p>{{ rlt }}</p>  <!--为表格处理结果预留位置-->
+
+<br />
+
+</body>
+</html>

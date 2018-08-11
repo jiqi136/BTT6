@@ -1109,6 +1109,10 @@ def 读取文件():
         文本内容 = 文本.read()  # read() #读取
         文本.close()
 
+        content = 文本.read()  # read(N)  读取N bytes的数据
+        content = 文本.readline()  # 读取一行
+        content = 文本.readlines()  # 读取所有行，储存在列表中，每个元素是一行。
+
     判断是否为文件=r"""可以使用os.path.isfile()函数判断某一路径是否为文件。其函数原型如下所示。
 
                 os.path.isfile(path) 

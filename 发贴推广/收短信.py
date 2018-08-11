@@ -249,6 +249,10 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         print('手机号码:', self.手机号码)
 
     def 模具一一获取短信(self):
+        pag.PAUSE = 1  # 增加延迟 回归桌面
+        pag.hotkey('winleft', 'd')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：热键函数 。keyDown()按下某个键。keyUp()松开某个键。
+
+
         self.通信令牌token = '00285014c8a4ce850ee48bcfdd205a14751a49ed'
         self.项目编号 = "891"
 
@@ -307,7 +311,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         内容 = 内容.replace(" ", "")
         合名 = ''
 
-        for i in '12350':
+        for i in '1235':
             名 = random.choice(内容)
             合名 = 合名 + 名
 
@@ -454,6 +458,8 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
 
     def 模具一一输入手机号码并验证(self):
         self.模具一一获取接收的手机号码()
+        if len(self.手机号码) <10:
+            self.模具一一获取接收的手机号码()
 
         pag.PAUSE = 0.5  # 增加延迟
         pag.moveTo(643, 396)  # 鼠标移动X.Y 方位
@@ -466,7 +472,7 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
     def 模具一一输入短信内容并注册(self):
         self.模具一一获取短信()
 
-
+        self.模具一一重新激活浏览器窗口()
 
         规则 = '\d{6}'
         内容列表 = re.findall(规则, self.短信内容)  # 提取
@@ -609,6 +615,16 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
         pag.rightClick()  # 右击
         time.sleep(3)
 
+    def 模具一一重新激活浏览器窗口(self):
+        print('重新激活浏览器窗口')
+
+        pag.PAUSE = 1  # 增加延迟 回归桌面
+        pag.hotkey('winleft', 'd')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：热键函数 。keyDown()按下某个键。keyUp()松开某个键。
+
+        pag.PAUSE = 1  # 增加延迟
+        pag.moveTo(450, 962)  # 鼠标移动X.Y 方位  清除浏览历史书签 按钮
+        pag.rightClick()  # 右击
+        pag.PAUSE = 1  # 增加延迟
 
 
     def 模具一一鼠标操作浏览器(self):  # VK_CODE为键盘encoding='UTF-8'

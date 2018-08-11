@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     '模板视图',
     '新模板页',
     '模型数据库',
+    '提交表单',
 ]
 
 MIDDLEWARE = [

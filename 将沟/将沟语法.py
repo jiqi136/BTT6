@@ -131,21 +131,24 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
             模板内网页文件 = """  templates（模板） 文件夹 再建 频道名同名的目录 home.html  文件
                         文件代码：
-                                       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                                      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                                     <!DOCTYPE html>
-
                                     <html>
                                     <head>
                                         <title>
-                                            {{标题}}
+                                           提交表单
                                         </title>
                                     </head>
                                     <body>
-
-                                    <h1>
-                                        {{内容}}
-                                    </h1>
-
+                                    <form method='post'>
+                                    {% csrf_token %}  <!-- 防止伪装提交请求的功能 --> 
+                                    <p>
+                                    {{ form }}
+                                    <input type="submit" value="提交">
+                                    
+                                    </form>
+                                    </p>
+                                    <p>{{ rlt }}</p>  <!--为表格处理结果预留位置--> 
                                     <br />
                                     </body>
                                     </html>
@@ -540,6 +543,53 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
                     </body>
                     </html>
                                                       """
+
+    def 提交表单(self):
+        变量名 = """
+                              """
+        项目根目录下一创建应用app = 'python manage.py startapp 频道名'  # 确保与manage.py文件处于同一级
+        自定义的频道app绑定 = """频道app名 追加在 项目名settings文件中顶部的INSTALLED_APPS设置项。"""
+        新建文件 = """频道名  文件夹中新建一个 forms.py 文件
+                from django import forms
+                 
+                class AddForm(forms.Form):
+                    a = forms.IntegerField()
+                    b = forms.IntegerField()
+                              """
+        编辑视图文件 = """视图函数 views.py 中
+                    # coding:utf-8
+                    from django.shortcuts import render
+                    from django.http import HttpResponse
+                     
+                    # 引入我们创建的表单类
+                    from .forms import AddForm
+                     
+                    def index(request):
+                        if request.method == 'POST':# 当提交表单时
+                         
+                            form = AddForm(request.POST) # form 包含提交的数据
+                             
+                            if form.is_valid():# 如果提交的数据合法
+                                a = form.cleaned_data['a']
+                                b = form.cleaned_data['b']
+                                return HttpResponse(str(int(a) + int(b)))
+                         
+                        else:# 当正常访问时
+                            form = AddForm()
+                        return render(request, '频道名+模板/index.html', {'form': form})
+                                      """
+        绑定视图函数到对应的URL网址 = """打开 将沟项目名/将沟项目名/urls.py 这个文件
+                                         from django.contrib import admin
+                                        from django.urls import path
+                                        from 频道名 import views as 频道名_视图  # new
+
+
+                                        urlpatterns = [
+                                            path('', 频道名_视图.主页内容, name='home'),  # new
+                                            path('admin/', admin.site.urls),
+                                        ]
+
+                                         """
 
     def admin后台管理站点(self):
         变量名 = """
