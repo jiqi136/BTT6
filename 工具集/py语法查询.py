@@ -412,6 +412,9 @@ def 基本语法():
     安装py库='pip install grequests'#库名grequests
     不同版本下安装pip ="""方法：python27 -m pip install XXXX(-m参数 相当于import，意味当作模块启动)
                         备注：安装了Python2.7.13后重命名了Python27文件夹下python.exe为python2.7.13.exe"""
+    查看python里已经安装的第三方库的版本号="""pip3 list # 列出安装的库 因为安装了python3，应该替换为pip3命令。
+                                        pip3 list --outdated # 列出有更新的库
+                                        pip3 install --upgrade 库名 # 升级库library_name """
     多行语句="反斜杠(\)来实现多行语句" \
          " [], {}, 或 () 中的多行语句，不需要使用反斜杠(\)"
     等待用户输入=input("\n\n按下 enter 确认键后退出。")
@@ -473,6 +476,8 @@ def 基本语法():
     print("str.count('run', 0, 10) : ", 字符串.count(搜索的子字符串, 0, 10))  # 结果  1
 
     """list -- 要返回最大值的列表  max(列表) """
+
+
 
 
 
@@ -1139,10 +1144,11 @@ def 读取文件():
 
     def 移动文件():
         if not os.path.exists(移动文件名):  # 必有条件选择,否则出错
-            print(文件路径, '复制文件:', self.移动文件目录名)
+
+            print(文件路径, '移动文件:', self.移动文件目录名)
         else:  # 否则
             os.unlink(移动文件名)  # 删除原来 文件
-            shutil.move(self.压缩目录名, self.移动文件目录名)
+        shutil.move(self.压缩目录名, self.移动文件目录名)
 
     def 重命名文件():
 
@@ -1226,7 +1232,7 @@ def 操作目录():
         子目录列表与文件列表 = os.listdir(目标目录)  # 分离出目录列表与文件列表
         for 子目录或文件 in 子目录列表与文件列表:
             根目录的子目录或文件路径 = os.path.join(目标目录, 子目录或文件)
-            if os.path.isdir(根目录的子目录或文件路径):  # 判断是不是文件夹
+            if os.path.isdir(根目录的子目录或文件路径):  # 判断是不是文件夹  判断文件 os.path.isfile
                 #os.path.isfile() 函数判断某一路径是否为文件
                 子目录 = 根目录的子目录或文件路径
                 二级子目录列表与文件列表 = os.listdir(子目录)  # 分离出目录列表与文件列表
@@ -1269,6 +1275,31 @@ def 模拟鼠标键盘操作():
         ‘printscreen’ 	PRTSC 或 PRINT SCREEN键
         ‘winleft’, ‘winright’ 	Win键
         ‘command’ 	Mac OS X command键"""
+def 写入并获取剪切板内容的实例():
+    # coding:utf-8
+    import win32clipboard as w
+    import win32con
+
+    def 获取剪切板内容():# 获取剪切板内容
+        w.OpenClipboard()
+        t = w.GetClipboardData(win32con.CF_TEXT)
+        w.CloseClipboard()
+        t = t.decode('UTF-8')  # 解码为 编程的中文
+        return t
+
+
+    def 写入剪切板内容(内容): # 写入剪切板内容
+        内容 = str(内容).encode('gbk')  # 编码为 WIN7 系统 的中文
+        w.OpenClipboard()
+        w.EmptyClipboard()
+        w.SetClipboardData(win32con.CF_TEXT, 内容)
+        w.CloseClipboard()
+
+    # 内容=获取剪切板内容()
+    # print(内容)
+
+    内容 = '获取geregre'
+    写入剪切板内容(内容)
 
 
 def 分支异步打开网页():
@@ -1450,6 +1481,15 @@ def 分支异步打开网页():
                 results = event_loop.run_until_complete(asyncio.wait(任务列表))
 
                 event_loop.close()
+def 模具一一提炼Cookie(self):
+    Cookie文本='tgw_l7_route=170010e948f1b2a2d4c7f3737c85e98c; _zap=ce1305a8-7d69-4551-b0c9-3cdf5d6e0b0c; _xsrf=pSfp9xAJvbYsJp1oUeeJVgGwSSWRFG79; q_c1=b2869836ad1545b89e2ca2fe599291f3|1534096133000|1534096133000; d_c0="ABBnPv7jCw6PTvReDG2SZyvJkmkHe8nDvT4=|1534096133"; capsion_ticket="2|1:0|10:1534096136|14:capsion_ticket|44:Mzg1YjZlMGFlOWY4NGE5MmI3M2IxOTA3MzQ3NjdhMTc=|3531eddc76e8d7935cbda485229e69ab672d0ab931d9139acb5a96cd8d1059e0"; z_c0="2|1:0|10:1534096157|4:z_c0|92:Mi4xTGlzSUFBQUFBQUFBRUdjLV91TUxEaVlBQUFCZ0FsVk5IY0ZkWEFBWHFOTTc5V0M5M19NUFMtbHYyaG1YU044MmNn|2163e2d4319ea00dfbc6fd180ec62e5a883da34d05477a0cec2806e10e49d870"'
+
+    cookies = {}
+    for 每句 in Cookie文本.split(';'): # 转为列表cookies['tgw_l7_route']
+        字典键, 值 = 每句.strip().split('=', 1)  # 1代表只分割一次
+        cookies[字典键] = 值
+
+
 
 
 

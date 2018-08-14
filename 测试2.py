@@ -1,16 +1,31 @@
+import pyautogui as pag
+import ctypes
 
-import re  # 正则式  [\u4e00-\u9fa5]{0,}$
-短标题="[复仇者联盟3.无限战争][3.58G][HEVC 10bit 1080P][内封中英双字][麻辣江湖压制组]"
+#引入winapi
+gdi32 = ctypes.windll.gdi32
+user32 = ctypes.windll.user32
 
-符号列表 = ['/', '.', ' ']
-for 符号 in 符号列表:
-    短标题 =短标题.strip(符号)  # 默认则是去除空格
-    if 符号 in 短标题:
-        if 符号 == ' ':
-            符号 = '\s'
-        if 符号 == '.':
-            符号 = '\.'
-        规则 = '{}'.format(符号)+'.{0,}'  # 不换行 end=""
-        短标题 = re.sub(规则, '',短标题, count=0)
+#获取句柄
+hdc = user32.GetDC(None)
 
-print(短标题)
+
+
+img=pag.screenshot()
+
+pag.PAUSE = 0.5  # 增加延迟
+pag.moveTo(367, 957)  # 鼠标移动X.Y 方位 激活浏览器
+pag.rightClick()  # 右击pag.rightClick() 左击pag.leftClick() 中击 pag.middleClick()
+
+pag.PAUSE = 2.5
+横坐标=213
+竖坐标=701
+
+
+for i in '5646416464':
+    横坐标 =横坐标+3
+    竖坐标 = 竖坐标 + 3
+    pag.moveTo(横坐标, 竖坐标)
+    pag.PAUSE = 0.5  # 增加延迟
+
+    print(img.getpixel((横坐标, 竖坐标)))
+

@@ -8,9 +8,9 @@ import socket
 
 class 类一一上传目录链接网页: #调用 类的模具 self.模具_数据库()
     def __init__(self):
-        #self.新旧影视 = "最新"
+        self.新旧影视 = "最新"
 
-        self.新旧影视 = "合集"
+        #self.新旧影视 = "合集"
         self.模具一一开始调度()
 
 
@@ -98,9 +98,6 @@ class 类一一上传目录链接网页: #调用 类的模具 self.模具_数据
 
 
     def 模具一一读取文件名与http网页(self):
-
-
-
         规则 = ': https.{1,}'  #
         文件名 = re.sub(规则,'',self.网盘文件名与链接)  #
         if len(文件名) == 0:
