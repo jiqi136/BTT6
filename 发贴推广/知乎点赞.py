@@ -403,7 +403,7 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
 
         options.add_argument('disable-infobars')  # 加启动配置 去除正在受到自动软件的控制
         print('头部信息:', 头部信息)
-        print('后缀:', 后缀)
+        print('后缀t:', 后缀)
         options.add_argument(后缀)
 
 
