@@ -11,6 +11,8 @@ from lxml import etree  # 网页分析
 import shutil  # 移动复制文件目录
 from lxml import html  # 网页分析
 import win32api  # 操作本地文件
+import win32clipboard as w# 提取剪切板内容
+import win32con#提取剪切板内容
 from selenium import webdriver  # 浏览的驱动
 from selenium.webdriver.common.touch_actions import TouchActions
 from selenium.webdriver.chrome.options import Options
@@ -150,10 +152,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         次数循环 = 0
         缓冲时间 = 0
         while 循环 == 0:  # 条件循环  post
-            此时数 = int(time.time())
-            if 此时数 > 换IP时间计数 + 200:
-                self.模具一一换ip连接()
-                self.模具一一换头部信息()
+
             try:
                 此时数2 = int(time.time())
                 if 缓冲时间 > 此时数2:
@@ -249,8 +248,8 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         print('手机号码:', self.手机号码)
 
     def 模具一一获取短信(self):
-        pag.PAUSE = 1  # 增加延迟 回归桌面
-        pag.hotkey('winleft', 'd')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：热键函数 。keyDown()按下某个键。keyUp()松开某个键。
+
+        pag.hotkey('altleft', 'tab')  # press()一次完整的击键.hotkey('ctrl','c'):热键函数 .keyDown()按下某个键.keyUp()松开某个键.
 
 
         self.通信令牌token = '00285014c8a4ce850ee48bcfdd205a14751a49ed'
@@ -261,12 +260,12 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
             self.项目编号, self.手机号码)
         """&release=1  自动释放号码标识符 若该参数值为1时,获取到短信的同时系统将自己释放该手机号码.若要继续使用该号码,请勿带入该参数."""
 
-        
+
         条件循环 =0
-        while 条件循环 < 3:  # 条件循环  break # 结束循环 continue # 跳过当前循环，继续进行下一轮循环
+        while 条件循环 < 3:  # 条件循环  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
             self.短信内容 = ''
 
-            for i in 'fewt':
+            for i in 'few52676t':
                 print('等待 15秒:')
                 time.sleep(14)  # 等待
                 网址内容 = self.模具一一打开的网址请求返回网页内容(获取短信网址)
@@ -274,16 +273,19 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
                     self.短信内容 = 网址内容.text.replace("success|", "")  # 替换   , 1) 次数 1
                     print('短信内容:', self.短信内容)
                     条件循环 = 998
-                    break  # 结束循环
+
+                    return#返回
                 elif '3001' in 网址内容.text:  # 其它条件.
                     print('短信尚未到达:3001,应继续调用取短信接口,直到超时为止.')
 
                 else:  # 否则
                     print('请求失败:', 网址内容.text)
             条件循环 =条件循环+1
+            self.模具一一重新激活浏览器窗口()
             pag.PAUSE = 5  # 增加延迟
             pag.moveTo(740, 456)  # 鼠标移动X.Y 方位  发送验证码 按钮
             pag.rightClick()  # 右击pag.rightClick()
+            self.开始计时数 = int(time.time())
 
 
 
@@ -294,9 +296,11 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
     """===========共用库================"""
 
     def 模具一一启动浏览器Chrome68(self):
-        win32api.ShellExecute(0, 'open', r'E:\下载\Google Chrome68\Chrome.exe', '', '', 1)  # 主页已经设置为 注册知乎页
+        win32api.ShellExecute(0, 'open', r'E:\Ean\Google Chrome68\Chrome.exe', '', '', 1)  # 主页已经设置为 注册知乎页
 
         time.sleep(8)
+
+
 
     def 模具一一随机取女名(self):
         内容 = """柔蓉安蓝春语彤晴语菱霜紫莲翠烟南寻慕蕊雪海沛宛晓菡巧
@@ -311,19 +315,17 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         内容 = 内容.replace(" ", "")
         合名 = ''
 
-        for i in '1235':
+        随机取名个位数 = int(random.choice('55667'))
+        for 字符 in range(1, 随机取名个位数):  # 范围 range
             名 = random.choice(内容)
             合名 = 合名 + 名
 
 
-        f = open(r'E:\PY学习文件\BTT影视剧\发贴推广\复制内容.txt', "w")  # 保存cookie 文件
-        f.write(合名)
-        f.close()
+
 
         self.取女名=合名
-
+        self.模具一一写入剪切板内容(self.取女名)
         print('随机取女名', self.取女名)
-        return  # 返回
 
     def 模具一一随机职业名(self):
 
@@ -340,11 +342,51 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
               '产科医师','叉式升降机操作员','测量技师','餐厅侍者助手','餐馆老板','裁缝师','宝石商']
         职业名 = random.choice(职业列表)
         print('职业名', 职业名)
-        f = open(r'E:\PY学习文件\BTT影视剧\发贴推广\复制内容.txt', "w")  # 保存cookie 文件
-        f.write(职业名)
-        f.close()
-        return  # 返回
+        self.模具一一写入剪切板内容(职业名)
 
+
+
+    def 模具一一获取剪切板内容(self):# 获取剪切板内容
+        w.OpenClipboard()
+        t = w.GetClipboardData(win32con.CF_TEXT)
+        w.CloseClipboard()
+
+        t = t.decode('gbk')  # 解码为 编程的中文
+
+        return t
+
+
+    def 模具一一写入剪切板内容(self,内容): # 写入剪切板内容
+        内容 = str(内容).encode('gbk')  # encoding='UTF-8'为 WIN7 系统 的中文
+        w.OpenClipboard()
+        w.EmptyClipboard()
+        w.SetClipboardData(win32con.CF_TEXT, 内容)
+        w.CloseClipboard()
+
+    def 模具一一测试页面属性(self,页面关键词):
+        time.sleep(5)  # 等待
+
+        for i in '123':
+            pag.PAUSE = 0.5  # 增加延迟
+            pag.hotkey('ctrlleft', 'a')  # press()一次完整的击键.hotkey('ctrl','c'):复制内容
+            # pag.mouseDown(x=498, y=336, button='right')  # 按下 选择的右键
+            pag.PAUSE = 0.5  # 增加延迟
+            # pag.moveTo(643, 396)  # 鼠标移动X.Y 方位
+            pag.hotkey('ctrlleft', 'c')  # press()一次完整的击键.hotkey('ctrl','c'):复制内容
+            # pag.mouseUp(x=589, y=336, button='right')#  松开 选择的右键
+            页面属性 = self.模具一一获取剪切板内容()
+            if 页面关键词 in 页面属性:
+                print('通过', 页面关键词, '页面')
+                return  # 返回
+            else:  # 否则
+                time.sleep(10)  # 等待
+
+        pag.hotkey('ctrlleft', 'r')  # 刷新页面
+        pag.PAUSE = 2  # 增加延迟
+        # pag.moveTo(77, 46)  # 鼠标移动X.Y 方位  刷新页面
+        # pag.rightClick()  # 右击pag.rightClick()
+
+        self.模具一一测试页面属性(页面关键词)
 
 
     """============旧模具================"""
@@ -457,30 +499,46 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
 
 
     def 模具一一输入手机号码并验证(self):
+
         self.模具一一获取接收的手机号码()
         if len(self.手机号码) <10:
             self.模具一一获取接收的手机号码()
 
-        pag.PAUSE = 0.5  # 增加延迟
+        """测试页面属性"""
+        页面关键词='注册知乎'
+        self.模具一一测试页面属性(页面关键词)
         pag.moveTo(643, 396)  # 鼠标移动X.Y 方位
         pag.rightClick()  # 右击pag.rightClick() 左击pag.leftClick() 中击 pag.middleClick()
         pag.typewrite(self.手机号码)  # 输入手机号码
 
-        pag.PAUSE = 0.5  # 增加延迟
+        pag.PAUSE = 1.5  # 增加延迟
         pag.moveTo(740, 456)  # 鼠标移动X.Y 方位  发送验证码 按钮
         pag.rightClick()  # 右击pag.rightClick()
-    def 模具一一输入短信内容并注册(self):
-        self.模具一一获取短信()
 
+        pag.PAUSE = 1.5  # 增加延迟
+        pag.moveTo(740, 456)  # 鼠标移动X.Y 方位  发送验证码 按钮
+        pag.rightClick()  # 右击pag.rightClick()
+
+    def 模具一一输入短信内容并注册(self):
+        self.开始计时数 = int(time.time())
+
+        self.模具一一获取短信()
         self.模具一一重新激活浏览器窗口()
+        if len(self.短信内容) == 0:
+            return#返回
 
         规则 = '\d{6}'
         内容列表 = re.findall(规则, self.短信内容)  # 提取
         self.短信内容 = 内容列表[0]
 
-        pag.PAUSE = 0.5  # 增加延迟
-        pag.moveTo(596, 450)  # 鼠标移动X.Y 方位
+
+        结束时数 = int(time.time())
+        if 结束时数 > self.开始计时数 + 60:
+            pag.moveTo(627, 557)  # 鼠标移动X.Y 方位 大于 60秒的 注册 按钮
+        else:  #否则
+            pag.moveTo(596, 450)  # 鼠标移动X.Y 方位  60秒以内的 注册 按钮
         pag.rightClick()  # 右击
+        pag.PAUSE = 0.5  # 增加延迟
         pag.typewrite(self.短信内容)  # 输入 短信内容
 
         pag.PAUSE = 0.5  # 增加延迟
@@ -489,7 +547,20 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
 
     def 模具一一设置用户名与密码(self):
         """设置用户名与密码"""
-        pag.PAUSE = 5  # 增加延迟
+        pag.PAUSE = 2  # 增加延迟
+        """测试页面属性"""
+        页面关键词 = '设置用户名和密码'
+        self.模具一一测试页面属性(页面关键词)
+
+
+        self.模具一一随机取女名()
+        pag.moveTo(538, 403)  # 鼠标移动X.Y 方位
+        pag.rightClick()  # 右击
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.hotkey('ctrlleft', 'v')  # press()一次完整的击键.hotkey('ctrl','c'):
+
+
+
         密码数字 = random.randrange(100000, 1000000)
         self.密码 = "qq{}Q%".format(密码数字)
         print('密码:', self.密码)
@@ -501,48 +572,25 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
 
 
 
-        self.模具一一随机取女名()
-        win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\发贴推广\复制内容.txt', '', '', 1)
-        time.sleep(1)  # 等待
-        pag.hotkey('ctrlleft', 'a')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
-        pag.PAUSE = 0.5  # 增加延迟
-        pag.hotkey('ctrlleft', 'c')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
-        pag.PAUSE = 0.5  # 增加延迟
-        pag.hotkey('altleft', 'F4')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
-
-        pag.PAUSE = 0.5  # 增加延迟
-        pag.moveTo(538, 403)  # 鼠标移动X.Y 方位
-        pag.rightClick()  # 右击
-        pag.PAUSE = 0.5  # 增加延迟
-
-        pag.hotkey('ctrlleft', 'v')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
-
-
-
         pag.PAUSE = 0.5  # 增加延迟
         pag.moveTo(621, 532)  # 鼠标移动X.Y 方位  进入知乎 按钮
         pag.rightClick()  # 右击
 
     def 模具一一选择职业或专业(self):
         """你的职业或专业是什么?"""
+
+        """测试页面属性"""
+        页面关键词 = '职业或专业'
+        self.模具一一测试页面属性(页面关键词)
+
         print('选择职业或专业')
         self.模具一一随机职业名()
 
-        pag.PAUSE =5  # 增加延迟
-        win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\发贴推广\复制内容.txt', '', '', 1)
-        time.sleep(1)  # 等待
-        pag.hotkey('ctrlleft', 'a')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
-        pag.PAUSE = 0.5  # 增加延迟
-        pag.hotkey('ctrlleft', 'c')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
-        pag.PAUSE = 0.5  # 增加延迟
-        pag.hotkey('altleft', 'F4')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
 
-
-        pag.PAUSE = 0.5  # 增加延迟
         pag.moveTo(612, 273)  # 鼠标移动X.Y 方位
         pag.rightClick()  # 右击
         pag.PAUSE = 0.5  # 增加延迟
-        pag.hotkey('ctrlleft', 'v')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：
+        pag.hotkey('ctrlleft', 'v')  # press()一次完整的击键.hotkey('ctrl','c'):
 
 
 
@@ -551,20 +599,36 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
         pag.rightClick()  # 右击
 
     def 模具一一点击选择关注话题(self):
-        print('点击选择关注话题')
+        """测试页面属性"""
+        页面关键词 = '关注哪些话题'
+        self.模具一一测试页面属性(页面关键词)
         """你想关注哪些话题?"""
         话题方位组列表 = [(256, 305), (432, 326), (620,326), (800, 326), (991,326),
                    (256, 522), (432, 522), (620, 522), (800, 522), (991,522),
                    (256, 696), (432, 696), (620, 696), (800, 696), (991,696,)]
 
         话题方位组 = random.choice(话题方位组列表)
-
-        pag.PAUSE = 2  # 增加延迟
         pag.moveTo(话题方位组[0], 话题方位组[1])  # 鼠标移动X.Y 方位  完成 按钮
         pag.rightClick()  # 右击
 
         pag.PAUSE = 0.5  # 增加延迟
         pag.moveTo(632, 877)  # 鼠标移动X.Y 方位  进入知乎 按钮
+        pag.rightClick()  # 右击
+
+    def 模具一一提取登录界面的cookie(self):
+        pag.PAUSE = 1  # 增加延迟
+        pag.moveTo(1197, 45)  # 鼠标移动X.Y 方位  cookie插件激活 按钮
+        pag.rightClick()  # 右击
+
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.moveTo(999, 91)  # 鼠标移动X.Y 方位  导出到剪切板 按钮
+        pag.rightClick()  # 右击
+
+        self.cookie =self.模具一一获取剪切板内容()
+        print(self.cookie)
+
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.moveTo(682, 91)  # 鼠标移动X.Y 方位  清除全部cookie    按钮
         pag.rightClick()  # 右击
 
     def 模具一一保存数据库一知乎用户密码等(self):
@@ -576,8 +640,8 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
         # 使用cursor()方法获取操作游标
         cursor = db.cursor()
         # SQL 插入语句
-        sql = """INSERT INTO `知乎帐号`(`帐号`, `密码`, `注册手机号`, `注册日期`) 
-        VALUES ("{}","{}","{}","{}")""" .format(self.取女名,self.密码,self.手机号码,今天时间)#不换行 end=""
+        sql = """INSERT INTO `知乎帐号`(`帐号`, `密码`, `注册手机号`, `注册日期`, `cookie`) 
+        VALUES ("{}","{}","{}","{}",'{}')""" .format(self.取女名,self.密码,self.手机号码,今天时间,self.cookie)#不换行 end=""
 
         try:
             # 执行sql语句
@@ -592,13 +656,15 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
         # 关闭数据库连接
         db.close()
 
-
     def 模具一一清除浏览器历史缓存(self):
         print('清除浏览器历史缓存')
 
+        pag.moveTo(102, 48)  # 鼠标移动X.Y 方位  打开主页 按钮
+        pag.rightClick()  # 右击
+        time.sleep(2)
 
 
-        pag.PAUSE = 2  # 增加延迟
+        pag.PAUSE = 0.5  # 增加延迟
         pag.moveTo(172, 78)  # 鼠标移动X.Y 方位  清除浏览历史书签 按钮
         pag.rightClick()  # 右击
 
@@ -607,47 +673,50 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
         pag.rightClick()  # 右击
 
 
-        pag.PAUSE = 2  # 增加延迟 等待清除新窗口
-        pag.hotkey('ctrlleft','F4')  # 确认  关闭当前标签页   按钮
 
-        pag.PAUSE = 2  # 增加延迟 等待清除新窗口
+        pag.hotkey('ctrlleft','F4')  # 确认  关闭当前标签页   按钮
+        self.模具一一换ip连接二()
+        time.sleep(2)
+
         pag.moveTo(102, 48)  # 鼠标移动X.Y 方位  打开主页 按钮
         pag.rightClick()  # 右击
-        time.sleep(3)
+        time.sleep(2)
 
     def 模具一一重新激活浏览器窗口(self):
         print('重新激活浏览器窗口')
-
-        pag.PAUSE = 1  # 增加延迟 回归桌面
-        pag.hotkey('winleft', 'd')  # press()一次完整的击键。hotkey(‘ctrl’,’c’)：热键函数 。keyDown()按下某个键。keyUp()松开某个键。
+        pag.hotkey('winleft', 'd')  # press()一次完整的击键.hotkey('ctrl','c'):热键函数 .keyDown()按下某个键.keyUp()松开某个键.
 
         pag.PAUSE = 1  # 增加延迟
-        pag.moveTo(450, 962)  # 鼠标移动X.Y 方位  清除浏览历史书签 按钮
+        pag.moveTo(258, 962)  # 鼠标移动X.Y 方位  重新激活浏览器窗口 在CMD 与  回归桌面之间
         pag.rightClick()  # 右击
-        pag.PAUSE = 1  # 增加延迟
+        pag.PAUSE = 2  # 增加延迟
 
 
     def 模具一一鼠标操作浏览器(self):  # VK_CODE为键盘encoding='UTF-8'
         # @Keyboard
-        self.模具一一启动浏览器Chrome68()
 
-        
         条件循环 = 1
         while 条件循环 == 1:  # 条件循环  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
+            self.模具一一重新激活浏览器窗口()
+
             self.模具一一输入手机号码并验证()
 
             self.模具一一输入短信内容并注册()
+
             if len(self.短信内容) !=0:
                 self.模具一一设置用户名与密码()
+
                 self.模具一一选择职业或专业()
 
                 self.模具一一点击选择关注话题()
 
+
+                self.模具一一提取登录界面的cookie()
+
                 self.模具一一保存数据库一知乎用户密码等()
 
             self.模具一一清除浏览器历史缓存()
-
-            self.模具一一换ip连接二()
+            time.sleep(1) # 等待
 
 
 类 = 类一一测试库()

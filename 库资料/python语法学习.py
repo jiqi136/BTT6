@@ -1908,7 +1908,7 @@
 				driver.delete_cookie(name=".CNBlogsCookie")
 				print driver.get_cookies()
 				# 为了验证此cookie是登录的，可以删除后刷新页面
-				driver.refresh()
+				driver.refresh()#刷新页面
 				# 清除所有的cookie
 				driver.delete_all_cookies()
 				print driver.get_cookies()
