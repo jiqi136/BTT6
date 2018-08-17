@@ -7,7 +7,7 @@ for i in  '54321':
 
 pyautogui.alert('5分钟时间已到')
 
-
+等待用户输入=input("\n按下 enter 确认键后继续倒数1分钟。")
 print("继续，倒数1分钟")
 
 time.sleep(60)# 等待
