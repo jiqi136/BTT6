@@ -424,38 +424,13 @@ def 基本语法():
 
 
 
-    if 'format函数格式化字符串的用法' ==0:
-        print('{0},{1}'.format('zhangk', 32))
-
-        print('{},{},{}'.format('zhangk', 'boy', 32))
-        #通过关键字参数,可以接受不限个参数，位置可以不按顺序，可以不用或者用多次
-        print('{name},{sex},{age}'.format(age=32, sex='male', name='zhangk'))
-
-        #通过下标
-        p = ['kzc', 18]
-        print( '{0[0]},{0[1]}'.format(p))
-        #精度常跟类型f一起使用
-        print('{:.2f}'.format(321.33345))
-        格式转化=""""!s、!a、!r
-                一个对象本身不是str，ascii，repr格式，
-                可以使用!s、!a、!r，将其转成str，ascii，repr"""
 
 
-        输出显示 = "%s,%s岁,%s,开车去东北" % (name, age, gender)  # %d为数字
 
-        小数点精度a = ("%.2f" % 2.635)
-        aaa = 'hgjtgu'
-    获取变量的数据类型 =print(type(aaa))#aaa = '获取变量的数据类型hgjtgu'
-    def 判断两个数据的类型是否一样():
-        if type(123) == type('123'):
-            print('Yes')
-        else:
-            print('False')
 
-    if '设置一个文件为自用' in a:c=""""""
-
-        if __name__ == '__main__':
-            mian_test()
+    设置一个文件为自用= """当.py文件以模块形式被导入时，if __name__ == '__main__'之下的代码块不被运行"""
+    if __name__ == '__main__':
+        pass
 
 
     """utf-8 编码错误在 抬头加  # -*- coding:utf-8"""
@@ -1015,10 +990,41 @@ def 文本清洗():
         文本 = str(原文本).replace("25", "120")
         文本 = str(原文本).replace("]", '', 1)# 次数 1
 
-     def 文本前后截去特定字符串():
+
+    def 文本前后截去特定字符串():
         正文 = "25"
         正文 = str(正文).strip('[')#文本前后截去特定字符串
         正文 = str(正文).strip()#默认则是去除空格
+
+    def 文本代入():
+        if 'format函数格式化字符串的用法' ==0:
+            print('{0},{1}'.format('zhangk', 32))
+
+            print('{},{},{}'.format('zhangk', 'boy', 32))
+            #通过关键字参数,可以接受不限个参数，位置可以不按顺序，可以不用或者用多次
+            print('{name},{sex},{age}'.format(age=32, sex='male', name='zhangk'))
+
+            #通过下标
+            p = ['kzc', 18]
+            print( '{0[0]},{0[1]}'.format(p))
+            #精度常跟类型f一起使用
+            print('{:.2f}'.format(321.33345))
+            格式转化=""""!s、!a、!r
+                    一个对象本身不是str，ascii，repr格式，
+                    可以使用!s、!a、!r，将其转成str，ascii，repr"""
+
+
+            输出显示 = "%s,%s岁,%s,开车去东北" % (name, age, gender)  # %d为数字
+
+            小数点精度a = ("%.2f" % 2.635)
+            aaa = 'hgjtgu'
+    获取变量的数据类型 =print(type(aaa))#aaa = '获取变量的数据类型hgjtgu'
+    def 判断两个数据的类型是否一样():
+        if type(123) == type('123'):
+            print('Yes')
+        else:
+            print('False')
+
 
     def 模具_符号列表清洗(原文):
         列表 = ["[", "]", "\'", "\"", ":", "*", "/", "\\", "#", "\"", "?", ".", "\'", "'", "\'", "'", '', '，', '！', '\\n',

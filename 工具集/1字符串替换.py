@@ -39,6 +39,7 @@ from lxml import html  # 网页分析
 from selenium import webdriver  # 浏览的驱动
 import win32api  # 操作本地文件
 import asyncio, aiohttp # 异步浏览""",
+         '自用2': "if __name__ == '__main__':",
             '如果2':"""
                 if '' in (): #  break # 结束循环 continue # 跳过当前循环，继续进行下一轮循环   
                     

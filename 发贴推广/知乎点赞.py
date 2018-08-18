@@ -18,42 +18,17 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
 import pyautogui as pag
 import pyautogui
-import 发贴推广.推广公共库  # 导入模块
+from 发贴推广.知乎收短信 import 类一一公共库# 导入模块
 
-class 类一一知乎点赞(发贴推广.推广公共库.类一一公共库):  # 调用 类的模具 self.模具一一数据库()
+class 类一一知乎点赞(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
     def __init__(self):
         #self.模具一一换头部信息()
 
-        # self.模具一一gr无序单网址()
-        # 发贴推广.推广公共库.模具一一重新激活浏览器窗口()
         self.模具一一重新激活浏览器窗口()
         #self.模具一一浏览器访问并注册知乎()
 
 
-    def 模具一一gr无序单网址(self):
 
-        单网址 = 'http://91btbtt.com/?thread-4348648.htm'
-
-        网址内容 = self.模具一一gr无序单网址请求返回网页内容(单网址)
-        print('网址内容:', 网址内容.text)
-
-    def 模具一一异步调度网址列表(self):
-        网址列表 = []
-        页数网址 = 'http://news.paidai.com/?page={}'  # {}
-
-        for 倒页数 in range(18, 0, -1):
-            各帖子链接 = 页数网址.format(str(倒页数))  # 不换行 end=""  request("GET"  pool=1, ,size=2 pool=1,timeout=len(任务列表)//2,
-            print('各帖子链接', 各帖子链接)
-            网址列表.append(各帖子链接)
-        self.模具一一异步调度(网址列表)  # self.返回网页一链接组列表
-
-        for 返回网页一链接组 in self.返回网页一链接组列表:
-            返回网页内容 = 返回网页一链接组[0]
-            链接 = 返回网页一链接组[1]
-            print('链接', 链接)
-        # print('网址内容:', 网址内容.text)
-
-        print('返回网页内容', 返回网页内容)
 
     def 模具一一提炼Cookie(self):
         Cookie文本='tgw_l7_route=170010e948f1b2a2d4c7f3737c85e98c; _zap=ce1305a8-7d69-4551-b0c9-3cdf5d6e0b0c; _xsrf=pSfp9xAJvbYsJp1oUeeJVgGwSSWRFG79; q_c1=b2869836ad1545b89e2ca2fe599291f3|1534096133000|1534096133000; d_c0="ABBnPv7jCw6PTvReDG2SZyvJkmkHe8nDvT4=|1534096133"; capsion_ticket="2|1:0|10:1534096136|14:capsion_ticket|44:Mzg1YjZlMGFlOWY4NGE5MmI3M2IxOTA3MzQ3NjdhMTc=|3531eddc76e8d7935cbda485229e69ab672d0ab931d9139acb5a96cd8d1059e0"; z_c0="2|1:0|10:1534096157|4:z_c0|92:Mi4xTGlzSUFBQUFBQUFBRUdjLV91TUxEaVlBQUFCZ0FsVk5IY0ZkWEFBWHFOTTc5V0M5M19NUFMtbHYyaG1YU044MmNn|2163e2d4319ea00dfbc6fd180ec62e5a883da34d05477a0cec2806e10e49d870"'
@@ -141,7 +116,9 @@ class 类一一知乎点赞(发贴推广.推广公共库.类一一公共库):  #
         time.sleep(20000)  # 等待
 
 
+if __name__ == '__main__':
+    类 = 类一一知乎点赞()
 
-类 = 类一一知乎点赞()
+
 
 
