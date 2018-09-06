@@ -1,132 +1,124 @@
-import pyautogui as pag
-import time
-import pymysql
-
-print('打开数据库连接')
-# 打开数据库连接, 手机号码
-今天时间 = str(time.strftime("%y-%m-%d", time.localtime()))
-取女名='取女名'
-密码='密码'
-手机号码='手机号码'
-cookie="""[
-{
-    "domain": ".zhihu.com",
-    "expirationDate": 1611991243.574701,
-    "hostOnly": false,
-    "httpOnly": false,
-    "name": "_xsrf",
-    "path": "/",
-    "sameSite": "no_restriction",
-    "secure": false,
-    "session": false,
-    "storeId": "0",
-    "value": "QOuaWlGAt2EGUPlhmMnsWIUiH8PP2xNn",
-    "id": 1
-},
-{
-    "domain": ".zhihu.com",
-    "expirationDate": 1597303667.508257,
-    "hostOnly": false,
-    "httpOnly": false,
-    "name": "_zap",
-    "path": "/",
-    "sameSite": "no_restriction",
-    "secure": false,
-    "session": false,
-    "storeId": "0",
-    "value": "7a60aba6-3437-4f4a-82b1-5d4473dce932",
-    "id": 2
-},
-{
-    "domain": ".zhihu.com",
-    "expirationDate": 1536823672.910257,
-    "hostOnly": false,
-    "httpOnly": true,
-    "name": "capsion_ticket",
-    "path": "/",
-    "sameSite": "no_restriction",
-    "secure": false,
-    "session": false,
-    "storeId": "0",
-    "value": "\"2|1:0|10:1534231722|14:capsion_ticket|44:OWE4Mzg1NzQ1OGM5NDZjYTk4ZGM4YjYzMzY2NzlmMzE=|55eeab68823158d4e7025b16b116dbfa533e7d70dbde0138d657128687c4dc30\"",
-    "id": 3
-},
-{
-    "domain": ".zhihu.com",
-    "expirationDate": 1628839672.758257,
-    "hostOnly": false,
-    "httpOnly": false,
-    "name": "d_c0",
-    "path": "/",
-    "sameSite": "no_restriction",
-    "secure": false,
-    "session": false,
-    "storeId": "0",
-    "value": "\"ACCn1znpDQ6PTn4-SwQ1yEJi2IUUmW3t9zU=|1534231722\"",
-    "id": 4
-},
-{
-    "domain": ".zhihu.com",
-    "expirationDate": 1628839672.757257,
-    "hostOnly": false,
-    "httpOnly": false,
-    "name": "q_c1",
-    "path": "/",
-    "sameSite": "no_restriction",
-    "secure": false,
-    "session": false,
-    "storeId": "0",
-    "value": "1e9475f36ced423ebdda0c449e7df724|1534231722000|1534231722000",
-    "id": 5
-},
-{
-    "domain": ".zhihu.com",
-    "expirationDate": 1549783814.484146,
-    "hostOnly": false,
-    "httpOnly": true,
-    "name": "z_c0",
-    "path": "/",
-    "sameSite": "no_restriction",
-    "secure": false,
-    "session": false,
-    "storeId": "0",
-    "value": "\"2|1:0|10:1534231864|4:z_c0|92:Mi4xdFFhWUN3QUFBQUFBSUtmWE9la05EaVlBQUFCZ0FsVk5PTk5mWEFCbmRjbzJMNTRxOTBYTE91SFltU2NtbGlOcjNn|2c764323cd7ff4455f4b882eba8317ba202f3084f947697f769fe7990a41056e\"",
-    "id": 6
-},
-{
-    "domain": "www.zhihu.com",
-    "expirationDate": 1534232143.573701,
-    "hostOnly": true,
-    "httpOnly": false,
-    "name": "tgw_l7_route",
-    "path": "/",
-    "sameSite": "no_restriction",
-    "secure": false,
-    "session": false,
-    "storeId": "0",
-    "value": "8605c5a961285724a313ad9c1bbbc186",
-    "id": 7
-}
-]
-"""
+import random
+import time  # 时间
 
 
-db = pymysql.connect("localhost", "root", "", "影视发帖推广", charset="utf8")
-# 使用cursor()方法获取操作游标
-cursor = db.cursor()
-# SQL 插入语句
-sql = """INSERT INTO `知乎帐号`(`帐号`, `密码`, `注册手机号`, `注册日期`, `cookie`) 
-VALUES ("{}","{}","{}","{}","{}")""" .format(取女名,密码,手机号码,今天时间,cookie)#不换行 end=""
+def 模具一一换头部信息():  # 头部信息 def 函数模具内通行变量
+    # nonlocal 头部信息  # def 函数模具内通行变量
+    global 头部信息, 换IP时间计数  # def 函数模具内通行变量
+    换IP时间计数 = int(time.time())
+    # {'User-Agent': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0'}  被BT网站墙了
+    随机3位数 = str(random.randrange(101, 1000))
+    随机2位数 = str(random.randrange(11, 100))
+    随机1位数 = str(random.randrange(1, 10))
+    随机11位数 = str(random.randrange(1, 10))
+    头部信息 = random.choice([{'User-Agent': 'Opera/9.80 (Windows NT 6.1; U; en) Presto/2.8.131 Version/11.11'},
+                          {
+                              'User-Agent': 'Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; en) Presto/2.8.{随机3位数 Version/随机2位数.11'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(X11;Linuxx86_64)AppleWebKit/随机3位数.5(KHTML,likeGecko)Chrome/随机2位数.0.1084.9Safari/536.5'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(X11;Linuxx86_64)AppleWebKit/随机3位数.5(KHTML,likeGecko)Chrome/随机2位数.0.1084.9Safari/536.5'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(X11;Linuxx86_64)AppleWebKit/随机3位数.24(KHTML,likeGecko)Chrome/随机2位数.0.1055.1Safari/535.24'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(X11;Linuxx86_64)AppleWebKit/随机3位数.24(KHTML,likeGecko)Chrome/随机2位数.0.1055.1Safari/535.24'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(X11;Linuxx86_64)AppleWebKit/随机3位数.24(KHTML,likeGecko)Chrome/随机2位数.0.1055.1Safari/535.24'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(X11;CrOSi6862268.111.0)AppleWebKit/随机3位数.11(KHTML,likeGecko)Chrome/随机2位数.0.1132.57Safari/536.11'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(X11;CrOSi6862268.111.0)AppleWebKit/随机3位数.11(KHTML,likeGecko)Chrome/随机2位数.0.1132.57Safari/536.11'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.2;WOW64)AppleWebKit/随机3位数.1(KHTML,likeGecko)Chrome/随机2位数.77.34.5Safari/537.1'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.2;WOW64)AppleWebKit/随机3位数.1(KHTML,likeGecko)Chrome/随机2位数.77.34.5Safari/537.1'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.2;WOW64)AppleWebKit/随机3位数.24(KHTML,likeGecko)Chrome/随机2位数.0.1055.1Safari/535.24'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.6(KHTML,likeGecko)Chrome/随机2位数.0.1090.0Safari/536.6'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.6(KHTML,likeGecko)Chrome/随机2位数.0.1090.0Safari/536.6'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1062.0Safari/536.3'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1062.0Safari/536.3'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.0Safari/536.3'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.0Safari/536.3'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.1(KHTML,likeGecko)Chrome/随机2位数.0.1207.1Safari/537.1'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.1(KHTML,likeGecko)Chrome/随机2位数.0.1207.1Safari/537.1'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.6(KHTML,likeGecko)Chrome/随机2位数.0.1092.0Safari/536.6'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.6(KHTML,likeGecko)Chrome/随机2位数.0.1092.0Safari/536.6'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1063.0Safari/536.3'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1063.0Safari/536.3'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1062.0Safari/536.3'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1062.0Safari/536.3'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.1)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.1)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.0)AppleWebKit/随机3位数.5(KHTML,likeGecko)Chrome/随机2位数.0.1084.36Safari/536.5'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT6.0)AppleWebKit/随机3位数.5(KHTML,likeGecko)Chrome/随机2位数.0.1084.36Safari/536.5'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(WindowsNT5.1)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1063.0Safari/536.3'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(Macintosh;IntelMacOSX10_8_0)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1063.0Safari/536.3'},
+                          {
+                              'User-Agent': 'Mozilla/5.0(Macintosh;IntelMacOSX10_8_0)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1063.0Safari/536.3'},
+                          {
+                              'User-Agent': 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/随机3位数.50 (KHTML, like Gecko) Version/随机3位数.1 Safari/534.50'},
+                          {
+                              'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/201随机3位数01 Firefox/随机2位数.0.1'},
+                          {
+                              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50随机3位数; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3; rv:随机2位数.0) like Gecko'},
+                          {
+                              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:随机2位数.0) Gecko/201随机3位数01 Firefox/随机2位数.0'},
+                          {
+                              'User-Agent': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; en-us) AppleWebKit/随机3位数.50 (KHTML, like Gecko) Version/随机3位数.1 Safari/534.50'},
+                          {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 6.0; Trident/4.0)'},
+                          {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 6.0)'},
+                          {
+                              'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/随机3位数.11 (KHTML, like Gecko) Chrome/随机2位数.0.963.56 Safari/535.11'},
+                          {
+                              'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0.1) Gecko/201随机3位数01 Firefox/随机2位数.0.1'},
+                          {
+                              'User-Agent': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/随机2位数.0; SE 2.X MetaSr 1.0; SE 2.X MetaSr 1.0; .NET CLR 2.0.随机2位数727; SE 2.X MetaSr 1.0)'},
+                          {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 随机11位数.1; The World)'},
+                          {
+                              'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 随机11位数.1; TencentTraveler 4.0)'},
+                          {
+                              'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 随机11位数.1; Maxthon 2.0)'},
+                          {
+                              'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 随机11位数.1; Avant Browser)'},
+                          {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 随机11位数.1; 360SE)'},
+                          {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 随机11位数.1)'},
+                          {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 随机11位数.1)'}
+                          ])
+    头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机1位数", 随机1位数)  # 替换   , 1) 次数 1
+    头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机11位数", 随机11位数)  # 替换   , 1) 次数 1
+    头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机2位数", 随机2位数)  # 替换   , 1) 次数 1
+    头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机3位数", 随机3位数)  # 替换   , 1) 次数 1
+    头部信息 = 头部信息
+    print(头部信息)
+    print(头部信息['User-Agent'])
 
-try:
-    # 执行sql语句
-    cursor.execute(sql)
-    # 提交到数据库执行
-    db.commit()
-    print('=保存数据库一知乎用户密码')
-except:
-    # 如果发生错误则回滚
-    print('=====================数据库执行发生错误:===============')
-    db.rollback()
-# 关闭数据库连接
-db.close()
+模具一一换头部信息()

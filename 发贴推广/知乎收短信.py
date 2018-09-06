@@ -19,6 +19,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
 import pyautogui as pag
 import pyautogui
+import json #json格式化
 
 
 class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
@@ -121,23 +122,23 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
                               {
                                   'User-Agent': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; en-us) AppleWebKit/随机3位数.50 (KHTML, like Gecko) Version/随机3位数.1 Safari/534.50'},
                               {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 6.0; Trident/4.0)'},
-                              {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 6.0)'},
+                              {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 6.1)'},
                               {
                                   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/随机3位数.11 (KHTML, like Gecko) Chrome/随机2位数.0.963.56 Safari/535.11'},
                               {
                                   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0.1) Gecko/201随机3位数01 Firefox/随机2位数.0.1'},
                               {
-                                  'User-Agent': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/随机2位数.0; SE 2.X MetaSr 1.0; SE 2.X MetaSr 1.0; .NET CLR 2.0.随机2位数727; SE 2.X MetaSr 1.0)'},
-                              {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 随机11位数.1; The World)'},
+                                  'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 5.1; Trident/随机2位数.0; SE 2.X MetaSr 1.0; SE 2.X MetaSr 1.0; .NET CLR 2.0.随机2位数727; SE 2.X MetaSr 1.0)'},
+                              {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 6.0; The World)'},
                               {
-                                  'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 随机11位数.1; TencentTraveler 4.0)'},
+                                  'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 6.2; TencentTraveler 4.0)'},
                               {
-                                  'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 随机11位数.1; Maxthon 2.0)'},
+                                  'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 6.1; Maxthon 2.0)'},
                               {
-                                  'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 随机11位数.1; Avant Browser)'},
-                              {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 随机11位数.1; 360SE)'},
-                              {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 随机11位数.1)'},
-                              {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 随机11位数.1)'}
+                                  'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 6.2; Avant Browser)'},
+                              {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 6.0; 360SE)'},
+                              {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 6.1)'},
+                              {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 10.1)'}
                               ])
         头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机1位数", 随机1位数)  # 替换   , 1) 次数 1
         头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机11位数", 随机11位数)  # 替换   , 1) 次数 1
@@ -363,8 +364,34 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         w.SetClipboardData(win32con.CF_TEXT, 内容)
         w.CloseClipboard()
 
+    def 模具一一提取登录界面的cookie(self):
+        cookie=''
+
+        pag.hotkey('ctrlleft', '2')  # 鼠标移动X.Y 方位  cookie插件布置 页面
+        pag.PAUSE = 1  # 增加延迟
+        if self.清除全部 == 0:
+
+
+            pag.moveTo(736, 113)  # 鼠标移动X.Y 方位  导出到剪切板 按钮
+            pag.rightClick()  # 右击
+
+
+            pag.PAUSE = 2  # 增加延迟
+            self.cookie =self.模具一一获取剪切板内容()
+            # self.cookie = json.loads(self.cookie)  # 解码为字符串
+            # print('cookie\n', cookie)
+            self.cookie = json.dumps(self.cookie,indent =4)  # 编码为json
+            # self.cookie = str(self.cookie).replace("'", '单号')  # 替换   , 1) 次数 1
+
+            print('cookie2\n',self.cookie)
+
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.moveTo(418, 120)  # 鼠标移动X.Y 方位  清除全部cookie    按钮
+        pag.rightClick()  # 右击
+
+
     def 模具一一测试页面属性(self,页面关键词):
-        time.sleep(5)  # 等待
+        time.sleep(3)  # 等待
 
         for i in '123':
             pag.PAUSE = 0.5  # 增加延迟
@@ -393,37 +420,25 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
     def 模具一一清除浏览器历史缓存(self):
         print('清除浏览器历史缓存')
 
-        pag.moveTo(102, 48)  # 鼠标移动X.Y 方位  打开主页 按钮
-        pag.rightClick()  # 右击
-        time.sleep(2)
-
-
+        pag.hotkey('ctrlleft', '4')  # 鼠标移动X.Y 方位  cookie插件布置 页面
         pag.PAUSE = 0.5  # 增加延迟
-        pag.moveTo(172, 78)  # 鼠标移动X.Y 方位  清除浏览历史书签 按钮
+        pag.moveTo(90, 82)  # 鼠标移动X.Y 方位  清除历史缓存 按钮
         pag.rightClick()  # 右击
 
         pag.PAUSE = 4  # 增加延迟 等待清除新窗口
-        pag.moveTo(813, 725)  # 鼠标移动X.Y 方位  清除浏览历史书签 按钮
+        pag.moveTo(850, 720)  # 鼠标移动X.Y 方位  清除浏览历史书签 按钮
         pag.rightClick()  # 右击
+        time.sleep(1)
 
-
-
-        pag.hotkey('ctrlleft','F4')  # 确认  关闭当前标签页   按钮
-        self.模具一一换ip连接二()
-        time.sleep(2)
-
-        pag.moveTo(102, 48)  # 鼠标移动X.Y 方位  打开主页 按钮
-        pag.rightClick()  # 右击
-        time.sleep(2)
 
     def 模具一一重新激活浏览器窗口(self):
         print('重新激活浏览器窗口')
         pag.hotkey('winleft', 'd')  # press()一次完整的击键.hotkey('ctrl','c'):热键函数 .keyDown()按下某个键.keyUp()松开某个键.
 
-        pag.PAUSE = 1  # 增加延迟
+        pag.PAUSE = 0.5  # 增加延迟
         pag.moveTo(258, 962)  # 鼠标移动X.Y 方位  重新激活浏览器窗口 在CMD 与  回归桌面之间
         pag.rightClick()  # 右击
-        pag.PAUSE = 2  # 增加延迟
+
 
 
 
@@ -520,22 +535,42 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         time.sleep(500)  # 等待
 
 
-class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
+class 类一一注册知乎(类一一公共库):        # 调用 类的模具 self.模具一一数据库()
     def __init__(self):
         self.模具一一换头部信息()
-        开始时间计数 = int(time.time())
+        time.sleep(10000)  # 等待
+        self.清除全部 =0
+        条件循环 = 1
+        while 条件循环 == 1:  # 条件循环  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
+            开始时间计数 = int(time.time())
+            self.模具一一重新激活浏览器窗口()
 
-        # self.模具一一易码短信平台()
-        # self.模具一一浏览器访问并注册知乎()
-        self.模具一一鼠标操作浏览器()
+            self.模具一一输入手机号码并验证()
 
-        结束时间计数 = int(time.time())
-        用时 = 结束时间计数 - 开始时间计数
-        print('操作:', 用时, '秒')
-        print('等待5000秒:')
-        time.sleep(5000) # 等待
+            self.模具一一输入短信内容并注册()
 
+            if len(self.短信内容) != 0:
+                self.模具一一设置用户名与密码()
 
+                self.模具一一选择职业或专业()
+
+                self.模具一一点击选择关注话题()
+
+                self.cookie=self.模具一一提取登录界面的cookie()
+
+                self.模具一一保存数据库一知乎用户密码等()
+
+            self.模具一一清除浏览器历史缓存()
+            self.模具一一重新打开注册知乎标签页()
+            结束时间计数 = int(time.time())
+            用时 = 结束时间计数 - 开始时间计数
+            print('操作:', 用时, '秒')
+            time.sleep(1)  # 等待
+
+    def 模具一一重新打开注册知乎标签页(self):
+        pag.moveTo(200, 78)  # 鼠标移动X.Y 方位  注册知乎标签页 按钮
+        pag.rightClick()  # 右击
+        time.sleep(2)
 
     def 模具一一输入手机号码并验证(self):
 
@@ -586,7 +621,7 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
 
     def 模具一一设置用户名与密码(self):
         """设置用户名与密码"""
-        pag.PAUSE = 2  # 增加延迟
+
         """测试页面属性"""
         页面关键词 = '设置用户名和密码'
         self.模具一一测试页面属性(页面关键词)
@@ -617,6 +652,7 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
 
     def 模具一一选择职业或专业(self):
         """你的职业或专业是什么?"""
+        pag.PAUSE = 2 # 增加延迟
 
         """测试页面属性"""
         页面关键词 = '职业或专业'
@@ -654,21 +690,6 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
         pag.moveTo(632, 877)  # 鼠标移动X.Y 方位  进入知乎 按钮
         pag.rightClick()  # 右击
 
-    def 模具一一提取登录界面的cookie(self):
-        pag.PAUSE = 1  # 增加延迟
-        pag.moveTo(1197, 45)  # 鼠标移动X.Y 方位  cookie插件激活 按钮
-        pag.rightClick()  # 右击
-
-        pag.PAUSE = 0.5  # 增加延迟
-        pag.moveTo(999, 91)  # 鼠标移动X.Y 方位  导出到剪切板 按钮
-        pag.rightClick()  # 右击
-
-        self.cookie =self.模具一一获取剪切板内容()
-        print(self.cookie)
-
-        pag.PAUSE = 0.5  # 增加延迟
-        pag.moveTo(682, 91)  # 鼠标移动X.Y 方位  清除全部cookie    按钮
-        pag.rightClick()  # 右击
 
     def 模具一一保存数据库一知乎用户密码等(self):
         print('打开数据库连接')
@@ -696,34 +717,8 @@ class 类一一测试库(类一一公共库):  # 调用 类的模具 self.模具
         db.close()
 
 
-    def 模具一一鼠标操作浏览器(self):  # VK_CODE为键盘encoding='UTF-8'
-        # @Keyboard
-
-        条件循环 = 1
-        while 条件循环 == 1:  # 条件循环  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
-            self.模具一一重新激活浏览器窗口()
-
-            self.模具一一输入手机号码并验证()
-
-            self.模具一一输入短信内容并注册()
-
-            if len(self.短信内容) !=0:
-                self.模具一一设置用户名与密码()
-
-                self.模具一一选择职业或专业()
-
-                self.模具一一点击选择关注话题()
-
-
-                self.模具一一提取登录界面的cookie()
-
-                self.模具一一保存数据库一知乎用户密码等()
-
-            self.模具一一清除浏览器历史缓存()
-            time.sleep(1) # 等待
-
 if __name__ == '__main__':
-    类 = 类一一测试库()
+    类 = 类一一注册知乎()
 
 
 

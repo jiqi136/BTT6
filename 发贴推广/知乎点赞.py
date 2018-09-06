@@ -22,12 +22,252 @@ from 发贴推广.知乎收短信 import 类一一公共库# 导入模块
 
 class 类一一知乎点赞(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
     def __init__(self):
-        #self.模具一一换头部信息()
-
+        self.模具一一换头部信息()
+        self.模具一一提取推广库里的知乎点赞帐号()
         self.模具一一重新激活浏览器窗口()
-        #self.模具一一浏览器访问并注册知乎()
+        self.清除全部 = 998
+
+        for 帐号cookie组 in self.帐号cookie组列表:
+
+            self.帐号 = 帐号cookie组[0]
+            self.密码 = 帐号cookie组[1]
+            self.注册手机号 = 帐号cookie组[2]
+            self.cookie = 帐号cookie组[3]
+            存活 = 帐号cookie组[4]
+            self.点赞内容 = str(帐号cookie组[5])
+            赞内容 = '拓展滴滴的新业务'
+
+            if len(self.注册手机号)==0 or len(self.密码)==0 or '封' in str(存活) or 赞内容 in self.点赞内容:
+                continue  # 跳过循环
+            self.模具一一布置浏览头()
+            if 'zhihu.com' in str(帐号cookie组):
+                continue  # 跳过循环
+
+                self.点赞内容 = 赞内容+self.点赞内容
+
+                self.模具一一导入界面的登录cookie()
+                self.模具一一测试登录页面属性(self.帐号)
+            else:  # 否则
 
 
+                self.模具一一输入用户手机号与密码登录()
+                self.模具一一测试登录页面属性(self.帐号)
+
+            self.模具一一打开点赞页面并点击点赞()
+
+            self.模具一一保存数据库一更新知乎登录cookie与点赞内容()
+            time.sleep(700)  # 等待
+
+            self.模具一一清除浏览器历史缓存() # 1 次
+            self.模具一一刷新知乎点赞页()
+            self.模具一一清除浏览器历史缓存() # 2 次
+
+            self.模具一一换ip连接二()
+
+            self.模具一一重新激活浏览器窗口()
+
+
+
+
+    def 模具一一刷新知乎点赞页(self):
+        pag.hotkey('ctrlleft', '1')  # 鼠标移动X.Y 方位  cookie插件布置 页面
+        pag.PAUSE = 1  # 增加延迟
+
+        pag.hotkey('ctrlleft', 'r')  # 刷新页面
+        pag.PAUSE = 3  # 增加延迟
+
+    def 模具一一保存数据库一更新知乎登录cookie与点赞内容(self):
+        print('打开数据库连接')
+        # 打开数据库连接,
+        db = pymysql.connect("localhost", "root", "", "影视发帖推广", charset="utf8")
+        # 使用cursor()方法获取操作游标
+        cursor = db.cursor()
+        # SQL 插入语句
+        if self.清除全部 == 0:
+            self.模具一一提取登录界面的cookie()
+            sql = """UPDATE `知乎帐号` SET `cookie`='{}',`点赞内容`='{}' WHERE `注册手机号`='{}'""".format(self.cookie,self.点赞内容,self.注册手机号)  # 不换行 '{}'
+        else:  # 否则
+            sql = """UPDATE `知乎帐号` SET `点赞内容`='{}' WHERE `注册手机号`='{}'""".format(self.点赞内容,self.注册手机号)  # 不换行 '{}'
+        try:
+            # 执行sql语句
+            cursor.execute(sql)
+            # 提交到数据库执行
+            db.commit()
+            print('=保存数据库一更新知乎与点赞内容')
+        except:
+            # 如果发生错误则回滚
+            print('=====================数据库执行发生错误:===============')
+            db.rollback()
+        # 关闭数据库连接
+        db.close()
+
+    def 模具一一打开点赞页面并点击点赞(self):
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.moveTo(530, 630)  # 鼠标移动X.Y 方位  回答内容 方框
+        pag.rightClick()  # 右击
+        pag.PAUSE = 0.3  # 增加延迟
+
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
+        pag.PAUSE = 0.3  # 增加延迟
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
+        pag.PAUSE = 0.3  # 增加延迟
+        pag.press('enter')  # press()一次完整的击键.hotkey('ctrl','c') 赞同 按钮
+
+        pag.PAUSE = 3  # 增加延迟
+
+        # 等待用户输入 = input("\n按下 enter 确认键后继续")
+
+        # self.模具一一重新激活浏览器窗口()
+        pag.PAUSE = 0.5  # 增加延迟
+
+    def 模具一一测试登录页面属性(self,登录用户名):
+
+        pag.hotkey('ctrlleft', '1')  # 鼠标移动X.Y 方位  点赞 页面
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.hotkey('ctrlleft', 'r')  # 刷新页面
+        time.sleep(6)  # 等待
+        for i in '1230':
+            pag.PAUSE = 0.5  # 增加延迟
+            pag.hotkey('ctrlleft', 'a')  # press()一次完整的击键.hotkey('ctrl','c'):复制内容
+            # pag.mouseDown(x=498, y=336, button='right')  # 按下 选择的右键
+            pag.PAUSE = 0.5  # 增加延迟
+            # pag.moveTo(643, 396)  # 鼠标移动X.Y 方位
+            pag.hotkey('ctrlleft', 'c')  # press()一次完整的击键.hotkey('ctrl','c'):复制内容
+            # pag.mouseUp(x=589, y=336, button='right')#  松开 选择的右键
+            页面属性 = self.模具一一获取剪切板内容()
+            登录信息='提问'
+            if 登录信息 in 页面属性 and '登录' not in 页面属性:
+                print(登录用户名, '成功登录')
+                return  # 返回
+            else:  # 否则
+                pag.hotkey('ctrlleft', 'r')  # 刷新页面
+
+                # pag.moveTo(77, 46)  # 鼠标移动X.Y 方位  刷新页面
+                # pag.rightClick()  # 右击pag.rightClick()
+                time.sleep(6)  # 等待
+        self.模具一一输入用户手机号与密码登录()
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.moveTo(950, 91)  # 鼠标移动X.Y 方位  导入 按钮
+        pag.rightClick()  # 右击
+
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.moveTo(937, 153)  # 鼠标移动X.Y 方位  导入 按钮
+        pag.rightClick()  # 右击
+
+    def 模具一一输入用户手机号与密码登录(self):
+        self.清除全部 = 0
+
+        pag.hotkey('ctrlleft', '1')  # 鼠标移动X.Y 方位  点赞 页面
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.moveTo(900, 120)  # 鼠标移动X.Y 方位 知乎登录顶页栏
+        pag.rightClick()  # 右击
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
+        pag.PAUSE = 0.3  # 增加延迟
+        pag.press('enter')  # press()一次完整的击键.hotkey('ctrl','c')   确认登录 按钮
+        pag.PAUSE = 2  # 增加延迟
+
+        """测试页面属性"""
+        页面关键词 = '登录知乎'
+        self.模具一一测试页面属性(页面关键词)
+        # ==========登录 方框
+
+        # ====手机号
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')  输入手机方框
+        pag.PAUSE = 0.3  # 增加延迟
+        pag.typewrite(self.注册手机号)  # 输入手机号码
+
+        # ====密码
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')  输入密码方框
+        pag.PAUSE = 0.3  # 增加延迟
+        pag.typewrite(self.密码)  # 输入密码
+
+        # ====确认登录
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
+        pag.PAUSE = 0.3  # 增加延迟
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
+        pag.PAUSE = 0.3  # 增加延迟
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')  登录方框
+        pag.PAUSE = 0.3  # 增加延迟
+        pag.press('enter')  # press()一次完整的击键.hotkey('ctrl','c')   确认登录 按钮
+        pag.PAUSE = 2  # 增加延迟
+
+
+
+    def 模具一一提取推广库里的知乎点赞帐号(self):
+        # 提取数据库里的过滤网址
+        # 打开数据库连接
+        db = pymysql.connect("localhost", "root", "", "影视发帖推广", charset="utf8")
+        # 使用cursor()方法获取操作游标
+        cursor = db.cursor()
+        # SQL 查询语句
+        sql = "SELECT  `帐号`, `密码`, `注册手机号`,`cookie` ,`存活`,`点赞内容` FROM `知乎帐号`"
+        # 执行SQL语句
+        cursor.execute(sql)
+        # 获取所有记录列表
+        self.帐号cookie组列表 = cursor.fetchall()
+
+        # 关闭数据库连接
+        db.close()
+
+    def 模具一一导入界面的登录cookie(self):
+
+        pag.hotkey('ctrlleft', '2')  # 鼠标移动X.Y 方位  cookie插件布置 页面
+
+        pag.PAUSE =1 # 增加延迟
+        pag.moveTo(652, 120)  # 鼠标移动X.Y 方位  导入 按钮
+        pag.rightClick()  # 右击
+
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.moveTo(590, 210)  # 鼠标移动X.Y 方位  输入框 位置
+        pag.rightClick()  # 右击
+
+        self.模具一一写入剪切板内容(self.cookie)
+
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.hotkey('ctrlleft', 'v')  # press()一次完整的击键.hotkey('ctrl','c')
+
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.moveTo(650, 630)  # 鼠标移动X.Y 方位  绿色勾选 按钮
+        pag.rightClick()  # 右击
+
+
+        #pag.hotkey('ctrlleft', 'F4')  # 确认  关闭当前标签页   按钮
+
+    def 模具一一布置浏览头(self):
+
+        pag.hotkey('ctrlleft', '3')  # 鼠标移动X.Y 方位  cookie插件布置 页面
+
+        pag.PAUSE = 1 # 增加延迟
+        pag.moveTo(600, 200)  # 鼠标移动X.Y 方位  确定布置浏览头 页面
+        pag.rightClick()  # 右击
+        pag.PAUSE = 0.5  # 增加延迟
+
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
+        pag.PAUSE = 0.3  # 增加延迟
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
+        pag.PAUSE = 0.3  # 增加延迟
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c') 添加浏览头网址 方框
+
+        浏览头网址='zhihu.com'
+        self.模具一一写入剪切板内容(浏览头网址)
+        pag.PAUSE = 0.3  # 增加延迟
+        pag.hotkey('ctrlleft', 'v')  # press()一次完整的击键.hotkey('ctrl','c')
+
+        #====================================
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
+        self.模具一一换头部信息()
+
+        self.模具一一写入剪切板内容(self.头部信息['User-Agent'])
+        pag.PAUSE = 0.3  # 增加延迟
+        pag.hotkey('ctrlleft', 'v')  # press()一次完整的击键.hotkey('ctrl','c')
+
+        # ====================================
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
+
+        pag.PAUSE = 0.5  # 增加延迟
+        pag.press('enter')  # press()一次完整的击键.hotkey('ctrl','c')
+
+        # pag.hotkey('ctrlleft', 'F4')  # 确认  关闭当前标签页   按钮
 
 
     def 模具一一提炼Cookie(self):
