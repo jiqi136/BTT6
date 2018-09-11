@@ -8,13 +8,14 @@ import pymysql #mysql数据库
 import requests  # 导入浏览器
 import re
 from selenium import webdriver# 浏览的驱动
+from 每日最新剧集一批量一并发 import 类一一公共库# 导入模块
 
 
 #================提取网页内容===============================
 
-class 类_后台发布:
+class 类_后台发布(类一一公共库):
     def __init__(self):
-        self.模具_测试cookies存活()
+        self.模具一一测试cookies存活()
         self.新旧剧集 = '电影与合集'
         self.模具_调度控制()
         self.新旧剧集 = '最新影视剧'
@@ -94,7 +95,7 @@ class 类_后台发布:
         print('生成今日的全部更新')
 
 
-    def 模具_浏览器输入验证码提取cookies(self):
+    def 模具一一浏览器输入验证码提取cookies(self):
         option = webdriver.ChromeOptions()
         option.add_argument('disable-infobars')
         driver = webdriver.Chrome(chrome_options=option)
@@ -123,16 +124,16 @@ class 类_后台发布:
         driver.quit()
         print('关闭浏览器')
 
-    def 模具_导入cookie(self):
+    def 模具一一导入cookie(self):
         with open('E:\PY学习文件\PyCharm文件\BT影视剧\de3ede38.txt', 'r') as f:
 
             self.cookies = {}
             for line in f.read().split(';'):
                 name, value = line.strip().split('=', 1)  # 1代表只分割一次
                 self.cookies[name] = value
-    def 模具_测试cookies存活(self):
+    def 模具一一测试cookies存活(self):
 
-        self.模具_导入cookie()
+        self.模具一一导入cookie()
 
         self.url = 'http://3e38.com/image/article_add.php?channelid=17'
         self.s = requests.Session()  # 创建全局会话
@@ -144,7 +145,7 @@ class 类_后台发布:
 
         if '看不清' in 返回网页内容:
             print('登录失效,浏览器输入验证码提取cookies')
-            self.模具_浏览器输入验证码提取cookies()
+            self.模具一一浏览器输入验证码提取cookies()
         else:# 否则
              print('======登录成功=========')
                     

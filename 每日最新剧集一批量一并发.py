@@ -16,6 +16,7 @@ import asyncio, aiohttp  # 异步浏览
 import pyautogui as pag # 模拟鼠标键盘操作
 
 
+
 class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
     def __init__(self):
         选取列中唯一不同的值 = 'SELECT DISTINCT A列 FROM 中文表;'  # 在表中,一个列可能会包含多个重复值,
@@ -499,9 +500,9 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         # driver.maximize_window() 浏览器全屏显示,不带参数
         driver.implicitly_wait(10)  # 设置 隐式等待.单位是秒(s),
         driver.find_element_by_xpath('//*[@id="login-box"]/div[2]/form/dl/dd[1]/input').send_keys(
-            "ad38min")  # 定位用户名每日最新剧集一批量一并发.类一一公共库#模具一一浏览器输入验证码提取cookies
+            self.用户名密码登录cookie组[0])  # 定位用户名每日最新剧集一批量一并发.类一一公共库#模具一一浏览器输入验证码提取cookies
         driver.find_element_by_xpath('//*[@id="login-box"]/div[2]/form/dl/dd[2]/input').send_keys(
-            "qq962962")  # 定位密码
+            self.用户名密码登录cookie组[1])  # 定位密码
         print('输入验证码')
         input("\n\n登录成功后,按下 确认键enter 键后继续.")
         print('提取保存cookie')
@@ -511,10 +512,12 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         保存cookie = re.sub(规则, '', str(保存cookie))
         保存cookie = str(保存cookie).replace(",", ";")
         保存cookie = str(保存cookie).replace(":", "=")
-        保存cookie = str(保存cookie)
-        f = open("E:\PY学习文件\PyCharm文件\BT影视剧\de3ede38.txt", "w")  # 保存cookie 文件
-        f.write(保存cookie)
-        f.close()
+        self.保存cookie = str(保存cookie)
+        self.模具一一更新数据库里的3e影视网站后台登录cookie()
+
+        # f = open("E:\PY学习文件\PyCharm文件\BT影视剧\de3ede38.txt", "w")  # 保存cookie 文件
+        # f.write(保存cookie)
+        # f.close()
         driver.quit()
         print('关闭浏览器')
     def 模具一一测试cookies存活(self):
@@ -530,11 +533,50 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         else:  # 否则
             print('======登录成功=========')
     def 模具一一导入cookie(self):
-        with open('E:\PY学习文件\PyCharm文件\BT影视剧\de3ede38.txt', 'r') as f:
-            self.cookies = {}
-            for line in f.read().split(';'):
-                name, value = line.strip().split('=', 1)  # 1代表只分割一次
-                self.cookies[name] = value
+        self.模具一一提取影视剧数据库里的3e影视网站后台登录cookie()
+        self.用户名密码登录cookie组=self.用户名密码登录cookie组列表[0]
+        登录cookie=self.用户名密码登录cookie组[2]
+        #with open('E:\PY学习文件\PyCharm文件\BT影视剧\de3ede38.txt', 'r') as 登录cookie:
+        self.cookies = {}
+        for line in 登录cookie.split(';'):
+            #for line in 登录cookie.read().split(';'):
+            name, value = line.strip().split('=', 1)  # 1代表只分割一次
+            self.cookies[name] = value
+
+    def 模具一一更新数据库里的3e影视网站后台登录cookie(self):
+        # 打开数据库连接,保存已下载网址
+        self.用户名="jiqi1136@163.com"
+        db = pymysql.connect("localhost", "root", "", "帐号", charset="utf8")
+        # 使用cursor()方法获取操作游标
+        cursor = db.cursor()
+        # SQL 插入语句
+        sql = """UPDATE `3e影视网站` SET `登录cookie`='{}' WHERE `用户名`='{}'""" .format(self.保存cookie,self.用户名)
+        try:
+            # 执行sql语句
+            cursor.execute(sql)
+            # 提交到数据库执行
+            db.commit()
+        except:
+            # 如果发生错误则回滚
+            db.rollback()
+        # 关闭数据库连接
+        db.close()
+        print('更新数据库里的 登录cookie 完成')
+    def 模具一一提取影视剧数据库里的3e影视网站后台登录cookie(self):
+        # 提取数据库里的过滤网址
+        # 打开数据库连接
+        db = pymysql.connect("localhost", "root", "", "帐号", charset="utf8")
+        # 使用cursor()方法获取操作游标
+        cursor = db.cursor()
+        # SQL 查询语句
+        sql = "SELECT `用户名`, `密码`, `登录cookie` FROM `3e影视网站` WHERE `网站`='3e影视网站管理后台' "
+        # 执行SQL语句
+        cursor.execute(sql)
+        # 获取所有记录列表
+        self.用户名密码登录cookie组列表= cursor.fetchall()
+
+        # 关闭数据库连接
+        db.close()
     """============多线打开网页,下载种子=================="""
 
     def 模具一一gr无序单网址请求返回网页内容(self, 单网址):  # grequests.imap(任务列
@@ -1373,7 +1415,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
     def 模拟鼠标键盘操作一最新目录的上传(self):
 
         pag.PAUSE = 0.5  # 增加延迟
-        pag.moveTo(137, 961)  # 鼠标移动X.Y 方位 底下工具栏 上传工具图标
+        pag.moveTo(130, 918)  # 鼠标移动X.Y 方位 底下工具栏 上传工具图标
         pag.rightClick()  # 右击pag.rightClick() 左击pag.leftClick() 中击 pag.middleClick()
 
         pag.PAUSE = 1.5  # 增加延迟
