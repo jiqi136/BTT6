@@ -386,6 +386,12 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         w.EmptyClipboard()
         w.SetClipboardData(win32con.CF_TEXT, 内容)
         w.CloseClipboard()
+    def 模具一一写入剪切板内容不变编码(self,内容): # 写入剪切板内容
+        # 内容 = str(内容)  # encoding='UTF-8'为 WIN7 系统 的中文
+        w.OpenClipboard()
+        w.EmptyClipboard()
+        w.SetClipboardData(win32con.CF_TEXT, 内容)
+        w.CloseClipboard()
 
     def 模具一一提取登录界面的cookie(self):
         cookie=''
