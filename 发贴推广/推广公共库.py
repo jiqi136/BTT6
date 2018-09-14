@@ -18,9 +18,9 @@ from selenium.webdriver.common.touch_actions import TouchActions
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
 import pyautogui as pag
-import pyautogui
+
 import json #json格式化
-import socket # 获取本机ip
+
 
 
 class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
@@ -417,6 +417,24 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         time.sleep(0.5)  # 等待  # 增加延迟
         pag.moveTo(418, 120)  # 鼠标移动X.Y 方位  清除全部cookie    按钮
         # pag.rightClick()  # 右击
+    def 模具一一测试页面属性一等待(self,页面关键词):
+        time.sleep(3)  # 等待
+
+        for i in '123365854':
+            time.sleep(0.5)  # 等待  # 增加延迟
+            pag.hotkey('ctrlleft', 'a')  # press()一次完整的击键.hotkey('ctrl','c'):复制内容
+
+            time.sleep(1)  # 等待  # 增加延迟
+
+            pag.hotkey('ctrlleft', 'c')  # press()一次完整的击键.hotkey('ctrl','c'):复制内容
+            time.sleep(1)  # 等待  # 增加延迟
+
+            页面属性 = self.模具一一获取剪切板内容()
+            if 页面关键词 in 页面属性:
+                print('通过', 页面关键词, '页面')
+                return  # 返回
+            else:  # 否则
+                time.sleep(10)  # 等待
 
 
     def 模具一一测试页面属性(self,页面关键词):

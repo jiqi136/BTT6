@@ -115,7 +115,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         print('帖子内容保存完成')
         if self.弹出数 ==0:
             文件名 = 'F:/下载种子目录/ftp上传目录链接网页/最新{}.txt'.format(self.影视类型)  # 不换行 end=""
-            win32api.ShellExecute(0, 'open', 'notepad.exe', 文件名, '', 1)
+            # win32api.ShellExecute(0, 'open', 'notepad.exe', 文件名, '', 1)
             self.弹出数 =998
     """==========最新影视剧数据库的小更新============="""
     def 模具一一提取最新影视剧数据库里的种子链接数(self):
@@ -1195,7 +1195,8 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         self.模具一一调度控制()
         self.模具一一换ip连接二()
 
-        self.模拟鼠标键盘操作一最新目录的上传()
+        #self.模拟鼠标键盘操作一最新目录的上传()
+        win32api.ShellExecute(0, 'open', r'D:\桌面\上传种子与城通网盘提取链接.py.lnk', '', '', 1)
 
 
     def 模具一一调度控制(self):
@@ -1770,8 +1771,11 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
 class 类一一综合影视类型(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
     def __init__(self,等待输入新旧影视):
+        self.模具一一换ip连接二()
+
 
         self.等待输入新旧影视=等待输入新旧影视
+
 
 
         if '2' in self.等待输入新旧影视: #  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
@@ -2175,7 +2179,7 @@ while 循环 == 1:  # 条件循环  break # 结束循环 continue # 跳过当前
     取整除分数 = int(用时) // 60
     除的余数的秒数 = int(用时) % 60
     print('用时计数:', 取整除分数, '分:', 除的余数的秒数, '秒')
-    for 倒数 in range(18, 0, -1):  # 范围 range
+    for 倒数 in range(48, 0, -1):  # 范围 range
         print('================')
         print('等待:', 倒数, '0分后继续:')
         time.sleep(600)  # 等待
