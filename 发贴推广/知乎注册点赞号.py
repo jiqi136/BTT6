@@ -27,42 +27,71 @@ from 发贴推广.推广公共库 import 类一一公共库# 导入模块
 
 
 class 类一一注册知乎(类一一公共库):        # 调用 类的模具 self.模具一一数据库()
-    def __init__(self,知乎点赞号):
-        self.知乎点赞号 = 知乎点赞号
+    def __init__(self,知乎发贴号):
+        self.知乎发贴号 = 知乎发贴号
         self.模具一一换头部信息()
-        time.sleep(10000)  # 等待
+        self.模具一一换ip连接二()
+
+
+        self.模具一一提取影视剧数据库里的3e影视网站后台登录cookie()
+
         self.清除全部 =0
+        知乎注册网址 = 'https://www.zhihu.com/signup?next=%2Fexplore'
+
+
+
         条件循环 = 1
         while 条件循环 == 1:  # 条件循环  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
             开始时间计数 = int(time.time())
             self.模具一一重新激活浏览器窗口()
+
+            self.模具一一布置浏览头()
+
+            self.模具一一地址栏输入网址(知乎注册网址)
 
             self.模具一一输入手机号码并验证()
 
             self.模具一一输入短信内容并注册()
 
             if len(self.短信内容) != 0:
+                self.临时图片目录 = r"F:\影视发帖推广\临时图片"
+                self.旧目录路径 = r"F:\影视发帖推广\贴吧顶贴\头像\上传头像"
+                self.模具一一清空临时图片目录()
+                self.模具一一移动图片文件至临时图片目录()
+
                 self.模具一一设置用户名与密码()
+
 
                 self.模具一一选择职业或专业()
 
+
                 self.模具一一点击选择关注话题()
 
-                self.cookie=self.模具一一提取登录界面的cookie()
+                self.模具一一添加头像()
+
+
+                self.模具一一提取登录界面的cookie()
+
 
                 self.模具一一保存数据库一知乎用户密码等()
 
+
             self.模具一一清除浏览器历史缓存()
-            self.模具一一重新打开注册知乎标签页()
+
+            # self.模具一一刷新知乎点赞页()
+
+            # self.模具一一清除浏览器历史缓存()
             结束时间计数 = int(time.time())
             用时 = 结束时间计数 - 开始时间计数
             print('操作:', 用时, '秒')
             time.sleep(1)  # 等待
+            self.模具一一换ip连接二()
 
-    def 模具一一重新打开注册知乎标签页(self):
-        pag.moveTo(200, 78)  # 鼠标移动X.Y 方位  注册知乎标签页 按钮
-        pag.rightClick()  # 右击
-        time.sleep(2)
+
+            pyautogui.alert('确认后继续')
+            time.sleep(1)  # 等待  # 增加延迟
+
+
 
     def 模具一一输入手机号码并验证(self):
 
@@ -73,17 +102,20 @@ class 类一一注册知乎(类一一公共库):        # 调用 类的模具 se
         """测试页面属性"""
         页面关键词='注册知乎'
         self.模具一一测试页面属性(页面关键词)
-        pag.moveTo(643, 396)  # 鼠标移动X.Y 方位
+        pag.moveTo(643, 380)  # 鼠标移动X.Y 方位
         pag.rightClick()  # 右击pag.rightClick() 左击pag.leftClick() 中击 pag.middleClick()
+        time.sleep(0.3)  # 等待
         pag.typewrite(self.手机号码)  # 输入手机号码
+        time.sleep(1)  # 等待
 
-        pag.PAUSE = 1.5  # 增加延迟
-        pag.moveTo(740, 456)  # 鼠标移动X.Y 方位  发送验证码 按钮
-        pag.rightClick()  # 右击pag.rightClick()
 
-        pag.PAUSE = 1.5  # 增加延迟
-        pag.moveTo(740, 456)  # 鼠标移动X.Y 方位  发送验证码 按钮
+        pag.moveTo(775, 437)  # 鼠标移动X.Y 方位  发送验证码 按钮
         pag.rightClick()  # 右击pag.rightClick()
+        time.sleep(0.3)  # 等待
+
+
+        pag.moveTo(740, 456)  # 鼠标移动X.Y 方位  发送验证码 按钮
+        #pag.rightClick()  # 右击pag.rightClick()
 
     def 模具一一输入短信内容并注册(self):
         self.开始计时数 = int(time.time())
@@ -98,17 +130,21 @@ class 类一一注册知乎(类一一公共库):        # 调用 类的模具 se
         self.短信内容 = 内容列表[0]
 
 
-        结束时数 = int(time.time())
-        if 结束时数 > self.开始计时数 + 60:
-            pag.moveTo(627, 557)  # 鼠标移动X.Y 方位 大于 60秒的 注册 按钮
-        else:  #否则
-            pag.moveTo(596, 450)  # 鼠标移动X.Y 方位  60秒以内的 注册 按钮
+
+
+        pag.moveTo(595, 450)  # 鼠标移动X.Y 方位  输入 短信内容 方框
         pag.rightClick()  # 右击
         time.sleep(0.5)  # 等待  # 增加延迟
         pag.typewrite(self.短信内容)  # 输入 短信内容
 
         time.sleep(0.5)  # 等待  # 增加延迟
-        pag.moveTo(626, 539)  # 鼠标移动X.Y 方位  注册 按钮
+
+        结束时数 = int(time.time())
+        if 结束时数 > self.开始计时数 + 60:
+            pag.moveTo(650, 536)  # 鼠标移动X.Y 方位 大于 60秒的 注册 按钮
+        else:  # 否则
+            pag.moveTo(650, 523)  # 鼠标移动X.Y 方位  60秒以内的 注册 按钮
+
         pag.rightClick()  # 右击
 
     def 模具一一设置用户名与密码(self):
@@ -118,42 +154,63 @@ class 类一一注册知乎(类一一公共库):        # 调用 类的模具 se
         页面关键词 = '设置用户名和密码'
         self.模具一一测试页面属性(页面关键词)
 
+        
+        if self.知乎发贴号==0: #  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
+            self.随机取名=self.模具一一随机取女名()
+        else:# 否则
+            self.随机取名 =self.模具一一随机取名合并网址名()
+            
+            
+        self.模具一一写入剪切板内容(self.随机取名)
 
-        self.模具一一随机取女名()
-        pag.moveTo(538, 403)  # 鼠标移动X.Y 方位
+        pag.moveTo(475, 280)  # 鼠标移动X.Y 方位 定位 设置用户名和密码 空白栏
         pag.rightClick()  # 右击
         time.sleep(0.5)  # 等待  # 增加延迟
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
+        time.sleep(0.3)  # 等待  # 增加延迟
+        #======随机取名=======
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
+        time.sleep(0.3)  # 等待  # 增加延迟
         pag.hotkey('ctrlleft', 'v')  # press()一次完整的击键.hotkey('ctrl','c'):
 
-
+        # ======密码=======
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
+        time.sleep(0.3)  # 等待  # 增加延迟
 
         密码数字 = random.randrange(100000, 1000000)
         self.密码 = "qq{}Q%".format(密码数字)
         print('密码:', self.密码)
-        time.sleep(0.5)  # 等待  # 增加延迟
-        pag.moveTo(518, 466)  # 鼠标移动X.Y 方位
-        pag.rightClick()  # 右击
-        time.sleep(0.5)  # 等待  # 增加延迟
+        # time.sleep(0.5)  # 等待  # 增加延迟
+        #  pag.moveTo(518, 466)  # 鼠标移动X.Y 方位
+        # pag.rightClick()  # 右击
+        # time.sleep(0.5)  # 等待  # 增加延迟
         pag.typewrite(self.密码)  # 输入 密码
 
+        # ======确认 注册======
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
+        time.sleep(0.3)  # 等待  # 增加延迟
+        pag.press('enter')  # press()一次完整的击键.hotkey('ctrl','c')
+        time.sleep(0.3)  # 等待  # 增加延迟
 
-
-        time.sleep(0.5)  # 等待  # 增加延迟
-        pag.moveTo(621, 532)  # 鼠标移动X.Y 方位  进入知乎 按钮
-        pag.rightClick()  # 右击
+        # time.sleep(0.5)  # 等待  # 增加延迟
+        # pag.moveTo(621, 532)  # 鼠标移动X.Y 方位  进入知乎 按钮
+        # pag.rightClick()  # 右击
 
     def 模具一一选择职业或专业(self):
         """你的职业或专业是什么?"""
-        pag.PAUSE = 2 # 增加延迟
+        time.sleep(2)  # 等待  # 增加延迟
 
         """测试页面属性"""
         页面关键词 = '职业或专业'
         self.模具一一测试页面属性(页面关键词)
 
         print('选择职业或专业')
-        self.模具一一随机职业名()
+        
+        职业名 = self.模具一一随机职业名()
+        self.模具一一写入剪切板内容(职业名)
 
-
+        
+        
         pag.moveTo(612, 273)  # 鼠标移动X.Y 方位
         pag.rightClick()  # 右击
         time.sleep(0.5)  # 等待  # 增加延迟
@@ -179,8 +236,32 @@ class 类一一注册知乎(类一一公共库):        # 调用 类的模具 se
         pag.rightClick()  # 右击
 
         time.sleep(0.5)  # 等待  # 增加延迟
-        pag.moveTo(632, 877)  # 鼠标移动X.Y 方位  进入知乎 按钮
+        pag.moveTo(655, 836)  # 鼠标移动X.Y 方位  进入知乎 按钮
         pag.rightClick()  # 右击
+
+    def 模具一一添加头像(self):
+        """测试页面属性"""
+        # ========发现界面===========
+        页面关键词 = '消息'
+        self.模具一一测试页面属性(页面关键词)
+
+        time.sleep(0.5)  # 等待  # 增加延迟
+        pag.moveTo(1076, 120)  # 鼠标移动X.Y 方位  用户主页界面 按钮
+        pag.rightClick()  # 右击
+        time.sleep(1)  # 等待  # 增加延迟
+
+        #========用户主页===========
+        页面关键词 = '编辑个人资料'
+        self.模具一一测试页面属性(页面关键词)
+
+
+
+        time.sleep(0.5)  # 等待  # 增加延迟
+        pag.moveTo(250, 300)  # 鼠标移动X.Y 方位  上传图记头像 按钮
+        pag.rightClick()  # 右击
+        time.sleep(3)  # 等待  # 增加延迟
+
+        self.模具一一上传图片窗口选择图片()
 
 
     def 模具一一保存数据库一知乎用户密码等(self):
@@ -192,8 +273,16 @@ class 类一一注册知乎(类一一公共库):        # 调用 类的模具 se
         # 使用cursor()方法获取操作游标
         cursor = db.cursor()
         # SQL 插入语句
-        sql = """INSERT INTO `知乎帐号`(`帐号`, `密码`, `注册手机号`, `注册日期`, `cookie`) 
-        VALUES ("{}","{}","{}","{}",'{}')""" .format(self.取女名,self.密码,self.手机号码,今天时间,self.cookie)#不换行 end=""
+        if self.知乎发贴号 == 0:  # break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
+            sql = """INSERT INTO `知乎帐号`(`帐号`, `密码`, `注册手机号`, `注册日期`, `cookie`) 
+                  VALUES ("{}","{}","{}","{}",'{}')""".format(self.随机取名, self.密码, self.手机号码, 今天时间,
+                                                              self.cookie)  # 不换行 end=""
+        else:  # 否则
+            sql = """INSERT INTO `知乎发贴帐号`(`帐号`, `密码`, `注册手机号`, `注册日期`, `cookie`) 
+                  VALUES ("{}","{}","{}","{}",'{}')""".format(self.随机取名, self.密码, self.手机号码, 今天时间,
+                                                              self.cookie)  # 不换行 end=""
+
+
 
         try:
             # 执行sql语句
@@ -210,8 +299,8 @@ class 类一一注册知乎(类一一公共库):        # 调用 类的模具 se
 
 
 if __name__ == '__main__':
-    知乎点赞号 = 998
-    类 = 类一一注册知乎(知乎点赞号)
+    知乎发贴号 = 0
+    类 = 类一一注册知乎(知乎发贴号)
 
 
 

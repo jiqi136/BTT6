@@ -48,7 +48,7 @@ class 类一一知乎点赞(类一一公共库):  # 调用 类的模具 self.模
                     文本 =re.sub(规则, '', 行内容)#替换   ,count=0,re.S|re.I
                     self.ip段集 =self.ip段集+文本
 
-            self.模具一一检测ip段重复()
+        self.模具一一检测ip段重复()
 
 
         for 帐号cookie组 in self.帐号cookie组列表:
@@ -362,41 +362,7 @@ class 类一一知乎点赞(类一一公共库):  # 调用 类的模具 self.模
 
         #pag.hotkey('ctrlleft', 'F4')  # 确认  关闭当前标签页   按钮
 
-    def 模具一一布置浏览头(self):
 
-        pag.hotkey('ctrlleft', '3')  # 鼠标移动X.Y 方位  cookie插件布置 页面
-
-        time.sleep(0.5)  # 等待  # 增加延迟
-        pag.moveTo(600, 200)  # 鼠标移动X.Y 方位  确定布置浏览头 页面
-        pag.rightClick()  # 右击
-        time.sleep(0.3)  # 等待  # 增加延迟
-
-        # pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
-        # pag.PAUSE = 0.3  # 增加延迟
-        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
-        time.sleep(0.3)  # 等待  # 增加延迟
-        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c') 添加浏览头网址 方框
-
-        浏览头网址='zhihu.com'
-        self.模具一一写入剪切板内容(浏览头网址)
-        time.sleep(0.3)  # 等待  # 增加延迟
-        pag.hotkey('ctrlleft', 'v')  # press()一次完整的击键.hotkey('ctrl','c')
-
-        #====================================
-        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
-        self.模具一一换头部信息()
-
-        self.模具一一写入剪切板内容(self.头部信息['User-Agent'])
-        time.sleep(0.3)  # 等待  # 增加延迟
-        pag.hotkey('ctrlleft', 'v')  # press()一次完整的击键.hotkey('ctrl','c')
-
-        # ====================================
-        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
-
-        time.sleep(0.3)  # 等待  # 增加延迟
-        pag.press('enter')  # press()一次完整的击键.hotkey('ctrl','c')
-
-        # pag.hotkey('ctrlleft', 'F4')  # 确认  关闭当前标签页   按钮
 
 
     def 模具一一提炼Cookie(self):
