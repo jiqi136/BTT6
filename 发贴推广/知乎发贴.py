@@ -1,24 +1,22 @@
 # -*- coding:utf-8
 
-import requests  # 网页浏览
+
 import re  # 正则式
 import time  # 时间
-import datetime  # 时间
+
 import os  # 本地操作
 import pymysql  # 数据库
 import random  # 随机
-from lxml import etree  # 网页分析
+
 import shutil  # 移动复制文件目录
-from lxml import html  # 网页分析
+
 import win32api  # 操作本地文件
 import win32clipboard as w# 提取剪切板内容
 import win32con#提取剪切板内容
-from selenium import webdriver  # 浏览的驱动
-from selenium.webdriver.common.touch_actions import TouchActions
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.action_chains import ActionChains
-import pyautogui as pag
-import pyautogui
+
+
+import pyautogui as pag #模拟鼠标键盘操作
+import pyautogui#模拟鼠标键盘操作
 from 发贴推广.推广公共库 import 类一一公共库# 导入模块
 
 """
@@ -34,43 +32,152 @@ IP：121.32.193.219
 
 class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
     def __init__(self):
-        self.粘贴标题 = r"豆瓣2018上半年评分8.6以上的好电影推荐"
+        self.粘贴标题 = r""
+        self.清除全部 = 998
         self.模具一一换头部信息()
-        self.模具一一重新激活浏览器窗口()
-        #self.模具一一打开全屏写回答()
+        self.模具一一换ip连接二()
 
-        self.模具一一填充发贴内容()
-        self.模具一一提交回答()
+
+        self.模具一一重新激活浏览器窗口()
+
+
+        self.模具一一提取推广库里的知乎发贴帐号()
+        今天时间 = str(time.strftime("%y-%m-%d", time.localtime()))
+        贴内容=今天时间+'日期'
+
+        for 帐号cookie组 in self.帐号cookie组列表:
+
+            self.帐号 = 帐号cookie组[0]
+            self.密码 = 帐号cookie组[1]
+            self.注册手机号 = 帐号cookie组[2]
+            self.cookie = 帐号cookie组[3]
+            存活 = 帐号cookie组[4]
+            self.发贴内容 = str(帐号cookie组[5])
+
+
+            if len(self.注册手机号)==0 or len(self.密码)==0 or '封' in str(存活) or 贴内容 in self.发贴内容 or '美剧' in str(self.帐号):
+                continue  # 跳过循环
+
+            if 'zhihu.com' in str(帐号cookie组):
+
+                self.模具一一布置浏览头()
+                输入网址='https://www.zhihu.com'
+                self.模具一一地址栏输入网址(输入网址)
+                self.模具一一导入界面的登录cookie(self.帐号)
+
+                #self.模具一一测试登录页面属性(self.帐号)
+            else:  # 否则
+                continue  # 跳过循环
+
+                self.模具一一布置浏览头()
+
+                self.模具一一输入用户手机号与密码登录()
+                #self.模具一一测试登录页面属性(self.帐号)
+
+
+
+            等待用户输入 = input("\n按下 enter 确认键后继续")
+            self.模具一一重新激活浏览器窗口()
+
+            提取网址 = self.模具一一提取浏览器地址栏网址()
+            self.发贴内容 = 贴内容 + 提取网址 + '网址' + self.发贴内容
+
+            self.模具一一打开全屏写回答()
+
+            self.模具一一填充发贴内容()
+
+            等待用户输入 = input("\n按下 enter 确认键后继续")
+            self.模具一一重新激活浏览器窗口()
+
+            self.模具一一提交回答()
+            等待用户输入 = input("\n按下 enter 确认键后继续")
+            self.模具一一重新激活浏览器窗口()
+
+            self.模具一一保存数据库一更新知乎登录cookie与发贴内容()
+            self.模具一一清除浏览器历史缓存()  # 1 次
+            self.模具一一换ip连接二()
+
+    """=========数据库======================="""
+
+    def 模具一一提取推广库里的知乎发贴帐号(self):
+        # 提取数据库里的过滤网址
+        # 打开数据库连接
+        db = pymysql.connect("localhost", "root", "", "影视发帖推广", charset="utf8")
+        # 使用cursor()方法获取操作游标
+        cursor = db.cursor()
+        # SQL 查询语句
+        sql = "SELECT  `帐号`, `密码`, `注册手机号`,`cookie` ,`存活`,`发贴内容` FROM `知乎发贴帐号`"
+        # 执行SQL语句
+        cursor.execute(sql)
+        # 获取所有记录列表
+        self.帐号cookie组列表 = cursor.fetchall()
+
+        # 关闭数据库连接
+        db.close()
+
+    def 模具一一保存数据库一更新知乎登录cookie与发贴内容(self):
+        print('打开数据库连接')
+        # 打开数据库连接,
+        db = pymysql.connect("localhost", "root", "", "影视发帖推广", charset="utf8")
+        # 使用cursor()方法获取操作游标
+        cursor = db.cursor()
+        # SQL 插入语句
+        if self.清除全部 == 0:
+            self.模具一一提取登录界面的cookie()
+            sql = """UPDATE `知乎发贴帐号` SET `cookie`='{}',`发贴内容`='{}' WHERE `注册手机号`='{}'""".format(self.cookie,self.发贴内容,self.注册手机号)  # 不换行 '{}'
+        else:  # 否则
+            sql = """UPDATE `知乎发贴帐号` SET `发贴内容`='{}' WHERE `注册手机号`='{}'""".format(self.发贴内容,self.注册手机号)  # 不换行 '{}'
+        try:
+            # 执行sql语句
+            cursor.execute(sql)
+            # 提交到数据库执行
+            db.commit()
+            print('=保存数据库一更新知乎与点赞内容')
+        except:
+            # 如果发生错误则回滚
+            print('=====================数据库执行发生错误:===============')
+            db.rollback()
+        # 关闭数据库连接
+        db.close()
 
     """=========打开全屏写回答与提交回答=========================="""
 
     def 模具一一打开全屏写回答(self):
+        def 模具一一旧保存():
+            pag.moveTo(123, 283)  # 鼠标移动X.Y 方位  确定  写回答 栏
+            pag.rightClick()  # 右击
+            time.sleep(0.3)  # 等待  # 增加延迟
 
-        pag.moveTo(123, 283)  # 鼠标移动X.Y 方位  确定  写回答 栏
-        pag.rightClick()  # 右击
-        time.sleep(0.3)  # 等待  # 增加延迟
+            pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
+            time.sleep(0.3)  # 等待  # 增加延迟
+            pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
+            time.sleep(0.3)  # 等待  # 增加延迟
+            pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c') 打开  写回答 方框
 
-        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
-        time.sleep(0.3)  # 等待  # 增加延迟
-        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
-        time.sleep(0.3)  # 等待  # 增加延迟
-        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c') 打开  写回答 方框
+            time.sleep(0.3)  # 等待  # 增加延迟
+            pag.press('enter')  # press()一次完整的击键.hotkey('ctrl','c')
 
-        time.sleep(0.3)  # 等待  # 增加延迟
-        pag.press('enter')  # press()一次完整的击键.hotkey('ctrl','c')
+            time.sleep(1)  # 等待  # 增加延迟
+            pag.moveTo(793, 466)  # 鼠标移动X.Y 方位    全屏模式
+            pag.rightClick()  # 右击
+            time.sleep(1)  # 等待  # 增加延迟
+            # =====================
 
+        pag.hotkey('ctrlleft', '1')  # 方位  浏览器 主 页面
+        time.sleep(0.5)  # 等待  # 增加延迟
         #=======================
-        time.sleep(1)  # 等待  # 增加延迟
-        pag.moveTo(778, 438)  # 鼠标移动X.Y 方位    全屏模式
-        pag.rightClick()  # 右击
-        time.sleep(1)  # 等待  # 增加延迟
+
 
         pag.moveTo(450, 250)  # 鼠标移动X.Y 方位    输入 框
         pag.rightClick()  # 右击
 
     def 模具一一提交回答(self):
-        pag.moveTo(707, 870)  # 鼠标移动X.Y 方位  确定  写回答 栏
+        time.sleep(0.3)  # 等待  # 增加延迟
+        pag.moveTo(670, 870)  # 鼠标移动X.Y 方位  确定  写回答 栏
         pag.rightClick()  # 右击
+        time.sleep(0.3)  # 等待  # 增加延迟
+
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
         time.sleep(0.3)  # 等待  # 增加延迟
 
         pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
@@ -95,8 +202,8 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
     def 模具一一提取文本短标题(self):
 
 
-        文本内容 = open(r'F:\影视发帖推广\知乎\影视短标题.txt', 'r')  # 打开所保存的cookies内容文件 粘贴
-        文本内容 =文本内容.read()
+        文本内容字节 = open(r'F:\影视发帖推广\知乎\影视短标题.txt', 'r')  # 打开所保存的cookies内容文件 粘贴
+        文本内容 =文本内容字节.read()
         self.粘贴标题=self.粘贴标题+'\n'+文本内容+'\n'
         self.模具一一粘贴标题()
 
@@ -130,8 +237,10 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
     """=========提取正文========================"""
 
     def 模具一一粘贴正文发贴内容(self):
-        self.模具一一写入剪切板内容(self.发贴内容)
-        time.sleep(0.3)  # 等待  # 增加延迟
+        # self.模具一一写入剪切板内容(self.发贴正文)
+        self.模具一一文本随机插入字符测试(self.发贴正文,5)
+        self.模具一一提取文本内容()
+        time.sleep(0.5)  # 等待  # 增加延迟
         pag.hotkey('ctrlleft', 'v')  # press()一次完整的击键.hotkey('ctrl','c')
 
 
@@ -150,8 +259,8 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
             print('正文内容为空')
             return#返回
         #self.模具一一清洗正文()  #
-        self.发贴内容 = self.短标题 + '\n'+self.正文 + '\n'
-        print(self.发贴内容)
+        self.发贴正文 = self.短标题 + '\n'+self.正文 + '\n'
+        print(self.发贴正文)
 
     def 模具一一清洗正文(self):
 
@@ -186,21 +295,11 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
             if len(行内容)>5:
                 发贴内容 =发贴内容+"\n"+行内容
 
-                #self.发贴内容=self.模具一一文本随机插入字符测试(发贴内容)
-        self.发贴内容 =self.短标题+发贴内容+'\n'
-        print(self.发贴内容)
+                #self.发贴正文=self.模具一一文本随机插入字符测试(发贴内容)
+        self.发贴正文 =self.短标题+发贴内容+'\n'
+        print(self.发贴正文)
 
-    def 模具一一文本随机插入字符测试(self,文本列表):
-        计数器 =0
-        文本 =''
-        for 每个字 in 文本列表:
-            计数器 = 计数器 + 1
-            if 计数器 == 12:
-                符号表 = random.choice('↕↟↡↥↧↨↾↿⇂⇃⇞⇟⇡⇣´`ˆ')
-                文本 = 文本 + 符号表
-                计数器 = 0
-            文本 = 文本 + 每个字
-        return 文本# 返回
+
     def 模具一一短标题提取豆瓣电影数据库正文内容(self):
         # 提取数据库里的过滤网址
         # 打开数据库连接
@@ -289,11 +388,13 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
         print('清空移动文件目录:', self.移动文件目录名)
 
     def 模具一一图片目录地址框(self):
-        pag.moveTo(366, 45)  # 鼠标移动X.Y 方位  确定  打开图片 按钮
+        pag.moveTo(366, 45)  # 鼠标移动X.Y 方位  确定  图片目录地址框
         pag.rightClick()  # 右击
         time.sleep(0.3)  # 等待  # 增加延迟
 
         pag.hotkey('ctrlleft', 'a')  # press()一次完整的击键.hotkey('ctrl','c') 全选 图片
+        time.sleep(0.3)  # 等待  # 增加延迟
+        pag.press('delete')  # press()一次完整的击键.hotkey('ctrl','c') 确认
         time.sleep(0.3)  # 等待  # 增加延迟
 
         图片目录地址= r"F:\影视发帖推广\临时图片"
@@ -303,7 +404,7 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
         pag.hotkey('ctrlleft', 'v')  # press()一次完整的击键.hotkey('ctrl','c')
         time.sleep(0.3)  # 等待  # 增加延迟
         pag.press('enter')  # press()一次完整的击键.hotkey('ctrl','c') 确认
-        time.sleep(0.3)  # 等待  # 增加延迟
+        time.sleep(1)  # 等待  # 增加延迟
 
 
 
@@ -312,11 +413,22 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
 
 
 
+
+
         if self.图片目录 == 0: #  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
             图片按钮 = 180
             pag.moveTo(595, 图片按钮)  # 鼠标移动X.Y 方位  确定  打开图片 按钮
             pag.rightClick()  # 右击
-            time.sleep(3)  # 等待  # 增加延迟
+
+
+            # ========清除 图片水印提醒 的窗口===
+            time.sleep(1)  # 等待  # 增加延迟
+            pag.moveTo(650, 655)  # 鼠标移动X.Y 方位  清除 图片水印提醒 的窗口
+            pag.rightClick()  # 右击
+            time.sleep(0.3)  # 等待  # 增加延迟
+
+            time.sleep(2)  # 等待  # 增加延迟
+
 
             self.模具一一图片目录地址框()
 
@@ -324,9 +436,10 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
             图片按钮 =118
             pag.moveTo(580, 图片按钮)  # 鼠标移动X.Y 方位  确定  打开图片 按钮
             pag.rightClick()  # 右击
-            time.sleep(3)  # 等待  # 增加延迟
+            time.sleep(2)  # 等待  # 增加延迟
 
 
+        # =======选择图片 ==
         pag.moveTo(173, 148)  # 鼠标移动X.Y 方位  确定  图片目录空白处
         pag.rightClick()  # 右击
 
@@ -336,20 +449,27 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
         pag.hotkey('altleft', 'o')  # press()一次完整的击键.hotkey('ctrl','c') 提交图片
         time.sleep(5)  # 等待  # 增加延迟 已经有等待 3秒了
 
+
         pag.moveTo(218, 872)  # 鼠标移动X.Y 方位  定位 草稿已保存 栏 空白处
         pag.rightClick()  # 右击
         time.sleep(0.3)  # 等待  # 增加延迟
-        页面关键词= '草稿已保存'
+        页面关键词 = '草稿已保存'
         self.模具一一测试页面属性一等待(页面关键词)
-
-        # pag.hotkey('ctrlleft', 'shiftleft', 'S')  # 分隔线
-        if self.图片目录 == 0:
-            pag.moveTo(668, 180)  # 鼠标移动X.Y 方位  定位 分隔线豆瓣2018上半年评分8.6以上的好电影推荐
-            self.图片目录 = 998
-        else:  # 否则
-            pag.moveTo(668, 120)  # 鼠标移动X.Y 方位  定位 分隔线
+        time.sleep(0.3)  # 等待  # 增加延迟
+        #======最底部分隔线=========
+        pag.moveTo(1110, 276)  # 鼠标移动X.Y 方位  编辑器外栏
         pag.rightClick()  # 右击
         time.sleep(0.5)  # 等待  # 增加延迟
+        # pag.hotkey('ctrlleft', 'shiftleft', 'S')  # 分隔线
+
+        pag.press('end')  # press()一次完整的击键.hotkey('ctrl','c') 确认 编辑器外栏 最底部
+        time.sleep(0.5)  # 等待  # 增加延迟
+
+        pag.moveTo(356, 827)  # 鼠标移动X.Y 方位  定位 编辑器内 最底部
+        pag.rightClick()  # 右击
+        time.sleep(0.5)  # 等待  # 增加延迟
+
+        pag.hotkey('ctrlleft', 'shiftleft', 'S')  # 分隔线
 
     """=========插入链接地址(========================"""
     def 模具一一插入链接地址(self):
@@ -388,5 +508,5 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
         pag.hotkey('ctrlleft', 'shiftleft', 'S')  # 分隔线
 
 
-
-类=类一一知乎发贴()
+if __name__ == '__main__':
+    类=类一一知乎发贴()

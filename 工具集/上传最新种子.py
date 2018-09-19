@@ -109,4 +109,5 @@ class 类一一ALDrive上传文件:  # 调用 类的模具 self.模具一一数�
 
 
 类=类一一ALDrive上传文件()
+win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\城通网盘提取链接.py.lnk', '', '', 1)
 

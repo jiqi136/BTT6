@@ -1196,7 +1196,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         self.模具一一换ip连接二()
 
         #self.模拟鼠标键盘操作一最新目录的上传()
-        win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\上传种子与城通网盘提取链接.py.lnk', '', '', 1)
+        win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\上传最新种子.py.lnk', '', '', 1)
 
 
     def 模具一一调度控制(self):
@@ -1323,7 +1323,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         cursor = db.cursor()
         # SQL 查询语句   已下载内容网址
         # 获取游标
-        sql = "UPDATE `网站文章内容` SET `发布`='是' WHERE `发布`='否'"
+        sql = "UPDATE `网站文章内容` SET `发布`='微博' WHERE `发布`='否'"
         # 执行SQL语句
         cursor.execute(sql)
         # 提交到数据库执行

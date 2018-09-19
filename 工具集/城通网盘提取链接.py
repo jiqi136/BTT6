@@ -127,8 +127,8 @@ class 类一一提取链接:  # 调用 类的模具 self.模具一一数据库()
         pag.rightClick()  # 右击
         time.sleep(2)  # 等待  # 增加延迟
     def 模具一一确认退出(self):
-        pyautogui.alert('确认退出')
-        time.sleep(1)  # 等待  # 增加延迟
+        #pyautogui.alert('确认退出')
+
         pag.hotkey('altleft', 'f4')  # press()一次完整的击键.hotkey('ctrl','c'):复制内容
         # pag.moveTo(1255, 25)  # 鼠标 定位 分享 方框栏
         # pag.rightClick()  # 右击
@@ -137,5 +137,6 @@ class 类一一提取链接:  # 调用 类的模具 self.模具一一数据库()
 
 
 类=类一一提取链接()
+win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\FTP上传http网页文件.py.lnk', '', '', 1)
 
 
