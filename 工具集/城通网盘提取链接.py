@@ -37,8 +37,10 @@ class 类一一提取链接:  # 调用 类的模具 self.模具一一数据库()
         pag.rightClick()  # 右击
         time.sleep(1)  # 等待  # 增加延迟
 
+        self.首次 = 0
         self.影视类型='电视剧'
         self.模具一一影视类型提取链接()
+        self.首次 = 998
         self.影视类型 = '动漫'
         self.模具一一影视类型提取链接()
         self.影视类型 = '电影'
@@ -48,6 +50,8 @@ class 类一一提取链接:  # 调用 类的模具 self.模具一一数据库()
 
     def 模具一一影视类型提取链接(self):
         竖坐标 = 239
+
+
         if '电视剧' in self.影视类型:
             横坐标=65
             self.文本文件名=r'F:\下载种子目录\ftp上传目录链接网页\最新电视剧.txt'
@@ -80,9 +84,18 @@ class 类一一提取链接:  # 调用 类的模具 self.模具一一数据库()
             pag.rightClick()  # 右击
 
         # ==========定位===========
-        模具一一全选定位()
+        if self.首次 != 0:
+            pag.moveTo(30, 150)  # 鼠标 定位 全选 按钮
+            pag.rightClick()  # 右击
+            time.sleep(1)  # 等待  # 增加延迟
+
+        pag.moveTo(30, 150)  # 鼠标 定位 全选 按钮
+        pag.rightClick()  # 右击
+
         time.sleep(5)  # 等待  # 增加延迟
-        模具一一全选定位()
+        pag.moveTo(1080, 150)  # 鼠标 定位 分享 按钮
+        pag.rightClick()  # 右击
+
         # ==========提取链接==========
         time.sleep(5)  # 等待  # 增加延迟
         pag.moveTo(618, 280)  # 鼠标 定位 文件名与链接 方框

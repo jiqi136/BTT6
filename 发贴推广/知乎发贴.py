@@ -32,7 +32,7 @@ IP：121.32.193.219
 
 class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
     def __init__(self):
-        self.粘贴标题 = r""
+        self.粘贴标题 = r"2018上半年豆瓣高评分电影"
         self.清除全部 = 998
         self.模具一一换头部信息()
         self.模具一一换ip连接二()
@@ -59,6 +59,7 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
                 continue  # 跳过循环
 
             if 'zhihu.com' in str(帐号cookie组):
+                continue  # 跳过循环
 
                 self.模具一一布置浏览头()
                 输入网址='https://www.zhihu.com'
@@ -67,16 +68,20 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
 
                 #self.模具一一测试登录页面属性(self.帐号)
             else:  # 否则
-                continue  # 跳过循环
+
 
                 self.模具一一布置浏览头()
+                输入登录网址 = 'https://www.zhihu.com/signin?next=%2Fexplore'
+                self.模具一一地址栏输入网址(输入登录网址)
+                print(self.帐号)
+
 
                 self.模具一一输入用户手机号与密码登录()
                 #self.模具一一测试登录页面属性(self.帐号)
 
 
 
-            等待用户输入 = input("\n按下 enter 确认键后继续")
+            等待用户输入 = input("\n按下 enter 确认键后继续 填充发贴内容 ")
             self.模具一一重新激活浏览器窗口()
 
             提取网址 = self.模具一一提取浏览器地址栏网址()
@@ -86,16 +91,19 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
 
             self.模具一一填充发贴内容()
 
-            等待用户输入 = input("\n按下 enter 确认键后继续")
+            等待用户输入 = input("\n按下 enter 确认键后继续 提交回答")
             self.模具一一重新激活浏览器窗口()
 
             self.模具一一提交回答()
-            等待用户输入 = input("\n按下 enter 确认键后继续")
+            等待用户输入 = input("\n按下 enter 确认键后继续  保存数据库")
             self.模具一一重新激活浏览器窗口()
 
             self.模具一一保存数据库一更新知乎登录cookie与发贴内容()
             self.模具一一清除浏览器历史缓存()  # 1 次
             self.模具一一换ip连接二()
+
+            等待用户输入 = input("\n按下 enter 确认键后继续 下一轮")
+            self.模具一一重新激活浏览器窗口()
 
     """=========数据库======================="""
 
@@ -209,12 +217,12 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
 
         行内容列表=文本内容.split('\n')
         if len(行内容列表)>6:
-            self.图片目录 = 998
+            self.图片目录 = 10
         else:  #否则
             self.图片目录 = 0
 
         计数器=0
-        for 行内容 in 行内容列表:  # 按照字符:进行划分读取 [26:50]
+        for 行内容 in 行内容列表[:11]:  # 按照字符:进行划分读取 [26:50]
 
             # 其设置为1就会把字符串拆分成2份
             self.短标题=行内容
@@ -229,7 +237,7 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
 
             计数器 = 计数器 + 1
             if 计数器 ==7:
-                self.模具一一插入链接地址()
+                #self.模具一一插入链接地址()
                 计数器 = 0
                 # time.sleep(10000)  # 等待
         self.模具一一插入链接地址()
@@ -422,21 +430,40 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
 
 
             # ========清除 图片水印提醒 的窗口===
-            time.sleep(1)  # 等待  # 增加延迟
+            time.sleep(2)  # 等待  # 增加延迟
             pag.moveTo(650, 655)  # 鼠标移动X.Y 方位  清除 图片水印提醒 的窗口
             pag.rightClick()  # 右击
-            time.sleep(0.3)  # 等待  # 增加延迟
+            time.sleep(0.5)  # 等待  # 增加延迟
+
+            time.sleep(2)  # 等待  # 增加延迟
+            self.图片目录 = 998
+            self.模具一一图片目录地址框()
+
+        elif self.图片目录 == 10:
+            图片按钮 = 118
+            pag.moveTo(580, 图片按钮)  # 鼠标移动X.Y 方位  确定  打开图片 按钮
+            pag.rightClick()  # 右击
+
+            # ========清除 图片水印提醒 的窗口===
+            time.sleep(2)  # 等待  # 增加延迟
+            pag.moveTo(650, 655)  # 鼠标移动X.Y 方位  清除 图片水印提醒 的窗口
+            pag.rightClick()  # 右击
+            time.sleep(0.5)  # 等待  # 增加延迟
 
             time.sleep(2)  # 等待  # 增加延迟
 
+            self.图片目录 = 998
 
             self.模具一一图片目录地址框()
+
 
         else:  #否则
             图片按钮 =118
             pag.moveTo(580, 图片按钮)  # 鼠标移动X.Y 方位  确定  打开图片 按钮
             pag.rightClick()  # 右击
+
             time.sleep(2)  # 等待  # 增加延迟
+
 
 
         # =======选择图片 ==
@@ -506,6 +533,42 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
         time.sleep(1)  # 等待  # 增加延迟
 
         pag.hotkey('ctrlleft', 'shiftleft', 'S')  # 分隔线
+
+    """=========输入用户手机号与密码登录========================"""
+    def 模具一一输入用户手机号与密码登录(self):
+        self.清除全部 = 0
+
+
+        time.sleep(2)  # 等待
+        """测试页面属性"""
+        页面关键词 = '登录知乎'
+        # self.模具一一测试页面属性(页面关键词)
+        # ==========登录 方框
+        # ====手机号
+        pag.moveTo(486, 316)  # 鼠标移动X.Y 方位 知乎登录顶  空白处
+        pag.rightClick()  # 右击
+        time.sleep(0.3)  # 等待
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
+
+        time.sleep(0.3)  # 等待  # 增加延迟
+        pag.typewrite(self.注册手机号)  # 输入手机号码
+
+
+        # ====密码
+        time.sleep(0.3)  # 等待  # 增加延迟
+        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')  输入密码方框
+        time.sleep(0.3)  # 等待  # 增加延迟
+        pag.typewrite(self.密码)  # 输入密码
+
+        # ====确认登录
+        time.sleep(0.3)  # 等待  # 增加延迟
+
+        pag.moveTo(651, 540)  # 鼠标移动X.Y 方位 登录 按钮
+        pag.rightClick()  # 右击
+        time.sleep(2)  # 等待
+
+
+
 
 
 if __name__ == '__main__':

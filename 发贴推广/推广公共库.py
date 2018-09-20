@@ -26,13 +26,16 @@ import json #json格式化
 页面4  清除 缓存
 页面5  查询ip地址
 SELECT * FROM `知乎话题` WHERE `短标题` != '空' ORDER BY `知乎话题`.`赞同数` DESC 
+SELECT * FROM `知乎话题` WHERE `短标题` != '空'and `类型`= '电影' ORDER BY `知乎话题`.`赞同数` DESC 
 知乎改名2至8汉字 或16字符
 提示保存密码 永不 **********
 扩展快捷键  修改  
-浏览头部设置 添加一行   **********
+
 
 工具栏左1 导出COOKIE
 工具栏2 设置浏览头部信息
+删除微博的通知 权限**********
+
 
 """
 
@@ -498,7 +501,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
     def 模具一一地址栏输入网址(self,输入的网址):
         # =========== 定位 地址栏 ============
         pag.hotkey('ctrlleft', '1')  # 鼠标移动X.Y 方位  浏览器 主 页面
-        time.sleep(0.5)  # 等待  # 增加延迟
+        time.sleep(1)  # 等待  # 增加延迟
         pag.hotkey('ctrlleft', 'e')  # 鼠标移动X.Y 方位  定位 地址栏
         time.sleep(0.5)  # 等待  # 增加延迟
         pag.press('delete')  # press()一次完整的击键. 清空 地址栏
@@ -511,7 +514,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         time.sleep(0.5)  # 等待  # 增加延迟
         #pag.press('enter')  # press()一次完整的击键.hotkey('ctrl','c')
 
-        time.sleep(2)  # 等待  # 增加延迟
+        time.sleep(5)  # 等待  # 增加延迟
 
     def 模具一一布置浏览头(self):
         pag.hotkey('ctrlleft', '1')  # 鼠标移动X.Y 方位  浏览器 主 页面
@@ -750,7 +753,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         pag.hotkey('winleft', 'd')  # press()一次完整的击键.hotkey('ctrl','c'):热键函数 .keyDown()按下某个键.keyUp()松开某个键.
 
         time.sleep(0.5)  # 等待  # 增加延迟
-        pag.moveTo(203, 920)  # 鼠标移动X.Y 方位  重新激活浏览器窗口 在CMD 与  回归桌面之间
+        pag.moveTo(221, 920)  # 鼠标移动X.Y 方位  重新激活浏览器窗口 在CMD 与  回归桌面之间
         pag.rightClick()  # 右击
         time.sleep(3)  # 等待  # 增加延迟
 
