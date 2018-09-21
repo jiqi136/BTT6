@@ -242,7 +242,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
 
     """============短信平台================"""
-    def 模具一一提取影视剧数据库里的3e影视网站后台登录cookie(self):
+    def 模具一一提取影视剧数据库里的易码短信平台账户信息(self):
         # 提取数据库里的过滤网址
         # 打开数据库连接
         db = pymysql.connect("localhost", "root", "", "帐号", charset="utf8")
@@ -401,6 +401,8 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
 
 
+
+
     def 模具一一随机职业名(self):
 
         if self.知乎发贴号 == 0:  # break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
@@ -502,37 +504,39 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         # =========== 定位 地址栏 ============
         pag.hotkey('ctrlleft', '1')  # 鼠标移动X.Y 方位  浏览器 主 页面
         time.sleep(1)  # 等待  # 增加延迟
+
         pag.hotkey('ctrlleft', 'e')  # 鼠标移动X.Y 方位  定位 地址栏
         time.sleep(0.5)  # 等待  # 增加延迟
         pag.press('delete')  # press()一次完整的击键. 清空 地址栏
         time.sleep(0.5)  # 等待  # 增加延迟
         #===========输入网址============
         self.模具一一写入剪切板内容(输入的网址)
-        time.sleep(0.3)  # 等待  # 增加延迟
+        time.sleep(0.5)  # 等待  # 增加延迟
         pag.hotkey('ctrlleft', 'shiftleft', 'v')  # press()一次完整的击键.hotkey('ctrl','c')
 
-        time.sleep(0.5)  # 等待  # 增加延迟
+
         #pag.press('enter')  # press()一次完整的击键.hotkey('ctrl','c')
 
         time.sleep(5)  # 等待  # 增加延迟
 
-    def 模具一一布置浏览头(self):
+    def 模具一一布置浏览头(self,浏览头网址):
         pag.hotkey('ctrlleft', '1')  # 鼠标移动X.Y 方位  浏览器 主 页面
 
 
-        time.sleep(0.5)  # 等待  # 增加延迟
+        time.sleep(1)  # 等待  # 增加延迟
         pag.moveTo(1252 , 49)  # 鼠标移动 定位  确定布置浏览头 按钮
         pag.rightClick()  # 右击
-        time.sleep(1)  # 等待  # 增加延迟
+        time.sleep(2)  # 等待  # 增加延迟
 
         pag.moveTo(1009, 93)  # 鼠标移动 定位  布置浏览头 空白处
         pag.rightClick()  # 右击
-        time.sleep(0.5)  # 等待  # 增加延迟
+        time.sleep(1)  # 等待  # 增加延迟
+
 
         # ==============================
         pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c') 添加浏览头网址 方框
 
-        浏览头网址 = 'zhihu.com'
+
         self.模具一一写入剪切板内容(浏览头网址)
         time.sleep(0.3)  # 等待  # 增加延迟
         pag.hotkey('ctrlleft', 'v')  # press()一次完整的击键.hotkey('ctrl','c')
@@ -552,6 +556,9 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
         time.sleep(0.5)  # 等待  # 增加延迟
         pag.press('enter')  # press()一次完整的击键.hotkey('ctrl','c')
+        time.sleep(0.5)  # 等待  # 增加延迟
+
+        pag.moveTo(981, 52)  # 鼠标移动 定位  页面 空白处
         time.sleep(0.5)  # 等待  # 增加延迟
 
 
@@ -755,7 +762,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         time.sleep(0.5)  # 等待  # 增加延迟
         pag.moveTo(221, 920)  # 鼠标移动X.Y 方位  重新激活浏览器窗口 在CMD 与  回归桌面之间
         pag.rightClick()  # 右击
-        time.sleep(3)  # 等待  # 增加延迟
+        time.sleep(2)  # 等待  # 增加延迟
 
 
 

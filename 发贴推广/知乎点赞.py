@@ -13,12 +13,9 @@ from lxml import html  # 网页分析
 import win32api  # 操作本地文件
 import win32clipboard as w# 提取剪切板内容
 import win32con#提取剪切板内容
-from selenium import webdriver  # 浏览的驱动
-from selenium.webdriver.common.touch_actions import TouchActions
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.action_chains import ActionChains
-import pyautogui as pag
-import pyautogui
+
+import pyautogui as pag #模拟鼠标键盘操作
+import pyautogui#模拟鼠标键盘操作
 from 发贴推广.推广公共库 import 类一一公共库# 导入模块
 
 
@@ -36,6 +33,7 @@ class 类一一知乎点赞(类一一公共库):  # 调用 类的模具 self.模
         self.模具一一提取推广库里的知乎点赞帐号()
 
         self.清除全部 = 998
+        浏览头网址 = 'zhihu.com'
 
 
 
@@ -66,7 +64,7 @@ class 类一一知乎点赞(类一一公共库):  # 调用 类的模具 self.模
 
             if 'zhihu.com' in str(帐号cookie组):
                 continue  # 跳过循环            zhihu.com   Mozilla/4.0 (compatible; MSIE 5.0; Windows NT 6.0; The World)
-                self.模具一一布置浏览头()
+                self.模具一一布置浏览头(浏览头网址)
 
                 self.点赞内容 = 赞内容+self.前ip+'IP行'+self.点赞内容
 
@@ -74,7 +72,7 @@ class 类一一知乎点赞(类一一公共库):  # 调用 类的模具 self.模
                 self.模具一一测试登录页面属性(self.帐号)
             else:  # 否则
                 self.点赞内容 = 赞内容 + self.前ip + 'IP行' + self.点赞内容
-                self.模具一一布置浏览头()
+                self.模具一一布置浏览头(浏览头网址)
                 self.模具一一输入用户手机号与密码登录()
                 self.模具一一测试登录页面属性(self.帐号)
 

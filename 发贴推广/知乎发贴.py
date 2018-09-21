@@ -45,6 +45,8 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
         今天时间 = str(time.strftime("%y-%m-%d", time.localtime()))
         贴内容=今天时间+'日期'
 
+        浏览头网址 = 'zhihu.com'
+
         for 帐号cookie组 in self.帐号cookie组列表:
 
             self.帐号 = 帐号cookie组[0]
@@ -61,7 +63,7 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
             if 'zhihu.com' in str(帐号cookie组):
                 continue  # 跳过循环
 
-                self.模具一一布置浏览头()
+                self.模具一一布置浏览头(浏览头网址)
                 输入网址='https://www.zhihu.com'
                 self.模具一一地址栏输入网址(输入网址)
                 self.模具一一导入界面的登录cookie(self.帐号)
@@ -70,7 +72,7 @@ class 类一一知乎发贴(类一一公共库):  # 调用 类的模具 self.模
             else:  # 否则
 
 
-                self.模具一一布置浏览头()
+                self.模具一一布置浏览头(浏览头网址)
                 输入登录网址 = 'https://www.zhihu.com/signin?next=%2Fexplore'
                 self.模具一一地址栏输入网址(输入登录网址)
                 print(self.帐号)
