@@ -25,6 +25,7 @@ import json #json格式化
 页面3  设置浏览头部信息
 页面4  清除 缓存
 页面5  查询ip地址
+//////////////////////////////////////
 SELECT * FROM `知乎话题` WHERE `短标题` != '空' ORDER BY `知乎话题`.`赞同数` DESC 
 SELECT * FROM `知乎话题` WHERE `短标题` != '空'and `类型`= '电影' ORDER BY `知乎话题`.`赞同数` DESC 
 知乎改名2至8汉字 或16字符
@@ -37,6 +38,8 @@ SELECT * FROM `知乎话题` WHERE `短标题` != '空'and `类型`= '电影' OR
 删除微博的通知 权限**********
 
 opera清除缓存SimpleClear
+
+
 
 
 """
@@ -637,13 +640,14 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
 
         time.sleep(1)  # 等待  # 增加延迟
-        pag.moveTo(1252 , 49)  # 鼠标移动 定位  确定布置浏览头 按钮
-        pag.rightClick()  # 右击
+        pag.hotkey('altleft', '2')  # 鼠标移动X.Y 方位  cookie插件布置 页面
+        # pag.moveTo(1252 , 49)  # 鼠标移动 定位  确定布置浏览头 按钮
+        # pag.rightClick()  # 右击
         time.sleep(1)  # 等待  # 增加延迟
 
-        pag.moveTo(1009, 93)  # 鼠标移动 定位  布置浏览头 空白处
-        pag.rightClick()  # 右击
-        time.sleep(1)  # 等待  # 增加延迟
+        # pag.moveTo(1009, 93)  # 鼠标移动 定位  布置浏览头 空白处
+        # pag.rightClick()  # 右击
+        # time.sleep(1)  # 等待  # 增加延迟
 
 
         # ==============================
@@ -736,8 +740,10 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
     def 模具一一提取登录界面的cookie(self):
         cookie=''
         time.sleep(0.5)  # 等待  # 增加延迟
-        pag.moveTo(1222, 50)  # 鼠标移动X.Y 方位  cookie图标 按钮
-        pag.rightClick()  # 右击
+        pag.hotkey('altleft', '2')  # 鼠标移动X.Y 方位  cookie插件布置 页面
+        #pag.moveTo(1222, 50)  # 鼠标移动X.Y 方位  cookie图标 按钮
+
+        #pag.rightClick()  # 右击
         time.sleep(4)  # 等待  # 增加延迟
 
 
@@ -786,9 +792,9 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
         print('导入帐号：',帐号)
 
-
-        pag.moveTo(1222, 50)  # 鼠标移动X.Y 方位  cookie图标 按钮
-        pag.rightClick()  # 右击
+        # pag.moveTo(1222, 50)  # 鼠标移动X.Y 方位  cookie图标 按钮
+        # pag.rightClick()  # 右击
+        pag.hotkey('altleft', '2')  # 鼠标移动X.Y 方位  cookie插件布置 页面
         time.sleep(4)  # 等待  # 增加延迟
 
 
@@ -837,29 +843,28 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
     def 模具一一清除浏览器历史缓存(self):
 
         print('清除浏览器历史缓存')
+        pag.hotkey('ctrlleft', 'delete')  # 页面
 
-        pag.hotkey('ctrlleft', '1')  #   页面
+        # pag.hotkey('ctrlleft', '1')  #   页面
 
         time.sleep(1)  # 等待  # 增加延迟
+        #
         # pag.moveTo(90, 82)  # 鼠标移动X.Y 方位  清除历史缓存 按钮
         #  pag.rightClick()  # 右击
 
+        # 清除历史缓存网址='opera://settings/clearBrowserData'
+        # self.模具一一地址栏输入网址(清除历史缓存网址)
 
-        清除历史缓存网址='opera://settings/clearBrowserData'
-        self.模具一一地址栏输入网址(清除历史缓存网址)
+        # time.sleep(4)  # 增加延迟 等待清除新窗口
 
+        # pag.moveTo(855, 700)  # 鼠标移动X.Y 方位  清除历史缓存 按钮
+        # # pag.rightClick()  # 右击
+        # time.sleep(0.5)
 
-        time.sleep(4)  # 增加延迟 等待清除新窗口
+        # pag.moveTo(855, 700)  # 鼠标移动X.Y 方位  清除历史缓存 按钮
+        # pag.rightClick()  # 右击
 
-
-        pag.moveTo(855, 700)  # 鼠标移动X.Y 方位  清除历史缓存 按钮
-        pag.rightClick()  # 右击
-        time.sleep(0.5)
-
-        pag.moveTo(855, 700)  # 鼠标移动X.Y 方位  清除历史缓存 按钮
-        pag.rightClick()  # 右击
-
-        time.sleep(2)
+        # time.sleep(2)
     def 模具一一刷新知乎点赞页(self):
 
         pag.hotkey('ctrlleft', '1')  # 鼠标移动X.Y 方位  cookie插件布置 页面

@@ -17,21 +17,73 @@ import tkinter
 import threading
 import time, easygui
 import win32ui,win32con,pythoncom,win32gui
+from tkinter import *           # 导入 tkinter 库
+
+
+import os
+import time
+import win32gui
+import win32api
+import win32con
+from PIL import ImageGrab
+import win32com
+from win32com.client import Dispatch,constants
 
 
 
-from 发贴推广.推广公共库 import 类一一公共库# 导入模块
+
+##\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+from 推广公共库 import 类一一公共库# 导入模块 E:\PY学习文件\BTT影视剧\电影与合集一并发协程.py
 
 class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
     def __init__(self):
         #win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\关闭弹窗.py.lnk', '', '', 1)
 
-        self.模具一一弹窗关闭()
+        self.模具一一窗口标题()
 
-    def 模具一一弹窗关闭(self):
+    def 模具一一窗口标题(self):
+        # 新建文本文档.txt - 记事本
+        # IP.cn - IP 地址查询 | 地理位置 | 手机归属地 - Opera
+
+        窗口标题 = 'IP.cn - IP 地址查询 | 地理位置 | 手机归属地 - Opera'  # 此处假设主窗口名为tt
+        窗口句柄 = win32gui.FindWindow(None, 窗口标题)
+        print('窗口句柄',窗口句柄)
+        if 窗口句柄 > 0:
+            第一个控件句柄 = win32gui.FindWindowEx(窗口句柄, None, None, None)  # 获取hld下第一个为edit控件的句柄
+            第二个控件句柄 = win32gui.FindWindowEx(第一个控件句柄, None, None, None)  # 获取hld下第一个为edit控件的句柄
+            for i in '234578':
+                pag.hotkey('altleft','shiftleft','tab')  # press()一次完整的击键.hotkey('ctrl','c'):热键函数 .keyDown()按下某个键.keyUp()松开某个键.
+
+                time.sleep(1)  # 等待  # 增加延迟
+            if 第二个控件句柄==0:
+                print('第一个控件句柄',第一个控件句柄)
+                win32gui.SetForegroundWindow(第一个控件句柄)  # 指定句柄设置为前台，也就是激活
+
+            else:  # 否则
+                print('第二个控件句柄',第二个控件句柄)
+                win32gui.SetForegroundWindow(第二个控件句柄)  # 指定句柄设置为前台，也就是激活
+
+
+
+
+    def 模具一一窗口图形(self):
+
+      
+        top = tkinter.Tk()
+
+        def helloCallBack():
+            tkMessageBox.showinfo("Hello Python", "Hello Runoob")
+
+        B = tkinter.Button(top, text="点我", command=helloCallBack)
+
+        B.pack()
+        top.mainloop()
+
+    def 模具一一弹窗关闭(self,说明):
         内容="""import time
-print('10秒后关闭弹窗')
-time.sleep(10)  # 等待  # 增加延迟"""
+print('{}，10秒后关闭弹窗' )
+time.sleep(10)  # 等待  # 增加延迟""".format(说明)# '{}'
 
         文本 = open(r"E:\PY学习文件\BTT影视剧\工具集\关闭弹窗.py", 'w', encoding='UTF-8')
 
@@ -90,7 +142,7 @@ time.sleep(10)  # 等待  # 增加延迟"""
             for i in range(1):
                 lbTime['text'] = '距离窗口关闭还有{}'.format(3 - i)
                 time.sleep(1)  # 等待  # 增加延迟
-
+            root.quit()
             root.destroy()
 
 
@@ -103,6 +155,7 @@ time.sleep(10)  # 等待  # 增加延迟"""
         t.start()
 
         root.mainloop()
+
 
 
 
