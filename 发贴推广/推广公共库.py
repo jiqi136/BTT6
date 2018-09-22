@@ -36,6 +36,8 @@ SELECT * FROM `知乎话题` WHERE `短标题` != '空'and `类型`= '电影' OR
 工具栏2 设置浏览头部信息
 删除微博的通知 权限**********
 
+opera清除缓存SimpleClear
+
 
 """
 
@@ -56,11 +58,11 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         # {'User-Agent': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0'}  被BT网站墙了
         随机3位数 = str(random.randrange(101, 1000))
         随机2位数 = str(random.randrange(11, 100))
-        随机1位数 = str(random.randrange(1, 10))
+        随机1位数 = str(random.randrange(6, 10))
         随机11位数 = str(random.randrange(1, 10))
-        头部信息 = random.choice([{'User-Agent': 'Opera/9.80 (Windows NT 6.1; U; en) Presto/2.8.131 Version/11.11'},
+        头部信息 = random.choice([{'User-Agent': 'Opera/随机2位数.80 (Windows NT 6.1; U; en) Presto/2.8.131 Version/随机2位数.11'},
                               {
-                                  'User-Agent': 'Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; en) Presto/2.8.{随机3位数 Version/随机2位数.11'},
+                                  'User-Agent': 'Opera/随机2位数.80 (Macintosh; Intel Mac OS X 10.6.8; U; en) Presto/随机2位数.8.{随机3位数 Version/随机2位数.11'},
                               {
                                   'User-Agent': 'Mozilla/5.0(X11;Linuxx86_64)AppleWebKit/随机3位数.5(KHTML,likeGecko)Chrome/随机2位数.0.1084.9Safari/536.5'},
                               {
@@ -148,17 +150,123 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
                               {
                                   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0.1) Gecko/201随机3位数01 Firefox/随机2位数.0.1'},
                               {
-                                  'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 5.1; Trident/随机2位数.0; SE 2.X MetaSr 1.0; SE 2.X MetaSr 1.0; .NET CLR 2.0.随机2位数727; SE 2.X MetaSr 1.0)'},
+                                  'User-Agent': 'Mozilla/5.0 (compatible; MSIE 随机1位数.0; Windows NT 5.1; Trident/随机2位数.0; SE 2.X MetaSr 1.0; SE 2.X MetaSr 1.0; .NET CLR 2.0.随机2位数727; SE 2.X MetaSr 1.0)'},
                               {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 6.0; The World)'},
                               {
-                                  'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 6.2; TencentTraveler 4.0)'},
+                                  'User-Agent': 'Mozilla/5.0 (compatible; MSIE 随机1位数.0; Windows NT 6.2; TencentTraveler 4.0)'},
                               {
-                                  'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 6.1; Maxthon 2.0)'},
+                                  'User-Agent': 'Mozilla/5.0 (compatible; MSIE 随机1位数.0; Windows NT 6.1; Maxthon 2.0)'},
                               {
-                                  'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 6.2; Avant Browser)'},
-                              {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 6.0; 360SE)'},
-                              {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 6.1)'},
-                              {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 随机1位数.0; Windows NT 10.1)'}
+                                  'User-Agent': 'Mozilla/5.0 (compatible; MSIE 随机1位数.0; Windows NT 6.2; Avant Browser)'},
+                              {'User-Agent': 'Mozilla/5.0 (compatible; MSIE 随机1位数.0; Windows NT 6.0; 360SE)'},
+                              {'User-Agent': 'Mozilla/5.0 (compatible; MSIE 随机1位数.0; Windows NT 6.1)'},
+                              {'User-Agent': 'Mozilla/5.0 (compatible; MSIE 随机1位数.0; Windows NT 10.1)'}
+                              ])
+        头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机1位数", 随机1位数)  # 替换   , 1) 次数 1
+        头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机11位数", 随机11位数)  # 替换   , 1) 次数 1
+        头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机2位数", 随机2位数)  # 替换   , 1) 次数 1
+        头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机3位数", 随机3位数)  # 替换   , 1) 次数 1
+        self.头部信息=头部信息
+        print(头部信息)
+
+    def 模具一一知乎换头部信息(self):  # 头部信息 def 函数模具内通行变量
+        # nonlocal 头部信息  # def 函数模具内通行变量
+        global 头部信息, 换IP时间计数  # def 函数模具内通行变量
+        换IP时间计数 = int(time.time())
+        # {'User-Agent': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0'}  被BT网站墙了
+        随机3位数 = str(random.randrange(101, 1000))
+        随机2位数 = str(random.randrange(41, 100))
+        随机1位数 = str(random.randrange(1, 10))
+        随机11位数 = str(random.randrange(1, 10))
+        头部信息 = random.choice([{'User-Agent': 'Opera/随机2位数.80 (Windows NT 6.1; U; en) Presto/2.8.131 Version/随机2位数.11'},
+                              {
+                                  'User-Agent': 'Opera/随机2位数.80 (Macintosh; Intel Mac OS X 10.6.8; U; en) Presto/随机2位数.8.{随机3位数 Version/随机2位数.11'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(X11;Linuxx86_64)AppleWebKit/随机3位数.5(KHTML,likeGecko)Chrome/随机2位数.0.1084.9Safari/536.5'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(X11;Linuxx86_64)AppleWebKit/随机3位数.5(KHTML,likeGecko)Chrome/随机2位数.0.1084.9Safari/536.5'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(X11;Linuxx86_64)AppleWebKit/随机3位数.24(KHTML,likeGecko)Chrome/随机2位数.0.1055.1Safari/535.24'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(X11;Linuxx86_64)AppleWebKit/随机3位数.24(KHTML,likeGecko)Chrome/随机2位数.0.1055.1Safari/535.24'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(X11;Linuxx86_64)AppleWebKit/随机3位数.24(KHTML,likeGecko)Chrome/随机2位数.0.1055.1Safari/535.24'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(X11;CrOSi6862268.111.0)AppleWebKit/随机3位数.11(KHTML,likeGecko)Chrome/随机2位数.0.1132.57Safari/536.11'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(X11;CrOSi6862268.111.0)AppleWebKit/随机3位数.11(KHTML,likeGecko)Chrome/随机2位数.0.1132.57Safari/536.11'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2;WOW64)AppleWebKit/随机3位数.1(KHTML,likeGecko)Chrome/随机2位数.77.34.5Safari/537.1'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2;WOW64)AppleWebKit/随机3位数.1(KHTML,likeGecko)Chrome/随机2位数.77.34.5Safari/537.1'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2;WOW64)AppleWebKit/随机3位数.24(KHTML,likeGecko)Chrome/随机2位数.0.1055.1Safari/535.24'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.6(KHTML,likeGecko)Chrome/随机2位数.0.1090.0Safari/536.6'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.6(KHTML,likeGecko)Chrome/随机2位数.0.1090.0Safari/536.6'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1062.0Safari/536.3'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1062.0Safari/536.3'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.0Safari/536.3'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.0Safari/536.3'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.1(KHTML,likeGecko)Chrome/随机2位数.0.1207.1Safari/537.1'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.1(KHTML,likeGecko)Chrome/随机2位数.0.1207.1Safari/537.1'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.6(KHTML,likeGecko)Chrome/随机2位数.0.1092.0Safari/536.6'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.6(KHTML,likeGecko)Chrome/随机2位数.0.1092.0Safari/536.6'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1063.0Safari/536.3'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1063.0Safari/536.3'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1062.0Safari/536.3'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1062.0Safari/536.3'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.0)AppleWebKit/随机3位数.5(KHTML,likeGecko)Chrome/随机2位数.0.1084.36Safari/536.5'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.0)AppleWebKit/随机3位数.5(KHTML,likeGecko)Chrome/随机2位数.0.1084.36Safari/536.5'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(WindowsNT5.1)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1063.0Safari/536.3'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(Macintosh;IntelMacOSX10_8_0)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1063.0Safari/536.3'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0(Macintosh;IntelMacOSX10_8_0)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1063.0Safari/536.3'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/随机3位数.50 (KHTML, like Gecko) Version/随机3位数.1 Safari/534.50'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/201随机3位数01 Firefox/随机2位数.0.1'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50随机3位数; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3; rv:随机2位数.0) like Gecko'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:随机2位数.0) Gecko/201随机3位数01 Firefox/随机2位数.0'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; en-us) AppleWebKit/随机3位数.50 (KHTML, like Gecko) Version/随机3位数.1 Safari/534.50'},
+
+                              {
+                                  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/随机3位数.11 (KHTML, like Gecko) Chrome/随机2位数.0.963.56 Safari/535.11'},
+                              {
+                                  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0.1) Gecko/201随机3位数01 Firefox/随机2位数.0.1'}
+
                               ])
         头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机1位数", 随机1位数)  # 替换   , 1) 次数 1
         头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机11位数", 随机11位数)  # 替换   , 1) 次数 1
@@ -238,6 +346,8 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
                     print('网站网络异常,状态码:', 返回网页内容)
                     print('等待60秒')
                     time.sleep(60)
+
+
 
 
 
@@ -505,10 +615,13 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         pag.hotkey('ctrlleft', '1')  # 鼠标移动X.Y 方位  浏览器 主 页面
         time.sleep(1)  # 等待  # 增加延迟
 
+        pag.moveTo(981, 52)  # 鼠标移动 定位  页面 空白处
+        time.sleep(0.5)  # 等待  # 增加延迟
+
         pag.hotkey('ctrlleft', 'e')  # 鼠标移动X.Y 方位  定位 地址栏
-        time.sleep(0.5)  # 等待  # 增加延迟
+        time.sleep(1)  # 等待  # 增加延迟
         pag.press('delete')  # press()一次完整的击键. 清空 地址栏
-        time.sleep(0.5)  # 等待  # 增加延迟
+        time.sleep(1)  # 等待  # 增加延迟
         #===========输入网址============
         self.模具一一写入剪切板内容(输入的网址)
         time.sleep(0.5)  # 等待  # 增加延迟
@@ -526,7 +639,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         time.sleep(1)  # 等待  # 增加延迟
         pag.moveTo(1252 , 49)  # 鼠标移动 定位  确定布置浏览头 按钮
         pag.rightClick()  # 右击
-        time.sleep(2)  # 等待  # 增加延迟
+        time.sleep(1)  # 等待  # 增加延迟
 
         pag.moveTo(1009, 93)  # 鼠标移动 定位  布置浏览头 空白处
         pag.rightClick()  # 右击
@@ -544,7 +657,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
         # ====================================
         pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
-        self.模具一一换头部信息()
+        self.模具一一知乎换头部信息()
 
         self.模具一一写入剪切板内容(self.头部信息['User-Agent'])
         time.sleep(0.3)  # 等待  # 增加延迟
@@ -625,7 +738,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         time.sleep(0.5)  # 等待  # 增加延迟
         pag.moveTo(1222, 50)  # 鼠标移动X.Y 方位  cookie图标 按钮
         pag.rightClick()  # 右击
-        time.sleep(2)  # 等待  # 增加延迟
+        time.sleep(4)  # 等待  # 增加延迟
 
 
 
@@ -673,16 +786,16 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
         print('导入帐号：',帐号)
 
-        time.sleep(0.5)  # 等待  # 增加延迟
+
         pag.moveTo(1222, 50)  # 鼠标移动X.Y 方位  cookie图标 按钮
         pag.rightClick()  # 右击
-        time.sleep(2)  # 等待  # 增加延迟
+        time.sleep(4)  # 等待  # 增加延迟
 
 
         pag.moveTo(943, 90)  # 鼠标移动X.Y 方位  导入 按钮
         pag.rightClick()  # 右击
 
-        time.sleep(0.5)  # 等待  # 增加延迟
+        time.sleep(2)  # 等待  # 增加延迟
         pag.moveTo(921, 166)  # 鼠标移动X.Y 定位  输入框
         pag.rightClick()  # 右击
 
@@ -724,10 +837,10 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
     def 模具一一清除浏览器历史缓存(self):
 
         print('清除浏览器历史缓存')
-        time.sleep(1)  # 等待  # 增加延迟
+
         pag.hotkey('ctrlleft', '1')  #   页面
 
-        time.sleep(2)  # 等待  # 增加延迟
+        time.sleep(1)  # 等待  # 增加延迟
         # pag.moveTo(90, 82)  # 鼠标移动X.Y 方位  清除历史缓存 按钮
         #  pag.rightClick()  # 右击
 
@@ -741,7 +854,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
         pag.moveTo(855, 700)  # 鼠标移动X.Y 方位  清除历史缓存 按钮
         pag.rightClick()  # 右击
-        time.sleep(1)
+        time.sleep(0.5)
 
         pag.moveTo(855, 700)  # 鼠标移动X.Y 方位  清除历史缓存 按钮
         pag.rightClick()  # 右击

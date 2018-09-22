@@ -22,6 +22,10 @@ from 发贴推广.推广公共库 import 类一一公共库# 导入模块
 """
 工具栏左1 导出COOKIE
 工具栏2 设置浏览头部信息
+
+passport.baidu.com
+tieba.baidu.com
+
 """
 
 class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
@@ -29,6 +33,8 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         self.帐号类型 =帐号类型
         self.模具一一换头部信息()
         self.模具一一换ip连接二()
+        self.模具一一重新激活浏览器窗口()
+        self.模具一一清除浏览器历史缓存()
         self.模具一一提取影视剧数据库里的易码短信平台账户信息()
         self.模具一一提取推广库里的百度发贴帐号()
         self.内容 = """0123456789qwertyuiopasdfghjklzxcvbnm_"""
@@ -39,17 +45,19 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         条件循环 = 1
         while 条件循环 == 1:  # 条件循环  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
 
+
             计数器 = 计数器 + 1
             if 计数器 > 30:
                 条件循环 = 998
             开始时间计数 = int(time.time())
-            self.模具一一重新激活浏览器窗口()
+
             self.模具一一布置浏览头(浏览头网址)
 
             self.模具一一地址栏输入网址(百度号注册网址)
             self.模具一一输入百度用户名()
 
             self.模具一一输入手机号()
+
             self.模具一一输入密码()
             self.模具一一输入短信内容()
 
@@ -80,7 +88,8 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
 
     def 模具一一获取百度接收的手机号码(self):
         # 通信令牌token = self.cookie
-        self.项目编号 = "30"
+        self.项目编号 = "13043"
+
         排除号段 = '170.171'
         获取手机号码接口网址 = "http://api.fxhyd.cn/UserInterface.aspx?action=getmobile&token={}&itemid={}&excludeno={}".format(
             self.通信令牌token, self.项目编号, 排除号段)
@@ -91,8 +100,13 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
 
     def 模具一一输入手机号(self):
 
-        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c') 光标定位于 用户名
-        time.sleep(0.5)  # 等待  # 增加延迟
+
+        # ========定位能 输入手机号框
+        pag.moveTo(378, 321)  # 鼠标移动X.Y 方位 定位 输入密码  框
+        pag.rightClick()  # 右击
+        time.sleep(1)  # 等待  # 增加延迟
+
+        # ========
         self.模具一一获取百度接收的手机号码()
         if len(self.手机号码) <10 or self.手机号码 in self.已注册帐号手机号:
             self.模具一一获取百度接收的手机号码()
@@ -102,11 +116,39 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         pag.hotkey('ctrlleft', 'v')  # press()一次完整的击键.hotkey('ctrl','c'):
 
         time.sleep(0.5)  # 等待  # 增加延迟
+        self.模具一一测验手机无注册过()
+
         self.已注册帐号手机号 = self.手机号码 + self.已注册帐号手机号
+
+    def 模具一一测验手机无注册过(self):
+        #========定位能 复制 手机已注册 提醒窗口
+        pag.moveTo(323, 381)  # 鼠标移动X.Y 方位 定位 输入密码  框
+        pag.rightClick()  # 右击
+        time.sleep(1)  # 等待  # 增加延迟
+
+        pag.moveTo(323, 381)  # 鼠标移动X.Y 方位 定位 输入密码  框
+        pag.rightClick()  # 右击
+        time.sleep(0.5)  # 等待  # 增加延迟
+
+        # ======= 复制 手机已注册 提醒窗口 内容
+        pag.hotkey('ctrlleft', 'a')  # press()一次完整的击键.hotkey('ctrl','c'):
+        time.sleep(0.5)  # 等待  # 增加延迟
+        pag.hotkey('ctrlleft', 'c')  # press()一次完整的击键.hotkey('ctrl','c'):
+        time.sleep(0.5)  # 等待  # 增加延迟
+
+        手机已注册窗口内容 = self.模具一一获取剪切板内容()
+        if '手机已注册' in 手机已注册窗口内容:
+            pag.moveTo(705, 561)  # 鼠标移动X.Y 方位 定位 输入密码  框
+            pag.rightClick()  # 右击
+            time.sleep(0.5)  # 等待  # 增加延迟
+
+            self.模具一一输入手机号()
+
 
     def 模具一一输入密码(self):
         # ======密码=======
-        pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
+        pag.moveTo(323, 381)  # 鼠标移动X.Y 方位 定位 输入密码  框
+        pag.rightClick()  # 右击
         time.sleep(0.5)  # 等待  # 增加延迟
 
         密码数字 = random.randrange(100000, 1000000)
@@ -150,7 +192,9 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         time.sleep(0.5)  # 等待  # 增加延迟
 
     def 模具一一确认注册(self):
+        time.sleep(0.5)  # 等待  # 增加延迟
 
+        pag.moveTo(243, 493)  # 鼠标移动X.Y 方位  定位 用户协议 按钮
 
         time.sleep(0.5)  # 等待  # 增加延迟
 
@@ -223,13 +267,17 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         #名 = random.choice(内容)
 
         名 = str(self.内容[0])
-        self.内容 = self.内容.strip(名)  # 默认则是去除空格
+
+        if len(self.内容) == 1:
+            self.内容 = """0123456789qwertyuiopasdfghjklzxcvbnm_"""
+        else:  # 否则
+            self.内容 = self.内容[1:]  #
 
         电影美剧表 = ['电影', '美剧', '动漫']
         电影美剧名 = random.choice(电影美剧表)
         # 合名次序= random.choice('影视')
         # if '影' in 合名次序:
-        合名 = 名 + 电影美剧名 + '3e38、com'
+        合名 = 名 + 电影美剧名 + '3e38丶com'
         # else:  # 否则
         # 合名 =  '3e38、com'+电影美剧名 +名
         if 合名 in self.已注册帐号手机号:
@@ -294,3 +342,7 @@ if __name__ == '__main__':
     帐号类型 ='百度顶贴'
     帐号类型 ='百度发贴'
     类 = 类一一百度号注册(帐号类型)
+
+
+
+

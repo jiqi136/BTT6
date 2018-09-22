@@ -27,15 +27,15 @@ class 类一一提取链接:  # 调用 类的模具 self.模具一一数据库()
     def 模具一一下探至链接目录(self):
         pag.moveTo(311, 37)  # 鼠标 定位 公有位 按钮
         pag.rightClick()  # 右击
-        time.sleep(1)  # 等待  # 增加延迟
+        time.sleep(2)  # 等待  # 增加延迟
 
         pag.moveTo(60, 250)  # 鼠标 定位 上传网盘 按钮
         pag.rightClick()  # 右击
-        time.sleep(1)  # 等待  # 增加延迟
+        time.sleep(2)  # 等待  # 增加延迟
 
         pag.moveTo(300, 240)  # 鼠标 定位 最新 按钮
         pag.rightClick()  # 右击
-        time.sleep(1)  # 等待  # 增加延迟
+        time.sleep(2)  # 等待  # 增加延迟
 
         self.首次 = 0
         self.影视类型='电视剧'

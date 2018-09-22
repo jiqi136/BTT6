@@ -20,24 +20,29 @@ from 发贴推广.推广公共库 import 类一一公共库# 导入模块
 
 
 """
-页面1  操作页面
-页面2  导出COOKIE
-页面3  设置浏览头部信息
-页面4  清除 缓存
+工具栏左1 导出COOKIE
+工具栏2 设置浏览头部信息
 页面5  查询ip地址
+https://www.zhihu.com/question/295371733/answer/494955215?group_id=1026300640200445952
+原赞 7
+知乎每45分钟，扫描ip段，相同ip段即 消除
 """
 
 class 类一一知乎点赞(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
     def __init__(self):
-        self.模具一一换头部信息()
+
+        self.模具一一知乎换头部信息()
+        self.模具一一换ip连接二()
+        self.模具一一重新激活浏览器窗口()
+        self.模具一一清除浏览器历史缓存()  #
+        self.类型 = '知乎顶贴'
         self.模具一一提取推广库里的知乎点赞帐号()
 
         self.清除全部 = 998
-        浏览头网址 = 'zhihu.com'
+        浏览头网址 = 'www.zhihu.com'
 
-
-
-        赞内容 = '拓展滴滴的新业务'
+        知乎点赞网址 = 'https://www.zhihu.com/question/295371733/answer/494955215?group_id=1026300640200445952'
+        赞内容 = '美团上市'
         self.ip段集=''
         for 帐号cookie组 in self.帐号cookie组列表:
             for 行内容 in str(帐号cookie组[5]).split("IP行"):
@@ -63,74 +68,72 @@ class 类一一知乎点赞(类一一公共库):  # 调用 类的模具 self.模
                 continue  # 跳过循环
 
             if 'zhihu.com' in str(帐号cookie组):
-                continue  # 跳过循环            zhihu.com   Mozilla/4.0 (compatible; MSIE 5.0; Windows NT 6.0; The World)
+
                 self.模具一一布置浏览头(浏览头网址)
+                self.模具一一地址栏输入网址(知乎点赞网址)
+                time.sleep(5)  # 等待
 
                 self.点赞内容 = 赞内容+self.前ip+'IP行'+self.点赞内容
 
-                self.模具一一导入界面的登录cookie()
+                self.模具一一导入界面的登录cookie(self.帐号)
                 self.模具一一测试登录页面属性(self.帐号)
             else:  # 否则
+                continue  # 跳过循环
                 self.点赞内容 = 赞内容 + self.前ip + 'IP行' + self.点赞内容
                 self.模具一一布置浏览头(浏览头网址)
+                self.模具一一地址栏输入网址(知乎点赞网址)
+                time.sleep(10)  # 等待
+
                 self.模具一一输入用户手机号与密码登录()
                 self.模具一一测试登录页面属性(self.帐号)
 
             self.模具一一打开点赞页面并点击点赞()
 
+            #pyautogui.alert('继续')
+
+
             self.模具一一保存数据库一更新知乎登录cookie与点赞内容()
 
-            self.模具一一等待7分钟()
-            self.模具一一等待7分钟()
-            self.模具一一重新激活浏览器窗口()
 
-            self.模具一一清除浏览器历史缓存() # 1 次
-            self.模具一一刷新知乎点赞页()
-            self.模具一一清除浏览器历史缓存() # 2 次
+            #self.模具一一等待7分钟()
+            #self.模具一一等待7分钟()
+            #self.模具一一重新激活浏览器窗口()
+
+            self.模具一一清除浏览器历史缓存() #
+            self.模具一一换ip连接二()
+
+
 
 
             self.模具一一查看外网ip()
+
+
 
     def 模具一一检测ip段重复(self):
         条件循环 = 0
         while 条件循环 == 0:
             self.模具一一重新激活浏览器窗口()
 
-            pag.hotkey('ctrlleft', '5')  # 鼠标移动X.Y 方位  cookie插件布置 页面
+            pag.hotkey('ctrlleft', '2')  # 鼠标移动X.Y 方位  cookie插件布置 页面
             time.sleep(1)  # 等待
             self.前ip = self.模具一一提取数字ip()
             self.前ip = str(self.前ip)
             print('self.前ip:', self.前ip)
             if self.前ip in self.ip段集:  # break # 结束循环 continue # 跳过当前循环，继续进行下一轮循环
-                print('ip段重复,等待14分后继续:')
-                self.模具一一等待7分钟()
-                self.模具一一等待7分钟()
+                print('ip段重复,不等待,继续:')
+                条件循环 = 998
+                #print('ip段重复,等待14分后继续:')
+                #self.模具一一等待7分钟()
+                #self.模具一一等待7分钟()
 
-                self.模具一一换ip连接二()
+                #self.模具一一换ip连接二()
 
             else:  # 否则
 
                 条件循环 = 998
 
     def 模具一一查看外网ip(self):
-
-        条件循环 = 0
-        while 条件循环 == 0:
-
-
-            pag.hotkey('ctrlleft', '5')  # 鼠标移动X.Y 方位  cookie插件布置 页面
-            self.模具一一换ip连接二()
-
-            pag.hotkey('ctrlleft', 'r')  # 刷新页面
-            time.sleep(3)  # 等待         zhihu.com   Mozilla/5.0(Macintosh;IntelMacOSX10_8_0)AppleWebKit/883.3(KHTML,likeGecko)Chrome/78.0.1063.0Safari/536.3
-
-            后ip=self.模具一一提取数字ip()
-            后ip =str(后ip)
-
-            print('后ip:', 后ip)
-            
-
-
+        def 存档():
             if 后ip in self.前ip or 后ip in self.ip段集:
                 print('ip段相同,等待7分后继续:')
                 self.模具一一等待7分钟()
@@ -138,9 +141,29 @@ class 类一一知乎点赞(类一一公共库):  # 调用 类的模具 self.模
                 self.模具一一重新激活浏览器窗口()
 
             else:  # 否则
-                self.前ip= 后ip
-                self.ip段集=后ip+self.ip段集
+                self.前ip = 后ip
+                self.ip段集 = 后ip + self.ip段集
                 条件循环 = 998
+
+        条件循环 = 0
+        while 条件循环 == 0:
+
+
+            pag.hotkey('ctrlleft', '2')  # 鼠标移动X.Y 方位  cookie插件布置 页面
+            time.sleep(1)  # 等待
+
+            pag.hotkey('ctrlleft', 'r')  # 刷新页面
+            time.sleep(3)  # 等待
+            后ip=self.模具一一提取数字ip()
+            后ip =str(后ip)
+
+            print('后ip:', 后ip)
+
+            条件循环 = 998
+            
+
+
+
 
 
     def 模具一一等待7分钟(self):
@@ -211,9 +234,9 @@ class 类一一知乎点赞(类一一公共库):  # 调用 类的模具 self.模
         # SQL 插入语句
         if self.清除全部 == 0:
             self.模具一一提取登录界面的cookie()
-            sql = """UPDATE `知乎帐号` SET `cookie`='{}',`点赞内容`='{}' WHERE `注册手机号`='{}'""".format(self.cookie,self.点赞内容,self.注册手机号)  # 不换行 '{}'
+            sql = """UPDATE `推广帐号` SET `cookie`='{}',`记录`='{}' WHERE `注册手机号`='{}'""".format(self.cookie,self.点赞内容,self.注册手机号)  # 不换行 '{}'
         else:  # 否则
-            sql = """UPDATE `知乎帐号` SET `点赞内容`='{}' WHERE `注册手机号`='{}'""".format(self.点赞内容,self.注册手机号)  # 不换行 '{}'
+            sql = """UPDATE `推广帐号` SET `记录`='{}' WHERE `注册手机号`='{}'""".format(self.点赞内容,self.注册手机号)  # 不换行 '{}'
         try:
             # 执行sql语句
             cursor.execute(sql)
@@ -250,14 +273,14 @@ class 类一一知乎点赞(类一一公共库):  # 调用 类的模具 self.模
     def 模具一一测试登录页面属性(self,登录用户名):
 
         pag.hotkey('ctrlleft', '1')  # 鼠标移动X.Y 方位  点赞 页面
-        pag.PAUSE = 0.5  # 增加延迟
+        time.sleep(1)  # 等待
         pag.hotkey('ctrlleft', 'r')  # 刷新页面
         time.sleep(6)  # 等待
         for i in '1230':
             pag.PAUSE = 0.5  # 增加延迟
             pag.hotkey('ctrlleft', 'a')  # press()一次完整的击键.hotkey('ctrl','c'):复制内容
             # pag.mouseDown(x=498, y=336, button='right')  # 按下 选择的右键
-            pag.PAUSE = 0.5  # 增加延迟
+            time.sleep(1)  # 等待
             # pag.moveTo(643, 396)  # 鼠标移动X.Y 方位
             pag.hotkey('ctrlleft', 'c')  # press()一次完整的击键.hotkey('ctrl','c'):复制内容
             # pag.mouseUp(x=589, y=336, button='right')#  松开 选择的右键
@@ -273,11 +296,11 @@ class 类一一知乎点赞(类一一公共库):  # 调用 类的模具 self.模
                 # pag.rightClick()  # 右击pag.rightClick()
                 time.sleep(6)  # 等待
         self.模具一一输入用户手机号与密码登录()
-        pag.PAUSE = 0.5  # 增加延迟
+        time.sleep(1)  # 等待
         pag.moveTo(950, 91)  # 鼠标移动X.Y 方位  导入 按钮
         pag.rightClick()  # 右击
 
-        pag.PAUSE = 0.5  # 增加延迟
+        time.sleep(1)  # 等待
         pag.moveTo(937, 153)  # 鼠标移动X.Y 方位  导入 按钮
         pag.rightClick()  # 右击
 
@@ -327,7 +350,7 @@ class 类一一知乎点赞(类一一公共库):  # 调用 类的模具 self.模
         # 使用cursor()方法获取操作游标
         cursor = db.cursor()
         # SQL 查询语句
-        sql = "SELECT  `帐号`, `密码`, `注册手机号`,`cookie` ,`存活`,`点赞内容` FROM `知乎帐号`"
+        sql = "SELECT  `帐号`, `密码`, `注册手机号`,`cookie` ,`存活`,`记录` FROM `推广帐号`WHERE `类型`='{}'".format(self.类型)#不换行 '{}'
         # 执行SQL语句
         cursor.execute(sql)
         # 获取所有记录列表

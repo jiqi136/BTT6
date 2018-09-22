@@ -12,10 +12,11 @@ import time  # 时间
 
 内容 = """123456789qwertyuiopasdfghjklzxcvbnm_"""
 
+for i in 内容:
+    名 = str(内容[0])
+    内容 = 内容[1:]
 
-名 = str(内容[0])
 
-
-print('随机取名合并网址名\n', 名)
+    print('随机取名合并网址名\n', 名)
 
 
