@@ -10,11 +10,13 @@ import ctypes
 import tkinter
 
 import tkinter.messagebox
-import sys
+import win32gui
 
 from tkinter import *
 import tkinter
 import threading
+import time, easygui
+import win32ui,win32con,pythoncom,win32gui
 
 
 
@@ -22,8 +24,42 @@ from 发贴推广.推广公共库 import 类一一公共库# 导入模块
 
 class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
     def __init__(self):
+        #win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\关闭弹窗.py.lnk', '', '', 1)
 
-        self.模具一一倒计时自动关闭的窗口()
+        self.模具一一弹窗关闭()
+
+    def 模具一一弹窗关闭(self):
+        内容="""import time
+print('10秒后关闭弹窗')
+time.sleep(10)  # 等待  # 增加延迟"""
+
+        文本 = open(r"E:\PY学习文件\BTT影视剧\工具集\关闭弹窗.py", 'w', encoding='UTF-8')
+
+        文本.write(内容)  # read() #读取
+        文本.close()
+        time.sleep(1)  # 等待  # 增加延迟
+        win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\工具集\关闭弹窗.py', '', '', 1)
+
+    def 模具一一窗口二(self):
+
+        i = 1
+
+
+        easygui.msgbox("别忘了打卡！", title="提醒", ok_button="知道啦")#
+        time.sleep(2)
+
+        return  # 返回
+
+    def 模具一一控制本地窗口(self):
+        # 根据类名及标题名查询句柄
+        # 窗口句柄 = win32gui.FindWindow("notepad", "新建文本文档.txt")
+
+        窗口句柄 =win32ui.FindWindow('新建文本文档', None)
+
+        print(窗口句柄)
+        # 指定句柄设置为前台，也就是激活
+        win32gui.SetForegroundWindow(窗口句柄)
+
 
     def 模具一一倒计时自动关闭的窗口(self):
 
@@ -37,23 +73,41 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         # 创建text组件,放置一些文字
         richtText = tkinter.Text(root, width=380)
         richtText.place(x=10, y=10, width=380, height=230)
-        richtText.insert('0.0', '假设阅读这些文字需要10秒钟时间')
+        richtText.insert('0.0', '假设阅读这些文字需要3秒钟时间')
 
         # 显示倒计时的labe1
         lbTime = tkinter.Label(root, fg='red', anchor='w')
         lbTime.place(x=10, y=250, width=150)
 
         def autoClose():
-            for i in range(10):
-                lbTime['text'] = '距离窗口关闭还有{}'.format(10 - i)
+            for i in range(3):
+                lbTime['text'] = '距离窗口关闭还有{}'.format(3 - i)
                 time.sleep(1)  # 等待  # 增加延迟
 
             root.destroy()
 
+        def autoClose二():
+            for i in range(1):
+                lbTime['text'] = '距离窗口关闭还有{}'.format(3 - i)
+                time.sleep(1)  # 等待  # 增加延迟
+
+            root.destroy()
+
+
+
+
+
         # 创建并启动线程
         t = threading.Thread(target=autoClose)
+
         t.start()
+
         root.mainloop()
+
+
+
+
+
 
 
 

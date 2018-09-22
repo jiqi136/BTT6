@@ -429,7 +429,7 @@ class 类一一多项语法():  # 调用 类的模具 self.模具一一数据库
                 req3 = s.post(url)
             print('生成今日的全部更新')
     def 基本语法(self):
-        安装py库='pip install grequests'#库名grequests
+        安装py库='pip install 库名grequests'#库名grequests
         不同版本下安装pip ="""方法：python27 -m pip install XXXX(-m参数 相当于import，意味当作模块启动)
                             备注：安装了Python2.7.13后重命名了Python27文件夹下python.exe为python2.7.13.exe"""
         查看python里已经安装的第三方库的版本号="""pip3 list # 列出安装的库 因为安装了python3，应该替换为pip3命令。
