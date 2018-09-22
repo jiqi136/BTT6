@@ -12,8 +12,10 @@ time.sleep(10)  # 等待  # 增加延迟"""
     文本.write(内容)  # read() #读取
     文本.close()
     time.sleep(1)  # 等待  # 增加延迟
+
+
 模具一一弹窗关闭()
-win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\工具集\关闭弹窗.py', '', '', 1)
+
 for i in  '54321':
     print('倒数',i,'分钟')
     time.sleep(60)  # 等待
