@@ -1205,7 +1205,7 @@ class 类一一本地文件目录操作():  # 调用 类的模具 self.模具一
         import win32gui
         类名 = ''
 
-        窗口标题 = "城通网盘客户端"
+        窗口标题 = "ALDrive"
 
         if len(类名) == 0:
             窗口句柄 = win32gui.FindWindow(None, 窗口标题)
@@ -1214,14 +1214,18 @@ class 类一一本地文件目录操作():  # 调用 类的模具 self.模具一
         类名 = win32gui.GetClassName(窗口句柄)
         窗口标题 = win32gui.GetWindowText(窗口句柄)
         print('类名', 类名)
+        print('窗口标题', 窗口标题)
         print('窗口句柄', 窗口句柄)
 
         win32gui.ShowWindow(窗口句柄, 11)  # 即使拥有窗口的线程被挂起也会最小化。在从其他线程最小化窗口时才使用这个参数
         time.sleep(1)  # 等待  # 增加延迟
-        if '记事本' in 窗口标题:
-            win32gui.ShowWindow(窗口句柄, 1)  # 激活并显示一个原来尺寸窗口。如果窗口被最小化或最大化，系统将其恢复到原来的尺寸和大小。
+        if 'ALDrive' in 类名 or 'Mozilla' in 类名 or 'Chrome' in 类名:
+            win32gui.ShowWindow(窗口句柄, 3)  # 激活并显示一个窗口。窗口最大化
         else:  #
-            win32gui.ShowWindow(窗口句柄, 3)  # 激活并显示一个最大化窗口
+            win32gui.ShowWindow(窗口句柄, 1)  # 激活并显示一个窗口。如果窗口被最小化或最大化，系统将其恢复到原来的尺寸和大小。
+        time.sleep(1)  # 等待  # 增加延迟
+        # win32gui.SendMessage(窗口句柄, win32con.WM_CLOSE)  # 关闭窗口
+        # os.startfile(r"E:\PY学习文件\BTT影视剧\工具集\关闭弹窗.py") # 打开文件
 
         """ ////////////////////////////////////////////
         nCmdShow：指定窗口如何显示。如果发送应用程序的程序提供了STARTUPINFO结构，则应用程序第一次调用ShowWindow时该参数被忽略。
@@ -1254,6 +1258,8 @@ class 类一一本地文件目录操作():  # 调用 类的模具 self.模具一
         Firefox浏览器      技術討論區 | 草榴社區 - t66y.com - Mozilla Firefox     类名 MozillaWindowClass
         Chrome浏览器       微博-随时随地发现新鲜事 - Google Chrome                类名 被Opera浏览器代替了
         城通网盘客户端     城通网盘客户端                                         类名 被Opera浏览器代替了
+        QQ                  QQ                                                  类名 TXGuiFoundation
+        弹窗              提醒                                                  类名 TkTopLevel
 
         """
 

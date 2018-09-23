@@ -41,7 +41,7 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         #win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\关闭弹窗.py.lnk', '', '', 1)
 
 
-        self.模具一一激活窗口二()
+        self.模具一一激活窗口()
 
     def 模具一一激活窗口二(self):
         类名 = ''
@@ -76,10 +76,11 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
     def 模具一一激活窗口(self):
         类名 = ''
 
-        窗口标题="我的首页 微博-随时随地发现新鲜事 - Google Chrome"
+        窗口标题="技術討論區 | 草榴社區 - t66y.com - Mozilla Firefox"
 
         if len(类名)==0:
             窗口句柄 = win32gui.FindWindow( None,窗口标题)
+
         else:  #
             窗口句柄 = win32gui.FindWindow(类名, None)
         类名 = win32gui.GetClassName(窗口句柄)
@@ -90,15 +91,24 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
 
         win32gui.ShowWindow(窗口句柄, 11)#即使拥有窗口的线程被挂起也会最小化。在从其他线程最小化窗口时才使用这个参数
         time.sleep(1)  # 等待  # 增加延迟
-        if '记事本' in 窗口标题 or 'QQ'in 窗口标题 or 'Tk'in 类名:
-            win32gui.ShowWindow(窗口句柄, 1) #激活并显示一个窗口。如果窗口被最小化或最大化，系统将其恢复到原来的尺寸和大小。
-        else:  #
+        if 'ALDrive'in 类名 or 'Chrome'in 类名:
             win32gui.ShowWindow(窗口句柄, 3)  # 激活并显示一个窗口。窗口最大化
+
+        elif 'Mozilla'in 类名:  #
+            win32gui.ShowWindow(窗口句柄, 3)  # 激活并显示一个窗口。窗口最大化
+            time.sleep(2)  # 等待  # 增加延迟
+            pag.hotkey('altleft', 'tab')  # press()一次完整的击键.hotkey('ctrl','c'):复制内容
+            time.sleep(2)  # 等待  # 增加延迟
+            pag.hotkey('altleft', 'tab')  # press()一次完整的击键.hotkey('ctrl','c'):复制内容
+
+
+        else:  #
+            win32gui.ShowWindow(窗口句柄, 1)  # 激活并显示一个窗口。如果窗口被最小化或最大化，系统将其恢复到原来的尺寸和大小。
         time.sleep(1)  # 等待  # 增加延迟
         # win32gui.SendMessage(窗口句柄, win32con.WM_CLOSE)  # 关闭窗口
 
-        窗口的菜单句柄=win32gui.GetMenu(窗口句柄)
-        print('窗口的菜单句柄', 窗口的菜单句柄)
+
+
 
 
         """ ////////////////////////////////////////////
