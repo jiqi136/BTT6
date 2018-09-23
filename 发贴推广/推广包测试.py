@@ -40,30 +40,162 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
     def __init__(self):
         #win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\关闭弹窗.py.lnk', '', '', 1)
 
-        self.模具一一窗口标题()
+
+        self.模具一一激活窗口()
+
+    def 模具一一激活窗口(self):
+        类名 = ''
+
+        窗口标题="微博-随时随地发现新鲜事 - Google Chrome"
+
+        if len(类名)==0:
+            窗口句柄 = win32gui.FindWindow( None,窗口标题)
+        else:  #
+            窗口句柄 = win32gui.FindWindow(类名, None)
+        类名 = win32gui.GetClassName(窗口句柄)
+        窗口标题 = win32gui.GetWindowText(窗口句柄)
+        print('类名', 类名)
+        print('窗口句柄', 窗口句柄)
+
+        win32gui.ShowWindow(窗口句柄, 11)#即使拥有窗口的线程被挂起也会最小化。在从其他线程最小化窗口时才使用这个参数
+        time.sleep(1)  # 等待  # 增加延迟
+        if '记事本' in 窗口标题 or 'QQ'in 窗口标题 or 'Tk'in 类名:
+            win32gui.ShowWindow(窗口句柄, 1) #激活并显示一个窗口。如果窗口被最小化或最大化，系统将其恢复到原来的尺寸和大小。
+        else:  #
+            win32gui.ShowWindow(窗口句柄, 3)  # 激活并显示一个窗口。窗口最大化
+
+
+        """ ////////////////////////////////////////////
+        nCmdShow：指定窗口如何显示。如果发送应用程序的程序提供了STARTUPINFO结构，则应用程序第一次调用ShowWindow时该参数被忽略。
+        否则，在第一次调用ShowWindow函数时，该值应为在函数WinMain中nCmdShow参数。在随后的调用中，该参数可以为下列值之一：
+        #     win32gui.ShowWindow(窗口句柄, win32con.SW_SHOWNORMAL)
+        等同于 win32gui.ShowWindow(窗口句柄, 8)
+       
+        11  SW_FORCEMINIMIZE：在WindowNT5.0中最小化窗口，即使拥有窗口的线程被挂起也会最小化。
+          在从其他线程最小化窗口时才使用这个参数。nCmdShow=11。
+        0   SW_HIDE：隐藏窗口并激活其他窗口。nCmdShow=0。
+        1   SW_SHOWNORMAL：激活并显示一个窗口。如果窗口被最小化或最大化，系统将其恢复到原来的尺寸和大小。
+            应用程序在第一次显示窗口的时候应该指定此标志。nCmdShow=1。
+        2   SW_SHOWMINIMIZED：激活窗口并将其最小化。nCmdShow=2。
+        3   SW_MAXIMIZE：最大化指定的窗口。nCmdShow=3。
+        4   SW_SHOWNOACTIVATE：以窗口最近一次的大小和状态显示窗口。激活窗口仍然维持激活状态。nCmdShow=4。
+        5   SW_SHOW：在窗口原来的位置以原来的尺寸激活和显示窗口。nCmdShow=5。
+        6   SW_MINIMIZE：最小化指定的窗口并且激活在Z序中的下一个顶层窗口。nCmdShow=6。
+        7   SW_SHOWMINNOACTIVE：窗口最小化，激活窗口仍然维持激活状态。nCmdShow=7。
+        8   SW_SHOWNA：以窗口原来的状态显示窗口。激活窗口仍然维持激活状态。nCmdShow=8。
+        9   SW_RESTORE：激活并显示窗口。如果窗口最小化或最大化，则系统将窗口恢复到原来的尺寸和位置。
+            在恢复最小化窗口时，应用程序应该指定这个标志。nCmdShow=9。
+        10  SW_SHOWDEFAULT：依据在STARTUPINFO结构中指定的SW_FLAG标志设定显示状态，STARTUPINFO 结构是由启动应用程序的程序传递
+            给CreateProcess函数的。nCmdShow=10。
+            
+        ////////////////////////////////////////////
+        各程序             标题          类名 
+        种子上传工具       ALDrive       ALDriveMutex
+        文本              新建文本文档.txt - 记事本  类名 Notepad
+        Opera浏览器        IP.cn - IP 地址查询 | 地理位置 | 手机归属地 - Opera   类名 Chrome_WidgetWin_1
+        Firefox浏览器      技術討論區 | 草榴社區 - t66y.com - Mozilla Firefox     类名 MozillaWindowClass
+        Chrome浏览器       微博-随时随地发现新鲜事 - Google Chrome                类名 被Opera浏览器代替了
+        城通网盘客户端     城通网盘客户端                                         类名 被Opera浏览器代替了
+        QQ                  QQ                                                  类名 TXGuiFoundation
+        弹窗              提醒                                                  类名 TkTopLevel
+
+        """
+
+
+
+
+
+    def 模具一一窗口标题二(self):
+        # 获取当前所有句柄
+        # 搜索子窗口
+
+        窗口句柄 = win32gui.FindWindow("MozillaWindowClass", None)
+
+        print('窗口句柄', 窗口句柄)
+        #  枚举子窗口
+        win32gui.ShowWindow(窗口句柄, win32con.SW_SHOWMAXIMIZED)
+
+
+
+        if 窗口句柄 > 0:
+
+
+
+
+            第一个控件句柄 = win32gui.FindWindowEx(窗口句柄, None, None, None)  # 获取hld下第一个为edit控件的句柄
+            第二个控件句柄 = win32gui.FindWindowEx(第一个控件句柄, None, None, None)  # 获取hld下第一个为edit控件的句柄
+
+            if 第二个控件句柄 == 0:
+                print('第一个控件句柄', 第一个控件句柄)
+                win32gui.SetForegroundWindow(第一个控件句柄)  # 指定句柄设置为前台，也就是激活
+
+                窗口的菜单句柄 = win32gui.GetMenu(第一个控件句柄)
+                print('窗口的菜单句柄', 窗口的菜单句柄)
+
+                # 获取窗口文本不含截尾空字符的长度
+                #  参数：窗口句柄； 消息类型； 参数WParam； 参数IParam
+                窗口文本 = win32api.SendMessage(第一个控件句柄, win32con.WM_GETTEXTLENGTH, 0, 0) + 1
+                print('窗口文本', 窗口文本)
+
+            else:  # 否则
+                print('第二个控件句柄', 第二个控件句柄)
+                win32gui.SetForegroundWindow(第二个控件句柄)  # 指定句柄设置为前台，也就是激活
+
+                窗口的菜单句柄 = win32gui.GetMenu(第二个控件句柄)
+                print('窗口的菜单句柄', 窗口的菜单句柄)
+
+                time.sleep(3)  # 等待  # 增加延迟
+
+                # 获取窗口文本不含截尾空字符的长度
+                #  参数：窗口句柄； 消息类型； 参数WParam； 参数IParam
+                窗口文本 = win32api.SendMessage(第二个控件句柄, win32con.WM_GETTEXTLENGTH, 0, 0) +1
+                print('窗口文本', 窗口文本)
+
+
+            time.sleep(5)  # 等待  # 增加延迟
 
     def 模具一一窗口标题(self):
-        # 新建文本文档.txt - 记事本
-        # IP.cn - IP 地址查询 | 地理位置 | 手机归属地 - Opera
 
-        窗口标题 = 'IP.cn - IP 地址查询 | 地理位置 | 手机归属地 - Opera'  # 此处假设主窗口名为tt
+        # 窗口句柄 = win32gui.FindWindow(None, "win32gui.FindWindowEx 当前窗口_百度搜索")
+        #窗口句柄 = win32gui.FindWindow("MozillaWindowClass", None)
+
+        # 获取某个句柄的类名和标题
+        # 标题 = win32gui.GetWindowText(窗口句柄)
+        # 类名 = win32gui.GetClassName(窗口句柄)
+
+
+
+        # 新建文本文档.txt - 记事本  类名 Notepad
+
+        # IP.cn - IP 地址查询 | 地理位置 | 手机归属地 - Opera   类名 Chrome_WidgetWin_1
+        #技術討論區 | 草榴社區 - t66y.com - Mozilla Firefox     类名 MozillaWindowClass
+        #微博-随时随地发现新鲜事 - Google Chrome
+
+
+        窗口标题 =r'IP.cn - IP 地址查询 | 地理位置 | 手机归属地 - Opera'  # 此处假设主窗口名为tt
         窗口句柄 = win32gui.FindWindow(None, 窗口标题)
         print('窗口句柄',窗口句柄)
+        time.sleep(1)  # 等待  # 增加延迟
         if 窗口句柄 > 0:
             第一个控件句柄 = win32gui.FindWindowEx(窗口句柄, None, None, None)  # 获取hld下第一个为edit控件的句柄
             第二个控件句柄 = win32gui.FindWindowEx(第一个控件句柄, None, None, None)  # 获取hld下第一个为edit控件的句柄
-            for i in '234578':
+            for i in '1234578902':
+
                 pag.hotkey('altleft','shiftleft','tab')  # press()一次完整的击键.hotkey('ctrl','c'):热键函数 .keyDown()按下某个键.keyUp()松开某个键.
 
-                time.sleep(1)  # 等待  # 增加延迟
+
+
+
+                time.sleep(2)  # 等待  # 增加延迟
             if 第二个控件句柄==0:
                 print('第一个控件句柄',第一个控件句柄)
                 win32gui.SetForegroundWindow(第一个控件句柄)  # 指定句柄设置为前台，也就是激活
 
+
+
             else:  # 否则
                 print('第二个控件句柄',第二个控件句柄)
                 win32gui.SetForegroundWindow(第二个控件句柄)  # 指定句柄设置为前台，也就是激活
-
 
 
 
@@ -72,8 +204,9 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
       
         top = tkinter.Tk()
 
-        def helloCallBack():
-            tkMessageBox.showinfo("Hello Python", "Hello Runoob")
+        # def helloCallBack():
+
+        #tkMessageBox.showinfo("Hello Python", "Hello Runoob")
 
         B = tkinter.Button(top, text="点我", command=helloCallBack)
 
