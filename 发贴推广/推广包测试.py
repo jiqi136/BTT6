@@ -15,13 +15,13 @@ import win32gui
 from tkinter import *
 import tkinter
 import threading
-import time, easygui
-import win32ui,win32con,pythoncom,win32gui
+import easygui
+
 from tkinter import *           # 导入 tkinter 库
 
 
 import os
-import time
+
 import win32gui
 import win32api
 import win32con
@@ -41,7 +41,7 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         #win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\关闭弹窗.py.lnk', '', '', 1)
 
 
-        self.模具一一激活窗口()
+        self.模具一一提取像素()
 
     def 模具一一激活窗口二(self):
         类名 = ''
@@ -441,11 +441,11 @@ time.sleep(10)  # 等待  # 增加延迟""".format(说明)# '{}'
     def 模具一一提取像素(self):
 
         self.模具一一重新激活浏览器窗口()
-        time.sleep(1)  # 等待  # 增加延迟
+        time.sleep(1)  # 等待  # 增加延迟 105,252,216
         img = pag.screenshot()
-        横坐标, 竖坐标 = 1142, 132
+        横坐标, 竖坐标 = 649, 880
         print(img.getpixel((横坐标, 竖坐标)))  # 提取像素
-        像素匹配 = pag.pixelMatchesColor(横坐标, 竖坐标, (25, 132, 255))
+        像素匹配 = pag.pixelMatchesColor(横坐标, 竖坐标, (0,136,204))
         if 像素匹配 == True:
 
             print(像素匹配, '像素值正确')

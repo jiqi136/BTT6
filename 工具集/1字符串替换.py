@@ -112,7 +112,7 @@ class 类一一: #调用 类的模具 self.模具一一数据库()
                 name2 = 模具一一符号清洗(name)
                 旧目录 = os.path.join(root, name)# 合并成为 完全的地址
                 新目录 = os.path.join(root, name2)"""
-        , '列表增2':"""短标题列表.append(短标题)"""
+        , '列表追加2':"""短标题列表.append(短标题)"""
         , '随机数2': """从给定的范围返回随机项=random.randrange(100, 1000)"""
         , '读取每行2': """
          import fileinput

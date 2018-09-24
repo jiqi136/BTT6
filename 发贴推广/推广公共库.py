@@ -38,6 +38,7 @@ SELECT * FROM `知乎话题` WHERE `短标题` != '空'and `类型`= '电影' OR
 删除微博的通知 权限**********
 
 opera清除缓存SimpleClear
+IP插件 在设置 页面 默认为 代理 
 
 
 
@@ -172,10 +173,10 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         self.头部信息=头部信息
         print(头部信息)
 
-    def 模具一一知乎换头部信息(self):  # 头部信息 def 函数模具内通行变量
+    def 模具一一高位换头部信息(self):  # 头部信息 def 函数模具内通行变量
         # nonlocal 头部信息  # def 函数模具内通行变量
         global 头部信息, 换IP时间计数  # def 函数模具内通行变量
-        换IP时间计数 = int(time.time())
+        self.换IP时间计数 = int(time.time())
         # {'User-Agent': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0'}  被BT网站墙了
         随机3位数 = str(random.randrange(101, 1000))
         随机2位数 = str(random.randrange(41, 100))
