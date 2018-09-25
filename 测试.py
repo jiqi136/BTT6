@@ -6,10 +6,10 @@ import re
 from lxml import etree,html #解析与定位网页
 
 内容 = """
-E:\python3an\an\python.exe E:/PY学习文件/BTT影视剧/发贴推广/维护代理ip.py
+E:\python3an\an\python.exe E:/PY学习文件/BTT影视剧/发贴推广/维护ip库.py
 {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/277.11 (KHTML, like Gecko) Chrome/54.0.963.56 Safari/535.11'}
 self.提取ip网址列表 ['https://www.kuaidaili.com/free/inha/1', 'https://www.kuaidaili.com/free/inha/2', 'https://www.kuaidaili.com/free/inha/3', 'https://www.kuaidaili.com/free/inha/4', 'https://www.kuaidaili.com/free/inha/5']
-E:/PY学习文件/BTT影视剧/发贴推广/维护代理ip.py:319: RuntimeWarning: coroutine '类一一维护代理IP.模具一一异步打开网页' was never awaited
+E:/PY学习文件/BTT影视剧/发贴推广/维护ip库.py:319: RuntimeWarning: coroutine '类一一维护代理IP.模具一一异步打开网页' was never awaited
   self.模具一一异步打开网页(url)
 帖子内容为空 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
