@@ -601,10 +601,10 @@ def 读取文本():
             pass
 
 
+list = ['Google', 'Runoob', 1997, 2000]
 
-
-代理类型列表 = ['http']*100
-print(代理类型列表)
+list.remove('Google') #删除指定元素
+print("删除第三个元素 : ", list)
 
 
 

@@ -748,6 +748,9 @@ class 类一一多项语法():  # 调用 类的模具 self.模具一一数据库
 
 class 类一一文本清洗():  # 调用 类的模具 self.模具一一数据库()
     def __init__(self):
+        list = ['Google', 'Runoob', 1997, 2000]
+        list.remove('Google')  # 删除指定元素
+        print("删除第三个元素 : ", list)
         pass
 
     def 前后截取(self):
@@ -1111,6 +1114,20 @@ class 类一一本地文件目录操作():  # 调用 类的模具 self.模具一
 
             pag.typewrite('Hello world')  # 输入字符串
 
+
+
+
+
+            # 多次点击   可以设置clicks参数，还有interval参数可以设置每次单击之间的时间间隔。例如：
+            pag.doubleClick()  # 双击
+
+            #  双击左键
+            pyautogui.click(clicks=2)
+            #  两次单击之间停留0.25秒
+            pyautogui.click(clicks=2, interval=0.25)
+            #  三击右键
+            pyautogui.click(button='right', clicks=2, interval=0.25)
+
         def 模具一一弹窗输入字符串(self):
             选项字符串 = pyautogui.confirm('这个消息弹窗是文字+OK+Cancel按钮')
             print(选项字符串)
@@ -1215,9 +1232,8 @@ class 类一一本地文件目录操作():  # 调用 类的模具 self.模具一
         写入剪切板内容(内容)
 
     def 模具一一激活窗口(self):
-        import win32gui
+        import win32gui #窗口控件
         类名 = ''
-
         窗口标题 = "ALDrive"
 
         if len(类名) == 0:

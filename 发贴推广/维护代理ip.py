@@ -55,8 +55,7 @@ class 类一一维护代理IP(类一一公共库):  # 调用 类的模具 self.�
 
         self.模具一一百度首页测试代理()
 
-
-
+    """============ip网址列表================"""
 
     def 模具一一提取ip网址列表(self):
         self.提取ip网址列表 = []
@@ -85,9 +84,6 @@ class 类一一维护代理IP(类一一公共库):  # 调用 类的模具 self.�
                     del 小幻页数字典[字典键]  # 删除键 'Name'
                     self.提取ip网址列表.append(提取ip网址)
                     break # 结束循环
-
-
-
     def 模具一一百度首页测试代理(self):
         self.正常代理IP列表 = []
         self.待检测代理类型IP端口列表 = list(set(self.待检测代理类型IP端口列表))
@@ -112,75 +108,8 @@ class 类一一维护代理IP(类一一公共库):  # 调用 类的模具 self.�
         #集差=set(self.待检测代理类型IP端口列表)-set(self.正常代理IP列表)
         #self.模具一一追加保存代理IP至文本(str(集差))
 
-    def 模具一一读取文本代理IP(self):
-        self.保存文本的IP端口列表=[]
 
-
-        try:  # 调用异常处理
-            文本 = open(r"E:\PY学习文件\BTT影视剧\py快捷方式\代理IP.txt", 'r', encoding='UTF-8')
-            文本内容列表 = 文本.readlines()  # read() #全部读取   readlines每一行
-        except UnicodeDecodeError as 异常原因:  # 异常处理
-            print(异常原因)
-            文本 = open(r"E:\PY学习文件\BTT影视剧\py快捷方式\代理IP.txt", 'r', encoding='gbk')
-            文本内容列表 = 文本.readlines()  # read() #全部读取   readlines每一行
-        else:  # 必须放在所有的except子句之后.这个子句将在try子句没有发生任何异常的时候执行.
-            文本.close()
-
-
-        for 行内容 in 文本内容列表:
-            if '正常' in 行内容 and 'HTTP' in 行内容:
-                行内容 = 行内容.replace(":正常", "")  # 替换   , 1) 次数 1 IP端口组 = 行内容.split(":")
-                行内容 = 行内容.replace("\\n", "")
-                #print('行内容',行内容)
-
-                self.保存文本的IP端口列表.append(行内容)
-
-            else:
-                self.异常代理IP =self.异常代理IP+行内容
-
-            self.待检测代理类型IP端口列表 = self.待检测代理类型IP端口列表 + self.保存文本的IP端口列表
-
-
-    def 模具一一保存代理IP至文本(self,内容):
-        文本 = open(r"E:\PY学习文件\BTT影视剧\py快捷方式\代理IP.txt", 'w', encoding='UTF-8')
-
-        文本.write(内容)  # write 写入  read() #读取
-        文本.close()
-        print('保存至文本')
-
-    def 模具一一追加保存代理IP至文本(self,内容):
-        文本 = open(r"E:\PY学习文件\BTT影视剧\py快捷方式\代理IP.txt", 'a', encoding='UTF-8')
-
-        文本.write(内容)  # write 写入  read() #读取
-        文本.close()
-        print('追加,保存至文本')
-
-    def 模具一一网页列表(self, url):
-
-        条件循环 = 1
-        while 条件循环 == 1:  # 条件循环  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
-            帖子链接分列表 = []
-            for 页面提取帖子链接 in self.页面提取帖子链接列表[0:100]:
-                帖子链接分列表.append(页面提取帖子链接)
-
-            if len(self.页面提取帖子链接列表) > 99:  # break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
-                del self.页面提取帖子链接列表[0:100]
-            else:  # 否则
-                条件循环 = 998
-
-            self.模具一一异步调度(帖子链接分列表)  # self.返回网页一链接组列表
-
-            倒计数 = len(self.返回网页一链接组列表)
-            if 倒计数 == 0:
-                return  # 返回
-
-            for 返回网页一链接组 in self.返回网页一链接组列表:
-                倒计数 = 倒计数 - 1
-
-                self.帖子内容 = 返回网页一链接组[0]
-                self.各帖子链接 = 返回网页一链接组[1]
-
-
+    """============清洗IP端口组================"""
     def 模具一一西刺清洗IP端口组(self, 内容):
         print('模具一一西刺清洗IP端口组')
         帖子内容html = etree.HTML(内容)
@@ -315,13 +244,75 @@ class 类一一维护代理IP(类一一公共库):  # 调用 类的模具 self.�
             IP端口 = "{}://{}:{}".format(代理类型, IP, 端口)  # '代入 '{}'
             self.待检测代理类型IP端口列表.append(IP端口)
 
+    """===========文本读取与保存================"""
+    def 模具一一读取文本代理IP(self):
+        self.保存文本的IP端口列表=[]
 
 
+        try:  # 调用异常处理
+            文本 = open(r"E:\PY学习文件\BTT影视剧\py快捷方式\代理IP.txt", 'r', encoding='UTF-8')
+            文本内容列表 = 文本.readlines()  # read() #全部读取   readlines每一行
+        except UnicodeDecodeError as 异常原因:  # 异常处理
+            print(异常原因)
+            文本 = open(r"E:\PY学习文件\BTT影视剧\py快捷方式\代理IP.txt", 'r', encoding='gbk')
+            文本内容列表 = 文本.readlines()  # read() #全部读取   readlines每一行
+        else:  # 必须放在所有的except子句之后.这个子句将在try子句没有发生任何异常的时候执行.
+            文本.close()
 
 
+        for 行内容 in 文本内容列表:
+            if '正常' in 行内容 and 'HTTP' in 行内容:
+                行内容 = 行内容.replace(":正常", "")  # 替换   , 1) 次数 1 IP端口组 = 行内容.split(":")
+                行内容 = 行内容.replace("\\n", "")
+                #print('行内容',行内容)
+
+                self.保存文本的IP端口列表.append(行内容)
+
+            else:
+                self.异常代理IP =self.异常代理IP+行内容
+
+            self.待检测代理类型IP端口列表 = self.待检测代理类型IP端口列表 + self.保存文本的IP端口列表
+
+    def 模具一一保存代理IP至文本(self,内容):
+        文本 = open(r"E:\PY学习文件\BTT影视剧\py快捷方式\代理IP.txt", 'w', encoding='UTF-8')
+
+        文本.write(内容)  # write 写入  read() #读取
+        文本.close()
+        print('保存至文本')
+
+    def 模具一一追加保存代理IP至文本(self, 内容):
+        文本 = open(r"E:\PY学习文件\BTT影视剧\py快捷方式\代理IP.txt", 'a', encoding='UTF-8')
+
+        文本.write(内容)  # write 写入  read() #读取
+        文本.close()
+        print('追加,保存至文本')
 
 
     """============异步打开网页================"""
+    def 模具一一网页列表示范例(self, url):
+
+        条件循环 = 1
+        while 条件循环 == 1:  # 条件循环  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
+            帖子链接分列表 = []
+            for 页面提取帖子链接 in self.页面提取帖子链接列表[0:100]:
+                帖子链接分列表.append(页面提取帖子链接)
+
+            if len(self.页面提取帖子链接列表) > 99:  # break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
+                del self.页面提取帖子链接列表[0:100]
+            else:  # 否则
+                条件循环 = 998
+
+            self.模具一一异步调度(帖子链接分列表)  # self.返回网页一链接组列表
+
+            倒计数 = len(self.返回网页一链接组列表)
+            if 倒计数 == 0:
+                return  # 返回
+
+            for 返回网页一链接组 in self.返回网页一链接组列表:
+                倒计数 = 倒计数 - 1
+
+                self.帖子内容 = 返回网页一链接组[0]
+                self.各帖子链接 = 返回网页一链接组[1]
 
 
     async def 模具一一异步设置代理打开网页(self, url,代理IP):
@@ -393,9 +384,6 @@ class 类一一维护代理IP(类一一公共库):  # 调用 类的模具 self.�
         if len(self.重新无序单网址列表)> 0:
 
             self.模具一一gr无序网址列表请求返回网页内容(self.重新无序单网址列表)
-
-
-
 
     async def 模具一一异步打开网页(self, url):
 
@@ -481,6 +469,7 @@ class 类一一维护代理IP(类一一公共库):  # 调用 类的模具 self.�
 
         条件循环 = 1
         次数循环 = 0
+        有效返回网页内容集 = []
 
         while 条件循环 == 1:
 
@@ -495,7 +484,7 @@ class 类一一维护代理IP(类一一公共库):  # 调用 类的模具 self.�
                 time.sleep(3)
             else:
                 计数器=0
-                有效返回网页内容集=[]
+
 
                 for 返回网页内容 in 返回网页内容集:
                     返回网页内容文本 = str(返回网页内容)
@@ -503,22 +492,21 @@ class 类一一维护代理IP(类一一公共库):  # 调用 类的模具 self.�
                     if '<Response [200]>' in 返回网页内容文本 or 此时数 > self.换IP时间计数 + 30:
                         # print('返回网页内容', 返回网页内容)
                         有效返回网页内容集.append(返回网页内容)
-
+                        返回网页内容集.remove(返回网页内容)  # 删除指定元素
                         continue  # 跳过循环
                     else:  #否则
                         计数器 = 计数器 + 1
                         break # 结束循环
                 if 计数器==0:
-                    print('有效返回网页内容集:',len(有效返回网页内容集))
-                    for 返回网页内容 in 有效返回网页内容集:
-
-                        返回网页内容.encoding = "UTF-8"
-                        返回网页 = 返回网页内容.text
-                        返回网页一链接组 = []
-                        返回网页一链接组.append(返回网页)
-                        返回网页一链接组.append(返回网页内容.url)
-                        self.返回网页一链接组列表.append(返回网页一链接组)
                     条件循环 = 998
+        print('有效返回网页内容集:', len(有效返回网页内容集))
+        for 返回网页内容 in 有效返回网页内容集:
+            返回网页内容.encoding = "UTF-8"
+            返回网页 = 返回网页内容.text
+            返回网页一链接组 = []
+            返回网页一链接组.append(返回网页)
+            返回网页一链接组.append(返回网页内容.url)
+            self.返回网页一链接组列表.append(返回网页一链接组)
 
 if __name__ == '__main__':
     类=类一一维护代理IP()
