@@ -329,11 +329,6 @@ time.sleep(10)  # 等待  # 增加延迟""".format(说明)# '{}'
 
 
 
-
-
-
-
-
     def 模具一一浏览器访问百度(self):
         from selenium import webdriver  # 浏览的驱动
 

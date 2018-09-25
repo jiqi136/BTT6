@@ -18,27 +18,23 @@ import pyautogui as pag #模拟鼠标键盘操作
 import pyautogui#模拟鼠标键盘操作
 
 import json #json格式化
+import win32gui #窗口控件
 
 """
-页面1  操作页面
-页面2  导出COOKIE
-页面3  设置浏览头部信息
-页面4  清除 缓存
-页面5  查询ip地址
+
 //////////////////////////////////////
 SELECT * FROM `知乎话题` WHERE `短标题` != '空' ORDER BY `知乎话题`.`赞同数` DESC 
 SELECT * FROM `知乎话题` WHERE `短标题` != '空'and `类型`= '电影' ORDER BY `知乎话题`.`赞同数` DESC 
 知乎改名2至8汉字 或16字符
 提示保存密码 永不 **********
 扩展快捷键  修改  
-
-
-工具栏左1 导出COOKIE
-工具栏2 设置浏览头部信息
 删除微博的通知 权限**********
 
-opera清除缓存SimpleClear
 IP插件 在设置 页面 默认为 代理 
+扩展快捷键1 ip
+2 id
+3 ua浏览头部信息
+4 清除缓存
 
 
 
@@ -617,15 +613,15 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
     def 模具一一地址栏输入网址(self,输入的网址):
         # =========== 定位 地址栏 ============
         pag.hotkey('ctrlleft', '1')  # 鼠标移动X.Y 方位  浏览器 主 页面
-        time.sleep(1)  # 等待  # 增加延迟
+        time.sleep(0.5)  # 等待  # 增加延迟
 
         pag.moveTo(981, 52)  # 鼠标移动 定位  页面 空白处
         time.sleep(0.5)  # 等待  # 增加延迟
 
         pag.hotkey('ctrlleft', 'e')  # 鼠标移动X.Y 方位  定位 地址栏
-        time.sleep(1)  # 等待  # 增加延迟
+        time.sleep(0.5)  # 等待  # 增加延迟
         pag.press('delete')  # press()一次完整的击键. 清空 地址栏
-        time.sleep(1)  # 等待  # 增加延迟
+        time.sleep(0.5)  # 等待  # 增加延迟
         #===========输入网址============
         self.模具一一写入剪切板内容(输入的网址)
         time.sleep(0.5)  # 等待  # 增加延迟
@@ -634,13 +630,10 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
         #pag.press('enter')  # press()一次完整的击键.hotkey('ctrl','c')
 
-        time.sleep(5)  # 等待  # 增加延迟
+        time.sleep(3)  # 等待  # 增加延迟
 
     def 模具一一布置浏览头(self,浏览头网址):
-        pag.hotkey('ctrlleft', '1')  # 鼠标移动X.Y 方位  浏览器 主 页面
 
-
-        time.sleep(1)  # 等待  # 增加延迟
         pag.hotkey('altleft', '2')  # 鼠标移动X.Y 方位  cookie插件布置 页面
         # pag.moveTo(1252 , 49)  # 鼠标移动 定位  确定布置浏览头 按钮
         # pag.rightClick()  # 右击
@@ -799,6 +792,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         time.sleep(4)  # 等待  # 增加延迟
 
 
+
         pag.moveTo(943, 90)  # 鼠标移动X.Y 方位  导入 按钮
         pag.rightClick()  # 右击
 
@@ -844,7 +838,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
     def 模具一一清除浏览器历史缓存(self):
 
         print('清除浏览器历史缓存')
-        pag.hotkey('ctrlleft', 'delete')  # 页面
+        pag.hotkey('altleft', '4')  # 鼠标移动X.Y 方位  cookie插件布置 页面
 
         # pag.hotkey('ctrlleft', '1')  #   页面
 
@@ -874,14 +868,69 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         time.sleep(3)  # 增加延迟
 
 
-    def 模具一一重新激活浏览器窗口(self):
-        print('重新激活浏览器窗口')
-        pag.hotkey('winleft', 'd')  # press()一次完整的击键.hotkey('ctrl','c'):热键函数 .keyDown()按下某个键.keyUp()松开某个键.
+    def 模具一一激活opera浏览器窗口(self):
 
-        time.sleep(0.5)  # 等待  # 增加延迟
-        pag.moveTo(221, 920)  # 鼠标移动X.Y 方位  重新激活浏览器窗口 在CMD 与  回归桌面之间
-        pag.rightClick()  # 右击
+        类名 = 'Chrome_WidgetWin_1'
+        窗口标题 = ""
+
+        if len(类名) == 0:
+            窗口句柄 = win32gui.FindWindow(None, 窗口标题)
+        else:  #
+            窗口句柄 = win32gui.FindWindow(类名, None)
+        类名 = win32gui.GetClassName(窗口句柄)
+        窗口标题 = win32gui.GetWindowText(窗口句柄)
+        print('类名', 类名)
+        print('窗口标题', 窗口标题)
+        print('窗口句柄', 窗口句柄)
+
+        win32gui.ShowWindow(窗口句柄, 11)  # 即使拥有窗口的线程被挂起也会最小化。在从其他线程最小化窗口时才使用这个参数
+        time.sleep(1)  # 等待  # 增加延迟
+        if 'ALDrive' in 类名 or 'Mozilla' in 类名 or 'Chrome' in 类名:
+            win32gui.ShowWindow(窗口句柄, 3)  # 激活并显示一个窗口。窗口最大化
+        else:  #
+            win32gui.ShowWindow(窗口句柄, 1)  # 激活并显示一个窗口。如果窗口被最小化或最大化，系统将其恢复到原来的尺寸和大小。
         time.sleep(2)  # 等待  # 增加延迟
+        # win32gui.SendMessage(窗口句柄, win32con.WM_CLOSE)  # 关闭窗口
+        # os.startfile(r"E:\PY学习文件\BTT影视剧\工具集\关闭弹窗.py") # 打开文件
+
+        """ 
+        各程序             标题          类名 
+        种子上传工具       ALDrive       ALDriveMutex
+        文本              新建文本文档.txt - 记事本  类名 Notepad
+        Opera浏览器        IP.cn - IP 地址查询 | 地理位置 | 手机归属地 - Opera   类名 Chrome_WidgetWin_1
+        Firefox浏览器      技術討論區 | 草榴社區 - t66y.com - Mozilla Firefox     类名 MozillaWindowClass
+        Chrome浏览器       微博-随时随地发现新鲜事 - Google Chrome                类名 被Opera浏览器代替了
+        城通网盘客户端     城通网盘客户端                                         类名 被Opera浏览器代替了
+        QQ                  QQ                                                  类名 TXGuiFoundation
+        弹窗              提醒                                                  类名 TkTopLevel
+
+        """
+
+    """==========颜色像素==============="""
+    def 模具一一网页加载颜色对比(self):
+        计数器=0
+
+        条件循环 = 0
+        while 条件循环 == 0:
+            计数器 = 计数器+1
+            像素匹配 = pag.pixelMatchesColor(self.坐标[0],self.坐标[1], (self.颜色像素[0],self.颜色像素[1],self.颜色像素[2]))
+
+            if 像素匹配 == True:
+                条件循环 =998
+                print(像素匹配, '像素值正确')
+
+            else:  # 否则  False
+                print(像素匹配, '像素值不对')
+                time.sleep(self.等待秒数)  # 等待  # 增加延迟
+
+            if 计数器 ==8:
+                pag.hotkey('ctrlleft', 'r')  # press()一次完整的击键.hotkey('ctrl','c')
+                time.sleep(5)  # 等待  # 增加延迟
+                计数器 = 0
+
+
+
+
 
 
 

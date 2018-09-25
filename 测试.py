@@ -600,11 +600,34 @@ def 读取文本():
         else:
             pass
 
+某值=12
+列表=[1,2,'3',4,5,'6','7','8']
+相加数=0
 
-list = ['Google', 'Runoob', 1997, 2000]
+for 列表值 in 列表:
+    相加数 = 相加数+int(列表值)
 
-list.remove('Google') #删除指定元素
-print("删除第三个元素 : ", list)
+    if 相加数 >某值:
+        print('最后加值数:', int(列表值))
+        break  # 结束循环
+
+print('相加数:',相加数)
 
 
 
+import pymysql  # 数据库
+
+新旧影视库= '最新影视剧'
+print('连接数据库....')
+db = pymysql.connect("localhost", "root", "", 新旧影视库, charset="utf8")
+cursor = db.cursor()
+# SQL 查询语句   已下载内容网址
+# 获取游标
+sql = "UPDATE `网站文章内容` SET `发布`='是' WHERE `发布`='微博'"
+# 执行SQL语句
+cursor.execute(sql)
+# 提交到数据库执行
+db.commit()
+# 关闭数据库连接
+db.close()
+print('更新数据库...成功.')
