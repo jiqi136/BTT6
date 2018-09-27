@@ -40,13 +40,161 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
     def __init__(self):
         #win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\关闭弹窗.py.lnk', '', '', 1)
 
+        pyautogui.alert('等待.....换ip连接')
+        #self.模具一一开关提醒声()
 
-        self.模具一一提取像素()
+    def 模具一一开关提醒声(self):
+
+        win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\百度云下载完成提示音.wav', '', '', 1)
+        time.sleep(3)  # 等待  # 增加延迟
+        窗口标题 = "Windows Media Player"
+
+        窗口句柄 = win32gui.FindWindow(None, 窗口标题)
+
+        win32gui.ShowWindow(窗口句柄, 11)  # 即使拥有窗口的线程被挂起也会最小化。在从其他线程最小化窗口时才使用这个参数
+        time.sleep(1)  # 等待  # 增加延迟
+        win32gui.SendMessage(窗口句柄, win32con.WM_CLOSE)  # 关闭窗口
+
+
+
+    def 模具一一百度上传图片头像(self):
+        self.首次 = 0
+        self.临时图片目录 = r"F:\影视发帖推广\临时图片"
+        self.旧目录路径 = r"F:\影视发帖推广\贴吧顶贴\头像\百度主号上传头像"
+        self.颜色变化 = ""
+        self.模具一一清空临时图片目录()
+        self.模具一一移动图片文件至临时图片目录()
+
+        self.模具一一激活opera浏览器窗口()
+        # ===网页加载 ，颜色对比
+        self.坐标 = [649,234]
+        self.颜色像素 = [35,25,220]
+        self.等待秒数 = 3
+        self.模具一一网页加载颜色对比()
+        print(' 注册成功 页面 ，颜色检测通过')
+        # ===
+
+        # ======进入个人  中心======
+        pag.moveTo(1056,113)  # 鼠标移动X.Y 方位 定位 ID帐号 链接
+        pag.rightClick()  # 右击
+        time.sleep(3)  # 等待  # 增加延迟
+
+        # ===网页加载 ，颜色对比
+        self.坐标 = [405,338]
+        self.颜色像素 = [25,146,252]
+        self.等待秒数 = 3
+        self.模具一一网页加载颜色对比()
+        print(' 个人中心 页面 ，颜色检测通过')
+        # ===
+
+        # ======更换头像 ======
+        pag.moveTo(247,359)  # 鼠标移动X.Y 方位 定位 更换头像 链接
+        time.sleep(1)  # 等待  # 增加延迟
+        pag.rightClick()  # 右击
+        time.sleep(4)  # 等待  # 增加延迟
+
+        # ===网页加载 ，颜色对比
+        self.坐标 = [164,222]
+        self.颜色像素 = [46,130,255]
+        self.等待秒数 = 3
+        self.模具一一网页加载颜色对比()
+        print(' 头像设置 页面 ，颜色检测通过')
+        # ===
+
+        self.模具一一百度选择图片头像()
+
+    def 模具一一选择图片头像窗口最大化(self):
+        窗口标题 = "打开"
+        窗口句柄 = win32gui.FindWindow(None, 窗口标题)
+
+        窗口标题 = win32gui.GetWindowText(窗口句柄)
+
+        print('窗口标题', 窗口标题)
+        print('窗口句柄', 窗口句柄)
+
+        win32gui.ShowWindow(窗口句柄, 11)  # 即使拥有窗口的线程被挂起也会最小化。在从其他线程最小化窗口时才使用这个参数
+        time.sleep(1)  # 等待  # 增加延迟
+
+        win32gui.ShowWindow(窗口句柄, 3)  # 激活并显示一个窗口。窗口最大化
+
+
+
+    def 模具一一百度选择图片头像(self):
+        # ======上传图片头像 ======
+        pag.moveTo(472,382)  # 鼠标移动X.Y 方位  选择图片 按钮
+        pag.rightClick()  # 右击
+        time.sleep(3)  # 等待  # 增加延迟
+
+        self.模具一一选择图片头像窗口最大化()
+
+        if self.首次==0:
+            self.模具一一图片目录地址框()
+            self.首次 =998
+        self.模具一一上传图片窗口选择图片()
+
+        #==保存头像
+        time.sleep(10)  # 等待  # 增加延迟
+        print('等待10秒')
+
+        # ====== 保存头像 ======
+        pag.moveTo(473,691)  # 鼠标移动X.Y 方位  保存头像 按钮
+        pag.rightClick()  # 右击
+        time.sleep(3)  # 等待  # 增加延迟
+
+    def 模具一遍历windows所有可显示的窗口句柄及窗口名称(self):
+        类名 = 'Chrome_WidgetWin_1'
+
+        窗口标题 = ""
+
+        窗口句柄名称字典 ={}# 创建空字典
+
+        def 模具一遍历窗口(hwnd, mouse):
+            if win32gui.IsWindow(hwnd) and win32gui.IsWindowEnabled(hwnd) and win32gui.IsWindowVisible(hwnd):
+                窗口句柄名称字典.update({hwnd: win32gui.GetWindowText(hwnd)})
+        win32gui.EnumWindows(模具一遍历窗口, 0)
+        for 窗口句柄, 窗口名称 in 窗口句柄名称字典.items(): #返回可遍历的(键, 值) 元组数组。
+            if 窗口名称 is not "":
+                print(窗口句柄, 窗口名称)
+
+            if  "QQ" in 窗口名称:
+                win32gui.ShowWindow(窗口句柄, 11)  # 即使拥有窗口的线程被挂起也会最小化。在从其他线程最小化窗口时才使用这个参数
+                time.sleep(1)  # 等待  # 增加延迟
+
+
+
+                win32gui.ShowWindow(窗口句柄, 1)  # 激活并显示一个窗口。如果窗口被最小化或最大化，系统将其恢复到原来的尺寸和大小。
+                time.sleep(5)  # 等待  # 增加延迟
+
+        窗口句柄列表=[]
+        for 子窗口 in 窗口句柄列表:
+            类名 = win32gui.GetClassName(子窗口)
+            窗口标题 = win32gui.GetWindowText(子窗口)
+            print('类名', 类名)
+            print('窗口标题', 子窗口)
+            print('窗口句柄', 子窗口)
 
     def 模具一一激活窗口二(self):
-        类名 = ''
+        def 模具一一枚举子窗口列表():
+            if 窗口句柄 > 0:
+                # 枚举子窗口
+                枚举子窗口列表 = []
+                win32gui.EnumChildWindows(窗口句柄, lambda hwnd, param: param.append(hwnd), 枚举子窗口列表)
+                print('枚举子窗口', 枚举子窗口列表)
+                for 子窗口 in 枚举子窗口列表:
+                    类名 = win32gui.GetClassName(子窗口)
+                    窗口标题 = win32gui.GetWindowText(子窗口)
+                    print('类名', 类名)
+                    print('窗口标题', 窗口标题)
+                    print('窗口句柄', 子窗口)
+                    if '连接' in 窗口标题:
+                        # 更新：已经找到发送回车的方法：
+                        win32gui.PostMessage(子窗口, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+                        win32gui.PostMessage(子窗口, win32con.WM_KEYUP, win32con.VK_RETURN, 0)
+                        print('按键完成')
+                        break  # 结束循环
+        类名 = 'ALDriveMutex'
 
-        窗口标题 = "自.动.点.击.器"
+        窗口标题 = ""
 
         if len(类名) == 0:
             窗口句柄 = win32gui.FindWindow(None, 窗口标题)
@@ -65,14 +213,39 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         if '记事本' in 窗口标题 or 'QQ' in 窗口标题 or 'Tk' in 类名:
             win32gui.ShowWindow(窗口句柄, 1)  # 激活并显示一个窗口。如果窗口被最小化或最大化，系统将其恢复到原来的尺寸和大小。
         else:  #
-            win32gui.ShowWindow(窗口句柄, 3)  # 激活并显示一个窗口。窗口最大化
-        time.sleep(1)  # 等待  # 增加延迟
-        # win32gui.SendMessage(窗口句柄, win32con.WM_CLOSE)  # 关闭窗口
-        if 窗口句柄 > 0:
-            第一个控件句柄 = win32gui.FindWindowEx(窗口句柄, None, None, None)  # 获取hld下第一个为edit控件的句柄
+            win32gui.ShowWindow(窗口句柄, 3)  # 3  激活并显示一个窗口。窗口最大化
+        time.sleep(2)  # 等待  # 增加延迟
+        #===================
 
-            窗口的菜单句柄 = win32gui.GetSubMenu(第一个控件句柄,2)
-            print('窗口的菜单句柄', 窗口的菜单句柄)
+        类名 = ''
+
+        窗口标题 = "站点地图"
+
+        if len(类名) == 0:
+            窗口句柄 = win32gui.FindWindow(None, 窗口标题)
+            窗口句柄 = win32gui.FindWindowEx(0, 0, None, 窗口标题)
+
+        else:  #
+            窗口句柄 = win32gui.FindWindow(类名, None)
+        类名 = win32gui.GetClassName(窗口句柄)
+        窗口标题 = win32gui.GetWindowText(窗口句柄)
+        print('类名', 类名)
+        print('窗口标题', 窗口标题)
+        print('窗口句柄', 窗口句柄)
+
+        win32gui.ShowWindow(窗口句柄, 3)  # 激活并显示一个窗口。如果窗口被最小化或最大化，系统将其恢复到原来的尺寸和大小。
+
+        time.sleep(2)  # 等待  # 增加延迟
+
+
+
+
+
+
+
+
+            #窗口的菜单句柄 = win32gui.GetSubMenu(窗口句柄,2)
+            #print('窗口的菜单句柄', 窗口的菜单句柄)
     def 模具一一激活窗口(self):
         类名 = ''
 
@@ -407,12 +580,12 @@ time.sleep(10)  # 等待  # 增加延迟""".format(说明)# '{}'
         time.sleep(1)  # 等待  # 增加延迟
         开始时间计数 = int(time.time())
 
-        图像位置= r'C:\下载中转站\图像测试.PNG'
+        图像位置= r'C:\下载中转站\图像测试.PNG'#
 
 
         条件循环 = 0
         while 条件循环 == 0:
-            图形坐标 = pag.locateOnScreen(图像位置)
+            图形坐标 = pag.locateOnScreen(图像位置) #
 
             if 图形坐标 == None:
                 #pyautogui.alert('图形坐标为空') # 弹窗 提示

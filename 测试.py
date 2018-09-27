@@ -614,20 +614,18 @@ for 列表值 in 列表:
 print('相加数:',相加数)
 
 
+# ===网页加载 ，颜色对比
+self.坐标 = [935,669]
+self.颜色像素 = [0,128,0]
+self.等待秒数 = 3
+self.模具一一网页加载颜色对比()
+print('更新主页 页面 ，颜色检测通过')
+# ==
 
-import pymysql  # 数据库
 
-新旧影视库= '最新影视剧'
-print('连接数据库....')
-db = pymysql.connect("localhost", "root", "", 新旧影视库, charset="utf8")
-cursor = db.cursor()
-# SQL 查询语句   已下载内容网址
-# 获取游标
-sql = "UPDATE `网站文章内容` SET `发布`='是' WHERE `发布`='微博'"
-# 执行SQL语句
-cursor.execute(sql)
-# 提交到数据库执行
-db.commit()
-# 关闭数据库连接
-db.close()
-print('更新数据库...成功.')
+pag.hotkey('ctrlleft', 'a')  # 鼠标移动X.Y 方位  定位 地址栏
+            time.sleep(0.5)  # 等待  # 增加延迟
+            pag.press('delete')  # press()一次完整的击键. 清空 地址栏
+
+
+win32api.ShellExecute(0, 'open', 'E:\PY学习文件\BTT影视剧\工具集\换ip连接二.py', '', '', 1)

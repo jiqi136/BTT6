@@ -43,7 +43,8 @@ IP插件 在设置 页面 默认为 代理
 
 
 
-class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
+
+class 类一一公共库:  # 调用 类的模具
     def __init__(self):
 
         self.模具一一换头部信息()
@@ -316,36 +317,9 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         print('换ip再连接完成')
         # ============内容页过滤与提取===================================================
     def 模具一一换ip连接二(self):
-        # coding:gbk
-        循环 = 0
-        次数循环 = 0
+        win32api.ShellExecute(0, 'open', 'E:\PY学习文件\BTT影视剧\工具集\换ip连接二.py', '', '', 1)
 
-        while 循环 == 0:  # 条件循环  post
-            print('宽带连接进行时.....')
-            os.system(r"rasphone -h 宽带连接")  # xxx0是你的拨号名称,xp下默认是"宽带连接”.
-            os.system(r"rasdial 宽带连接 02007044432@163.gd  77341859")  # xxx0同上,xxx1 拨号用户名 ,xxx2拨号密码.
-            time.sleep(3)
-            print('换ip再连接完成')
-
-            try:
-                返回网页内容 = requests.post('https://www.baidu.com/', headers=头部信息, timeout=3)
-            except (requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout,
-                    requests.exceptions.ConnectionError, requests.exceptions.ConnectTimeout,
-                    requests.exceptions.ChunkedEncodingError, requests.exceptions.InvalidSchema) as 异常:
-                次数循环 += 1
-                print('网络异常等待', 异常)
-                print('倒数60秒再连接', 次数循环, '次')
-                time.sleep(60)
-                if 'None, 10053,' in str(异常):
-                    pass
-            else:
-                if '200' in str(返回网页内容):
-
-                    break  # 结束循环
-                else:
-                    print('网站网络异常,状态码:', 返回网页内容)
-                    print('等待60秒')
-                    time.sleep(60)
+        pyautogui.alert('等待.....换ip连接')
 
 
 
@@ -417,7 +391,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         while 条件循环 < 3:  # 条件循环  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
             self.短信内容 = ''
 
-            for i in 'few52676t':
+            for i in '12345':
                 print('等待 15秒:')
                 time.sleep(14)  # 等待
                 网址内容 = self.模具一一打开的网址请求返回网页内容(获取短信网址)
@@ -433,8 +407,8 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
                 else:  # 否则
                     print('请求失败:', 网址内容.text)
             条件循环 =条件循环+1
-            self.模具一一重新激活浏览器窗口()
-            pag.PAUSE = 5  # 增加延迟
+            self.模具一一图像对比激活窗口()
+            time.sleep(5)  # 等待
             pag.moveTo(740, 456)  # 鼠标移动X.Y 方位  发送验证码 按钮
             pag.rightClick()  # 右击pag.rightClick()
             self.开始计时数 = int(time.time())
@@ -625,7 +599,9 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         #===========输入网址============
         self.模具一一写入剪切板内容(输入的网址)
         time.sleep(0.5)  # 等待  # 增加延迟
-        pag.hotkey('ctrlleft', 'shiftleft', 'v')  # press()一次完整的击键.hotkey('ctrl','c')
+        pag.hotkey('ctrlleft','v')  # press()一次完整的击键.hotkey('ctrl','c')
+        time.sleep(0.5)  # 等待  # 增加延迟
+        pag.press('enter')  # press()一次完整的击键. 地址栏
 
 
         #pag.press('enter')  # press()一次完整的击键.hotkey('ctrl','c')
@@ -634,7 +610,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
     def 模具一一布置浏览头(self,浏览头网址):
 
-        pag.hotkey('altleft', '2')  # 鼠标移动X.Y 方位  cookie插件布置 页面
+        pag.hotkey('altleft', '3')  # 鼠标移动X.Y 方位  cookie插件布置 页面
         # pag.moveTo(1252 , 49)  # 鼠标移动 定位  确定布置浏览头 按钮
         # pag.rightClick()  # 右击
         time.sleep(1)  # 等待  # 增加延迟
@@ -655,7 +631,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
         # ====================================
         pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
-        self.模具一一知乎换头部信息()
+        self.模具一一高位换头部信息()
 
         self.模具一一写入剪切板内容(self.头部信息['User-Agent'])
         time.sleep(0.3)  # 等待  # 增加延迟
@@ -732,16 +708,28 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         return  提取网址# 返回值
 
     def 模具一一提取登录界面的cookie(self):
-        cookie=''
+
+        img = pag.screenshot()
+        self.坐标 = [962,312]
+        self.颜色像素=[]
+        (r,g,b)=img.getpixel((self.坐标[0], self.坐标[1]))  # 提取像素
+        self.颜色像素.append(r)
+        self.颜色像素.append(g)
+        self.颜色像素.append(b)
+
         time.sleep(0.5)  # 等待  # 增加延迟
         pag.hotkey('altleft', '2')  # 鼠标移动X.Y 方位  cookie插件布置 页面
-        #pag.moveTo(1222, 50)  # 鼠标移动X.Y 方位  cookie图标 按钮
-
-        #pag.rightClick()  # 右击
         time.sleep(4)  # 等待  # 增加延迟
 
+        # ===网页加载 ，颜色对比
+        self.颜色变化 ='颜色变化'
 
-
+        self.等待秒数 = 3
+        self.模具一一网页加载颜色对比()
+        print('提取登录界面的cookie 页面 ，颜色检测通过')
+        # ==
+        #pag.moveTo(1222, 50)  # 鼠标移动X.Y 方位  cookie图标 按钮
+        #pag.rightClick()  # 右击
 
         pag.moveTo(1043, 89)  # 鼠标移动X.Y 方位  导出到剪切板 按钮
         pag.rightClick()  # 右击
@@ -759,27 +747,33 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         # pag.rightClick()  # 右击
 
     def 模具一一新界面提取登录界面的cookie(self):
-        cookie=''
-        time.sleep(1)  # 等待  # 增加延迟
 
         pag.hotkey('ctrlleft', '2')  # 鼠标移动X.Y 方位  cookie插件布置 页面
+        time.sleep(1)  # 等待  # 增加延迟
+        # ===网页加载 ,颜色对比
+        self.坐标 = [647, 801]
+        self.颜色像素 = [0, 128, 0]
+        self.等待秒数 = 3
+        self.模具一一网页加载颜色对比()
+        print(' cookie界面的 页面 ,颜色检测通过')
+        # ===重置 cookie
+        pag.moveTo(733,115)  # 鼠标移动X.Y 方位  重置 cookie 按钮
+        pag.rightClick()  # 右击
+        time.sleep(1)  # 等待  # 增加延迟
+
+        # ===导出到剪切板
+        pag.moveTo(736, 113)  # 鼠标移动X.Y 方位  导出到剪切板 按钮
+        pag.rightClick()  # 右击
         time.sleep(2)  # 等待  # 增加延迟
-        if self.清除全部 == 0:
+        self.cookie =self.模具一一获取剪切板内容()
+
+        self.cookie = json.dumps(self.cookie,indent =4)  # 编码为json
 
 
-            pag.moveTo(736, 113)  # 鼠标移动X.Y 方位  导出到剪切板 按钮
-            pag.rightClick()  # 右击
+        print('cookie\n',self.cookie)
 
-            time.sleep(2)  # 等待  # 增加延迟
-            self.cookie =self.模具一一获取剪切板内容()
-
-            self.cookie = json.dumps(self.cookie,indent =4)  # 编码为json
-
-
-            print('cookie\n',self.cookie)
-
-        time.sleep(0.5)  # 等待  # 增加延迟
-        pag.moveTo(418, 120)  # 鼠标移动X.Y 方位  清除全部cookie    按钮
+        #time.sleep(0.5)  # 等待  # 增加延迟
+        #pag.moveTo(418, 120)  # 鼠标移动X.Y 方位  清除全部cookie    按钮
         # pag.rightClick()  # 右击
 
     def 模具一一导入界面的登录cookie(self,帐号):
@@ -842,7 +836,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
         # pag.hotkey('ctrlleft', '1')  #   页面
 
-        time.sleep(1)  # 等待  # 增加延迟
+        time.sleep(3)  # 等待  # 增加延迟
         #
         # pag.moveTo(90, 82)  # 鼠标移动X.Y 方位  清除历史缓存 按钮
         #  pag.rightClick()  # 右击
@@ -867,6 +861,33 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         pag.hotkey('ctrlleft', 'r')  # 刷新页面
         time.sleep(3)  # 增加延迟
 
+    def 模具一一图像对比激活窗口(self):
+
+        pag.hotkey('winleft', 'd')  # press()一次完整的击键.hotkey('ctrl','c') 全选 图片
+        time.sleep(0.5)  # 等待  # 增加延迟
+
+
+
+        pag.moveTo(self.激活窗口坐标[0], self.激活窗口坐标[1])  # 移动 鼠标 方位
+        pag.rightClick()  # 右击
+        time.sleep(2)  # 等待  # 增加延迟
+
+    def 模具一一开关提醒声(self):
+
+        win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\百度云下载完成提示音.wav', '', '', 1)
+        time.sleep(3)  # 等待  # 增加延迟
+        窗口标题 = "Windows Media Player"
+
+        窗口句柄 = win32gui.FindWindow(None, 窗口标题)
+
+        win32gui.ShowWindow(窗口句柄, 11)  # 即使拥有窗口的线程被挂起也会最小化。在从其他线程最小化窗口时才使用这个参数
+        time.sleep(1)  # 等待  # 增加延迟
+        win32gui.SendMessage(窗口句柄, win32con.WM_CLOSE)  # 关闭窗口
+
+
+
+
+
 
     def 模具一一激活opera浏览器窗口(self):
 
@@ -881,6 +902,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         窗口标题 = win32gui.GetWindowText(窗口句柄)
         print('类名', 类名)
         print('窗口标题', 窗口标题)
+        # 窗口句柄=1508234
         print('窗口句柄', 窗口句柄)
 
         win32gui.ShowWindow(窗口句柄, 11)  # 即使拥有窗口的线程被挂起也会最小化。在从其他线程最小化窗口时才使用这个参数
@@ -917,11 +939,18 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
             if 像素匹配 == True:
                 条件循环 =998
+                time.sleep(2)  # 等待  # 增加延迟
                 print(像素匹配, '像素值正确')
 
             else:  # 否则  False
-                print(像素匹配, '像素值不对')
-                time.sleep(self.等待秒数)  # 等待  # 增加延迟
+                if '颜色变化' in self.颜色变化:
+                    self.颜色变化 = ''
+                    条件循环 = 998
+                    print( '颜色变化,检测通过')
+
+                else:  # 否则
+                    print(像素匹配, '像素值不对')
+                    time.sleep(self.等待秒数)  # 等待  # 增加延迟
 
             if 计数器 ==8:
                 pag.hotkey('ctrlleft', 'r')  # press()一次完整的击键.hotkey('ctrl','c')
@@ -936,23 +965,25 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
     """=========上传图片========================"""
     def 模具一一图片目录地址框(self):
-        pag.moveTo(366, 45)  # 鼠标移动X.Y 方位  确定  图片目录地址框
+
+
+        pag.moveTo(998,44)  # 鼠标移动X.Y 方位  确定  图片目录地址框
         pag.rightClick()  # 右击
-        time.sleep(0.3)  # 等待  # 增加延迟
+        time.sleep(0.5)  # 等待  # 增加延迟
 
         pag.hotkey('ctrlleft', 'a')  # press()一次完整的击键.hotkey('ctrl','c') 全选 图片
-        time.sleep(0.3)  # 等待  # 增加延迟
+        time.sleep(0.5)  # 等待  # 增加延迟
         pag.press('delete')  # press()一次完整的击键.hotkey('ctrl','c') 确认
-        time.sleep(0.3)  # 等待  # 增加延迟
+        time.sleep(0.5)  # 等待  # 增加延迟
 
         图片目录地址= r"F:\影视发帖推广\临时图片"
 
         self.模具一一写入剪切板内容(图片目录地址)
 
         pag.hotkey('ctrlleft', 'v')  # press()一次完整的击键.hotkey('ctrl','c')
-        time.sleep(0.3)  # 等待  # 增加延迟
+        time.sleep(0.5)  # 等待  # 增加延迟
         pag.press('enter')  # press()一次完整的击键.hotkey('ctrl','c') 确认
-        time.sleep(1)  # 等待  # 增加延迟
+        time.sleep(2)  # 等待  # 增加延迟
 
     def 模具一一清空临时图片目录(self):
 
@@ -982,18 +1013,29 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
     def 模具一一上传图片窗口选择图片(self):
 
-
-        pag.moveTo(227, 156)  # 鼠标移动X.Y 方位  确定  第一张图片
+        pag.moveTo(226,157)  # 鼠标移动X.Y 方位  确定  第一张图片
         pag.rightClick()  # 右击
 
         time.sleep(1)  # 等待  # 增加延迟
 
         pag.hotkey('altleft', 'o')  # press()一次完整的击键.hotkey('ctrl','c') 提交图片
-        time.sleep(5)  # 等待  # 增加延迟 已经有等待 3秒了
+        time.sleep(3)  # 等待  # 增加延迟 已经有等待 3秒了
 
-        pag.moveTo(655, 705)  # 鼠标移动X.Y 方位  定位 保存  按钮
-        pag.rightClick()  # 右击
-        time.sleep(1)  # 等待  # 增加延迟
+    def 模具一一选择图片头像窗口最大化(self):
+        窗口标题 = "打开"
+        窗口句柄 = win32gui.FindWindow(None, 窗口标题)
+
+        窗口标题 = win32gui.GetWindowText(窗口句柄)
+
+        print('窗口标题', 窗口标题)
+        print('窗口句柄', 窗口句柄)
+
+        win32gui.ShowWindow(窗口句柄, 11)  # 即使拥有窗口的线程被挂起也会最小化。在从其他线程最小化窗口时才使用这个参数
+        time.sleep(0.5)  # 等待  # 增加延迟
+
+        win32gui.ShowWindow(窗口句柄, 3)  # 激活并显示一个窗口。窗口最大化
+
+
 
     """=========文本整理========================"""
 

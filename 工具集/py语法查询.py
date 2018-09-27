@@ -752,6 +752,7 @@ class 类一一文本清洗():  # 调用 类的模具 self.模具一一数据库
         list.remove('Google')  # 删除指定元素
         print("删除第三个元素 : ", list)
         pass
+        del dict['Name']  # 删除键 'Name'
 
     def 前后截取(self):
         原文本="只是一个文本：原文本"
@@ -1291,6 +1292,63 @@ class 类一一本地文件目录操作():  # 调用 类的模具 self.模具一
         弹窗              提醒                                                  类名 TkTopLevel
 
         """
+
+    def 模具一遍历windows所有可显示的窗口句柄及窗口名称(self):
+        import win32gui  # 窗口控件
+        类名 = 'Chrome_WidgetWin_1'
+
+        窗口标题 = ""
+
+        窗口句柄名称字典 ={}# 创建空字典
+
+        def 模具一遍历窗口(hwnd, mouse):
+            if win32gui.IsWindow(hwnd) and win32gui.IsWindowEnabled(hwnd) and win32gui.IsWindowVisible(hwnd):
+                窗口句柄名称字典.update({hwnd: win32gui.GetWindowText(hwnd)})
+        win32gui.EnumWindows(模具一遍历窗口, 0)
+        for 窗口句柄, 窗口名称 in 窗口句柄名称字典.items(): #返回可遍历的(键, 值) 元组数组。
+            if 窗口名称 is not "":
+                print(窗口句柄, 窗口名称)
+
+            if  "QQ" in 窗口名称:
+                win32gui.ShowWindow(窗口句柄, 11)  # 即使拥有窗口的线程被挂起也会最小化。在从其他线程最小化窗口时才使用这个参数
+                time.sleep(1)  # 等待  # 增加延迟
+
+
+
+                win32gui.ShowWindow(窗口句柄, 1)  # 激活并显示一个窗口。如果窗口被最小化或最大化，系统将其恢复到原来的尺寸和大小。
+                time.sleep(5)  # 等待  # 增加延迟
+
+        窗口句柄列表=[]
+        for 子窗口 in 窗口句柄列表:
+            类名 = win32gui.GetClassName(子窗口)
+            窗口标题 = win32gui.GetWindowText(子窗口)
+            print('类名', 类名)
+            print('窗口标题', 子窗口)
+            print('窗口句柄', 子窗口)
+
+
+
+    def 模具一一枚举子窗口列表(self):
+        import win32gui,win32con # 窗口控件
+        窗口句柄=0
+        if 窗口句柄 > 0:
+            # 枚举子窗口
+            枚举子窗口列表 = []
+            win32gui.EnumChildWindows(窗口句柄, lambda hwnd, param: param.append(hwnd), 枚举子窗口列表)
+            print('枚举子窗口', 枚举子窗口列表)
+            for 子窗口 in 枚举子窗口列表:
+                类名 = win32gui.GetClassName(子窗口)
+                窗口标题 = win32gui.GetWindowText(子窗口)
+                print('类名', 类名)
+                print('窗口标题', 窗口标题)
+                print('窗口句柄', 子窗口)
+                if '连接' in 窗口标题:
+                    # 更新：已经找到发送回车的方法：
+                    win32gui.PostMessage(子窗口, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+                    win32gui.PostMessage(子窗口, win32con.WM_KEYUP, win32con.VK_RETURN, 0)
+                    print('按键完成')
+                    break  # 结束循环
+
 
 class 类一一自动化操作浏览器():  # 调用 类的模具 self.模具一一数据库()
     def __init__(self):
