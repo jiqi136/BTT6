@@ -16,6 +16,8 @@ class 类一一换ip连接二:  # 调用 类的模具
     def __init__(self):
         self.模具一一自身最小化()
         self.模具一一换头部信息()
+
+
         self.模具一一换ip连接二()
         self.模具一一关闭提醒窗口()
 
@@ -152,7 +154,7 @@ class 类一一换ip连接二:  # 调用 类的模具
             print('换ip再连接完成')
 
             try:
-                返回网页内容 = requests.post('https://www.baidu.com/', headers=头部信息, timeout=3)
+                返回网页内容 = requests.get('https://www.163.com/', headers=头部信息, timeout=3)
             except (requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout,
                     requests.exceptions.ConnectionError, requests.exceptions.ConnectTimeout,
                     requests.exceptions.ChunkedEncodingError, requests.exceptions.InvalidSchema) as 异常:

@@ -31,8 +31,9 @@ www.baidu.com
 """
 
 class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
-    def __init__(self,帐号类型):
+    def __init__(self,帐号类型,读取文本手机号):
         self.帐号类型 =帐号类型
+        self.读取文本手机号 = 读取文本手机号
         self.模具一一高位换头部信息()
         self.首次 = 0
         self.激活窗口图像位置= r'E:\PY学习文件\BTT影视剧\py快捷方式\opera浏览器.PNG'#
@@ -41,7 +42,6 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         self.旧目录路径 = r"F:\影视发帖推广\贴吧顶贴\头像\百度主号上传小头像"
         self.颜色变化 = ''
         self.激活窗口坐标=[196,918]
-
 
         self.模具一一换ip连接二()
         self.模具一一图像对比激活窗口()
@@ -62,28 +62,50 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         内容 = 内容.replace("\n", "")
         self.内容 = 内容.replace(" ", "")
 
+
+
         self.字符集 = """0123456789qwertyuiopasdfghjklzxcvbnm"""
         self.电影美剧表 = ['电影', '美剧', '动漫']
 
         百度号注册网址 = 'https://passport.baidu.com/v2/?reg&tt=1537956495492&overseas=undefined&gid=8515458-8F51-407D-AEBC-A53A793AC038&tpl=mn&u=https%3A%2F%2Fwww.baidu.com%2F'
         浏览头网址 = 'baidu.com'
 
+
+        if '读取文本手机号' in self.读取文本手机号:
+
+            self.模具一一读取文本的手机号码()
+
+
         计数器 = 0
         for 字符 in self.内容:
             for 影视类型 in self.电影美剧表:
+                随机 = random.randrange(0, len(self.内容))
+                字符 =self.内容[随机]
+
                 self.百度顶贴名=字符+影视类型
                 self.跳过循环 = ''
                 self.手机号码验证数 = 0
                 self.手机号码验证换ip次数 = 0
 
-
                 if self.百度顶贴名 in self.已注册帐号手机号:
                     continue  # 跳过当前循环,继续进行下一轮循环
+
+                if '读取文本手机号' in self.读取文本手机号:
+
+                    if len(self.等待验证手机号列表)== 0:
+                        print('主线程 等待验证手机号列表', self.等待验证手机号列表)
+
+                        print('再验证手机号 已空')
+                        return  # 返回
+
+
+
 
                 计数器 = 计数器 + 1
                 if 计数器 > 30:
                     条件循环 = 998
                 开始时间计数 = int(time.time())
+                print('模具一一百度注册布置浏览头')
 
                 self.模具一一百度注册布置浏览头()
 
@@ -102,6 +124,7 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
 
 
                     self.模具一一确认注册()
+
 
                     self.模具一一提取登录界面的cookie()
                     self.模具一一保存数据库一百度发贴帐号等()
@@ -123,6 +146,12 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
                 # pyautogui.alert('确认后继续')
                 time.sleep(5)  # 等待  # 增加延迟
 
+                正常60秒后换IP时间数 = self.换IP时间计数 + 65
+                当下时间数 = int(time.time())
+                if 当下时间数 < 正常60秒后换IP时间数:
+                    print('等待:', 正常60秒后换IP时间数 - 当下时间数, '秒')
+                    time.sleep(正常60秒后换IP时间数 - 当下时间数)  # 等待  # 增加延迟
+
     def 模具一一获取百度接收的手机号码(self):
         # 通信令牌token = self.cookie
         self.项目编号 = "13043"
@@ -135,6 +164,34 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
 
         self.手机号码 = 网址内容.text.replace("success|", "")  # 替换   , 1) 次数 1
         print('手机号码:', self.手机号码)
+
+    def 模具一一获取指定手机号码(self):
+        # 通信令牌token = self.cookie
+        self.项目编号 = "13043"
+        条件循环 = 1
+        while 条件循环 == 1:  # 条件循环  break # 结束循环 continue # 跳过当前循环，继续进行下一轮循环
+
+            手机号码=int(self.手机号码)
+            获取手机号码接口网址 = "http://api.fxhyd.cn/UserInterface.aspx?action=getmobile&token={}&itemid={}&mobile={}".format(
+                self.通信令牌token, self.项目编号,手机号码)
+            网址内容 = self.模具一一打开的网址请求返回网页内容(获取手机号码接口网址)
+
+            print('网址内容:',网址内容.text)
+            返回内容=str(网址内容.text)
+            if '2008' in 返回内容 or '2010' in 返回内容:
+
+                随机 = random.randrange(0, len(self.等待验证手机号列表))
+                self.手机号码 = self.等待验证手机号列表[随机]
+                del self.等待验证手机号列表[随机]
+            else:
+                self.手机号码 = 网址内容.text.replace("success|", "")  # 替换   , 1) 次数 1
+
+                print('手机号码:', self.手机号码)
+                条件循环 = 998
+
+
+
+
 
     def 模具一一百度项目拉黑手机号码(self):
         # 通信令牌token = self.cookie
@@ -159,9 +216,21 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
 
 
             # ========
-            self.模具一一获取百度接收的手机号码()
-            if len(self.手机号码) <10 or self.手机号码 in self.已注册帐号手机号:
+            if '读取文本手机号' in self.读取文本手机号:
+                随机 = random.randrange(0, len(self.等待验证手机号列表))
+                self.手机号码 = self.等待验证手机号列表[随机]
+                del self.等待验证手机号列表[随机]
+
+                self.模具一一获取指定手机号码()
+            else:  # 否则
                 self.模具一一获取百度接收的手机号码()
+
+
+            if len(self.手机号码) <10 or self.手机号码 in self.已注册帐号手机号:
+                if '读取文本手机号' in self.读取文本手机号:
+                    self.模具一一获取指定手机号码()
+                else:  # 否则
+                    self.模具一一获取百度接收的手机号码()
             time.sleep(0.5)  # 等待
 
             self.模具一一写入剪切板内容(self.手机号码)# 输入手机号码
@@ -264,8 +333,28 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         time.sleep(0.5)  # 等待  # 增加延迟
         pag.press('tab')  # press()一次完整的击键.hotkey('ctrl','c')
         time.sleep(0.5)  # 等待  # 增加延迟
-        pag.press('enter')  # press()一次完整的击键.hotkey('ctrl','c')
-        time.sleep(0.3)  # 等待  # 增加延迟
+        pag.press('enter')  # press()一次完整的击键.确认 点击获取手机验证码
+        time.sleep(1)  # 等待  # 增加延迟
+
+        # ===系统错误 休息一会儿,请您稍后再试,
+        self.坐标 = [598,440]
+        self.颜色像素 = [252, 67, 67]
+
+        像素匹配 = pag.pixelMatchesColor(self.坐标[0], self.坐标[1], (self.颜色像素[0], self.颜色像素[1], self.颜色像素[2]))
+
+        if 像素匹配 == True:
+            pyautogui.alert('系统错误休息一会儿')
+
+            time.sleep(2)  # 等待  # 增加延迟
+            print(像素匹配, '像素值正确')
+            self.跳过循环 = '跳过循环'
+
+        else:  # 否则  False
+            pass
+
+        # ==
+
+
 
     def 模具一一输入短信内容(self):
         self.模具一一点击获取手机验证码()
@@ -321,7 +410,7 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         """&release=1  自动释放号码标识符 若该参数值为1时,获取到短信的同时系统将自己释放该手机号码.若要继续使用该号码,请勿带入该参数."""
 
         条件循环 = 0
-        while 条件循环 < 5:  # 条件循环  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
+        while 条件循环 < 3:  # 条件循环  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
             self.短信内容 = ''
 
             for i in '123456':
@@ -606,6 +695,35 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         pag.moveTo(981, 52)  # 鼠标移动 定位  页面 空白处
         time.sleep(2)  # 等待  # 增加延迟
 
+    def 模具一一读取文本的手机号码(self):
+        try:  # 调用异常处理,应对易发生错误的位置
+            文本 = open(r"F:\影视发帖推广\可以注册手机号码.txt", 'r', encoding='UTF-8')
+            文本内容列表 = 文本.readlines()  # read() #全部读取   readlines每一行
+        except UnicodeDecodeError as 异常原因:  # 异常处理
+            print(异常原因)
+            文本 = open(r"F:\影视发帖推广\可以注册手机号码.txt", 'r', encoding='gbk')
+            文本内容列表 = 文本.readlines()  # read() #全部读取   readlines每一行
+        else:  # 必须放在所有的except子句之后.这个子句将在try子句没有发生任何异常的时候执行.
+            文本.close()
+
+
+        等待验证手机号列表=[]
+        for 每行文本内容 in 文本内容列表:
+            if  '再验证' in 每行文本内容 and len(每行文本内容)>5:
+                每行文本内容 = 每行文本内容.replace("再验证", "")  # 替换   , 1) 次数 1
+                每行文本内容 = 每行文本内容.replace("\n", "")  # 替换   , 1) 次数 1
+                每行文本内容 = 每行文本内容.replace("\ufeff", "")  # 替换   , 1) 次数 1
+                if 每行文本内容 in self.已注册帐号手机号:
+                    continue  # 跳过循环
+
+
+
+                等待验证手机号列表.append(每行文本内容)
+
+        self.等待验证手机号列表=等待验证手机号列表
+
+        #return  等待验证手机号列表# 返回
+
 
 class 类一一头像上传(类一一百度号注册):
     def __init__(self):
@@ -623,7 +741,9 @@ class 类一一头像上传(类一一百度号注册):
 if __name__ == '__main__':
     帐号类型 ='百度顶贴'
     帐号类型 ='百度发贴'
-    类 = 类一一百度号注册(帐号类型)
+    读取文本手机号 =''
+    读取文本手机号 = '读取文本手机号'
+    类 = 类一一百度号注册(帐号类型,读取文本手机号)
 
     #类 = 类一一头像上传()
 

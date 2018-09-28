@@ -324,7 +324,7 @@ class 类一一公共库:  # 调用 类的模具
             print('换ip再连接完成')
 
             try:
-                返回网页内容 = requests.post('https://www.baidu.com/', headers=头部信息, timeout=3)
+                返回网页内容 = requests.get('https://www.163.com/', headers=头部信息, timeout=3)
             except (requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout,
                     requests.exceptions.ConnectionError, requests.exceptions.ConnectTimeout,
                     requests.exceptions.ChunkedEncodingError, requests.exceptions.InvalidSchema) as 异常:
@@ -762,7 +762,7 @@ class 类一一公共库:  # 调用 类的模具
         self.颜色变化 ='颜色变化'
 
         self.等待秒数 = 3
-        self.模具一一网页加载颜色对比()
+        self.模具一一网页加载颜色对比(self.颜色变化)
         print('提取登录界面的cookie 页面 ，颜色检测通过')
         # ==
         #pag.moveTo(1222, 50)  # 鼠标移动X.Y 方位  cookie图标 按钮
@@ -870,10 +870,11 @@ class 类一一公共库:  # 调用 类的模具
 
         print('清除浏览器历史缓存')
         pag.hotkey('altleft', '4')  # 鼠标移动X.Y 方位  cookie插件布置 页面
-
         # pag.hotkey('ctrlleft', '1')  #   页面
+        time.sleep(2)  # 等待  # 增加延迟
 
-        time.sleep(3)  # 等待  # 增加延迟
+        pag.hotkey('altleft', '4')  # 鼠标移动X.Y 方位  cookie插件布置 页面
+        time.sleep(2)  # 等待  # 增加延迟
         #
         # pag.moveTo(90, 82)  # 鼠标移动X.Y 方位  清除历史缓存 按钮
         #  pag.rightClick()  # 右击
@@ -926,6 +927,10 @@ class 类一一公共库:  # 调用 类的模具
 
 
 
+
+
+
+
     def 模具一一激活opera浏览器窗口(self):
 
         类名 = 'Chrome_WidgetWin_1'
@@ -966,7 +971,7 @@ class 类一一公共库:  # 调用 类的模具
         """
 
     """==========颜色像素==============="""
-    def 模具一一网页加载颜色对比(self):
+    def 模具一一网页加载颜色对比(self,颜色变化=''):
         计数器=0
 
         条件循环 = 0
@@ -980,7 +985,7 @@ class 类一一公共库:  # 调用 类的模具
                 print(像素匹配, '像素值正确')
 
             else:  # 否则  False
-                if '颜色变化' in self.颜色变化:
+                if '颜色变化' in 颜色变化:
                     self.颜色变化 = ''
                     条件循环 = 998
                     print( '颜色变化,检测通过')
