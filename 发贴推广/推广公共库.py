@@ -26,9 +26,12 @@ import win32gui #窗口控件
 SELECT * FROM `知乎话题` WHERE `短标题` != '空' ORDER BY `知乎话题`.`赞同数` DESC 
 SELECT * FROM `知乎话题` WHERE `短标题` != '空'and `类型`= '电影' ORDER BY `知乎话题`.`赞同数` DESC 
 知乎改名2至8汉字 或16字符
-提示保存密码 永不 **********
-扩展快捷键  修改  
-删除微博的通知 权限**********
+
+宽带连接中断后
+1.没有向服务器注销，关闭猫五分，或反复开启猫开关三次，每次灯不闪时关闭 
+2.运行→输入命令：
+control.exe /name Microsoft.NetworkAndSharingCenter
+打开网络和共享中心→点击红色大叉→调用向导→检测、修复网络：
 
 IP插件 在设置 页面 默认为 代理 
 扩展快捷键1 ip
@@ -309,6 +312,40 @@ class 类一一公共库:  # 调用 类的模具
                     time.sleep(10)
 
     def 模具一一换ip连接(self):
+        # coding:gbk
+        循环 = 0
+        次数循环 = 0
+
+        while 循环 == 0:  # 条件循环  post
+            print('宽带连接进行时.....')
+            os.system(r"rasphone -h 宽带连接")  # xxx0是你的拨号名称,xp下默认是"宽带连接”.
+            os.system(r"rasdial 宽带连接 02007044432@163.gd  77341859")  # xxx0同上,xxx1 拨号用户名 ,xxx2拨号密码.
+            time.sleep(3)
+            print('换ip再连接完成')
+
+            try:
+                返回网页内容 = requests.post('https://www.baidu.com/', headers=头部信息, timeout=3)
+            except (requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout,
+                    requests.exceptions.ConnectionError, requests.exceptions.ConnectTimeout,
+                    requests.exceptions.ChunkedEncodingError, requests.exceptions.InvalidSchema) as 异常:
+                次数循环 += 1
+                print('网络异常等待', 异常)
+                print('倒数60秒再连接', 次数循环, '次')
+                self.模具一一开关提醒声()
+                time.sleep(60)
+                if 'None, 10053,' in str(异常):
+                    pass
+            else:
+                if '200' in str(返回网页内容):
+
+                    break  # 结束循环
+                else:
+                    print('网站网络异常,状态码:', 返回网页内容)
+                    print('等待60秒')
+                    self.模具一一开关提醒声()
+                    time.sleep(60)
+
+    def 模具一一换ip连接零(self):
         # coding:gbk
         print('宽带连接进行时.....')
         os.system(r"rasphone -h 宽带连接")  # xxx0是你的拨号名称,xp下默认是"宽带连接”.

@@ -31,7 +31,7 @@ https://www.zhihu.com/question/295371733/answer/494955215?group_id=1026300640200
 class 类一一知乎点赞(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
     def __init__(self):
 
-        self.模具一一知乎换头部信息()
+        self.模具一一高位换头部信息()
         self.模具一一换ip连接二()
         self.模具一一重新激活浏览器窗口()
         self.模具一一清除浏览器历史缓存()  #
