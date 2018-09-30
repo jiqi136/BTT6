@@ -21,7 +21,7 @@ from 发贴推广.推广公共库 import 类一一公共库# 导入模块
 
 class 类一一38影视网站(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
     def __init__(self):
-        self.颜色变化=''
+        #self.颜色变化=''
         self.激活窗口坐标 = [196, 918]
         self.模具一一图像对比激活窗口()
         输入网址 = 'http://3e38.com/image/article_test_same.php?dopost=analyse&channelid=17&deltype=delold&pagesize=10000&Submit=%E5%88%86%E6%9E%90%E6%A0%87%E9%A2%98%E9%87%8D%E5%A4%8D%E7%9A%84%E6%96%87%E6%A1%A3'
