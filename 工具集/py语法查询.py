@@ -430,6 +430,10 @@ class 类一一多项语法():  # 调用 类的模具 self.模具一一数据库
             print('生成今日的全部更新')
     def 基本语法(self):
         安装py库='pip install 库名grequests'#库名grequests
+
+
+        目录安装py库= """目录下运行：python setup.py install 安装"""
+
         不同版本下安装pip ="""方法：python27 -m pip install XXXX(-m参数 相当于import，意味当作模块启动)
                             备注：安装了Python2.7.13后重命名了Python27文件夹下python.exe为python2.7.13.exe"""
         查看python里已经安装的第三方库的版本号="""pip3 list # 列出安装的库 因为安装了python3，应该替换为pip3命令。
@@ -703,7 +707,7 @@ class 类一一多项语法():  # 调用 类的模具 self.模具一一数据库
             帖子内容html = etree.HTML(返回网页内容.text)#
 
             # ========端口列表
-            规则 = '//*[@id="list"]/table/tbody/tr[*]/td[2]/text()'
+            规则 = '//*[@id="list"]/table/tbody/tr[*]/td[2]/text()'  #/@href  text()
             端口列表 = 帖子内容html.xpath(规则)
             规则二 = str(规则).replace("/tbody", "")
             端口列表 = 端口列表 + (帖子内容html.xpath(规则二))
@@ -1349,6 +1353,39 @@ class 类一一本地文件目录操作():  # 调用 类的模具 self.模具一
                     print('按键完成')
                     break  # 结束循环
 
+    def 写入Excel文件(self):
+        import xlwt #写入Excel文件
+        # 创建 xls 文件对象  设置编码
+        文件操作 = xlwt.Workbook(encoding='utf-8')
+        # 新增一个表单
+        表单操作 = 文件操作.add_sheet('一个工作表')
+        # 写入excel
+
+        # 参数对应 行, 列, 值
+        表单操作.write(1, 0, label='写入值')# write 写入
+
+        # 保存文件
+        文件操作.save('Excel文件.xls')
+
+    def 打包exe程序(self):
+        目录安装pyinstaller="""https://github.com/pyinstaller/pyinstaller 下载目录
+        解压后移到至 E:\python3an\an\Lib\site-packages\PyInstaller\ 下
+        目录安装py库= 目录下运行：python setup.py install 安装
+        """
+        打包时出错 = """更新库  pip3 install --upgrade （库名）setuptools
+                """
+        打包操作 ="""把要打包的 .py文件复制到 pyinstaller目录下 ，
+        DOS通道CMD窗口里运行命令 pyinstaller.py 58同城房源.py
+        产生一个与 py文件 同名的目录，exe程序 在其 dist 目录
+        """
+        给程序换图标的方法 = """添加一个 -i tubiao.ico(图标的相对路径)
+        pyinstaller -F  -i 图标\123.ico main.py
+        pyinstaller -F  -i d:\tmp\main.ico main.py
+
+        """
+
+
+
 
 class 类一一自动化操作浏览器():  # 调用 类的模具 self.模具一一数据库()
     def __init__(self):
@@ -1357,7 +1394,7 @@ class 类一一自动化操作浏览器():  # 调用 类的模具 self.模具一
     def 模具一一浏览器访问百度(self):
         from selenium import webdriver  # 浏览的驱动
         def 换头部信息():
-            self.模具一一知乎换头部信息()
+            self.模具一一高位换头部信息()
             头部信息 = "user-agent=" + self.头部信息['User-Agent']
             print('头部信息:', 头部信息)
             options.add_argument(头部信息)

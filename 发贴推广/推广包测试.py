@@ -8,6 +8,7 @@ import pyautogui#模拟鼠标键盘操作
 import win32api  # 时间
 import ctypes
 import tkinter
+import requests # 网页
 
 import tkinter.messagebox
 import win32gui
@@ -40,8 +41,8 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
     def __init__(self):
         #win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\关闭弹窗.py.lnk', '', '', 1)
 
-        pyautogui.alert('等待.....换ip连接')
-        #self.模具一一开关提醒声()
+        self.模具一一高位换头部信息()
+        self.模具一一58同城房源()
 
     def 模具一一开关提醒声(self):
 
@@ -54,6 +55,42 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         win32gui.ShowWindow(窗口句柄, 11)  # 即使拥有窗口的线程被挂起也会最小化。在从其他线程最小化窗口时才使用这个参数
         time.sleep(1)  # 等待  # 增加延迟
         win32gui.SendMessage(窗口句柄, win32con.WM_CLOSE)  # 关闭窗口
+
+    def 模具一一58同城房源(self):
+
+
+        # coding:gbk
+        循环 = 0
+        次数循环 = 0
+
+        while 循环 == 0:  # 条件循环  post
+
+
+            try:
+                返回网页内容 = requests.get('https://nj.58.com/ershoufang/35508834927419x.shtml?from=1-list-5&iuType=z_0&PGTID=0d30000c-000a-c6a1-0f7e-80ef2674b416&ClickID=1&adtype=3', headers=self.头部信息, timeout=3)
+            except (requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout,
+                    requests.exceptions.ConnectionError, requests.exceptions.ConnectTimeout,
+                    requests.exceptions.ChunkedEncodingError, requests.exceptions.InvalidSchema) as 异常:
+                次数循环 += 1
+                print('网络异常等待', 异常)
+                print('倒数60秒再连接', 次数循环, '次')
+                self.模具一一开关提醒声()
+                time.sleep(60)
+                if 'None, 10053,' in str(异常):
+
+                    pass
+            else:
+                if '200' in str(返回网页内容):
+                    返回网页内容.encoding = "UTF-8"
+                    print('返回网页内容',返回网页内容.text)
+
+                    break  # 结束循环
+                else:
+                    print('网站网络异常,状态码:', 返回网页内容)
+                    print('等待60秒')
+                    self.模具一一开关提醒声()
+                    time.sleep(60)
+
 
 
 

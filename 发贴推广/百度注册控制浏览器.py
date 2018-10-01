@@ -7,6 +7,8 @@ import requests  # 网页浏览
 import os  # 本地操作
 import random# 随机
 import win32gui #窗口控件
+import pymysql  # 数据库
+
 import pyautogui as pag #模拟鼠标键盘操作
 from selenium import webdriver  # 浏览的驱动
 from selenium.webdriver.support import expected_conditions as EC #=判断网页文本
@@ -31,7 +33,7 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         self.临时图片目录 = r"F:\影视发帖推广\临时图片"
         self.旧目录路径 = r"F:\影视发帖推广\贴吧顶贴\头像\百度主号上传小头像"
 
-        self.模具一一换ip连接二()
+        #self.模具一一换ip连接二()
 
 
         print(' 注册界面 页面 ,颜色检测通过')
@@ -53,10 +55,9 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         self.电影美剧表 = ['电影', '美剧', '动漫']
 
         百度号注册网址 = 'https://passport.baidu.com/v2/?reg&tt=1537956495492&overseas=undefined&gid=8515458-8F51-407D-AEBC-A53A793AC038&tpl=mn&u=https%3A%2F%2Fwww.baidu.com%2F'
-        浏览头网址 = 'baidu.com'
 
-        if '读取文本手机号' in self.读取文本手机号:
-            self.模具一一读取文本的手机号码()
+
+
 
         计数器 = 0
         for 字符 in self.内容:
@@ -64,27 +65,79 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
                 随机 = random.randrange(0, len(self.内容))
                 字符 = self.内容[随机]
 
-                self.百度顶贴名 = 字符 + 影视类型
+                self.百度发贴名 = 字符 + 影视类型
                 self.跳过循环 = ''
                 self.手机号码验证数 = 0
                 self.手机号码验证换ip次数 = 0
 
-                if self.百度顶贴名 in self.已注册帐号手机号:
+                if self.百度发贴名 in self.已注册帐号手机号:
                     continue  # 跳过当前循环,继续进行下一轮循环
 
-                if '读取文本手机号' in self.读取文本手机号:
 
-                    if len(self.等待验证手机号列表) == 0:
-                        print('主线程 等待验证手机号列表', self.等待验证手机号列表)
-
-                        print('再验证手机号 已空')
-                        return  # 返回
 
                 计数器 = 计数器 + 1
                 if 计数器 > 30:
                     条件循环 = 998
                 开始时间计数 = int(time.time())
-                print('模具一一百度注册布置浏览头')
+
+                self.模具一一打开百度首页()
+
+                self.模具一一输入自动化百度用户名()
+
+
+
+                self.模具一一判断手机号码已注册()
+                等待用户输入 = input("\n按下 enter 确认键后继续")
+                if '跳过循环' not in self.跳过循环:
+                    self.模具一一输入密码()
+
+                    self.模具一一输入短信内容()
+
+                if '跳过循环' not in self.跳过循环:
+                    self.模具一一确认注册()
+
+                    self.模具一一提取登录界面的cookie()
+                    self.模具一一保存数据库一百度发贴帐号等()
+
+                    self.模具一一百度上传图片头像()
+
+                self.模具一一清除浏览器历史缓存()
+
+                # ===
+
+                self.模具一一换ip连接二()
+                self.模具一一图像对比激活窗口()
+
+                结束时间计数 = int(time.time())
+                用时 = 结束时间计数 - 开始时间计数
+                print('操作:', 用时, '秒')
+                time.sleep(1)  # 等待
+
+                # pyautogui.alert('确认后继续')
+                time.sleep(5)  # 等待  # 增加延迟
+
+                正常60秒后换IP时间数 = self.换IP时间计数 + 65
+                当下时间数 = int(time.time())
+                if 当下时间数 < 正常60秒后换IP时间数:
+                    print('等待:', 正常60秒后换IP时间数 - 当下时间数, '秒')
+                    time.sleep(正常60秒后换IP时间数 - 当下时间数)  # 等待  # 增加延迟
+
+    def 模具一一输入自动化百度用户名(self):
+        # ===定位 用户名 输入框
+
+        self.浏览器操作.refresh()  # 刷新当前页面
+        time.sleep(3)  # 等待  # 增加延迟
+
+        if '顶贴号' in self.帐号类型:  # break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
+            self.随机取名 = self.模具一一随机取女名()
+        else:  # 否则
+            self.随机取名 =self.百度发贴名 + '3e38_com'
+
+        self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__userName"]').send_keys(
+            self.随机取名)  # 输入.send_keys("python3")  请空输入框:clear()
+        time.sleep(1)  # 等待  # 增加延迟
+
+
 
     def 模具一一重复验证手机号(self):
 
@@ -121,6 +174,8 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
                 if len(self.等待验证手机号列表)==0:
                     print('等待验证手机号 已空')
                     条件循环 = 998
+
+
 
 
 
@@ -389,15 +444,7 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
                         跳过当前循环 = '结束循环'
                         return 跳过当前循环  # 返回
 
-
-            self.浏览器操作.refresh()  # 刷新当前页面
-            time.sleep(3)  # 等待  # 增加延迟
-
             self.模具一一获取百度接收的手机号码()
-
-            # ====网页操作
-            time.sleep(1)  # 等待  # 增加延迟
-
             self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__phone"]').send_keys(self.手机号码)  # 输入.send_keys("python3")  请空输入框:clear()
             time.sleep(1)  # 等待  # 增加延迟
             self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__verifyCodeSend"]').click()  # 点击 .click() 密码框
@@ -418,6 +465,53 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
 
             self.模具一一追加保存手机号码到文本()
             time.sleep(2)  # 等待  # 增加延迟
+
+    """=========数据库======================="""
+
+    def 模具一一提取推广库里的百度发贴帐号(self):
+
+        # 提取数据库里的过滤网址
+        # 打开数据库连接
+        db = pymysql.connect("localhost", "root", "", "影视发帖推广", charset="utf8")
+        # 使用cursor()方法获取操作游标
+        cursor = db.cursor()
+        # SQL 查询语句
+        sql = "SELECT `帐号`, `注册手机号` FROM `推广帐号` WHERE `类型`='{}' ".format(self.帐号类型)  # 不换行 '{}'
+        # 执行SQL语句
+        cursor.execute(sql)
+        # 获取所有记录列表
+        帐号手机号组列表 = cursor.fetchall()
+        self.已注册帐号手机号 = str(帐号手机号组列表)
+
+        # 关闭数据库连接
+        db.close()
+
+    def 模具一一保存数据库一百度发贴帐号等(self):
+        print('打开数据库连接')
+        # 打开数据库连接,
+        今天时间 = str(time.strftime("%y-%m-%d", time.localtime()))
+
+        db = pymysql.connect("localhost", "root", "", "影视发帖推广", charset="utf8")
+        # 使用cursor()方法获取操作游标
+        cursor = db.cursor()
+        # SQL 插入语句
+
+        sql = """INSERT INTO `推广帐号`( `类型`, `帐号`, `密码`, `注册手机号`, `注册日期`, `cookie`) VALUES
+             ("{}","{}","{}","{}",'{}','{}')""".format(self.帐号类型, self.随机取名, self.密码, self.手机号码, 今天时间,
+                                                       self.cookie)  # 不换行 end=""
+
+        try:
+            # 执行sql语句
+            cursor.execute(sql)
+            # 提交到数据库执行
+            db.commit()
+            print('=保存数据库一知乎用户密码')
+        except:
+            # 如果发生错误则回滚
+            print('=====================数据库执行发生错误:===============')
+            db.rollback()
+        # 关闭数据库连接
+        db.close()
 
 
 
