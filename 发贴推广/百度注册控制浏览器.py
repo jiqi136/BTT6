@@ -14,6 +14,7 @@ from selenium import webdriver  # 浏览的驱动
 from selenium.webdriver.support import expected_conditions as EC #=判断网页文本
 
 from 推广公共库 import 类一一公共库# 导入模块
+from 百度号注册 import 类一一百度号注册# 导入模块
 
 """
 
@@ -22,21 +23,18 @@ from 推广公共库 import 类一一公共库# 导入模块
 
 
             
-class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
+class 类一一百度号控制浏览器注册(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
     def __init__(self,帐号类型):
         self.帐号类型 = 帐号类型
 
-        self.模具一一高位换头部信息()
+
         self.首次 = 0
 
         self.手机号码验证数 = 0
         self.临时图片目录 = r"F:\影视发帖推广\临时图片"
         self.旧目录路径 = r"F:\影视发帖推广\贴吧顶贴\头像\百度主号上传小头像"
 
-        #self.模具一一换ip连接二()
 
-
-        print(' 注册界面 页面 ,颜色检测通过')
         # ===
 
         self.模具一一提取影视剧数据库里的易码短信平台账户信息()
@@ -56,14 +54,17 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
 
         百度号注册网址 = 'https://passport.baidu.com/v2/?reg&tt=1537956495492&overseas=undefined&gid=8515458-8F51-407D-AEBC-A53A793AC038&tpl=mn&u=https%3A%2F%2Fwww.baidu.com%2F'
 
-
-
+        # ====控制
+        self.Chrome控制 = webdriver.ChromeOptions()  # 设置控制
+        # options = Options()
+        self.Chrome控制.add_argument('disable-infobars')  # 加启动配置 去除正在受到自动软件的控制
 
         计数器 = 0
         for 字符 in self.内容:
             for 影视类型 in self.电影美剧表:
                 随机 = random.randrange(0, len(self.内容))
                 字符 = self.内容[随机]
+                self.跳过循环=''
 
                 self.百度发贴名 = 字符 + 影视类型
                 self.跳过循环 = ''
@@ -80,23 +81,57 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
                     条件循环 = 998
                 开始时间计数 = int(time.time())
 
+                self.模具一一高位换头部信息()
+                self.模具一一换ip连接()
+
                 self.模具一一打开百度首页()
 
-                self.模具一一输入自动化百度用户名()
+
 
 
 
                 self.模具一一判断手机号码已注册()
-                等待用户输入 = input("\n按下 enter 确认键后继续")
-                if '跳过循环' not in self.跳过循环:
+
+                if '跳过循环' in str(self.跳过循环):
+
+                    self.模具一一正常60秒后换IP时间数()
+                    self.浏览器操作.quit()  # .退出浏览器
+
+                    continue  # 跳过循环
+                self.模具一一百度注册浏览器激活窗口()
+                self.模具一一输入短信内容()
+                if '跳过循环' in str(self.跳过循环):
+
+                    self.模具一一正常60秒后换IP时间数()
+                    self.浏览器操作.quit()  # .退出浏览器
+                    continue  # 跳过循环
+
+                self.模具一一输入自动化百度用户名()
+
+                if '跳过循环' not in str(self.跳过循环):
                     self.模具一一输入密码()
+                    self.模具一一确认注册()
 
-                    self.模具一一输入短信内容()
+                    self.模具一一确认成功注册()
 
-                if '跳过循环' not in self.跳过循环:
+                    self.模具一一控制浏览器提取cookie()
+
+
+                    self.模具一一保存数据库一百度发贴帐号等()
+
+                    self.模具一一正常60秒后换IP时间数()
+                    self.浏览器操作.quit()  # .退出浏览器
+
+
+                    continue  # 跳过循环
+
+
+
+                if '跳过循环' not in str(self.跳过循环):
                     self.模具一一确认注册()
 
                     self.模具一一提取登录界面的cookie()
+
                     self.模具一一保存数据库一百度发贴帐号等()
 
                     self.模具一一百度上传图片头像()
@@ -106,7 +141,7 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
                 # ===
 
                 self.模具一一换ip连接二()
-                self.模具一一图像对比激活窗口()
+                self.模具一一百度注册浏览器激活窗口()
 
                 结束时间计数 = int(time.time())
                 用时 = 结束时间计数 - 开始时间计数
@@ -115,18 +150,62 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
 
                 # pyautogui.alert('确认后继续')
                 time.sleep(5)  # 等待  # 增加延迟
+                self.模具一一正常60秒后换IP时间数()
 
-                正常60秒后换IP时间数 = self.换IP时间计数 + 65
-                当下时间数 = int(time.time())
-                if 当下时间数 < 正常60秒后换IP时间数:
-                    print('等待:', 正常60秒后换IP时间数 - 当下时间数, '秒')
-                    time.sleep(正常60秒后换IP时间数 - 当下时间数)  # 等待  # 增加延迟
+    def 模具一一确认成功注册(self):
+        # 等待10秒
+
+
+        for i in '123':
+
+            try:  # 调用异常处理,应对易发生错误的位置
+                self.浏览器操作.implicitly_wait(10)  # 隐式等待
+                self.浏览器操作.find_element_by_xpath(
+                    '//*[@id="kw"]').click()  # 点击  百度 搜索 输入框
+
+            except:  # 异常处理
+                self.浏览器操作.refresh()  # 刷新当前页面
+                time.sleep(3)  # 等待  # 增加延迟
+
+            else:  # 必须放在所有的except子句之后.这个子句将在try子句没有发生任何异常的时候执行.
+                time.sleep(1)  # 等待  # 增加延迟
+                break  # 结束循环
+
+
+
+        time.sleep(2)  # 等待  # 增加延迟
+
+    def 模具一一控制浏览器提取cookie(self):
+        cookie= self.浏览器操作.get_cookies()
+
+        self.cookie = str(cookie).replace("'", '"')
+        print(self.cookie)
+
+
+
+    def 模具一一确认注册(self):
+        self.浏览器操作.find_element_by_xpath(
+            '//*[@id="TANGRAM__PSP_3__isAgree"]').click()  # 点击  同意协议 按钮
+        time.sleep(1)  # 等待  # 增加延迟
+        
+
+        self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__submit"]').click() # 点击  注册 按钮
+        time.sleep(1)  # 等待  # 增加延迟
+
+    def 模具一一输入密码(self):
+        # ======密码=======
+
+
+        密码数字 = random.randrange(100000, 1000000)
+        self.密码 = "qq{}Q%".format(密码数字)
+        print('密码:', self.密码)
+
+        self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__password"]').send_keys(
+            self.密码)  # 输入.send_keys("python3")  请空输入框:clear()
+        time.sleep(1)  # 等待  # 增加延迟
 
     def 模具一一输入自动化百度用户名(self):
         # ===定位 用户名 输入框
-
-        self.浏览器操作.refresh()  # 刷新当前页面
-        time.sleep(3)  # 等待  # 增加延迟
 
         if '顶贴号' in self.帐号类型:  # break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
             self.随机取名 = self.模具一一随机取女名()
@@ -135,8 +214,99 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
 
         self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__userName"]').send_keys(
             self.随机取名)  # 输入.send_keys("python3")  请空输入框:clear()
+
+        print('百度发贴名:',self.随机取名)
         time.sleep(1)  # 等待  # 增加延迟
 
+    def 模具一一获取百度短信(self):
+
+
+        获取短信网址 = "http://api.fxhyd.cn/UserInterface.aspx?action=getsms&token={}&itemid={}&mobile={}".format(
+            self.通信令牌token,
+            self.项目编号, self.手机号码)
+        """&release=1  自动释放号码标识符 若该参数值为1时,获取到短信的同时系统将自己释放该手机号码.若要继续使用该号码,请勿带入该参数."""
+
+        条件循环 = 0
+        while 条件循环 < 3:  # 条件循环  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
+            self.短信内容 = ''
+
+            for i in '123456':
+                print('等待 15秒:')
+                time.sleep(14)  # 等待
+                网址内容 = self.模具一一打开的网址请求返回网页内容(获取短信网址)
+                if 'success' in 网址内容.text:  # break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
+                    self.短信内容 = 网址内容.text.replace("success|", "")  # 替换   , 1) 次数 1
+                    print('短信内容:', self.短信内容)
+                    条件循环 = 998
+
+                    return  # 返回
+                elif '3001' in 网址内容.text:  # 其它条件.
+                    print('短信尚未到达:3001,应继续调用取短信接口,直到超时为止.')
+
+                else:  # 否则
+                    print('请求失败:', 网址内容.text)
+            条件循环 = 条件循环 + 1
+            if 条件循环 ==3:
+                continue  # 跳过当前循环,继续进行下一轮循环
+            self.模具一一百度注册浏览器激活窗口()
+
+            self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__verifyCodeSend"]').click()  # 点击 .click() 短信验证码
+            self.模具一一开关提醒声()
+
+            time.sleep(20)  # 等待  # 增加延迟
+
+
+        释放手机号码接口 = "http://api.fxhyd.cn/UserInterface.aspx?action=release&token={}&itemid={}&mobile={}".format(
+            self.通信令牌token, self.项目编号, self.手机号码)
+        释放手机号码网址内容 = self.模具一一打开的网址请求返回网页内容(释放手机号码接口)
+
+        self.跳过循环='跳过循环'
+
+    def 模具一一百度注册浏览器激活窗口(self):
+
+        pag.hotkey('winleft', 'd')  # press()一次完整的击键.hotkey('ctrl','c') 全选 图片
+        time.sleep(0.5)  # 等待  # 增加延迟
+
+        类名 = ''
+        窗口标题 = "注册百度帐号 - Google Chrome"
+
+        if len(类名) == 0:
+            窗口句柄 = win32gui.FindWindow(None, 窗口标题)
+        else:  #
+            窗口句柄 = win32gui.FindWindow(类名, None)
+        
+        窗口标题 = win32gui.GetWindowText(窗口句柄)
+       
+        print('窗口标题', 窗口标题)
+        
+      
+
+        win32gui.ShowWindow(窗口句柄, 11)  # 即使拥有窗口的线程被挂起也会最小化.在从其他线程最小化窗口时才使用这个参数
+        time.sleep(0.5)  # 等待  # 增加延迟
+        win32gui.ShowWindow(窗口句柄, 1)  # 激活并显示一个窗口.如果窗口被最小化或最大化,系统将其恢复到原来的尺寸和大小.
+        time.sleep(2)  # 等待  # 增加延迟
+
+
+
+
+    def 模具一一输入短信内容(self):
+        #self.模具一一点击获取手机验证码()
+        self.模具一一开关提醒声()
+        time.sleep(20)  # 等待  # 增加延迟
+
+
+        self.模具一一获取百度短信()
+        self.模具一一百度注册浏览器激活窗口()
+
+        if len(self.短信内容) == 0 or '跳过循环' in str(self.跳过循环):
+            return  # 返回
+
+        规则 = '\d{6}'
+        内容列表 = re.findall(规则, self.短信内容)  # 提取
+        self.短信内容 = 内容列表[0]
+
+        self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__verifyCode"]').send_keys(self.短信内容)  # 输入.send_keys("python3")  请空输入框:clear()  .click() 短信内容 输入框
+        time.sleep(1)  # 等待  # 增加延迟
 
 
     def 模具一一重复验证手机号(self):
@@ -186,32 +356,32 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
 
             头部信息 = "user-agent=" + self.头部信息['User-Agent']
             print('头部信息:', 头部信息)
-            Chrome控制.add_argument(头部信息)
+            self.Chrome控制.add_argument(头部信息)
+        for i in '123':
+            try:  # 调用异常处理,应对易发生错误的位置
+                换头部信息()
+
+                # ====self.浏览器操作
+
+                # 点击.click() 或  输入.send_keys("python3")  请空输入框:clear()
+                self.浏览器操作 = webdriver.Chrome(chrome_options=self.Chrome控制)  # 打开chrome浏览器
+                self.浏览器操作.set_window_size(500, 500)# driver.maximize_window() 浏览器全屏显示,不带参数
+                time.sleep(1)  # 等待  # 增加延迟
 
 
-        # ====控制
-        Chrome控制= webdriver.ChromeOptions()  # 设置控制
-        # options = Options()
-        Chrome控制.add_argument('disable-infobars')  # 加启动配置 去除正在受到自动软件的控制
-        换头部信息()
+                pag.hotkey('altleft', 'tab')  # press()一次完整的击键.hotkey('ctrl','c') 全选 图片
+                time.sleep(2)  # 等待  # 增加延迟
+                #self.模具一一自身最小化()
 
 
+                url = "https://passport.baidu.com/v2/?reg&tt=1537956495492&overseas=undefined&gid=8515458-8F51-407D-AEBC-A53A793AC038&tpl=mn&u=https%3A%2F%2Fwww.baidu.com%2F"  # 注册页面  https://www.zhihu.com/signup?next=%2Fexplore
+                self.浏览器操作.get(url)
+            except:  # 异常处理
+                pass
 
-
-        # ====self.浏览器操作
-        # 点击.click() 或  输入.send_keys("python3")  请空输入框:clear()
-        self.浏览器操作 = webdriver.Chrome(chrome_options=Chrome控制)  # 打开chrome浏览器
-        self.浏览器操作.set_window_size(500, 500)# driver.maximize_window() 浏览器全屏显示,不带参数
-        time.sleep(1)  # 等待  # 增加延迟
-
-
-        pag.hotkey('altleft', 'tab')  # press()一次完整的击键.hotkey('ctrl','c') 全选 图片
-        time.sleep(2)  # 等待  # 增加延迟
-        #self.模具一一自身最小化()
-
-
-        url = "https://passport.baidu.com/v2/?reg&tt=1537956495492&overseas=undefined&gid=8515458-8F51-407D-AEBC-A53A793AC038&tpl=mn&u=https%3A%2F%2Fwww.baidu.com%2F"  # 注册页面  https://www.zhihu.com/signup?next=%2Fexplore
-        self.浏览器操作.get(url)
+            else:  # 必须放在所有的except子句之后.这个子句将在try子句没有发生任何异常的时候执行.
+                time.sleep(1)  # 等待  # 增加延迟
+                break  # 结束循环
 
     def 模具一一自身最小化(self):
         标题 = "注册百度帐号 - Google Chrome"
@@ -278,19 +448,21 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
                 # ===判断手机号码已注册提醒窗口
 
                 定位 = ("id", 'TANGRAM__PSP_17__titleText')
-                判断文本 = r"提醒"
+                判断文本 = r"安全验证"
 
                 try:  # 调用异常处理,应对易发生错误的位置
                     手机号码已注册True = EC.text_to_be_present_in_element(定位, 判断文本)(self.浏览器操作)
-                    print('手机号码已注册', 手机号码已注册True)
+
                 except:  # 异常处理 (,)as 异常原因
                     return  # 返回
                     # print(异常原因 )
                 else:  # 必须放在所有的except子句之后.这个子句将在try子句没有发生任何异常的时候执行.
                     if 手机号码已注册True == True:
+                        print('手机号码未曾注册')
+                    else:  # 否则
                         self.模具一一百度项目拉黑手机号码()
                         time.sleep(1)  # 等待  # 增加延迟
-                        跳过当前循环 = '跳过当前循环'
+                        跳过当前循环 = '跳过循环'
 
                         return 跳过当前循环  # 返回
 
@@ -312,7 +484,7 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
 
                         time.sleep(2)  # 等待  # 增加延迟
 
-                        跳过当前循环 = '跳过当前循环'
+                        跳过当前循环 = '跳过循环'
                         return 跳过当前循环  # 返回
 
             def 发送短信过多():
@@ -358,7 +530,7 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
 
             # ===========================判断网页文本
             跳过当前循环 = 判断手机号码已注册提醒窗口()
-            if '跳过当前循环' in str(跳过当前循环):
+            if '跳过循环' in str(跳过当前循环):
                 continue  # 跳过循环
 
             self.模具一一追加保存手机号码到文本()
@@ -369,7 +541,7 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
 
     def 模具一一判断手机号码已注册(self):
 
-        for i in '12345':
+        for i in '1':
 
 
             def 判断手机号码已注册提醒窗口():
@@ -381,16 +553,17 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
                 
                 try:  #调用异常处理,应对易发生错误的位置
                     手机号码已注册True = EC.text_to_be_present_in_element(定位,判断文本)(self.浏览器操作)
-                    print('手机号码已注册', 手机号码已注册True)
+
                 except  :#异常处理 (,)as 异常原因
                     self.模具一一百度项目拉黑手机号码()
-                    跳过当前循环 = '跳过当前循环'
+                    跳过当前循环 = '跳过循环'
                     return 跳过当前循环  # 返回
 
 
                     #print(异常原因 )
                 else:#必须放在所有的except子句之后.这个子句将在try子句没有发生任何异常的时候执行.
                     if 手机号码已注册True == True:
+                        print('手机号码未曾注册')
 
                         time.sleep(1)  # 等待  # 增加延迟
                         return  # 返回
@@ -398,7 +571,8 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
 
                     else:  #
                         self.模具一一百度项目拉黑手机号码()
-                        跳过当前循环 = '跳过当前循环'
+                        print('手机号码已经注册')
+                        跳过当前循环 = '跳过循环'
                         return 跳过当前循环  # 返回
 
 
@@ -422,7 +596,7 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
                         self.浏览器操作.refresh()  # 刷新当前页面
                         time.sleep(2)  # 等待  # 增加延迟
 
-                        跳过当前循环 = '跳过当前循环'
+                        跳过当前循环 = '跳过循环'
                         return 跳过当前循环  # 返回
 
             def 发送短信过多():
@@ -445,26 +619,40 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
                         return 跳过当前循环  # 返回
 
             self.模具一一获取百度接收的手机号码()
-            self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__phone"]').send_keys(self.手机号码)  # 输入.send_keys("python3")  请空输入框:clear()
-            time.sleep(1)  # 等待  # 增加延迟
-            self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__verifyCodeSend"]').click()  # 点击 .click() 密码框
-            time.sleep(3)  # 等待  # 增加延迟
+
+            for i in '123':
+            
+                try:  #调用异常处理,应对易发生错误的位置
+                    self.浏览器操作.implicitly_wait(5)  # 隐式等待
+                    self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__phone"]').send_keys(
+                        self.手机号码)  # 输入.send_keys("python3")  请空输入框:clear()
+                    time.sleep(1)  # 等待  # 增加延迟
+
+                    self.浏览器操作.find_element_by_xpath(
+                        '//*[@id="TANGRAM__PSP_3__verifyCodeSend"]').click()  # 点击 .click() 短信验证码
+                    time.sleep(3)  # 等待  # 增加延迟
+
+
+                except :#异常处理
+                    self.浏览器操作.refresh()  # 刷新当前页面
+                    time.sleep(3)  # 等待  # 增加延迟
+
+                else:#必须放在所有的except子句之后.这个子句将在try子句没有发生任何异常的时候执行.
+                    time.sleep(1)  # 等待  # 增加延迟
+                    break # 结束循环
 
             # ===========================判断网页文本
-            跳过当前循环 =判断手机号码已注册提醒窗口()
-            if '跳过当前循环' in str(跳过当前循环):
+            self.跳过循环 =判断手机号码已注册提醒窗口()
+            if '跳过循环' in str(self.跳过循环):
+                self.浏览器操作.refresh()  # 刷新当前页面
+
+                #time.sleep(2)  # 等待  # 增加延迟
                 continue#跳过循环
 
-            跳过当前循环 = 判断手机号码本月上限()
-            if '跳过当前循环' in str(跳过当前循环):
-                continue  # 跳过循环
+            return  # 返回
 
-            跳过当前循环 = 发送短信过多()
-            if '结束循环' in str(跳过当前循环):
-                break # 结束循环
-
-            self.模具一一追加保存手机号码到文本()
-            time.sleep(2)  # 等待  # 增加延迟
+                #self.模具一一追加保存手机号码到文本()
+                #time.sleep(2)  # 等待  # 增加延迟
 
     """=========数据库======================="""
 
@@ -488,6 +676,7 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
 
     def 模具一一保存数据库一百度发贴帐号等(self):
         print('打开数据库连接')
+        记录='已经注册'
         # 打开数据库连接,
         今天时间 = str(time.strftime("%y-%m-%d", time.localtime()))
 
@@ -496,16 +685,16 @@ class 类一一百度号注册(类一一公共库):  # 调用 类的模具 self.
         cursor = db.cursor()
         # SQL 插入语句
 
-        sql = """INSERT INTO `推广帐号`( `类型`, `帐号`, `密码`, `注册手机号`, `注册日期`, `cookie`) VALUES
-             ("{}","{}","{}","{}",'{}','{}')""".format(self.帐号类型, self.随机取名, self.密码, self.手机号码, 今天时间,
-                                                       self.cookie)  # 不换行 end=""
+        sql = """INSERT INTO `推广帐号`( `类型`, `帐号`, `密码`, `注册手机号`, `注册日期`, `cookie`,`记录`) VALUES
+             ("{}","{}","{}","{}",'{}','{}','{}')""".format(self.帐号类型, self.随机取名, self.密码, self.手机号码, 今天时间,
+                                                       self.cookie,记录)  # 不换行 end=""
 
         try:
             # 执行sql语句
             cursor.execute(sql)
             # 提交到数据库执行
             db.commit()
-            print('=保存数据库一知乎用户密码')
+            print('=保存数据库一百度发贴帐号')
         except:
             # 如果发生错误则回滚
             print('=====================数据库执行发生错误:===============')
@@ -522,4 +711,4 @@ if __name__ == '__main__':
     帐号类型 = '百度顶贴'
     帐号类型 = '百度发贴'
 
-    类 = 类一一百度号注册(帐号类型)
+    类 = 类一一百度号控制浏览器注册(帐号类型)

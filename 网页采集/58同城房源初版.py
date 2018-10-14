@@ -15,6 +15,8 @@ import xlwt #写入Excel文件
 
 import win32api  # 操作本地文件
 
+import asyncio, aiohttp # 异步浏览
+
 
 
 """
@@ -172,9 +174,9 @@ class 类一一公共库: #调用 类的模具 self.模具一一数据库()
 
 
 
-    """============异步打开网页================"""
+    """============gr无序网址列表================"""
 
-    def 模具一一gr无序网址列表请求返回网页内容(self, 网址列表,分流数=100):  # grequests.imap(任务列
+    def 模具一一gr无序网址列表请求返回网页内容(self, 网址列表,分流数=100,并发数=5):  # grequests.imap(任务列
 
 
 
@@ -182,12 +184,11 @@ class 类一一公共库: #调用 类的模具 self.模具一一数据库()
         初始网址列表数=len(网址列表)
 
         条件循环 = 1
-        次数循环 = 0
+
         返回网页一链接组列表=[]
 
-        有效返回网页内容集 = []
         while 条件循环 == 1:
-            time.sleep(2) # 等待
+
             此时数 = int(time.time())
             if 此时数 > self.换IP时间计数 +60:
                 self.模具一一高位换头部信息()
@@ -211,51 +212,158 @@ class 类一一公共库: #调用 类的模具 self.模具一一数据库()
                 任务列表.append(任务)
 
             try:  # 调用异常处理,应对易发生错误的位置
-                返回网页内容集 = grequests.imap(任务列表, size=5)  # size=3 并发数 3  gtimeout超时时间
+                返回网页内容集 = grequests.imap(任务列表, size=并发数)  # size=3 并发数 3  gtimeout超时时间
             except (requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout,
                     requests.exceptions.ConnectionError, requests.exceptions.ConnectTimeout,
                     requests.exceptions.ChunkedEncodingError, requests.exceptions.InvalidSchema) as 异常:
 
-                print('倒数6秒再连接', 次数循环, '次')
+                print('gr无序异常，倒数6秒再连接',异常)
+                #网址列表.append(返回网页内容.url)
+
                 time.sleep(3)
             else:
-                计数器=0
+
                 for 返回网页内容 in 返回网页内容集:
                     网页内容文本 = str(返回网页内容)
 
                     if '<Response [200]>' in 网页内容文本 and "访问过于频繁" not in 返回网页内容.text:
                         # print('返回网页内容', 返回网页内容)
-                        有效返回网页内容集.append(返回网页内容)
+
+                        返回网页内容.encoding = "UTF-8"
+
+                        返回网页一链接组 = []
+                        返回网页一链接组.append(返回网页内容)
+                        返回网页一链接组.append(返回网页内容.url)
+                        返回网页一链接组列表.append(返回网页一链接组)
+
                         print('成功采集网页：', 返回网页内容.url)
-                        #返回网页内容.url= 返回网页内容.url.strip('/')  # 默认则是去除空格
 
-
-                        # 网址列表.remove(返回网页内容.url)  # 删除指定元素
-
-                        计数器 = 计数器 + 1
                     else:  #否则
                         网址列表.append(返回网页内容.url)
 
 
                 此时数 = int(time.time())
                 if len(网址列表)==0 :
+                    print('网页采集,全部完成')
 
                     条件循环 = 998
                 elif 此时数 > self.换IP时间计数 + 初始网址列表数*3:
-
+                    print('网页未完成采集数:',初始网址列表数-len(返回网页一链接组列表))
 
                     条件循环 = 998
 
-        for 返回网页内容 in 有效返回网页内容集:
-            返回网页内容.encoding = "UTF-8"
-
-            返回网页一链接组 = []
-            返回网页一链接组.append(返回网页内容)
-            返回网页一链接组.append(返回网页内容.url)
-            返回网页一链接组列表.append(返回网页一链接组)
+                time.sleep(2)  # 等待
 
 
         return 返回网页一链接组列表#返回
+
+    """============异步打开网页================"""
+
+    def 模具一一异步调度(self, 网址列表, 分流数=100, 并发数=5, 内容格式='text'):
+        self.返回网页一链接组列表 = []
+        self.重新无序单网址列表 = []
+        self.并发数 = 并发数
+
+        self.网址列表 = 网址列表
+        初始网址列表数 = len(self.网址列表)
+        print('分流数',分流数)
+        print('并发数', 并发数)
+
+        事件循环 = asyncio.get_event_loop()
+        条件循环 = 1
+        次数循环 = 0
+        返回网页一链接组列表 = []
+
+        有效返回网页内容集 = []
+        while 条件循环 == 1:
+            self.此时数 = int(time.time())
+            if self.此时数 > self.换IP时间计数 + 60:
+                self.模具一一换ip连接()
+                self.模具一一换头部信息()
+            任务列表 = []
+            网址分列表 = []
+            for 各帖子链接 in self.网址列表[0:分流数]:
+                网址分列表.append(各帖子链接)
+
+            if len(self.网址列表) > 分流数 - 1:  # break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
+                self.网址列表 = self.网址列表[分流数:]
+            else:  # 否则
+                self.网址列表 = []
+
+            任务列表 = []
+            for 各帖子链接 in 网址分列表:
+                if 'text' in 内容格式:
+                    任务 = asyncio.ensure_future(self.模具一一异步打开网页(各帖子链接))  #
+
+                else:  # 否则
+                    任务 = asyncio.ensure_future(self.模具一一下载异步打开网页(各帖子链接, 内容格式))  #
+                任务列表.append(任务)
+            results = 事件循环.run_until_complete(asyncio.wait(任务列表))  # 等待任务完成
+            # 事件循环.close()
+
+            此时数 = int(time.time())
+            if len(self.网址列表) == 0:
+                print('网页采集,全部完成')
+                条件循环 = 998
+                return self.返回网页一链接组列表  # 返回
+
+            elif 此时数 > self.换IP时间计数 + 初始网址列表数 * 3:
+                print('网页未完成采集数:', 初始网址列表数 - len(self.返回网页一链接组列表))
+
+                条件循环 = 998
+                return self.返回网页一链接组列表  # 返回
+
+            time.sleep(2)  # 等待
+
+    async def 模具一一异步打开网页备(self, url):
+
+        # conn = aiohttp.TCPConnector(limit=10)  # limit 并发 默认100,0表示无限
+        async with aiohttp.ClientSession(headers=self.头部信息, connector=aiohttp.TCPConnector(limit=self.并发数)) as 会话:
+
+            try:  # 调用异常处理,应对易发生错误的位置
+                async with 会话.request("GET", url) as 内容:  # "GET" 是个重要的请求方法
+                    返回网页 = await 内容.内容格式(
+                        encoding="utf-8")  # 或者直接await r.read()不encoding='UTF-8',直接读取,适合于图像等无法encoding='UTF-8'文件
+
+            except (AttributeError) as 异常:  # (AttributeError) as 异常
+                # print('网络异常等待', 异常)
+                print(异常,'异步连接异常，倒数6秒再连接', '次')
+                # time.sleep(3)
+            else:
+                if '[200 OK]' in str(内容):
+                    返回网页一链接组 = []
+                    返回网页一链接组.append(返回网页)
+                    返回网页一链接组.append(url)
+                    self.返回网页一链接组列表.append(返回网页一链接组)
+
+                else:  # 否则
+                    self.网址列表.append(url)
+
+    async def 模具一一异步打开网页(self, url):
+
+        # conn = aiohttp.TCPConnector(limit=10)  # limit 并发 默认100,0表示无限
+        async with aiohttp.ClientSession(headers=self.头部信息, connector=aiohttp.TCPConnector(limit=self.并发数)) as 会话:
+
+
+            try:  # 调用异常处理,应对易发生错误的位置
+                async with 会话.request("GET", url) as 内容:  # "GET" 是个重要的请求方法
+                    返回网页 = await 内容.text(
+                        encoding="utf-8")  # 或者直接await r.read()不encoding='UTF-8',直接读取,适合于图像等无法encoding='UTF-8'文件
+
+            except (AttributeError) as 异常:  # (AttributeError) as 异常
+                # print('网络异常等待', 异常)
+                print(异常,'异步连接异常，倒数6秒再连接', '次')
+                # time.sleep(3)
+            else:
+                if '[200 OK]' in str(内容):
+                    返回网页一链接组 = []
+                    返回网页一链接组.append(返回网页)
+                    返回网页一链接组.append(url)
+                    self.返回网页一链接组列表.append(返回网页一链接组)
+                    print('成功采集网页：', url)
+
+                else:  # 否则
+                    self.网址列表.append(url)
 
 
 
@@ -278,7 +386,7 @@ class 类一一58同城房源(类一一公共库): #调用 类的模具 self.模
 
     def 模具一一列表页面(self):
         页数网址列表 =[]
-        for 页数 in range(1,4):
+        for 页数 in range(1,2):
             页数网址='https://nj.58.com/ershoufang/0/pn{}'.format(str(页数))#'代入 '{}'
             页数网址列表.append(页数网址)
 
@@ -293,6 +401,7 @@ class 类一一58同城房源(类一一公共库): #调用 类的模具 self.模
 
             帖子内容html = etree.HTML(返回网页内容.text)  #
 
+
             # ========页面链接
             规则 = '/html/body/div[5]/div[5]/div[1]/ul/li[*]/div[2]/h2/a/@href'
             页面链接列表 = 帖子内容html.xpath(规则)
@@ -304,21 +413,9 @@ class 类一一58同城房源(类一一公共库): #调用 类的模具 self.模
         页面链接总列表=list(set(页面链接总列表))
         print('待采集页面数：', len(页面链接总列表))
 
-        self.页面详情各项内容组列表=self.模具一一gr无序网址列表请求返回网页内容(页面链接总列表,3)  # 返回 self.返回网页一链接组列表
-
-    def 模具一一提取文本清洗(self,文本列表):
-        
-        try:  #调用异常处理,应对易发生错误的位置
-            文本 = 文本列表[0]
-        except (IndexError) as 异常原因 :#异常处理
-            文本 = str(文本列表)
+        self.页面详情各项内容组列表=self.模具一一异步调度(页面链接总列表,分流数=3,并发数=3)  # 返回 self.返回网页一链接组列表 分流数=100, 并发数=5, 内容格式='text'
 
 
-
-        文本 = 文本.replace("\n", "") #替换   , 1) 次数 1
-        文本 = 文本.replace("[]", "")  # 替换   , 1) 次数 1
-        文本 = 文本.strip()  # 默认则是去除空格
-        return 文本#返回
 
 
 
@@ -330,7 +427,8 @@ class 类一一58同城房源(类一一公共库): #调用 类的模具 self.模
             self.行计数 = self.行计数+1
             返回网页内容=返回网页一链接组[0]
             self.采集网址 = 返回网页一链接组[1]
-            帖子内容html = etree.HTML(返回网页内容.text)  #
+            #帖子内容html = etree.HTML(返回网页内容.text)  #
+            帖子内容html = etree.HTML(返回网页内容)
 
 
             #=========提取页面详情
@@ -405,7 +503,7 @@ class 类一一58同城房源(类一一公共库): #调用 类的模具 self.模
             print('房本面积一m:', self.房本面积一m)
 
             # ========产权年限
-            规则 = '/html/body/div[4]/div[1]/h1/text()'
+            规则 = '//*[@id="generalSituation"]/div/ul[2]/li[3]/span[2]/text()'
             self.产权年限 = 帖子内容html.xpath(规则)
             self.产权年限 = self.模具一一提取文本清洗(self.产权年限)
             print('产权年限:', self.产权年限)
@@ -464,6 +562,19 @@ class 类一一58同城房源(类一一公共库): #调用 类的模具 self.模
         self.模具一一保存Excel文件()
 
 
+
+    """===========文本================"""
+    def 模具一一提取文本清洗(self, 文本列表):
+
+        try:  # 调用异常处理,应对易发生错误的位置
+            文本 = 文本列表[0]
+        except (IndexError) as 异常原因:  # 异常处理
+            文本 = str(文本列表)
+
+        文本 = 文本.replace("\n", "")  # 替换   , 1) 次数 1
+        文本 = 文本.replace("[]", "")  # 替换   , 1) 次数 1
+        文本 = 文本.strip()  # 默认则是去除空格
+        return 文本  # 返回
     def 模具一一写入Excel文件字段名(self):
 
         # 创建 xls 文件对象  设置encoding='UTF-8'

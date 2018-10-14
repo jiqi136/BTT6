@@ -1416,6 +1416,8 @@ class 类一一自动化操作浏览器():  # 调用 类的模具 self.模具一
 
         pyautogui.alert('完成')  # 弹窗 提示
 
+        self.浏览器操作.quit()  # .退出浏览器
+
 
 
 class 类一一MySQL数据库():  # 调用 类的模具 self.模具一一数据库()

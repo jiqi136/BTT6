@@ -1,4 +1,3 @@
-
 # -*- coding:utf-8
 import grequests  # 并发协程
 import requests  # 网页浏览
@@ -11,17 +10,17 @@ import random  # 随机
 from lxml import etree  # 网页分析
 import shutil  # 移动复制文件目录
 from lxml import html  # 网页分析
-import xlwt #写入Excel文件
+import xlwt  # 写入Excel文件
 
 import win32api  # 操作本地文件
 
-
-
 """
 
 
 """
-class 类一一公共库: #调用 类的模具 self.模具一一数据库()
+
+
+class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
     def __init__(self):
 
         pass
@@ -129,11 +128,9 @@ class 类一一公共库: #调用 类的模具 self.模具一一数据库()
         头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机11位数", 随机11位数)  # 替换   , 1) 次数 1
         头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机2位数", 随机2位数)  # 替换   , 1) 次数 1
         头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机3位数", 随机3位数)  # 替换   , 1) 次数 1
-        self.头部信息=头部信息
-        print(头部信息)
+        self.头部信息 = 头部信息
 
-
-
+        print('更换浏览器信息', self.头部信息['User-Agent'])
 
     def 模具一一换ip连接(self):
         # coding:gbk
@@ -164,88 +161,73 @@ class 类一一公共库: #调用 类的模具 self.模具一一数据库()
 
                     break  # 结束循环
                 else:
-                    print('网站网络异常,状态码:', 返回网页内容)
+
                     print('等待60秒')
 
                     time.sleep(60)
 
-
-
     """============异步打开网页================"""
 
-    def 模具一一gr无序网址列表请求返回网页内容(self, 网址列表,分流数=100):  # grequests.imap(任务列
+    def 模具一一gr无序网址列表请求返回网页内容(self, 网址列表, 分流数=100):  # grequests.imap(任务列
 
-
-        开始时间计数 = int(time.time())
-
-        初始网址列表数=len(网址列表)
-        print('gr无序网址列表请求返回网页内容数',初始网址列表数)
+        初始网址列表数 = len(网址列表)
 
         条件循环 = 1
         次数循环 = 0
-        返回网页一链接组列表=[]
+        返回网页一链接组列表 = []
 
         有效返回网页内容集 = []
         while 条件循环 == 1:
-            time.sleep(0.5) # 等待
+            time.sleep(2)  # 等待
             此时数 = int(time.time())
-            if 此时数 > self.换IP时间计数 +60:
+            if 此时数 > self.换IP时间计数 + 60:
                 self.模具一一高位换头部信息()
-                self.模具一一换ip连接()
-            网址列表数=len(网址列表)
+                # self.模具一一换ip连接()
+            网址列表数 = len(网址列表)
             任务列表 = []
-            网址分列表= []
+            网址分列表 = []
             for 各帖子链接 in 网址列表[0:分流数]:
                 网址分列表.append(各帖子链接)
 
-
-            if len(网址列表) > 分流数-1:  # break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
-                网址列表=网址列表[分流数:]
+            if len(网址列表) > 分流数 - 1:  # break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
+                网址列表 = 网址列表[分流数:]
             else:  # 否则
-                网址列表=[]
-
+                网址列表 = []
 
             for 各帖子链接 in 网址分列表:
-
                 任务 = grequests.get(各帖子链接, headers=self.头部信息)  # timeout=len(任务列表)//2,
                 任务列表.append(任务)
 
             try:  # 调用异常处理,应对易发生错误的位置
-                返回网页内容集 = grequests.imap(任务列表, size=5)  # size=3 并发数 3  gtimeout超时时间
+                返回网页内容集 = grequests.imap(任务列表, size=3)  # size=3 并发数 3  gtimeout超时时间
             except (requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout,
                     requests.exceptions.ConnectionError, requests.exceptions.ConnectTimeout,
                     requests.exceptions.ChunkedEncodingError, requests.exceptions.InvalidSchema) as 异常:
-                print('网络异常等待', 异常)
+
                 print('倒数6秒再连接', 次数循环, '次')
                 time.sleep(3)
             else:
-                计数器=0
+                计数器 = 0
                 for 返回网页内容 in 返回网页内容集:
                     网页内容文本 = str(返回网页内容)
 
-                    if '<Response [200]>' in 网页内容文本 :
+                    if '<Response [200]>' in 网页内容文本 and "访问过于频繁" not in 返回网页内容.text:
                         # print('返回网页内容', 返回网页内容)
                         有效返回网页内容集.append(返回网页内容)
-
-                        #返回网页内容.url= 返回网页内容.url.strip('/')  # 默认则是去除空格
-                        print('完成网址', 返回网页内容.url)
+                        print('成功采集网页：', 返回网页内容.url)
+                        # 返回网页内容.url= 返回网页内容.url.strip('/')  # 默认则是去除空格
 
                         # 网址列表.remove(返回网页内容.url)  # 删除指定元素
 
                         计数器 = 计数器 + 1
-                    else:  #否则
+                    else:  # 否则
                         网址列表.append(返回网页内容.url)
 
-
                 此时数 = int(time.time())
-                if len(网址列表)==0 :
-                    print('网址列表数,全部完成:')
+                if len(网址列表) == 0:
 
                     条件循环 = 998
-                elif 此时数 > self.换IP时间计数 + 初始网址列表数*2:
-                    print('时间超时:网址列表数,未完成')
-                    print('有效返回网页内容集:', len(有效返回网页内容集))
-                    print('未完成网址列表数:', 初始网址列表数 - len(有效返回网页内容集))
+                elif 此时数 > self.换IP时间计数 + 初始网址列表数 * 3:
 
                     条件循环 = 998
 
@@ -256,40 +238,37 @@ class 类一一公共库: #调用 类的模具 self.模具一一数据库()
             返回网页一链接组.append(返回网页内容)
             返回网页一链接组.append(返回网页内容.url)
             返回网页一链接组列表.append(返回网页一链接组)
-            return 返回网页一链接组列表#返回
 
-
-
-
-
-        结束时间计数 = int(time.time())
-        print('gr无序 用时计数:', 结束时间计数 - 开始时间计数, '秒')
+        return 返回网页一链接组列表  # 返回
 
     """============测试库================"""
 
-class 类一一58同城房源(类一一公共库): #调用 类的模具 self.模具一一数据库()
+
+class 类一一58同城房源(类一一公共库):  # 调用 类的模具 self.模具一一数据库()
     def __init__(self):
+        开始时间计数 = int(time.time())
         self.模具一一高位换头部信息()
         self.模具一一列表页面()
         self.模具一一提取各页面链接()
         self.模具一一提取页面详情各项内容()
-        #self.模具一一列表页面()
+        # self.模具一一列表页面()
+        结束时间计数 = int(time.time())
+        print('用时计数:', 结束时间计数 - 开始时间计数, '秒')
 
     def 模具一一列表页面(self):
-        页数网址列表 =[]
-        for 页数 in range(1,2):
-            页数网址='https://nj.58.com/ershoufang/0/pn{}'.format(str(页数))#'代入 '{}'
+        页数网址列表 = []
+        for 页数 in range(1, 4):
+            页数网址 = 'https://nj.58.com/ershoufang/0/pn{}'.format(str(页数))  # '代入 '{}'
             页数网址列表.append(页数网址)
 
-        print('页数网址列表', 页数网址列表)
-
-        self.各页面链接网页内容组列表=self.模具一一gr无序网址列表请求返回网页内容(页数网址列表)# 返回 self.返回网页一链接组列表
+        print('采集页数：', len(页数网址列表))
+        self.各页面链接网页内容组列表 = self.模具一一gr无序网址列表请求返回网页内容(页数网址列表, 3)  # 返回 self.返回网页一链接组列表
 
     def 模具一一提取各页面链接(self):
-        页面链接总列表=[]
+        页面链接总列表 = []
 
         for 返回网页一链接组 in self.各页面链接网页内容组列表:
-            返回网页内容=返回网页一链接组[0]
+            返回网页内容 = 返回网页一链接组[0]
 
             帖子内容html = etree.HTML(返回网页内容.text)  #
 
@@ -297,48 +276,46 @@ class 类一一58同城房源(类一一公共库): #调用 类的模具 self.模
             规则 = '/html/body/div[5]/div[5]/div[1]/ul/li[*]/div[2]/h2/a/@href'
             页面链接列表 = 帖子内容html.xpath(规则)
             for 页面链接 in 页面链接列表:
-                print('页面链接', 页面链接)
+
                 if 'https://nj.58.com/ershoufang' in 页面链接:
                     页面链接总列表.append(页面链接)
-                页面链接总列表=list(set(页面链接总列表))
-        print('页面链接总列表', 页面链接总列表)
 
+        页面链接总列表 = list(set(页面链接总列表))
+        print('待采集页面数：', len(页面链接总列表))
 
-        self.页面详情各项内容组列表=self.模具一一gr无序网址列表请求返回网页内容(页面链接总列表[0:2],4)  # 返回 self.返回网页一链接组列表
+        self.页面详情各项内容组列表 = self.模具一一gr无序网址列表请求返回网页内容(页面链接总列表)  # 返回 self.返回网页一链接组列表
 
-    def 模具一一提取文本清洗(self,文本列表):
-        
-        try:  #调用异常处理,应对易发生错误的位置
+    def 模具一一提取文本清洗(self, 文本列表):
+
+        try:  # 调用异常处理,应对易发生错误的位置
             文本 = 文本列表[0]
-        except (IndexError) as 异常原因 :#异常处理
-            文本 = 文本列表
+        except (IndexError) as 异常原因:  # 异常处理
+            文本 = str(文本列表)
 
-
-
-        文本 = 文本.replace("\n", "") #替换   , 1) 次数 1
+        文本 = 文本.replace("\n", "")  # 替换   , 1) 次数 1
+        文本 = 文本.replace("[]", "")  # 替换   , 1) 次数 1
         文本 = 文本.strip()  # 默认则是去除空格
-        return 文本#返回
-
-
+        return 文本  # 返回
 
     def 模具一一提取页面详情各项内容(self):
         self.模具一一写入Excel文件字段名()
-        self.行计数=0
-        for 返回网页一链接组 in self.页面详情各项内容组列表[0:10]:
-            self.行计数 = self.行计数+1
-            返回网页内容=返回网页一链接组[0]
+        self.行计数 = 0
+        print('成功采集页内容数：', len(self.页面详情各项内容组列表))
+        for 返回网页一链接组 in self.页面详情各项内容组列表:
+            self.行计数 = self.行计数 + 1
+            返回网页内容 = 返回网页一链接组[0]
             self.采集网址 = 返回网页一链接组[1]
             帖子内容html = etree.HTML(返回网页内容.text)  #
 
-
-            #=========提取页面详情
+            # =========提取页面详情
+            print('===============================================')
             print('采集序号:', self.行计数)
 
             # ========标题
             规则 = '/html/body/div[4]/div[1]/h1/text()'
             self.标题 = 帖子内容html.xpath(规则)
-            self.标题=self.模具一一提取文本清洗(self.标题)
-            print('标题:',self.标题)
+            self.标题 = self.模具一一提取文本清洗(self.标题)
+            print('标题:', self.标题)
 
             # ========总价
             规则 = '/html/body/div[4]/div[2]/div[2]/p/span[1]/text()'
@@ -407,8 +384,6 @@ class 类一一58同城房源(类一一公共库): #调用 类的模具 self.模
             self.产权年限 = self.模具一一提取文本清洗(self.产权年限)
             print('产权年限:', self.产权年限)
 
-
-
             # ========房屋朝向
             规则 = '//*[@id="generalSituation"]/div/ul[1]/li[4]/span[2]/text()'
             self.房屋朝向 = 帖子内容html.xpath(规则)
@@ -448,17 +423,17 @@ class 类一一58同城房源(类一一公共库): #调用 类的模具 self.模
             print('交易权属:', self.交易权属)
 
             # ========户型图
-            self.户型图列表 =[]
+            self.户型图列表 = []
             规则 = '//div/ul/li[*]/img/@src'
             self.户型图列表 = 帖子内容html.xpath(规则)
-            print('户型图列表:', self.户型图列表)
-            #self.户型图列表.append(行内容)
+            # print('户型图列表:', self.户型图列表)
+            print('户型图列表数:', len(self.户型图列表))
+            # self.户型图列表.append(行内容)
 
             # =====填充Exce
             self.模具一一填充Excel文件值()
 
         self.模具一一保存Excel文件()
-
 
     def 模具一一写入Excel文件字段名(self):
 
@@ -476,7 +451,6 @@ class 类一一58同城房源(类一一公共库): #调用 类的模具 self.模
         self.表单操作.write(0, 4, label='小区')  # write 写入
         self.表单操作.write(0, 5, label='位置')  # write 写入
 
-
         self.表单操作.write(0, 6, label='房屋总价')  # write 写入
         self.表单操作.write(0, 7, label='所在楼层')  # write 写入
         self.表单操作.write(0, 8, label='房屋户型')  # write 写入
@@ -489,15 +463,10 @@ class 类一一58同城房源(类一一公共库): #调用 类的模具 self.模
         self.表单操作.write(0, 15, label='参考首付')  # write 写入
         self.表单操作.write(0, 16, label='房屋类型')  # write 写入
         self.表单操作.write(0, 17, label='交易权属')  # write 写入
-        self.表单操作.write(0, 18, label='采集网址')  # write 写入
-
-
-
-
-
+        self.表单操作.write(0, 18, label='户型图列表')  # write 写入
+        self.表单操作.write(0, 19, label='采集网址')  # write 写入
 
     def 模具一一填充Excel文件值(self):
-
 
         # 写入excel
 
@@ -520,9 +489,8 @@ class 类一一58同城房源(类一一公共库): #调用 类的模具 self.模
         self.表单操作.write(self.行计数, 15, label=self.参考首付)  # write 写入
         self.表单操作.write(self.行计数, 16, label=self.房屋类型)  # write 写入
         self.表单操作.write(self.行计数, 17, label=self.交易权属)  # write 写入
-        self.表单操作.write(self.行计数, 18, label=self.采集网址)  # write 写入
-
-
+        self.表单操作.write(self.行计数, 18, label=self.户型图列表)  # write 写入
+        self.表单操作.write(self.行计数, 19, label=self.采集网址)  # write 写入
 
     def 模具一一保存Excel文件(self):
         # 保存文件
@@ -530,17 +498,5 @@ class 类一一58同城房源(类一一公共库): #调用 类的模具 self.模
         print('成功保存,58同城房源.xls')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
-    类=类一一58同城房源()
+    类 = 类一一58同城房源()

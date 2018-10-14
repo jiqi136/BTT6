@@ -331,7 +331,7 @@ class 类一一公共库:  # 调用 类的模具
                 次数循环 += 1
                 print('网络异常等待', 异常)
                 print('倒数60秒再连接', 次数循环, '次')
-                self.模具一一开关提醒声()
+                self.模具一一开关提醒声('网络异常等待')
                 time.sleep(60)
                 if 'None, 10053,' in str(异常):
                     pass
@@ -342,7 +342,7 @@ class 类一一公共库:  # 调用 类的模具
                 else:
                     print('网站网络异常,状态码:', 返回网页内容)
                     print('等待60秒')
-                    self.模具一一开关提醒声()
+                    self.模具一一开关提醒声('网络异常等待')
                     time.sleep(60)
 
     def 模具一一换ip连接零(self):
@@ -357,6 +357,13 @@ class 类一一公共库:  # 调用 类的模具
         win32api.ShellExecute(0, 'open', 'E:\PY学习文件\BTT影视剧\工具集\换ip连接二.py', '', '', 1)
 
         pyautogui.alert('等待.....换ip连接')
+
+    def 模具一一正常60秒后换IP时间数(self):
+        正常60秒后换IP时间数 = self.换IP时间计数 + 65
+        当下时间数 = int(time.time())
+        if 当下时间数 < 正常60秒后换IP时间数:
+            print('等待:', 正常60秒后换IP时间数 - 当下时间数, '秒')
+            time.sleep(正常60秒后换IP时间数 - 当下时间数)  # 等待  # 增加延迟
 
 
 
@@ -910,9 +917,11 @@ class 类一一公共库:  # 调用 类的模具
         pag.rightClick()  # 右击
         time.sleep(2)  # 等待  # 增加延迟
 
-    def 模具一一开关提醒声(self):
-
-        win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\百度云下载完成提示音.wav', '', '', 1)
+    def 模具一一开关提醒声(self,类型=''):
+        if len(类型)==0:
+            win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\简短提示音.wav', '', '', 1)
+        else:  # 否则
+            win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\百度云下载完成提示音.wav', '', '', 1)
         time.sleep(3)  # 等待  # 增加延迟
         窗口标题 = "Windows Media Player"
 
