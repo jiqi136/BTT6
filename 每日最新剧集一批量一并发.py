@@ -588,7 +588,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         任务列表 = []
         for 各帖子链接 in 单网址列表:
             if 'thread' in 各帖子链接:
-                各帖子链接 = re.sub(规则, 'http://mebtbtt.com/thread', 各帖子链接)  # 替换
+                各帖子链接 = re.sub(规则, 'http://www.btbtt.me/thread', 各帖子链接)  # 替换
                 # if 各帖子链接 in self.过滤帖子网址:
                 # continue  # 跳过当前循环,继续进行下一轮循环
             任务 = grequests.get(各帖子链接, headers=头部信息)  # timeout=len(任务列表)//2,
@@ -686,7 +686,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
                         文本列表 = re.findall(规则, str(种子行))  # 提取列表
                         种子链接 = 文本列表[0]
                         种子链接 = 种子链接.replace("\"", "")  # 替换   , 1) 次数 1
-                        种子链接 = 种子链接.replace("attach", "http://mebtbtt.com/attach")
+                        种子链接 = 种子链接.replace("attach", "http://www.btbtt.me/attach")
                         种子链接 = 种子链接.replace("dialog", "download")
 
                         # =========== (模具)种子目录并下载================
@@ -725,7 +725,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
                     链接 = re.sub(规则, '.htm', 行, re.S)  # 替换   ,count=0,re.S|re.I
 
                 if 'thread' in 链接:
-                    链接 = re.sub(规则, 'http://mebtbtt.com/thread', 链接)  # 替换
+                    链接 = re.sub(规则, 'http://www.btbtt.me/thread', 链接)  # 替换
                 if 链接 in self.过滤帖子网址:
                     print('过滤帖子网址')
                     continue  # 跳过当前循环,继续进行下一轮循环
@@ -787,7 +787,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         规则 = '.{1,}hread'
         for 各帖子链接 in 网址列表:
             if 'thread' in 各帖子链接:
-                各帖子链接 = re.sub(规则, 'http://mebtbtt.com/thread', 各帖子链接)  # 替换
+                各帖子链接 = re.sub(规则, 'http://www.btbtt.me/thread', 各帖子链接)  # 替换
             if 各帖子链接 in self.过滤帖子网址 and 各帖子链接 not in self.种子链接列表文本:
                 print('=过滤帖子网址=跳过加入任务循环==:')
                 continue  # 跳过当前循环,继续进行下一轮循环
@@ -1001,7 +1001,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         规则 = '".{1,}'
         标题图 = re.sub(规则, '', str(标题图))  # 替换   ,count=0,re.S|re.I
         if "http" not in 标题图:
-            标题图 = 标题图.replace("/upload", "http://mebtbtt.com/upload")
+            标题图 = 标题图.replace("/upload", "http://www.btbtt.me/upload")
         self.标题图 = 标题图
     def 模具一一种子名清洗(self, 种子名):
         种子名规则 = '\[bt.{1,}\]'
@@ -1049,7 +1049,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
             结束循环 = 123
             if 'thread-index'in 每一段落:
                 规则 = '<a href.{1,}?>'
-                每一段落 = re.sub(规则, '', 每一段落)  # 替换   ,count=0,re.S|re.I  http://mebtbtt.com/thread-index-fid-981-tid-4271817.htm
+                每一段落 = re.sub(规则, '', 每一段落)  # 替换   ,count=0,re.S|re.I  http://www.btbtt.me/thread-index-fid-981-tid-4271817.htm
 
                 规则 = 'http:.{1,}?htm'
                 每一段落 = re.sub(规则, '', 每一段落)
@@ -1138,7 +1138,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         一楼内容 = str(一楼内容).replace("<div ", "<")
         一楼内容 = str(一楼内容).replace("< /div>", "<")
         if 'src=\"/upload' in 一楼内容:
-            一楼内容 = str(一楼内容).replace("/upload", "http://mebtbtt.com/upload")
+            一楼内容 = str(一楼内容).replace("/upload", "http://www.btbtt.me/upload")
 
         if 'HQC' in 一楼内容:
             次数 = 一楼内容.count('src=')
@@ -1180,11 +1180,11 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         原文 = str(原文).replace(' ', '')
         return 原文
     def 模具一一网站图片网址清洗转换(self, 图片网址文本):
-        列表 = ["http://www.btbtt.co/", "http://btbtt.co/", "http://www.btbtt.net/", "http://www.btbtt.me/",
+        列表 = ["http://www.btbtt.co/", "http://btbtt.co/", "http://www.btbtt.net/", "http://www.btbtt.me/","http://mebtbtt.com/",
               "http://www.btbtt.com/", "http://www.btbtt.pw/",
-              "http://btbtt.net/", "http://btbtt.me/", "http://btbtt.com/", "http://btbtt.pw/"]
+              "http://btbtt.net/", "http://www.btbtt.me/", "http://btbtt.com/", "http://btbtt.pw/"]
         for 符号 in 列表:
-            图片网址文本 = str(图片网址文本).replace(符号, 'http://mebtbtt.com/')
+            图片网址文本 = str(图片网址文本).replace(符号, 'http://www.btbtt.me/')
         if 'htm' in 图片网址文本:
             规则 = '-page-.{1,}htm'
             图片网址文本 = re.sub(规则, '-page-1.htm', str(图片网址文本))  # 替换   ,count=0,re.S|re.I
@@ -1836,15 +1836,15 @@ class 类一一综合影视类型(类一一公共库):  # 调用 类的模具 se
             self.过滤帖子网址 = self.过滤帖子网址 + self.过滤帖子网址二 + self.页面提取帖子链接列表文本
             if '电视剧' in self.影视类型:
                 self.倒页总数 = 100
-                self.页数网址 = 'http://mebtbtt.com/forum-index-fid-950-page-{}.htm'
+                self.页数网址 = 'http://www.btbtt.me/forum-index-fid-950-page-{}.htm'
 
             elif '动漫' in self.影视类型:  # 其它条件.
                 self.倒页总数 = 50
-                self.页数网址 = 'http://mebtbtt.com/forum-index-fid-981-page-{}.htm'
+                self.页数网址 = 'http://www.btbtt.me/forum-index-fid-981-page-{}.htm'
 
             else:  # 否则
                 self.倒页总数 = 0  # 电影
-                self.页数网址 = 'http://mebtbtt.com/forum-index-fid-951-page-{}.htm'
+                self.页数网址 = 'http://www.btbtt.me/forum-index-fid-951-page-{}.htm'
 
             self.模具一一总提取帖子链接列表()
             self.模具一一综合影视各链接网址处理()
@@ -1856,7 +1856,7 @@ class 类一一综合影视类型(类一一公共库):  # 调用 类的模具 se
             self.半年前时间 = int(str(半年前时间).replace("-", ""))  # 替换   , 1) 次数 1
             self.弹出新剧集提示计数 = 0
 
-            首页网址 = 'http://mebtbtt.com'
+            首页网址 = 'http://www.btbtt.me'
             # ==================置顶类型帖子网址列表================================
             帖子内容= self.模具一一gr无序单网址请求返回网页内容(首页网址).text
 
@@ -1872,7 +1872,7 @@ class 类一一综合影视类型(类一一公共库):  # 调用 类的模具 se
                     种子链接 = 文本列表[0]
                     种子链接 = 种子链接.replace("\"", "")  # 替换   , 1) 次数 1
                     规则链接 = '.{1,}hread'
-                    种子链接 = re.sub(规则链接, 'http://mebtbtt.com/thread', 种子链接)  # 替换
+                    种子链接 = re.sub(规则链接, 'http://www.btbtt.me/thread', 种子链接)  # 替换
 
                     种子链接列表.append(种子链接)
 
@@ -1920,7 +1920,7 @@ class 类一一综合影视类型(类一一公共库):  # 调用 类的模具 se
     def 模具一一总提取帖子链接列表(self):
 
 
-        self.页数网址 = 'http://mebtbtt.com/forum-index-fid-951-page-{}.htm'
+        self.页数网址 = 'http://www.btbtt.me/forum-index-fid-951-page-{}.htm'
         总提取帖子链接列表 = []
 
         self.模具一一提取最新电影过滤发帖时间天数帖子网址()
@@ -1971,7 +1971,7 @@ class 类一一综合影视类型(类一一公共库):  # 调用 类的模具 se
                         种子链接 = 种子链接.replace("\"", "")  # 替换   , 1) 次数 1
 
                         规则链接 = '.{1,}hread'
-                        种子链接 = re.sub(规则链接, 'http://mebtbtt.com/thread', 种子链接)  # 替换
+                        种子链接 = re.sub(规则链接, 'http://www.btbtt.me/thread', 种子链接)  # 替换
 
 
                         if 种子链接 in self.过滤帖子网址:

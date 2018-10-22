@@ -1,3 +1,5 @@
+# -*- coding:utf-8
+
 import re  #正则表达式
 import time #时间
 import os #处理电脑系统文件和目录
@@ -64,12 +66,22 @@ class 类一一上传目录链接网页: #调用 类的模具 self.模具_数据
     def 模具一一读取文本每一行(self):
         self.上传等待数 = 0
 
-        文本 = open(self.二级子目录文件, 'r',encoding='UTF-8')
-        文本内容列表 = 文本.readlines()  # 读取所有行，储存在列表中，每个元素是一行。
+        #文本 = open(self.二级子目录文件, 'r',encoding='UTF-8')
+        #文本内容列表 = 文本.readlines()  # 读取所有行，储存在列表中，每个元素是一行。
+
+        try:  # 调用异常处理，应对易发生错误的位置
+            文本 = open(self.二级子目录文件, 'r', encoding='UTF-8')
+            文本内容列表 = 文本.readlines()  # 读取所有行，储存在列表中，每个元素是一行。
+        except UnicodeDecodeError as 异常原因:  # 异常处理
+            print(异常原因)
+            文本 = open(self.二级子目录文件, 'r',encoding='gbk')
+            文本内容列表 = 文本.readlines()  # 读取所有行，储存在列表中，每个元素是一行。
+        else:  # 必须放在所有的except子句之后。这个子句将在try子句没有发生任何异常的时候执行。
+            文本.close()
 
         #文本 = open(self.二级子目录文件, 'r',encoding='UTF-8')
         #文本内容 = 文本.read()  # read() #读取
-        文本.close()
+        #文本.close()
 
         #文本内容列表 =文本内容.split("\n")
 
