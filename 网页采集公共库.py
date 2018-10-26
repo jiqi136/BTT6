@@ -18,7 +18,11 @@ import pyautogui  # 键盘控制
 
 class 类一一采集公共库: #调用 类的模具 self.模具一一数据库()
     def __init__(self):
+        self.模具一一高位换头部信息()
 
+        pass
+
+    def 模具一一示例(self):
         pass
 
     def 模具一一高位换头部信息(self):  # 头部信息 def 函数模具内通行变量
@@ -290,6 +294,35 @@ class 类一一采集公共库: #调用 类的模具 self.模具一一数据库(
 
                 else:  # 否则
                     self.网址列表.append(url)
+
+    """============gr无序网址列表================"""
+    def 模具一一内容数据库(self,数据库='提交'):
+       #self.sql语句 = """
+        print('打开数据库连接')
+        # 打开数据库连接,
+        数据库执行 = pymysql.connect("localhost", "root", "", self.数据库名, charset="utf8")
+        # 使用cursor()方法获取操作游标
+        操作游标 = 数据库执行.cursor()
+
+        # 执行sql语句
+        操作游标.execute(self.sql语句)
+
+        if '提交' in 数据库:
+            try:
+                # 提交到数据库执行
+                数据库执行.commit()
+                print('=保存数据库一微博转发内容')
+            except:
+
+                # 如果发生错误则回滚
+                print('==========数据库执行发生错误:======')
+                数据库执行.rollback()
+
+        else:  # 否则 为查询
+            # 获取所有记录列表
+            self.数据库内容组列表 = 操作游标.fetchall()
+
+        数据库执行.close()# 关闭数据库连接
 
 
 
