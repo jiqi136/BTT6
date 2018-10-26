@@ -977,7 +977,7 @@ class 类一一本地文件目录操作():  # 调用 类的模具 self.模具一
             content = 文本.readlines()  # 读取所有行，储存在列表中，每个元素是一行。
 
         def 保存至文本(内容):
-            文本 = open("F:\影视发帖推广\临时文本.txt", 'w', encoding='UTF-8')
+            文本 = open("F:\影视发帖推广\临时文本.txt", 'w', encoding='UTF-8') #追加 a
 
             文本.write(内容)  # write 写入  read() #读取
             文本.close()

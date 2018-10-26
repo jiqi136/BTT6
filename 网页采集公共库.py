@@ -16,7 +16,7 @@ import win32api  # 操作本地文件
 import asyncio, aiohttp # 异步浏览
 import pyautogui  # 键盘控制
 
-class 类一一公共库: #调用 类的模具 self.模具一一数据库()
+class 类一一采集公共库: #调用 类的模具 self.模具一一数据库()
     def __init__(self):
 
         pass

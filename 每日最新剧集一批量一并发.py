@@ -504,7 +504,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         driver.find_element_by_xpath('//*[@id="login-box"]/div[2]/form/dl/dd[2]/input').send_keys(
             self.用户名密码登录cookie组[1])  # 定位密码
         print('输入验证码')
-        input("\n\n登录成功后,按下 确认键enter 键后继续.")
+        input("\n登录成功后,按下 确认键enter 键后继续.")
         print('提取保存cookie')
         保存cookie = [item["name"] + ":" + item["value"] for item in driver.get_cookies()]
         # cookiestr = ';'.join(item for item in 保存cookie)
@@ -525,7 +525,19 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
         self.url = 'http://3e38.com/image/article_add.php?channelid=17'
         self.s = requests.Session()  # 创建全局会话
         self.s.cookies.update(self.cookies)  # 格式化cookie,全网页才能共享登录cookie,
-        返回网页内容 = self.s.get(self.url)
+        条件循环 = 0
+        while 条件循环 == 0:
+            try:
+                返回网页内容 = self.s.get(self.url)
+
+            except (requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout,
+                    requests.exceptions.ConnectionError, requests.exceptions.ConnectTimeout):
+                print('测试cookies存活,网络异常等待')
+                time.sleep(10)
+            else:
+                if '200' in str(返回网页内容):
+                    返回网页内容.encoding = "UTF-8"  # 转换编码 "gbk"
+                    条件循环 = 998
         返回网页内容 = 返回网页内容.text
         if '看不清' in 返回网页内容:
             print('登录失效,正在启动浏览器.')
@@ -545,7 +557,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
     def 模具一一更新数据库里的3e影视网站后台登录cookie(self):
         # 打开数据库连接,保存已下载网址
-        self.用户名="jiqi1136@163.com"
+        self.用户名="ad38min"
         db = pymysql.connect("localhost", "root", "", "帐号", charset="utf8")
         # 使用cursor()方法获取操作游标
         cursor = db.cursor()
@@ -698,34 +710,40 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
                             continue  # 跳过循环
 
     def 模具一一提炼类型帖子最新各剧集链接(self):
-        帖子内容 = self.置顶类型帖子内容
+        def 旧多次分行():
+            帖子内容 = self.置顶类型帖子内容
 
-        规则 = '.{1,}hread'
+            规则 = '.{1,}hread'
 
-        一楼内容列表 = 帖子内容.split('BAIDU_CLB_SLOT_ID')
-        if len(一楼内容列表) < 2:
-            print('一楼内容列表 小于2: 路过循环')
-            self.正文清洗没有换行符 = 0
-            return  # 结束函数
-        一楼内容 = 一楼内容列表[3]
+            一楼内容列表 = 帖子内容.split('BAIDU_CLB_SLOT_ID')
+            if len(一楼内容列表) < 2:
+                print('一楼内容列表 小于2: 路过循环')
+                self.正文清洗没有换行符 = 0
+                return  # 结束函数
+            一楼内容 = 一楼内容列表[3]
 
-        行列表 = 一楼内容.split('\n')  # 以] 为界定 字符串变为 数个列表 数
-        一楼内容 = ''
-        for 行 in 行列表:
-            if 'script' not in 行:
-                一楼内容 = 一楼内容 + 行
-        行列表 = 一楼内容.split('href="')  # 以] 为界定 字符串变为 数个列表 数
+            行列表 = 一楼内容.split('\n')  # 以] 为界定 字符串变为 数个列表 数
+            一楼内容 = ''
+            for 行 in 行列表:
+                if 'script' not in 行:
+                    一楼内容 = 一楼内容 + 行
+            行列表 = 一楼内容.split('href="')  # 以] 为界定 字符串变为 数个列表 数
+
+
+        thread规则 = '.{1,}hread'
+        page规则 = '-page-.{1,}'
+        htm规则 = 'htm.{0,}'
         链接列表 = []
-        for 行 in 行列表:
-            if '.htm"' in 行:
-                规则 = '.htm".{1,}'
-                链接 = re.sub(规则, '.htm', 行, re.S)  # 替换   ,count=0,re.S|re.I
-                if '-page-' in 链接:
-                    规则 = '-page-.{1,}'
-                    链接 = re.sub(规则, '.htm', 行, re.S)  # 替换   ,count=0,re.S|re.I
+        文本 = str(self.置顶类型帖子内容).replace("\n", "")
+        for 行 in 文本.split('href="'): # 以] 为界定 字符串变为 数个列表 数 i
+            if '.htm"' in 行 and 'index' in 行 and 'fid' in 行 and 'tid' in 行 and len(行) <300:
 
-                if 'thread' in 链接:
-                    链接 = re.sub(规则, 'http://www.btbtt.me/thread', 链接)  # 替换
+                链接 = re.sub(htm规则, 'htm', 行)  # 替换   ,count=0,re.S|re.I
+                链接 = re.sub(thread规则, 'http://www.btbtt.me/thread', 链接)  # 替换
+
+                if '-page-' in 链接:
+
+                    链接 = re.sub(page规则, '.htm', 行, re.S)  # 替换   ,count=0,re.S|re.I
                 if 链接 in self.过滤帖子网址:
                     print('过滤帖子网址')
                     continue  # 跳过当前循环,继续进行下一轮循环
@@ -740,6 +758,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
     """============异步打开网页================"""
 
+
     async def 模具一一异步打开网页(self, url):
 
         # conn = aiohttp.TCPConnector(limit=10)  # 默认100,0表示无限
@@ -751,7 +770,8 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
             except:  # () as 异常
                 # print('网络异常等待', 异常)
-                print('倒数6秒再连接', '次')
+                print('异步打开网页，倒数6秒再连接', '次')
+
                 # time.sleep(3)
             else:
                 if '[200 OK]' in str(内容):
@@ -866,7 +886,7 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
             print('种子总数相同,跳过循环:')
             self.跳过循环 = 0
     def 模具一一过滤图片已破与标记其它网站(self):
-        列表 = ['tietuku', 'yupoo', 'imgsrc.baidu', '謦灵风软', '风软']
+        列表 = ['tietuku', 'yupoo', 'imgsrc.baidu', '謦灵风软', '风软','请兄弟们记住我们小组','当帖子没有回帖量的时候']
         for 符号 in 列表:
             if 符号 in str(self.帖子内容):
                 print(符号, '图片已破or标记其它网站,跳过循环')
@@ -1078,27 +1098,17 @@ class 类一一公共库:  # 调用 类的模具 self.模具一一数据库()
 
     def 模具一一帖子正文清洗(self):
 
-        # 规则 = '(?<=648542).{1,}(?=BAIDU_CLB_SLOT_ID)'
-        一楼内容 = str(self.帖子内容)
-        #print('一楼内容1\n', 一楼内容)
-
-        一楼内容列表 = 一楼内容.split('BAIDU_CLB_SLOT_ID')
-        if len(一楼内容列表) < 2:
-            print('一楼内容列表 小于2: 路过循环')
-            self.正文清洗没有换行符 = 0
-            return  # 结束函数
-        一楼内容 = 一楼内容列表[3]
-
-        行列表 = 一楼内容.split('\n')  # 以] 为界定 字符串变为 数个列表 数
-        self.一楼内容 = ''
-        for 行 in 行列表:
-            if 'script' not in 行:
-
-                self.一楼内容 = self.一楼内容 + 行
+        for 行 in self.帖子内容.split('\n'):
+            if 'script' not in 行 and 'style=' in 行 and 'title=' in 行 and 'src=' in 行:
+                self.一楼内容=行
+                self.模具一一帖子正文划分段落清洗()
                 if '个附件' in 行:
                     break  # 结束循环
+                break  # 结束循环
             else:  # 否则
                 continue  # 跳过当前循环,继续进行下一轮循环
+
+    def 模具一一帖子正文划分段落清洗(self):
 
         if '<p' in self.一楼内容 and '<br' in self.一楼内容:  # break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
             p段落列表 = self.一楼内容.split('<p')  #
@@ -1800,6 +1810,7 @@ class 类一一综合影视类型(类一一公共库):  # 调用 类的模具 se
 
             """======================="""
 
+
             self.模具一一置顶帖子剧集动漫类型() # 电视剧集动漫
 
             """==========电影============"""
@@ -1941,8 +1952,6 @@ class 类一一综合影视类型(类一一公共库):  # 调用 类的模具 se
             for 倒页数 in range(self.倒页总数, 0, -1):
                 print('倒页数', 倒页数)
                 各帖子链接 =self.页数网址.format(str(倒页数))  # 代入 .不换行 end=""
-                # =========请求各帖子链接网页内容======================
-                各帖子链接 = self.模具一一网站图片网址清洗转换(各帖子链接)
 
                 print('各页数链接',各帖子链接)
                 总倒页链接.append(各帖子链接)
@@ -1953,6 +1962,10 @@ class 类一一综合影视类型(类一一公共库):  # 调用 类的模具 se
             总提取帖子链接列表 = []
 
             print('self.返回网页一链接组列表数', len(self.返回网页一链接组列表))
+            thread规则链接 = '.{1,}hread-index'
+            htm规则= '.htm.{0,}'
+
+
             for 返回网页一链接组 in self.返回网页一链接组列表:
 
                 页数倒数 = 页数倒数 - 1
@@ -1960,18 +1973,14 @@ class 类一一综合影视类型(类一一公共库):  # 调用 类的模具 se
                 网页内容 =返回网页一链接组[0]
 
                 for 行 in 网页内容.split("\n"):#文本转换为列表
-
-                    if 'thread-index' in 行 and "点击图标，新窗口打开" in 行:
+                    if 'thread-index' in 行 and "新窗口打开" in 行 and "tid" in 行 and ".htm" in 行:
                         链接行=行
 
 
-                        规则 = "\".{1,}?\""
-                        文本列表 = re.findall(规则, str(链接行))  # 提取列表
-                        种子链接 = 文本列表[0]
-                        种子链接 = 种子链接.replace("\"", "")  # 替换   , 1) 次数 1
+                        种子链接 = re.sub(thread规则链接, 'http://www.btbtt.me/thread-index', 链接行)  # 替换
+                        种子链接 = re.sub(htm规则, '.htm', 种子链接)  # 替换
+                        print('种子链接',种子链接)
 
-                        规则链接 = '.{1,}hread'
-                        种子链接 = re.sub(规则链接, 'http://www.btbtt.me/thread', 种子链接)  # 替换
 
 
                         if 种子链接 in self.过滤帖子网址:
@@ -2004,6 +2013,7 @@ class 类一一综合影视类型(类一一公共库):  # 调用 类的模具 se
         print('========================等待==============================')
         print(self.电视剧类型, '=剧集数=', len(self.页面提取帖子链接列表))
         self.页面提取帖子链接列表=list(self.页面提取帖子链接列表)
+        print('页面提取帖子链接列表:',self.页面提取帖子链接列表)
 
         条件循环 = 1
         while 条件循环 == 1:  # 条件循环  break # 结束循环 continue # 跳过当前循环，继续进行下一轮循环

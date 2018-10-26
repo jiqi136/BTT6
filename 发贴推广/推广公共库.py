@@ -291,6 +291,7 @@ class 类一一公共库:  # 调用 类的模具
                 if 缓冲时间 > 此时数2:
                     time.sleep(0.5)
                     print('缓冲时间 多加 0.5秒')
+
                 返回网页内容 = requests.post(网址, headers=头部信息, timeout=10)
                 缓冲时间 = int(time.time()) + 0.5
             except (requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout,
@@ -306,6 +307,8 @@ class 类一一公共库:  # 调用 类的模具
                 if '200' in str(返回网页内容):
                     返回网页内容.encoding = "UTF-8"  # 转换encoding='UTF-8' "gbk"
                     return  返回网页内容 # 返回
+                elif '200' not in str(返回网页内容) and 此时数2 > self.换IP时间计数+60:
+                    self.模具一一换ip连接()
                 else:
                     print('网站网络异常,状态码:', 返回网页内容)
                     print('等待10秒')
@@ -327,7 +330,7 @@ class 类一一公共库:  # 调用 类的模具
                 返回网页内容 = requests.get('https://www.163.com/', headers=头部信息, timeout=3)
             except (requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout,
                     requests.exceptions.ConnectionError, requests.exceptions.ConnectTimeout,
-                    requests.exceptions.ChunkedEncodingError, requests.exceptions.InvalidSchema) as 异常:
+                    requests.exceptions.ChunkedEncodingError, requests.exceptions.InvalidSchema,requests.exceptions.ContentDecodingError) as 异常:
                 次数循环 += 1
                 print('网络异常等待', 异常)
                 print('倒数60秒再连接', 次数循环, '次')
@@ -337,6 +340,7 @@ class 类一一公共库:  # 调用 类的模具
                     pass
             else:
                 if '200' in str(返回网页内容):
+                    self.换IP时间计数 = int(time.time())
 
                     break  # 结束循环
                 else:
@@ -377,14 +381,15 @@ class 类一一公共库:  # 调用 类的模具
         # 使用cursor()方法获取操作游标
         cursor = db.cursor()
         # SQL 查询语句
-        sql = "SELECT `登录cookie` FROM `3e影视网站` WHERE `网站`='易码短信平台账户信息' "
+        sql = "SELECT `密码`,`登录cookie` FROM `3e影视网站` WHERE `网站`='易码短信平台账户信息' "
         # 执行SQL语句
         cursor.execute(sql)
         # 获取所有记录列表
         cookie组列表= cursor.fetchall()
         cookie组=cookie组列表[0]
         # self.cookie=cookie组[0]
-        self.通信令牌token=cookie组[0]
+        self.账户密码=cookie组[0]
+        self.通信令牌token = cookie组[1]
 
         # 关闭数据库连接
         db.close()

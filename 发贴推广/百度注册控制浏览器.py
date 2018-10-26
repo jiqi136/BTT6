@@ -12,6 +12,10 @@ import pymysql  # 数据库
 import pyautogui as pag #模拟鼠标键盘操作
 from selenium import webdriver  # 浏览的驱动
 from selenium.webdriver.support import expected_conditions as EC #=判断网页文本
+from hashlib import md5 # md5值
+from PIL import Image#图片处理
+
+
 
 from 推广公共库 import 类一一公共库# 导入模块
 from 百度号注册 import 类一一百度号注册# 导入模块
@@ -39,6 +43,8 @@ class 类一一百度号控制浏览器注册(类一一公共库):  # 调用 类
 
         self.模具一一提取影视剧数据库里的易码短信平台账户信息()
         self.模具一一提取推广库里的百度发贴帐号()
+
+        self.账户密码 = str(self.账户密码).replace("qq", "q")
         内容 = """柔蓉安蓝春语彤晴语菱霜紫莲翠烟南寻慕蕊雪海沛宛晓菡巧
                         听卉靖枫梓晨丽丹佩惠月玉婉晓玲倩瑞静颖棋芹萍幻露灵含雅薇瑶丹丽云亿仪伊伶佳依俞俪倩偲兰冰凝凡凤叆呤
                         爱姿惠娇媛妩萱娈瑷悠源赫晗贻楚梦琪忆柳桃慕兰岚香沛菡珊曼菱寒薇忆旋芷蕾代
@@ -98,8 +104,18 @@ class 类一一百度号控制浏览器注册(类一一公共库):  # 调用 类
                     self.浏览器操作.quit()  # .退出浏览器
 
                     continue  # 跳过循环
-                self.模具一一百度注册浏览器激活窗口()
+
+                self.模具一一输入图片字符()
+                #self.模具一一百度注册浏览器激活窗口()
+
+                if '跳过循环' in str(self.跳过循环):
+
+                    self.模具一一正常60秒后换IP时间数()
+                    self.浏览器操作.quit()  # .退出浏览器
+                    continue  # 跳过循环
+
                 self.模具一一输入短信内容()
+
                 if '跳过循环' in str(self.跳过循环):
 
                     self.模具一一正常60秒后换IP时间数()
@@ -151,6 +167,136 @@ class 类一一百度号控制浏览器注册(类一一公共库):  # 调用 类
                 # pyautogui.alert('确认后继续')
                 time.sleep(5)  # 等待  # 增加延迟
                 self.模具一一正常60秒后换IP时间数()
+
+
+    def 模具一一输入图片字符(self):
+        def 判断字符正确提醒窗口消失():
+            # ===判断手机号码已注册提醒窗口
+
+            定位 = ("id", 'TANGRAM__PSP_17__titleText')
+
+            判断文本 = r"安全验证"
+
+            try:  # 调用异常处理,应对易发生错误的位置
+                手机号码已注册True = EC.text_to_be_present_in_element(定位, 判断文本)(self.浏览器操作)
+
+            except:  # 异常处理 (,)as 异常原因
+                print('图片验证完成')
+
+                结束循环 = '结束循环'
+                return 结束循环  # 返回
+
+                # print(异常原因 )
+            else:  # 必须放在所有的except子句之后.这个子句将在try子句没有发生任何异常的时候执行.
+
+
+                if 手机号码已注册True == True:
+                    print('图片验证错误')
+
+                    结束循环 = ''
+                    return 结束循环  # 返回
+
+
+                else:  #
+                    print('图片验证完成')
+
+                    结束循环 = '结束循环'
+                    return 结束循环  # 返回
+
+        def 模具一一保存至文本(内容):
+            文本 = open("F:\影视发帖推广\临时字符图片\图片验证错误.txt", 'a', encoding='UTF-8') #追加 a
+
+            文本.write(内容)  # write 写入  read() #读取
+            文本.close()
+            print('保存至文本;', 内容)
+        计数器=0
+        for i in '123':
+
+            if 计数器 !=0:
+                图片字符=self.图片字符+'\n'
+                模具一一保存至文本(图片字符)
+
+                """请空输入框"""
+                self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__confirmVerifyCode"]').clear()  # 输入.send_keys("python3")  请空输入框:clear()
+                time.sleep(1)  # 等待  # 增加延迟
+
+                """换一张字符图片"""
+                self.浏览器操作.find_element_by_xpath(
+                    '//*[@id="TANGRAM__PSP_3__confirmVerifyCodeChange"]').click()  # 点击 .click() 短信验证码
+                time.sleep(1)  # 等待  # 增加延迟
+            计数器 = 计数器 + 1
+            self.模具一一浏览器截图()
+            self.模具一一上传图片检测()
+
+            self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__confirmVerifyCode"]').send_keys(self.图片字符)  # 输入.send_keys("python3")  请空输入框:clear()
+            time.sleep(1)  # 等待  # 增加延迟
+
+
+
+            """点击  确定"""
+            self.浏览器操作.find_element_by_xpath(
+                '//*[@id="TANGRAM__PSP_22__confirm_continue"]').click()  # 点击 .click() 短信验证码
+            time.sleep(2)  # 等待  # 增加延迟
+
+            """提醒窗口消失"""
+            结束循环=判断字符正确提醒窗口消失()
+            if '结束循环' in 结束循环:
+                return # 返回
+
+        self.跳过循环='跳过循环'
+
+    def 模具一一上传图片检测(self,题目类型 = 4020):
+        # 4020	2位汉字  3040 4位混合英数
+        图片缓存 = open(self.图片地址, 'rb').read()  # 读取图片内容
+        检测超时 = 60
+        self.帐号与软件名 = {
+            'username': 'jiqi1136',
+            'password': md5(self.账户密码.encode("utf-8")).hexdigest(),
+            'softid': '114814',
+            'softkey': '48e1d1764a64484086446a320a860783',
+        }
+
+        #self.headers = {'Connection': 'Keep-Alive','Expect': '100-continue','User-Agent': 'ben',}
+
+        params = {
+            'typeid': 题目类型,
+            'timeout': 检测超时,
+        }
+
+        params.update(self.帐号与软件名)
+        files = {'image': ('a.jpg', 图片缓存)}
+        for i in '256517':
+            try:  # 调用异常处理，应对易发生错误的位置
+                返回网页内容 = requests.post('http://api.ruokuai.com/create.json', data=params, files=files, headers=self.头部信息)
+                图片字符字典 = 返回网页内容.json()
+                self.图片字符 = 图片字符字典['Result']
+            except:
+                pass
+            else:
+                if '200' in str(返回网页内容):
+                    break  # 结束循环
+
+        print('图片字符',self.图片字符)  # ['typeid']
+    def 模具一一浏览器截图(self):
+        time.sleep(1)
+        self.图片地址 = r'F:\影视发帖推广\临时字符图片\百度图片字符.png'
+
+        self.浏览器操作.get_screenshot_as_file(self.图片地址)#全屏 截图
+        time.sleep(1)
+        """"区域剪切截图"""
+
+        图片缓存 = Image.open(self.图片地址)
+        四角坐标 = (220, 195, 310, 235)  # （左，上，右，下）
+        剪切的图 = 图片缓存.crop(四角坐标)
+
+        del 图片缓存
+        剪切的图.save(self.图片地址)  # 另存为
+        #剪切的图.show()  # 显示
+        print('截图完成')
+        time.sleep(1)
+
+
+
 
     def 模具一一确认成功注册(self):
         # 等待10秒
@@ -220,6 +366,7 @@ class 类一一百度号控制浏览器注册(类一一公共库):  # 调用 类
 
     def 模具一一获取百度短信(self):
 
+        self.项目编号 = "13043"
 
         获取短信网址 = "http://api.fxhyd.cn/UserInterface.aspx?action=getsms&token={}&itemid={}&mobile={}".format(
             self.通信令牌token,
@@ -227,10 +374,10 @@ class 类一一百度号控制浏览器注册(类一一公共库):  # 调用 类
         """&release=1  自动释放号码标识符 若该参数值为1时,获取到短信的同时系统将自己释放该手机号码.若要继续使用该号码,请勿带入该参数."""
 
         条件循环 = 0
-        while 条件循环 < 3:  # 条件循环  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
+        while 条件循环 < 2:  # 条件循环  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
             self.短信内容 = ''
 
-            for i in '123456':
+            for i in '12345':
                 print('等待 15秒:')
                 time.sleep(14)  # 等待
                 网址内容 = self.模具一一打开的网址请求返回网页内容(获取短信网址)
@@ -246,21 +393,24 @@ class 类一一百度号控制浏览器注册(类一一公共库):  # 调用 类
                 else:  # 否则
                     print('请求失败:', 网址内容.text)
             条件循环 = 条件循环 + 1
-            if 条件循环 ==3:
+            if 条件循环 ==2:
+                释放手机号码接口 = "http://api.fxhyd.cn/UserInterface.aspx?action=release&token={}&itemid={}&mobile={}".format(
+                    self.通信令牌token, self.项目编号, self.手机号码)
+                释放手机号码网址内容 = self.模具一一打开的网址请求返回网页内容(释放手机号码接口)
+                self.模具一一百度项目拉黑手机号码()
+                self.跳过循环 = '跳过循环'
                 continue  # 跳过当前循环,继续进行下一轮循环
-            self.模具一一百度注册浏览器激活窗口()
+            #self.模具一一百度注册浏览器激活窗口()
 
             self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__verifyCodeSend"]').click()  # 点击 .click() 短信验证码
-            self.模具一一开关提醒声()
 
-            time.sleep(20)  # 等待  # 增加延迟
+            self.模具一一输入图片字符()
+            #self.模具一一开关提醒声()
+
+            #time.sleep(20)  # 等待  # 增加延迟
 
 
-        释放手机号码接口 = "http://api.fxhyd.cn/UserInterface.aspx?action=release&token={}&itemid={}&mobile={}".format(
-            self.通信令牌token, self.项目编号, self.手机号码)
-        释放手机号码网址内容 = self.模具一一打开的网址请求返回网页内容(释放手机号码接口)
 
-        self.跳过循环='跳过循环'
 
     def 模具一一百度注册浏览器激活窗口(self):
 
@@ -291,12 +441,12 @@ class 类一一百度号控制浏览器注册(类一一公共库):  # 调用 类
 
     def 模具一一输入短信内容(self):
         #self.模具一一点击获取手机验证码()
-        self.模具一一开关提醒声()
-        time.sleep(20)  # 等待  # 增加延迟
+        #self.模具一一开关提醒声()
+        #time.sleep(20)  # 等待  # 增加延迟
 
 
         self.模具一一获取百度短信()
-        self.模具一一百度注册浏览器激活窗口()
+        #self.模具一一百度注册浏览器激活窗口()
 
         if len(self.短信内容) == 0 or '跳过循环' in str(self.跳过循环):
             return  # 返回
@@ -395,7 +545,7 @@ class 类一一百度号控制浏览器注册(类一一公共库):  # 调用 类
         self.项目编号 = "13043"
 
         #排除号段 = '170.171'
-        排除号段 = '170.171.131.132.134.135.136.137.138.139'
+        排除号段 = '170.171.130.131.132.134.135.136.137.138.139'
         获取手机号码接口网址 = "http://api.fxhyd.cn/UserInterface.aspx?action=getmobile&token={}&itemid={}&excludeno={}".format(
             self.通信令牌token, self.项目编号, 排除号段)
         网址内容 = self.模具一一打开的网址请求返回网页内容(获取手机号码接口网址)
@@ -619,6 +769,7 @@ class 类一一百度号控制浏览器注册(类一一公共库):  # 调用 类
                         return 跳过当前循环  # 返回
 
             self.模具一一获取百度接收的手机号码()
+            #self.手机号码='18272129148'
 
             for i in '123':
             
