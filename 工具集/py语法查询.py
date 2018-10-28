@@ -475,7 +475,7 @@ class 类一一多项语法():  # 调用 类的模具 self.模具一一数据库
         print("str.count('run', 0, 10) : ", 字符串.count(搜索的子字符串, 0, 10))  # 结果  1
 
         """list -- 要返回最大值的列表  max(列表) """
-        """list.reverse() 反向列表中元素"""
+        """  list.reverse() # 反向列表中元素  """
 
 
 
@@ -1400,23 +1400,124 @@ class 类一一自动化操作浏览器():  # 调用 类的模具 self.模具一
             options.add_argument(头部信息)
 
         options = webdriver.ChromeOptions()  # 设置中文
+        #option.add_argument('headless')  # 静默模式
         options.add_argument('disable-infobars')  # 加启动配置 去除正在受到自动软件的控制
         用户数据目录 = r'C:\Users\Administrator\AppData\Local\Google\Chrome\User Data'
         options.add_argument('--user-data-dir={}'.format(用户数据目录))  # '代入{}'  # 设置成用户自己的数据目录
         换头部信息()
-        浏览器操作 = webdriver.Chrome(chrome_options=options)  # 打开chrome浏览器
+        self.浏览器操作 = webdriver.Chrome(chrome_options=options)  # 打开chrome浏览器
         # driver = webdriver.Chrome(chrome_options=option)
 
         # url = "https://baidu.com"  # 注册页面  https://www.zhihu.com/signup?next=%2Fexplore
         url = "http://www.atool.org/useragent.php"
-        浏览器操作.get(url)
+        self.浏览器操作.get(url)
+
+        """配置不加载图片"""
+        配置不加载图片 = {"profile.managed_default_content_settings.images": 2}  # 配置不加载图片
+        self.浏览器操作.add_experimental_option("prefs", 配置不加载图片)
+
+        """设置浏览器窗口大小"""
+
+        self.浏览器操作.set_window_size(800, 800)# 参数是像素点宽，高
+        self.浏览器操作.maximize_window() # 浏览器全屏显示，不带参数
+
+        time.sleep(3)  # 设置暂停等待.单位是秒（s）,时间值可以是小数也可以是整数
+
+
+        """========================操作===================="""
+
+        self.浏览器操作.implicitly_wait(5)  # 隐式等待
+        # 点击.click() 或  输入.send_keys("python3")  请空输入框：clear()
+        """点击  注册 按钮"""
+        self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__submit"]').click()  # 点击  注册 按钮
+        """输入"""
+        self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__verifyCode"]').send_keys(self.短信内容)  # 输入
+
+        """请空输入框"""
+        self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__confirmVerifyCode"]').clear()
         time.sleep(10)  # 等待  # 增加延迟
 
-        浏览器操作.refresh()  # 刷新当前页面
+        """组合键输入"""
+        from selenium.webdriver.common.keys import Keys
+        self.浏览器操作.find_element_by_xpath(']').send_keys(Keys.CONTROL, 'a')  #全选（Ctrl+A）
+        self.浏览器操作.find_element_by_xpath(']').send_keys(Keys.CONTROL, 'c')  # 复制（Ctrl+C）
+        self.浏览器操作.find_element_by_xpath(']').send_keys(Keys.CONTROL,Keys.ENTER)  # 组合 回车 确认键
+        """================浏览器操作==============="""
+
+        self.浏览器操作.refresh()  # 刷新当前页面
 
         pyautogui.alert('完成')  # 弹窗 提示
 
         self.浏览器操作.quit()  # .退出浏览器
+
+    def 模具一一按键内容键输入(self):
+        pass
+        """NULL = '\ue000'
+    CANCEL = '\ue001' # ^break HELP = '\ue002'
+    BACKSPACE = '\ue003'
+    BACK_SPACE = BACKSPACE   #删除键
+    TAB = '\ue004'   #TAB键
+    CLEAR = '\ue005'  
+    RETURN = '\ue006'
+    ENTER = '\ue007'   #回车键
+    SHIFT = '\ue008'   #Shift键
+    LEFT_SHIFT = SHIFT
+    CONTROL = '\ue009'
+    LEFT_CONTROL = CONTROL   #Ctrl 键
+    ALT = '\ue00a'           #Alt 键
+    LEFT_ALT = ALT
+    PAUSE = '\ue00b'
+    ESCAPE = '\ue00c'   #ECS键
+    SPACE = '\ue00d'    #空格键 
+    PAGE_UP = '\ue00e'   #PgUp 键
+    PAGE_DOWN = '\ue00f' #PgDwon 键
+    END = '\ue010'    #END 键
+    HOME = '\ue011'   #HOME 键
+    LEFT = '\ue012'  #左键
+    ARROW_LEFT = LEFT  
+    UP = '\ue013'    #上键
+    ARROW_UP = UP   
+    RIGHT = '\ue014'
+    ARROW_RIGHT = RIGHT  #右键
+    DOWN = '\ue015'      #下键
+    ARROW_DOWN = DOWN  
+    INSERT = '\ue016'    #insert键 
+    DELETE = '\ue017'    #del键
+
+    SEMICOLON = '\ue018'  #';'键
+    EQUALS = '\ue019'     #'='键
+　　#数字键盘
+    NUMPAD0 = '\ue01a' # number pad keys NUMPAD1 = '\ue01b'
+    NUMPAD2 = '\ue01c'
+    NUMPAD3 = '\ue01d'
+    NUMPAD4 = '\ue01e'
+    NUMPAD5 = '\ue01f'
+    NUMPAD6 = '\ue020'
+    NUMPAD7 = '\ue021'
+    NUMPAD8 = '\ue022'
+    NUMPAD9 = '\ue023'
+    MULTIPLY = '\ue024' # '*' 键
+    ADD = '\ue025'   # '+' 键
+    SEPARATOR = '\ue026'  #','键
+    SUBTRACT = '\ue027'  # '-' 键
+    DECIMAL = '\ue028'   # '.'键
+    DIVIDE = '\ue029'    #'/'键
+
+    F1 = '\ue031' # function  keys F2 = '\ue032'
+    F3 = '\ue033'
+    F4 = '\ue034'
+    F5 = '\ue035'
+    F6 = '\ue036'
+    F7 = '\ue037'
+    F8 = '\ue038'
+    F9 = '\ue039'
+    F10 = '\ue03a'
+    F11 = '\ue03b'
+    F12 = '\ue03c'
+
+    META = '\ue03d'
+    COMMAND = '\ue03d'"""
+
 
 
 

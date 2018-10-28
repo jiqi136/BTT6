@@ -2,19 +2,31 @@
 # -*- coding:utf-8
 import grequests  # 并发协程
 import requests  # 网页浏览
-import re  # 正则式
+import pymysql  # 数据库
 import time  # 时间
+import random  # 随机
+import win32api  # 操作本地文件
+import pyautogui  # 键盘控制
+
+
+
+"""
+
+import requests  # 网页浏览
+import re  # 正则式
+
 import datetime  # 时间
 import os  # 本地操作
-import pymysql  # 数据库
-import random  # 随机
+
 from lxml import etree  # 网页分析
 import shutil  # 移动复制文件目录
 from lxml import html  # 网页分析
 from selenium import webdriver  # 浏览的驱动
-import win32api  # 操作本地文件
+
 import asyncio, aiohttp # 异步浏览
-import pyautogui  # 键盘控制
+
+
+"""
 
 class 类一一采集公共库: #调用 类的模具 self.模具一一数据库()
     def __init__(self):
@@ -209,7 +221,7 @@ class 类一一采集公共库: #调用 类的模具 self.模具一一数据库(
 
                     条件循环 = 998
 
-                time.sleep(2)  # 等待
+                time.sleep(1)  # 等待
 
         return 返回网页一链接组列表  # 返回
     """============异步打开网页================"""
@@ -298,7 +310,7 @@ class 类一一采集公共库: #调用 类的模具 self.模具一一数据库(
     """============gr无序网址列表================"""
     def 模具一一内容数据库(self,数据库='提交'):
        #self.sql语句 = """
-        print('打开数据库连接')
+       #print('打开数据库连接')
         # 打开数据库连接,
         数据库执行 = pymysql.connect("localhost", "root", "", self.数据库名, charset="utf8")
         # 使用cursor()方法获取操作游标
@@ -311,7 +323,7 @@ class 类一一采集公共库: #调用 类的模具 self.模具一一数据库(
             try:
                 # 提交到数据库执行
                 数据库执行.commit()
-                print('=保存数据库一微博转发内容')
+                print('=提交至保存数据库')
             except:
 
                 # 如果发生错误则回滚
@@ -321,15 +333,12 @@ class 类一一采集公共库: #调用 类的模具 self.模具一一数据库(
         else:  # 否则 为查询
             # 获取所有记录列表
             self.数据库内容组列表 = 操作游标.fetchall()
+            print('数据库完成查询')
+
+
+
 
         数据库执行.close()# 关闭数据库连接
 
 
-
-
-
-
-
-
-        
             

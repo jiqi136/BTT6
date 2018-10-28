@@ -1635,39 +1635,54 @@ class 类一一提取(类一一采集公共库): #调用 类的模具 self.模�
                         序数)  # '代入 '{}'  # /@href  text()
 
 
-                    if '抽奖' in 转发内容: #  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
+                    if '抽奖' in self.转发内容: #  break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
                         self.模具一一提取链接并合成内容链接组()
 
-                    elif '开奖' in 转发内容 :  # 其它条件.
+                    elif '开奖' in self.转发内容 :  # 其它条件.
                         self.模具一一提取链接并合成内容链接组()
 
-                    elif '抽' in 转发内容 and '送' in 转发内容:# 其它条件.
+                    elif '抽' in self.转发内容 and '送' in self.转发内容:# 其它条件.
                         self.模具一一提取链接并合成内容链接组()
 
-                    elif '抽' in 转发内容 and '获' in 转发内容:  # 其它条件.
+                    elif '抽' in self.转发内容 and '获' in self.转发内容:  # 其它条件.
                         self.模具一一提取链接并合成内容链接组()
 
-                    elif '抽' in 转发内容 and '机会' in 转发内容:  # 其它条件.
+                    elif '抽' in self.转发内容 and '机会' in self.转发内容:  # 其它条件.
                         self.模具一一提取链接并合成内容链接组()
 
-                    elif '获' in 转发内容 and '机会' in 转发内容:  # 其它条件.
+                    elif '获' in self.转发内容 and '机会' in self.转发内容:  # 其它条件.
                         self.模具一一提取链接并合成内容链接组()
-                    elif '抽' in 转发内容 and '粉丝' in 转发内容:  # 其它条件.
+                    elif '抽' in self.转发内容 and '粉丝' in self.转发内容:  # 其它条件.
                         self.模具一一提取链接并合成内容链接组()
-                    elif '抽' in 转发内容 and '元' in 转发内容 and  '现金卷' not in 转发内容:  # 其它条件.
-                        self.模具一一提取链接并合成内容链接组()
-
-                    elif '抽' in 转发内容 and '现金' in 转发内容 and  '现金卷' not in 转发内容: # 其它条件
+                    elif '抽' in self.转发内容 and '元' in self.转发内容 and  '现金卷' not in self.转发内容:  # 其它条件.
                         self.模具一一提取链接并合成内容链接组()
 
-                    elif '评选' in 转发内容 and '奖' in 转发内容:# 其它条件.
+                    elif '抽' in self.转发内容 and '现金' in self.转发内容 and  '现金卷' not in self.转发内容: # 其它条件
+                        self.模具一一提取链接并合成内容链接组()
+
+                    elif '评选' in self.转发内容 and '奖' in self.转发内容:# 其它条件.
                         self.模具一一提取链接并合成内容链接组()
                     else:# 否则
                         continue  # 跳过循环
                 else:  # 否则
                     continue  # 跳过循环
 
-    
+    def 模具一一抽奖需求条件(self):
+        if '抽奖' in self.转发内容:  # break # 结束循环 continue # 跳过当前循环,继续进行下一轮循环
+            self.模具一一提取链接并合成内容链接组()
+
+        elif '开奖' in self.转发内容:  # 其它条件.
+            self.模具一一提取链接并合成内容链接组()
+
+        elif '抽' in self.转发内容 and '送' in self.转发内容:  # 其它条件.
+            self.模具一一提取链接并合成内容链接组()
+
+        elif '抽' in self.转发内容 and '获' in self.转发内容:  # 其它条件.
+            self.模具一一提取链接并合成内容链接组()
+
+        else:  # 否则
+            pass
+
 
     def 模具一一提取链接并合成内容链接组(self):
         原创链接列表 = self.帖子内容html.xpath(self.原创链接规则)

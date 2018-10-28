@@ -1413,13 +1413,10 @@
 							# coding:utf-8
 				from selenium import webdriver
 
-				# 加启动配置
-				option = webdriver.ChromeOptions()
-
 
 				# 打开chrome浏览器
 				chrome_options = webdriver.ChromeOptions()
-				prefs = {"profile.managed_default_content_settings.images":2}
+				prefs = {"profile.managed_default_content_settings.images":2}#配置不加载图片
 				chrome_options.add_experimental_option("prefs",prefs)
 							
 				driver = webdriver.Chrome(chrome_options=chrome_options)
