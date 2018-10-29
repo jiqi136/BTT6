@@ -1,0 +1,31 @@
+Started InternetExplorerDriver server (32-bit)
+2.48.0.0
+Listening on port 0
+Started InternetExplorerDriver server (32-bit)
+2.48.0.0
+Listening on port 0
+1540667476399	geckodriver	INFO	geckodriver 0.18.0
+1540667476430	geckodriver	INFO	Listening on 127.0.0.1:55020
+1540667476958	geckodriver	INFO	geckodriver 0.18.0
+1540667476984	geckodriver	INFO	Listening on 127.0.0.1:55025
+1540667477613	geckodriver	INFO	geckodriver 0.18.0
+1540667477641	geckodriver	INFO	Listening on 127.0.0.1:55030
+1540667505023	geckodriver	INFO	geckodriver 0.18.0
+1540667505061	geckodriver	INFO	Listening on 127.0.0.1:55044
+1540667505428	geckodriver	INFO	geckodriver 0.18.0
+1540667505470	geckodriver	INFO	Listening on 127.0.0.1:55050
+1540667505762	geckodriver	INFO	geckodriver 0.18.0
+1540667505795	geckodriver	INFO	Listening on 127.0.0.1:55055
+1540667587008	geckodriver	INFO	Listening on 127.0.0.1:55135
+1540667587472	geckodriver	INFO	Listening on 127.0.0.1:55140
+1540667588547	geckodriver	INFO	Listening on 127.0.0.1:55146
+1540667656754	geckodriver	INFO	Listening on 127.0.0.1:55206
+1540667657419	geckodriver	INFO	Listening on 127.0.0.1:55215
+1540667658177	geckodriver	INFO	Listening on 127.0.0.1:55226
+1540690298293	geckodriver	INFO	Listening on 127.0.0.1:54713
+1540690298595	geckodriver	INFO	Listening on 127.0.0.1:54718
+1540690298940	geckodriver	INFO	Listening on 127.0.0.1:54723
+1540690769979	geckodriver	INFO	Listening on 127.0.0.1:55211
+1540690770685	geckodriver	INFO	Listening on 127.0.0.1:55216
+1540690771307	geckodriver	INFO	Listening on 127.0.0.1:55221
+1540691577435	geckodriver	INFO	Listening on 127.0.0.1:55987

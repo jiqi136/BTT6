@@ -1,5 +1,6 @@
 
 # -*- coding:utf-8
+from 网页采集公共库 import 类一一采集公共库# 导入模块
 import grequests  # 并发协程
 import requests  # 网页浏览
 import re  # 正则式
@@ -17,7 +18,7 @@ from selenium import webdriver  # 浏览的驱动
 import win32api  # 操作本地文件
 import asyncio, aiohttp # 异步浏览
 import pyautogui  # 键盘控制
-from 网页采集公共库 import 类一一采集公共库# 导入模块
+
 
 class 类一一采集抽奖微博(类一一采集公共库): #调用 类的模具 self.模具一一数据库()
     def __init__(self):
@@ -432,4 +433,7 @@ class 类一一自动浏览器转发微博(类一一采集公共库):  # 调用 
 if __name__ == '__main__':
     #类=类一一采集抽奖微博()
     类 = 类一一自动浏览器转发微博()
+
+
+
 
