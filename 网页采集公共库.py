@@ -7,6 +7,8 @@ import time  # 时间
 import random  # 随机
 import win32api  # 操作本地文件
 import pyautogui  # 键盘控制
+import win32gui #窗口控件
+import win32con#提取剪切板内容
 
 
 
@@ -28,14 +30,28 @@ import asyncio, aiohttp # 异步浏览
 
 """
 
-class 类一一采集公共库: #调用 类的模具 self.模具一一数据库()
+class 类一一采集公共库: #调用 类的模具  self.模具一一查看变量输出文本值('变量名', self.测试打印, 8)
     def __init__(self):
         self.模具一一高位换头部信息()
+        self.测试打印 = ''
 
-        pass
+
+
+
 
     def 模具一一示例(self):
         pass
+
+
+    def 模具一一查看变量输出文本值(self, 变量名, 变量文本值, 测试输入=0):
+
+        if 测试输入 == 0:
+            print(变量名, '： ', 变量文本值)
+        elif len(self.测试打印) != 0:
+            print(变量名, '： ', 变量文本值)
+
+
+
 
     def 模具一一高位换头部信息(self):  # 头部信息 def 函数模具内通行变量
         # nonlocal 头部信息  # def 函数模具内通行变量
@@ -148,6 +164,20 @@ class 类一一采集公共库: #调用 类的模具 self.模具一一数据库(
         win32api.ShellExecute(0, 'open', 'E:\PY学习文件\BTT影视剧\工具集\换ip连接二.py', '', '', 1)
 
         pyautogui.alert('等待.....换ip连接')
+
+    def 模具一一开关提醒声(self,类型=''):
+        if len(类型)==0:
+            win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\简短提示音.wav', '', '', 1)
+        else:  # 否则
+            win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\百度云下载完成提示音.wav', '', '', 1)
+        time.sleep(3)  # 等待  # 增加延迟
+        窗口标题 = "Windows Media Player"
+
+        窗口句柄 = win32gui.FindWindow(None, 窗口标题)
+
+        win32gui.ShowWindow(窗口句柄, 11)  # 即使拥有窗口的线程被挂起也会最小化。在从其他线程最小化窗口时才使用这个参数
+        time.sleep(1)  # 等待  # 增加延迟
+        win32gui.SendMessage(窗口句柄, win32con.WM_CLOSE)  # 关闭窗口
 
 
     """============gr无序网址列表================"""

@@ -9,11 +9,13 @@ import random# 随机
 import win32gui #窗口控件
 import pymysql  # 数据库
 
+
 import pyautogui as pag #模拟鼠标键盘操作
 from selenium import webdriver  # 浏览的驱动
 from selenium.webdriver.support import expected_conditions as EC #=判断网页文本
 from hashlib import md5 # md5值
 from PIL import Image#图片处理
+
 
 
 
@@ -102,6 +104,7 @@ class 类一一百度号控制浏览器注册(类一一公共库):  # 调用 类
 
                     self.模具一一正常60秒后换IP时间数()
                     self.浏览器操作.quit()  # .退出浏览器
+                    os.system("taskkill /F /IM chromedriver.exe")  # 关闭程序名 chromedriver.exe
 
                     continue  # 跳过循环
 
@@ -112,6 +115,7 @@ class 类一一百度号控制浏览器注册(类一一公共库):  # 调用 类
 
                     self.模具一一正常60秒后换IP时间数()
                     self.浏览器操作.quit()  # .退出浏览器
+                    os.system("taskkill /F /IM chromedriver.exe")  # 关闭程序名 chromedriver.exe
                     continue  # 跳过循环
 
                 self.模具一一输入短信内容()
@@ -120,6 +124,7 @@ class 类一一百度号控制浏览器注册(类一一公共库):  # 调用 类
 
                     self.模具一一正常60秒后换IP时间数()
                     self.浏览器操作.quit()  # .退出浏览器
+                    os.system("taskkill /F /IM chromedriver.exe")  # 关闭程序名 chromedriver.exe
                     continue  # 跳过循环
 
                 self.模具一一输入自动化百度用户名()
@@ -134,9 +139,13 @@ class 类一一百度号控制浏览器注册(类一一公共库):  # 调用 类
 
 
                     self.模具一一保存数据库一百度发贴帐号等()
+                    self.已注册帐号手机号=self.百度发贴名+self.已注册帐号手机号
+                    time.sleep(40)  # 等待  # 增加延迟
 
                     self.模具一一正常60秒后换IP时间数()
                     self.浏览器操作.quit()  # .退出浏览器
+
+                    os.system("taskkill /F /IM chromedriver.exe")  # 关闭程序名 chromedriver.exe
 
 
                     continue  # 跳过循环

@@ -47,7 +47,7 @@ def 模具一一FF浏览器窗口():
 模具一一FF浏览器窗口()
 
 表名='知乎帐号'
-表名='知乎发贴帐号'
+表名='推广帐号'
 sql命令="UPDATE `{}` SET `cookie`= replace(`cookie`,'\"[','[')".format(表名)
 模具一一清洗cookie(sql命令)
 sql命令="UPDATE `{}` SET `cookie`= replace(`cookie`,']\"',']')".format(表名)

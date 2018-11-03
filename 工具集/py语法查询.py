@@ -331,25 +331,7 @@ class 类一一多项语法():  # 调用 类的模具 self.模具一一数据库
                 except (requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout,
                         requests.exceptions.ConnectionError, requests.exceptions.ConnectTimeout):
                     pass
-        def 利用selenium模拟登录帐号向requests中重设cookie():
-            driver='只是一个文本：浏览器操作'
 
-
-
-            print('登录成功，提取保存cookie')
-            保存cookie = [item["name"] + ":" + item["value"] for item in driver.get_cookies()]
-            # cookiestr = ';'.join(item for item in 保存cookie)
-            规则 = r"[\'\[\]]{1}"
-            保存cookie = re.sub(规则, '', str(保存cookie))
-            保存cookie = str(保存cookie).replace(",", ";")
-            保存cookie = str(保存cookie).replace(":", "=")
-
-            def 模具_导入cookie(self):
-                with open('E:\PY学习文件\PyCharm文件\BT影视剧\de3ede38.txt', 'r') as f:
-                    self.cookies = {}
-                    for line in f.read().split(';'):
-                        name, value = line.strip().split('=', 1)  # 1代表只分割一次
-                        self.cookies[name] = value
 
         # ======================================
 
@@ -475,9 +457,8 @@ class 类一一多项语法():  # 调用 类的模具 self.模具一一数据库
         print("str.count('run', 0, 10) : ", 字符串.count(搜索的子字符串, 0, 10))  # 结果  1
 
         """list -- 要返回最大值的列表  max(列表) """
-        """  list.reverse() # 反向列表中元素  """
-
-
+        """  list.reverse() # 反向列表中元素 
+         列表 按值删除  列表.remove(值)"""
 
 
 
@@ -1024,7 +1005,9 @@ class 类一一本地文件目录操作():  # 调用 类的模具 self.模具一
             # 重命名文件（目录）
             os.rename("oldname", "newname")  # 文件或目录都是使用这条命令
     def 操作目录(self):
+
         def 创建目录():
+
             种子目录 = 'r'
             创建种子目录 = str(种子目录).strip('/')
             if not os.path.exists(创建种子目录):  # 必有条件选择，否则出错
@@ -1037,6 +1020,17 @@ class 类一一本地文件目录操作():  # 调用 类的模具 self.模具一
                     创建种子目录 = str(创建种子目录).replace('\\n ', '')
                     创建种子目录 = str(创建种子目录).replace('\n ', '')
                     os.makedirs(创建种子目录)
+
+        def 获得当前目录():
+            try:
+
+                目标目录 = os.getcwd()  # 获得当前目录
+                子目录列表与文件列表 = os.listdir(目标目录)  # 分离出目录列表与文件列表
+            except:
+
+                目标目录 = os.path.dirname(__file__)  # 获得当前目录 '.'
+
+                子目录列表与文件列表 = os.listdir(目标目录)  # 分离出目录列表与文件列表
 
         def 判断当前目录的子目录是否为目录():
             fileList = os.listdir(旧目录上层)  # 获取path目录下所有文件
@@ -1297,6 +1291,10 @@ class 类一一本地文件目录操作():  # 调用 类的模具 self.模具一
 
         """
 
+    def 模具一一终止应用程序(self):
+        import os
+        os.system("taskkill /F /IM chromedriver.exe")  # 程序名 chromedriver.exe
+
     def 模具一遍历windows所有可显示的窗口句柄及窗口名称(self):
         import win32gui  # 窗口控件
         类名 = 'Chrome_WidgetWin_1'
@@ -1397,24 +1395,28 @@ class 类一一自动化操作浏览器():  # 调用 类的模具 self.模具一
             self.模具一一高位换头部信息()
             头部信息 = "user-agent=" + self.头部信息['User-Agent']
             print('头部信息:', 头部信息)
-            options.add_argument(头部信息)
+            self.浏览器设置选项.add_argument(头部信息)
 
-        options = webdriver.ChromeOptions()  # 设置中文
+        """设置选项"""
+        self.浏览器设置选项 = webdriver.ChromeOptions()  # 进入浏览器设置
         #option.add_argument('headless')  # 静默模式
-        options.add_argument('disable-infobars')  # 加启动配置 去除正在受到自动软件的控制
+        self.浏览器设置选项.add_argument('disable-infobars')  # 加启动配置 去除正在受到自动软件的控制
         用户数据目录 = r'C:\Users\Administrator\AppData\Local\Google\Chrome\User Data'
-        options.add_argument('--user-data-dir={}'.format(用户数据目录))  # '代入{}'  # 设置成用户自己的数据目录
-        换头部信息()
-        self.浏览器操作 = webdriver.Chrome(chrome_options=options)  # 打开chrome浏览器
-        # driver = webdriver.Chrome(chrome_options=option)
-
-        # url = "https://baidu.com"  # 注册页面  https://www.zhihu.com/signup?next=%2Fexplore
-        url = "http://www.atool.org/useragent.php"
-        self.浏览器操作.get(url)
-
+        self.浏览器设置选项.add_argument('--user-data-dir={}'.format(用户数据目录))  # '代入{}'  # 设置成用户自己的数据目录
         """配置不加载图片"""
         配置不加载图片 = {"profile.managed_default_content_settings.images": 2}  # 配置不加载图片
-        self.浏览器操作.add_experimental_option("prefs", 配置不加载图片)
+        self.浏览器设置选项.add_experimental_option("prefs", 配置不加载图片)
+
+
+        换头部信息()
+        self.浏览器操作 = webdriver.Chrome(chrome_options=self.浏览器设置选项)  # 打开chrome浏览器
+
+
+
+
+
+
+
 
         """设置浏览器窗口大小"""
 
@@ -1425,11 +1427,13 @@ class 类一一自动化操作浏览器():  # 调用 类的模具 self.模具一
 
 
         """========================操作===================="""
+        url = "http://www.atool.org/useragent.php"
+        self.浏览器操作.get(url)
 
         self.浏览器操作.implicitly_wait(5)  # 隐式等待
         # 点击.click() 或  输入.send_keys("python3")  请空输入框：clear()
         """点击  注册 按钮"""
-        self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__submit"]').click()  # 点击  注册 按钮
+        self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__submit"]').click()  # 点击
         """输入"""
         self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__verifyCode"]').send_keys(self.短信内容)  # 输入
 
@@ -1517,6 +1521,106 @@ class 类一一自动化操作浏览器():  # 调用 类的模具 self.模具一
 
     META = '\ue03d'
     COMMAND = '\ue03d'"""
+
+    def 利用selenium模拟登录帐号向requests中重设cookie():
+        driver = '只是一个文本：浏览器操作'
+
+        print('登录成功，提取保存cookie')
+        保存cookie = [item["name"] + ":" + item["value"] for item in driver.get_cookies()]
+        # cookiestr = ';'.join(item for item in 保存cookie)
+        规则 = r"[\'\[\]]{1}"
+        保存cookie = re.sub(规则, '', str(保存cookie))
+        保存cookie = str(保存cookie).replace(",", ";")
+        保存cookie = str(保存cookie).replace(":", "=")
+
+        def 模具_导入cookie(self):
+            with open('E:\PY学习文件\PyCharm文件\BT影视剧\de3ede38.txt', 'r') as f:
+                self.cookies = {}
+                for line in f.read().split(';'):
+                    name, value = line.strip().split('=', 1)  # 1代表只分割一次
+                    self.cookies[name] = value
+
+
+    def 模具一一动态换头部信息(self):
+        def 模具一动态换头部信息():
+            self.模具一一高位换头部信息()
+
+            self.浏览器操作.get(换头部信息设置)
+
+            """输入 设置的网址"""
+            self.浏览器操作.implicitly_wait(5)  # 隐式等待
+            self.浏览器操作.find_element_by_xpath('//*[@id="hostname"]').send_keys("baidu.com")  # 输入 'www.atool.org'
+
+            """输入 设置的头部信息"""
+            self.浏览器操作.find_element_by_xpath('//*[@id="agent"]').send_keys(self.头部信息['User-Agent'])  # 输入
+
+            """点击  ADD添加 按钮"""
+            self.浏览器操作.find_element_by_xpath('//*[@id="btnAdd"]').click()  # 点击  按钮
+
+
+        self.浏览器设置选项= webdriver.ChromeOptions()  # 进入浏览器设置
+        # option.add_argument('headless')  # 静默模式
+        self.浏览器设置选项.add_argument('disable-infobars')  # 加启动配置 去除正在受到自动软件的控制
+        用户数据目录 = r'C:\Users\Administrator\AppData\Local\Google\Chrome\User Data'
+        # 换头部信息()
+
+        self.浏览器设置选项.add_argument('--user-data-dir={}'.format(用户数据目录))  # '代入{}'  # 设置成用户自己的数据目录
+
+
+
+        self.浏览器操作 = webdriver.Chrome(chrome_options=self.浏览器设置选项)  # 打开chrome浏览器
+
+
+        头部信息分析 = "http://www.atool.org/useragent.php"
+
+        换头部信息设置 = "chrome-extension://hbpbdmolegkhpkkghlnlljndjcmibpcb/options.html"
+
+        清除数据 = "chrome://settings/clearBrowserData"
+
+        self.浏览器操作.get(头部信息分析)
+
+        time.sleep(5)  # 等待  # 增加延迟
+
+        模具一动态换头部信息()
+
+
+    def 模具一一cookie操作的几个方法(self):
+        pass
+        """1.get_cookies()：获取所有cookies
+        2.driver.get_cookie（name）：获取指定name的cookie:
+        
+        3.清除指定cookie：delete_cookie()
+        
+        4.delete_all_cookies()：清除所有cookies
+        
+        5.add_cookie(cookie_dict):添加cookie的值"""
+
+    def 判断文本是否存在(self):
+        from selenium.webdriver.support import expected_conditions as EC  # =判断网页文本
+        浏览器重启 = ''
+
+        定位 = ("xpath", '//*[@id="pl_common_top"]/div/div/div[3]/div[1]/ul/li[5]/a/em[2]')
+
+        判断文本 = r"抽开奖"
+
+        try:  # 调用异常处理,应对易发生错误的位置
+            要求注册True = EC.text_to_be_present_in_element(定位, 判断文本)(self.浏览器操作)
+
+        except:  # 异常处理 (,)as 异常原因
+            print('异常,已退出登录')
+            浏览器重启 = '浏览器重启'
+            return 浏览器重启  # 返回
+            # print(异常原因 )
+        else:  # 必须放在所有的except子句之后.这个子句将在try子句没有发生任何异常的时候执行.
+            if 要求注册True == True:
+                print('登录正常')
+
+
+            else:  #
+                print('否,已退出登录')
+                浏览器重启 = '浏览器重启'
+            return 浏览器重启  # 返回
+
 
 
 

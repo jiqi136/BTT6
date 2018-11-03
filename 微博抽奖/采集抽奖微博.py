@@ -325,7 +325,8 @@ class 类一一自动浏览器转发微博(类一一采集公共库):  # 调用 
             self.浏览器操作.find_element_by_xpath('//*[@id="plc_main"]/div[1]/div[1]/div/div/div/div[2]/div/ul/li[2]/a/span/span/span/em[1]').click()  # 点击  转发 按钮
             time.sleep(1)  # 等待  # 增加延迟
             """输入"""
-            self.模具一一随机转发文字()
+            #self.模具一一随机转发文字()
+            self.随机转发文字="#热门抽奖分享#"
             self.浏览器操作.find_element_by_xpath('//*[@id="plc_main"]/div[1]/div[1]/div/div/div/div[5]/div/div[3]/div/div/div/div/div/div[1]/textarea').send_keys(self.随机转发文字)  # 输入
             time.sleep(1)  # 等待  # 增加延迟
 
