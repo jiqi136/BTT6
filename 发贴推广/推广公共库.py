@@ -327,7 +327,7 @@ class 类一一公共库:  # 调用 类的模具
             print('换ip再连接完成')
 
             try:
-                返回网页内容 = requests.get('https://www.163.com/', headers=头部信息, timeout=3)
+                返回网页内容 = requests.get('https://www.163.com/', headers=self.头部信息, timeout=3)
             except (requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout,
                     requests.exceptions.ConnectionError, requests.exceptions.ConnectTimeout,
                     requests.exceptions.ChunkedEncodingError, requests.exceptions.InvalidSchema,requests.exceptions.ContentDecodingError) as 异常:

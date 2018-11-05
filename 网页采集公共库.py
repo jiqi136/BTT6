@@ -9,11 +9,12 @@ import win32api  # 操作本地文件
 import pyautogui  # 键盘控制
 import win32gui #窗口控件
 import win32con#提取剪切板内容
+import os  # 本地操作
 
 
 
 """
-
+from 网页采集公共库 import 类一一采集公共库# 导入模块
 import requests  # 网页浏览
 import re  # 正则式
 
@@ -33,7 +34,7 @@ import asyncio, aiohttp # 异步浏览
 class 类一一采集公共库: #调用 类的模具  self.模具一一查看变量输出文本值('变量名', self.测试打印, 8)
     def __init__(self):
         self.模具一一高位换头部信息()
-        self.测试打印 = ''
+        self.测试打印 = '测试'
 
 
 
@@ -159,6 +160,41 @@ class 类一一采集公共库: #调用 类的模具  self.模具一一查看变
         self.头部信息=头部信息
         print(头部信息)
 
+    def 模具一一换ip连接(self):
+        # coding:gbk
+        循环 = 0
+        次数循环 = 0
+
+        while 循环 == 0:  # 条件循环  post
+            print('宽带连接进行时.....')
+            os.system(r"rasphone -h 宽带连接")  # xxx0是你的拨号名称,xp下默认是"宽带连接”.
+            os.system(r"rasdial 宽带连接 02007044432@163.gd  77341859")  # xxx0同上,xxx1 拨号用户名 ,xxx2拨号密码.
+            time.sleep(3)
+            print('换ip再连接完成')
+
+            try:
+                返回网页内容 = requests.get('https://www.163.com/', headers=self.头部信息, timeout=3)
+            except (requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout,
+                    requests.exceptions.ConnectionError, requests.exceptions.ConnectTimeout,
+                    requests.exceptions.ChunkedEncodingError, requests.exceptions.InvalidSchema,requests.exceptions.ContentDecodingError) as 异常:
+                次数循环 += 1
+                print('网络异常等待', 异常)
+                print('倒数60秒再连接', 次数循环, '次')
+                self.模具一一开关提醒声('网络异常等待')
+                time.sleep(60)
+                if 'None, 10053,' in str(异常):
+                    pass
+            else:
+                if '200' in str(返回网页内容):
+                    self.换IP时间计数 = int(time.time())
+
+                    break  # 结束循环
+                else:
+                    print('网站网络异常,状态码:', 返回网页内容)
+                    print('等待60秒')
+                    self.模具一一开关提醒声('网络异常等待')
+                    time.sleep(60)
+
 
     def 模具一一换ip连接二(self):
         win32api.ShellExecute(0, 'open', 'E:\PY学习文件\BTT影视剧\工具集\换ip连接二.py', '', '', 1)
@@ -182,7 +218,7 @@ class 类一一采集公共库: #调用 类的模具  self.模具一一查看变
 
     """============gr无序网址列表================"""
 
-    def 模具一一gr无序网址列表请求返回网页内容(self, 网址列表, 分流数=100, 并发数=5,编码= "UTF-8"):  # grequests.imap(任务列
+    def 模具一一gr无序网址列表请求返回网页内容(self, 网址列表, 分流数=100, 并发数=5,编码= "UTF-8"):  # 返回网页一链接组列表
 
         初始网址列表数 = len(网址列表)
 
@@ -339,7 +375,7 @@ class 类一一采集公共库: #调用 类的模具  self.模具一一查看变
                     self.网址列表.append(url)
 
     """============gr无序网址列表================"""
-    def 模具一一内容数据库(self,数据库='提交'):
+    def 模具一一内容数据库(self,数据库操作类型=''):
        #self.sql语句 = """
        #print('打开数据库连接')
         # 打开数据库连接,
@@ -350,21 +386,26 @@ class 类一一采集公共库: #调用 类的模具  self.模具一一查看变
         # 执行sql语句
         操作游标.execute(self.sql语句)
 
-        if '提交' in 数据库:
-            try:
-                # 提交到数据库执行
-                数据库执行.commit()
-                print('=提交至保存数据库')
-            except:
-
-                # 如果发生错误则回滚
-                print('==========数据库执行发生错误:======')
-                数据库执行.rollback()
-
-        else:  # 否则 为查询
+        if len(数据库操作类型)==0 or 数据库操作类型=='查询':#  为查询
             # 获取所有记录列表
             self.数据库内容组列表 = 操作游标.fetchall()
             print('数据库完成查询')
+
+
+
+        else:  # 否则 为      数据库操作类型
+
+
+            try:
+                # 提交到数据库执行
+                数据库执行.commit()
+                print(数据库操作类型,'=提交至保存数据库')
+            except:
+
+                # 如果发生错误则回滚
+                print(数据库操作类型,'==========数据库执行发生错误:======')
+                数据库执行.rollback()
+
 
 
 

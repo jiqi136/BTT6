@@ -425,6 +425,7 @@ class 类一一多项语法():  # 调用 类的模具 self.模具一一数据库
              " [], {}, 或 () 中的多行语句，不需要使用反斜杠(\)"
         等待用户输入=input("\n按下 enter 确认键后继续")
         Print输出不换行=" 在变量末尾加上 end=" "   "
+        win下用表示换行 = "编码= 'gbk'  win下用 \r\n 表示换行  "
 
 
 
@@ -647,76 +648,7 @@ class 类一一多项语法():  # 调用 类的模具 self.模具一一数据库
 
         print(anyday)
 
-    def 网页文件的解析(self):
-        """XPath-Helper使用shift+ctrl+x 快捷键调用或关闭插件  """
-        from lxml import etree, html  # 解析与定位网页
 
-        if '直接解读网页文件'==0:
-            网页 = ''
-            网页 = 网页.text
-
-        def 直接解读网页文件():
-            网页=''
-            网页 =(网页.text)
-
-        if '解决Requests+lxml中文乱码'==0:#r.encoding = "utf-8"
-            # -*-coding:utf8-*-
-            import requests
-            from lxml import etree
-
-            url = "http://music.baidu.com"
-            r = requests.get(url)
-            r.encoding = "utf-8"
-            html = r.text
-            # print(html)
-            selector = etree.HTML(html)
-            title = selector.xpath('//title/text()')
-            print(title[0])
-
-
-        def 解析网页文件方法一():
-            返回网页内容="只是一个文本：返回网页内容"
-
-
-
-            from lxml import etree,html #解析与定位网页
-
-            捕捉定位的按键 = '按Ctrl-Shift键-X以打开XPath辅助控制台。页面上的捕捉元素'
-
-            浏览器的捕捉 = '浏览器的源码不等于py的源码，网页结构上要删掉表格的 /tbody'
-
-            帖子内容html = etree.HTML(返回网页内容.text)#
-
-            # ========端口列表
-            规则 = '//*[@id="list"]/table/tbody/tr[*]/td[2]/text()'  #/@href  text()
-            端口列表 = 帖子内容html.xpath(规则)
-            规则二 = str(规则).replace("/tbody", "")
-            端口列表 = 端口列表 + (帖子内容html.xpath(规则二))
-
-
-        def 解析网页文件方法二():#大批量会有出错
-            返回网页内容=''
-            帖子内容html = html.fromstring(返回网页内容.text)
-            帖子标题列表 = 帖子内容html.xpath('//*[@id="body"]/div/table[2]/tr[1]/td[3]/div[1]/h2/text()')
-            标题前的栏目列表 = 帖子内容html.xpath('//*[@id="body"]/div/table[2]/tr[1]/td[3]/div[1]/h2/a/text()')
-        def 提取整个元素后再转化为html():#出现乱码
-            各层内容="只是一个文本：各层内容"
-
-
-
-            各层内容html= etree.tostring(各层内容,encoding="unicode", method='html')
-            I = "后续转化不能为列表，须在提取时在后面加上‘[0]’，或者for遍历列表转为单个"
-            L = "一楼内容 = 帖子内容html.xpath('//*[@id=\"body\"]/div/table[2]/tr[1]/td[3]/div[1]/p')[0]"
-
-
-        def xpath定位网页提取内容():
-            捕捉定位的按键 = '按Ctrl-Shift键-X以打开XPath辅助控制台。页面上的捕捉元素'
-            浏览器的捕捉= '浏览器的源码不等于py的源码，网页结构上要删掉表格的 /tbody'
-            多列提取= 'td[1]多列的序号用*号代替，td[*]'
-            深度提取= 'td/ 提取范围下所有的元素用//号代替，td//'
-            提取文本= '/text()'
-            提取链接= '/@href'
-            提取图片= '@src'
 
 
 
@@ -821,6 +753,79 @@ class 类一一文本清洗():  # 调用 类的模具 self.模具一一数据库
             小数点精度a = ("%.2f" % 2.635)
             aaa = 'hgjtgu'
     获取变量的数据类型 =print(type(aaa))#aaa = '获取变量的数据类型hgjtgu'
+
+    def 网页文件的解析(self):
+        """XPath-Helper使用shift+ctrl+x 快捷键调用或关闭插件  """
+        from lxml import etree, html  # 解析与定位网页
+
+        if '直接解读网页文件'==0:
+            网页 = ''
+            网页 = 网页.text
+
+        def 直接解读网页文件():
+            网页=''
+            网页 =(网页.text)
+
+        if '解决Requests+lxml中文乱码'==0:#r.encoding = "utf-8"
+            # -*-coding:utf8-*-
+            import requests
+            from lxml import etree
+
+            url = "http://music.baidu.com"
+            r = requests.get(url)
+            r.encoding = "utf-8"
+            html = r.text
+            # print(html)
+            selector = etree.HTML(html)
+            title = selector.xpath('//title/text()')
+            print(title[0])
+
+
+        def 解析网页文件方法一():
+            返回网页内容="只是一个文本：返回网页内容"
+
+
+
+            from lxml import etree #解析与定位网页
+
+            捕捉定位的按键 = '按Ctrl-Shift键-X以打开XPath辅助控制台。页面上的捕捉元素'
+
+            浏览器的捕捉 = '浏览器的源码不等于py的源码，网页结构上要删掉表格的 /tbody'
+
+            帖子内容html = etree.HTML(返回网页内容.text)#
+
+            # ========端口列表
+            规则 = '//*[@id="list"]/table/tbody/tr[*]/td[2]/text()'  #/@href  text()
+            端口列表 = 帖子内容html.xpath(规则)
+            规则二 = str(规则).replace("/tbody", "")
+            端口列表 = 端口列表 + (帖子内容html.xpath(规则二))
+
+
+        def 解析网页文件方法二():#大批量会有出错
+            返回网页内容=''
+            帖子内容html = html.fromstring(返回网页内容.text)
+            帖子标题列表 = 帖子内容html.xpath('//*[@id="body"]/div/table[2]/tr[1]/td[3]/div[1]/h2/text()')
+            标题前的栏目列表 = 帖子内容html.xpath('//*[@id="body"]/div/table[2]/tr[1]/td[3]/div[1]/h2/a/text()')
+        def 提取整个元素后再转化为html():#出现乱码
+            各层内容="只是一个文本：各层内容"
+
+
+
+            各层内容html= etree.tostring(各层内容,encoding="unicode", method='html')
+            I = "后续转化不能为列表，须在提取时在后面加上‘[0]’，或者for遍历列表转为单个"
+            L = "一楼内容 = 帖子内容html.xpath('//*[@id=\"body\"]/div/table[2]/tr[1]/td[3]/div[1]/p')[0]"
+
+
+        def xpath定位网页提取内容():
+            捕捉定位的按键 = '按Ctrl-Shift键-X以打开XPath辅助控制台。页面上的捕捉元素'
+            浏览器的捕捉= '浏览器的源码不等于py的源码，网页结构上要删掉表格的 /tbody'
+            多列提取= 'td[1]多列的序号用*号代替，td[*]'
+            深度提取= 'td/ 提取范围下所有的元素用//号代替，td//'
+            提取文本= '/text()'
+            提取链接= '/@href'
+            提取图片= '@src'
+
+
     def 判断两个数据的类型是否一样(self):
         if type(123) == type('123'):
             print('Yes')
@@ -1113,6 +1118,8 @@ class 类一一本地文件目录操作():  # 调用 类的模具 self.模具一
 
             pag.typewrite('Hello world')  # 输入字符串
 
+            pyautogui.alert('完成')  # 弹窗 提示
+
 
 
 
@@ -1389,7 +1396,7 @@ class 类一一自动化操作浏览器():  # 调用 类的模具 self.模具一
     def __init__(self):
         pass
 
-    def 模具一一浏览器访问百度(self):
+    def 模具一一浏览器设置选项(self):
         from selenium import webdriver  # 浏览的驱动
         def 换头部信息():
             self.模具一一高位换头部信息()
@@ -1411,13 +1418,6 @@ class 类一一自动化操作浏览器():  # 调用 类的模具 self.模具一
         换头部信息()
         self.浏览器操作 = webdriver.Chrome(chrome_options=self.浏览器设置选项)  # 打开chrome浏览器
 
-
-
-
-
-
-
-
         """设置浏览器窗口大小"""
 
         self.浏览器操作.set_window_size(800, 800)# 参数是像素点宽，高
@@ -1425,12 +1425,13 @@ class 类一一自动化操作浏览器():  # 调用 类的模具 self.模具一
 
         time.sleep(3)  # 设置暂停等待.单位是秒（s）,时间值可以是小数也可以是整数
 
+    def 模具一一浏览器访问操作(self):
+        pass
 
         """========================操作===================="""
         url = "http://www.atool.org/useragent.php"
         self.浏览器操作.get(url)
 
-        self.浏览器操作.implicitly_wait(5)  # 隐式等待
         # 点击.click() 或  输入.send_keys("python3")  请空输入框：clear()
         """点击  注册 按钮"""
         self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__submit"]').click()  # 点击
@@ -1446,6 +1447,24 @@ class 类一一自动化操作浏览器():  # 调用 类的模具 self.模具一
         self.浏览器操作.find_element_by_xpath(']').send_keys(Keys.CONTROL, 'a')  #全选（Ctrl+A）
         self.浏览器操作.find_element_by_xpath(']').send_keys(Keys.CONTROL, 'c')  # 复制（Ctrl+C）
         self.浏览器操作.find_element_by_xpath(']').send_keys(Keys.CONTROL,Keys.ENTER)  # 组合 回车 确认键
+
+        """============隐式等待 试错============"""
+        for 序号 in '123':
+            try:  # 调用异常处理,应对易发生错误的位置
+                self.浏览器操作.implicitly_wait(10)  # 隐式等待
+                """点击  点击关注按钮"""
+                self.浏览器操作.find_element_by_xpath('//*[@id="userinfo_wrap"]/div[2]/div[1]/div/div/a[1]').click()  # 点击
+
+            except:  # 异常处理
+                if '1' in 序号:
+                    self.浏览器操作.refresh()  # 刷新下页面
+                elif '2' in 序号:
+                    self.跳过循环 = '跳过循环'
+                    return  # 返回
+            else:  # 必须放在所有的except子句之后.这个子句将在try子句没有发生任何异常的时候执行.
+                break  # 结束循环
+
+
         """================浏览器操作==============="""
 
         self.浏览器操作.refresh()  # 刷新当前页面
@@ -1582,6 +1601,50 @@ class 类一一自动化操作浏览器():  # 调用 类的模具 self.模具一
         time.sleep(5)  # 等待  # 增加延迟
 
         模具一动态换头部信息()
+
+    def 模具一一上传设置头像(self):
+        def 模具一一随机图像文件():
+            目标目录 = r'F:\影视发帖推广\贴吧顶贴\头像\百度主号上传小头像'
+            子目录列表与文件列表 = os.listdir(目标目录)  # 分离出目录列表与文件列表
+
+            for i in '12345':
+                随机图像 = random.choice(子目录列表与文件列表)  # 随机列表
+                随机图像文件路径 = os.path.join(目标目录, 随机图像)
+                if os.path.isdir(随机图像文件路径):  # 判断是不是文件夹  判断文件 os.path.isfile
+                    pass
+                else:  # 否则 为文件
+
+                    break  # 结束循环
+            return 随机图像文件路径  # 返回
+
+        头像设置 = 'http://www.baidu.com/p/setting/profile/portrait'
+        self.浏览器操作.get(头像设置)
+        随机图像 = 模具一一随机图像文件()
+
+        """============隐式等待 试错============"""
+        for 序号 in '123':
+            try:  # 调用异常处理,应对易发生错误的位置
+                self.浏览器操作.implicitly_wait(10)  # 隐式等待
+                """点击  热门推荐头像"""
+
+                self.浏览器操作.find_element_by_xpath('//*[@id="fileImg"]').send_keys(随机图像)  # 文件路径
+
+            except:  # 异常处理
+                if '1' in 序号:
+                    self.浏览器操作.refresh()  # 刷新下页面
+                elif '2' in 序号:
+                    self.跳过循环 = '跳过循环'
+                    return  # 返回
+            else:  # 必须放在所有的except子句之后.这个子句将在try子句没有发生任何异常的时候执行.
+                break  # 结束循环
+        time.sleep(2)  # 等待
+        self.浏览器操作.implicitly_wait(10)  # 隐式等待
+        """点击  热门推荐头像"""
+        self.浏览器操作.find_element_by_xpath('//*[@id="savePortrait"]').click()  # 点击
+
+        time.sleep(2)  # 等待
+
+        self.模具一一查看变量输出文本值("设置头像完成,随机图像", 随机图像)
 
 
     def 模具一一cookie操作的几个方法(self):

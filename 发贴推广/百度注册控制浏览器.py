@@ -803,7 +803,7 @@ class 类一一百度号控制浏览器注册(类一一公共库):  # 调用 类
             for i in '123':
             
                 try:  #调用异常处理,应对易发生错误的位置
-                    self.浏览器操作.implicitly_wait(5)  # 隐式等待
+                    self.浏览器操作.implicitly_wait(10)  # 隐式等待
                     self.浏览器操作.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__phone"]').send_keys(
                         self.手机号码)  # 输入.send_keys("python3")  请空输入框:clear()
                     time.sleep(1)  # 等待  # 增加延迟
