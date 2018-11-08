@@ -145,6 +145,7 @@ class 类一一帐号互相关注(类一一采集公共库):#调用 类的模具
                 self.ID=百度顶贴账号cookie组[0]
                 self.帐号= 百度顶贴账号cookie组[1]
                 self.密码 = 百度顶贴账号cookie组[2]
+                self.头像 = 百度顶贴账号cookie组[6]
 
                 self.关注帐号 = 百度发贴账号cookie组[1]
 
@@ -171,6 +172,7 @@ class 类一一帐号互相关注(类一一采集公共库):#调用 类的模具
                 self.帐号 = 百度发贴账号cookie组[1]
                 self.密码 = 百度发贴账号cookie组[2]
                 self.cookie字典 = 百度发贴账号cookie组[3]
+                self.头像 = 百度发贴账号cookie组[4]
 
                 self.关注帐号 = 百度顶贴账号cookie组[1]
                 self.顶贴ID = self.ID
@@ -185,11 +187,11 @@ class 类一一帐号互相关注(类一一采集公共库):#调用 类的模具
 
     def 模具一一提取数据库百度顶贴与发贴账号(self):
 
-        self.sql语句 = "SELECT `ID`, `帐号`, `密码`,`名值cookie`, `互相关注`,`cookie` FROM `推广帐号` WHERE `类型`='百度顶贴' "  # ' '{}' # SQL 查询语句
+        self.sql语句 = "SELECT `ID`, `帐号`, `密码`,`名值cookie`, `互相关注`,`cookie`,`头像` FROM `推广帐号` WHERE `类型`='百度顶贴' "  # ' '{}' # SQL 查询语句
         self.模具一一内容数据库()
         self.百度顶贴账号cookie组列表 = list(self.数据库内容组列表)
 
-        self.sql语句 = "SELECT `ID`,`帐号`, `密码`,`cookie` FROM `推广帐号` WHERE `类型`='百度发贴' "  # ' '{}' # SQL 查询语句
+        self.sql语句 = "SELECT `ID`,`帐号`, `密码`,`cookie`,`头像` FROM `推广帐号` WHERE `类型`='百度发贴' "  # ' '{}' # SQL 查询语句
         self.模具一一内容数据库()
         self.百度发贴账号cookie组列表 = list(self.数据库内容组列表)
 
@@ -322,7 +324,8 @@ class 类一一帐号互相关注(类一一采集公共库):#调用 类的模具
 
         """点击  随机选择头像"""
         # self.模具一一随机选择头像()
-        self.模具一一上传设置头像()
+        if '是' not in self.头像:
+            self.模具一一上传设置头像()
 
 
         # time.sleep(6)  # 等待  # 增加延迟
@@ -334,10 +337,10 @@ class 类一一帐号互相关注(类一一采集公共库):#调用 类的模具
             time.sleep(2)  # 等待  # 增加延迟
             要求登录 = self.模具一一判断要求登录存在()
             if '要求登录' not in 要求登录:
-                if '名值' in self.名值:
+                if '名值' in self.名值 or '一' not in 序号:
                     获取所有cookies列表 = self.浏览器操作.get_cookies()  # 获取所有cookies
                     self.sql语句 = 'UPDATE `推广帐号` SET `cookie`="{}" WHERE `ID`={}'.format(获取所有cookies列表,
-                                                                                        ID)  # '代入 '{}'   # ' '{}' # SQL 查询语句
+                                                                                        self.ID)  # '代入 '{}'   # ' '{}' # SQL 查询语句
                     self.模具一一内容数据库('更新 帐号cookies')
 
                 break # 结束循环
@@ -454,6 +457,10 @@ class 类一一帐号互相关注(类一一采集公共库):#调用 类的模具
         time.sleep(2) # 等待
 
         self.模具一一查看变量输出文本值("设置头像完成,随机图像", 随机图像)
+
+        self.sql语句 = """UPDATE `推广帐号` SET `头像`='{}' WHERE `ID`={}""".format('是', self.ID)  # '代入 '{}' #'
+        self.模具一一内容数据库("添加 头像 是记录 ")
+
 
 
     def 模具一一随机选择头像(self):

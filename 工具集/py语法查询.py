@@ -413,6 +413,8 @@ class 类一一多项语法():  # 调用 类的模具 self.模具一一数据库
     def 基本语法(self):
         安装py库='pip install 库名grequests'#库名grequests
 
+        使用douban的源安装py库 = 'pip install 库名 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com'
+
 
         目录安装py库= """目录下运行：python setup.py install 安装"""
 
@@ -457,9 +459,9 @@ class 类一一多项语法():  # 调用 类的模具 self.模具一一数据库
         搜索的子字符串 = 'run'
         print("str.count('run', 0, 10) : ", 字符串.count(搜索的子字符串, 0, 10))  # 结果  1
 
-        """list -- 要返回最大值的列表  max(列表) """
+        """  max(列表)# list -- 要返回最大值的列表 """
         """  list.reverse() # 反向列表中元素 
-         列表 按值删除  列表.remove(值)"""
+           列表.remove(值) #列表 按值删除"""
 
 
 
@@ -922,6 +924,14 @@ class 类一一文本清洗():  # 调用 类的模具 self.模具一一数据库
             列表list = "只是一个文本：列表list"
 
             将序列的所有元素随机排序 = random.shuffle(列表list)
+
+    def 返回当前时间的时间浮点秒数并取舍后1位数(self):
+        当前时间秒数 = time.time()  # 返回当前时间的时间戳（1970纪元后经过的浮点秒数）。
+        print("当前时间秒数:", 当前时间秒数)
+
+        print("当前时间秒整数 :", int(当前时间秒数))
+
+        print("当前时间秒 2位数:", round(当前时间秒数, 2))  # 取舍  后2位数
 
 class 类一一本地文件目录操作():  # 调用 类的模具 self.模具一一数据库()
     def __init__(self):
@@ -1396,7 +1406,7 @@ class 类一一自动化操作浏览器():  # 调用 类的模具 self.模具一
     def __init__(self):
         pass
 
-    def 模具一一浏览器设置选项(self):
+    def 模具一一浏览器设置选项并启动(self):
         from selenium import webdriver  # 浏览的驱动
         def 换头部信息():
             self.模具一一高位换头部信息()
@@ -1413,6 +1423,8 @@ class 类一一自动化操作浏览器():  # 调用 类的模具 self.模具一
         """配置不加载图片"""
         配置不加载图片 = {"profile.managed_default_content_settings.images": 2}  # 配置不加载图片
         self.浏览器设置选项.add_experimental_option("prefs", 配置不加载图片)
+        """加载  插件"""
+        self.浏览器设置选项.add_extension(r'E:\PY学习文件\程序库\chrome插件\ublock+origin+1.7.6.crx')
 
 
         换头部信息()
@@ -1430,7 +1442,7 @@ class 类一一自动化操作浏览器():  # 调用 类的模具 self.模具一
 
         """========================操作===================="""
         url = "http://www.atool.org/useragent.php"
-        self.浏览器操作.get(url)
+        self.浏览器操作.get(url)# 打开 网址
 
         # 点击.click() 或  输入.send_keys("python3")  请空输入框：clear()
         """点击  注册 按钮"""
@@ -1468,6 +1480,8 @@ class 类一一自动化操作浏览器():  # 调用 类的模具 self.模具一
         """================浏览器操作==============="""
 
         self.浏览器操作.refresh()  # 刷新当前页面
+
+        获取网页源码 = self.浏览器操作.page_source #获取网页源码
 
         pyautogui.alert('完成')  # 弹窗 提示
 
