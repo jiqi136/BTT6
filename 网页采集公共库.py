@@ -11,6 +11,8 @@ import win32gui #窗口控件
 import win32con#提取剪切板内容
 import os  # 本地操作
 
+from 服务公共库 import 类一一服务公共库# 导入模块
+
 
 
 """
@@ -31,7 +33,7 @@ import asyncio, aiohttp # 异步浏览
 
 """
 
-class 类一一采集公共库: #调用 类的模具  self.模具一一查看变量输出文本值('变量名', self.测试打印, 8)
+class 类一一采集公共库(类一一服务公共库): #调用 类的模具  self.模具一一查看变量输出文本值('变量名', self.测试打印, 8)
     def __init__(self):
         self.模具一一高位换头部信息()
         self.测试打印 = '测试'
@@ -54,177 +56,10 @@ class 类一一采集公共库: #调用 类的模具  self.模具一一查看变
         pass
 
 
-    def 模具一一查看变量输出文本值(self, 变量名, 变量文本值, 测试输入=0):
-
-        if 测试输入 == 0:
-            print(变量名, '： ', 变量文本值)
-        elif len(self.测试打印) != 0:
-            print(变量名, '： ', 变量文本值)
-
-
-
-
-    def 模具一一高位换头部信息(self):  # 头部信息 def 函数模具内通行变量
-        # nonlocal 头部信息  # def 函数模具内通行变量
-
-        self.换IP时间计数 = int(time.time())
-        # {'User-Agent': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0'}  被BT网站墙了
-        随机3位数 = str(random.randrange(101, 1000))
-        随机2位数 = str(random.randrange(41, 100))
-        随机1位数 = str(random.randrange(1, 10))
-        随机11位数 = str(random.randrange(1, 10))
-        头部信息 = random.choice([{'User-Agent': 'Opera/随机2位数.80 (Windows NT 6.1; U; en) Presto/2.8.131 Version/随机2位数.11'},
-                              {
-                                  'User-Agent': 'Opera/随机2位数.80 (Macintosh; Intel Mac OS X 10.6.8; U; en) Presto/随机2位数.8.{随机3位数 Version/随机2位数.11'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(X11;Linuxx86_64)AppleWebKit/随机3位数.5(KHTML,likeGecko)Chrome/随机2位数.0.1084.9Safari/536.5'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(X11;Linuxx86_64)AppleWebKit/随机3位数.5(KHTML,likeGecko)Chrome/随机2位数.0.1084.9Safari/536.5'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(X11;Linuxx86_64)AppleWebKit/随机3位数.24(KHTML,likeGecko)Chrome/随机2位数.0.1055.1Safari/535.24'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(X11;Linuxx86_64)AppleWebKit/随机3位数.24(KHTML,likeGecko)Chrome/随机2位数.0.1055.1Safari/535.24'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(X11;Linuxx86_64)AppleWebKit/随机3位数.24(KHTML,likeGecko)Chrome/随机2位数.0.1055.1Safari/535.24'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(X11;CrOSi6862268.111.0)AppleWebKit/随机3位数.11(KHTML,likeGecko)Chrome/随机2位数.0.1132.57Safari/536.11'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(X11;CrOSi6862268.111.0)AppleWebKit/随机3位数.11(KHTML,likeGecko)Chrome/随机2位数.0.1132.57Safari/536.11'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2;WOW64)AppleWebKit/随机3位数.1(KHTML,likeGecko)Chrome/随机2位数.77.34.5Safari/537.1'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2;WOW64)AppleWebKit/随机3位数.1(KHTML,likeGecko)Chrome/随机2位数.77.34.5Safari/537.1'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2;WOW64)AppleWebKit/随机3位数.24(KHTML,likeGecko)Chrome/随机2位数.0.1055.1Safari/535.24'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.6(KHTML,likeGecko)Chrome/随机2位数.0.1090.0Safari/536.6'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.6(KHTML,likeGecko)Chrome/随机2位数.0.1090.0Safari/536.6'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1062.0Safari/536.3'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1062.0Safari/536.3'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.0Safari/536.3'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.2)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.0Safari/536.3'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.1(KHTML,likeGecko)Chrome/随机2位数.0.1207.1Safari/537.1'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.1(KHTML,likeGecko)Chrome/随机2位数.0.1207.1Safari/537.1'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.6(KHTML,likeGecko)Chrome/随机2位数.0.1092.0Safari/536.6'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.6(KHTML,likeGecko)Chrome/随机2位数.0.1092.0Safari/536.6'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1063.0Safari/536.3'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1063.0Safari/536.3'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1062.0Safari/536.3'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1062.0Safari/536.3'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1;WOW64)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.1)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1061.1Safari/536.3'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.0)AppleWebKit/随机3位数.5(KHTML,likeGecko)Chrome/随机2位数.0.1084.36Safari/536.5'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT6.0)AppleWebKit/随机3位数.5(KHTML,likeGecko)Chrome/随机2位数.0.1084.36Safari/536.5'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(WindowsNT5.1)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1063.0Safari/536.3'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(Macintosh;IntelMacOSX10_8_0)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1063.0Safari/536.3'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0(Macintosh;IntelMacOSX10_8_0)AppleWebKit/随机3位数.3(KHTML,likeGecko)Chrome/随机2位数.0.1063.0Safari/536.3'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/随机3位数.50 (KHTML, like Gecko) Version/随机3位数.1 Safari/534.50'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/201随机3位数01 Firefox/随机2位数.0.1'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50随机3位数; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3; rv:随机2位数.0) like Gecko'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:随机2位数.0) Gecko/201随机3位数01 Firefox/随机2位数.0'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; en-us) AppleWebKit/随机3位数.50 (KHTML, like Gecko) Version/随机3位数.1 Safari/534.50'},
-
-                              {
-                                  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/随机3位数.11 (KHTML, like Gecko) Chrome/随机2位数.0.963.56 Safari/535.11'},
-                              {
-                                  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0.1) Gecko/201随机3位数01 Firefox/随机2位数.0.1'}
-
-                              ])
-        头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机1位数", 随机1位数)  # 替换   , 1) 次数 1
-        头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机11位数", 随机11位数)  # 替换   , 1) 次数 1
-        头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机2位数", 随机2位数)  # 替换   , 1) 次数 1
-        头部信息['User-Agent'] = str(头部信息['User-Agent']).replace("随机3位数", 随机3位数)  # 替换   , 1) 次数 1
-        self.头部信息=头部信息
-        print(头部信息)
-
-    def 模具一一换ip连接(self):
-        self.模具一一高位换头部信息()
-        # coding:gbk
-        循环 = 0
-        次数循环 = 0
-
-        while 循环 == 0:  # 条件循环  post
-            print('宽带连接进行时.....')
-            os.system(r"rasphone -h 宽带连接")  # xxx0是你的拨号名称,xp下默认是"宽带连接”.
-            os.system(r"rasdial 宽带连接 02007044432@163.gd  77341859")  # xxx0同上,xxx1 拨号用户名 ,xxx2拨号密码.
-            time.sleep(3)
-            print('换ip再连接完成')
-
-            try:
-                返回网页内容 = requests.get('https://www.163.com/', headers=self.头部信息, timeout=3)
-            except (requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout,
-                    requests.exceptions.ConnectionError, requests.exceptions.ConnectTimeout,
-                    requests.exceptions.ChunkedEncodingError, requests.exceptions.InvalidSchema,requests.exceptions.ContentDecodingError) as 异常:
-                次数循环 += 1
-                print('网络异常等待', 异常)
-                print('倒数60秒再连接', 次数循环, '次')
-                self.模具一一开关提醒声('网络异常等待')
-                time.sleep(60)
-                if 'None, 10053,' in str(异常):
-                    pass
-            else:
-                if '200' in str(返回网页内容):
-                    self.换IP时间计数 = int(time.time())
-
-                    break  # 结束循环
-                else:
-                    print('网站网络异常,状态码:', 返回网页内容)
-                    print('等待60秒')
-                    self.模具一一开关提醒声('网络异常等待')
-                    time.sleep(60)
-
-
     def 模具一一换ip连接二(self):
         win32api.ShellExecute(0, 'open', 'E:\PY学习文件\BTT影视剧\工具集\换ip连接二.py', '', '', 1)
 
         pyautogui.alert('等待.....换ip连接')
-
-    def 模具一一开关提醒声(self,类型=''):
-        if len(类型)==0:
-            win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\简短提示音.wav', '', '', 1)
-        else:  # 否则
-            win32api.ShellExecute(0, 'open', r'E:\PY学习文件\BTT影视剧\py快捷方式\百度云下载完成提示音.wav', '', '', 1)
-        time.sleep(3)  # 等待  # 增加延迟
-        窗口标题 = "Windows Media Player"
-
-        窗口句柄 = win32gui.FindWindow(None, 窗口标题)
-
-        win32gui.ShowWindow(窗口句柄, 11)  # 即使拥有窗口的线程被挂起也会最小化。在从其他线程最小化窗口时才使用这个参数
-        time.sleep(1)  # 等待  # 增加延迟
-        win32gui.SendMessage(窗口句柄, win32con.WM_CLOSE)  # 关闭窗口
 
 
     """============gr无序网址列表================"""
@@ -386,42 +221,7 @@ class 类一一采集公共库: #调用 类的模具  self.模具一一查看变
                     self.网址列表.append(url)
 
     """============gr无序网址列表================"""
-    def 模具一一内容数据库(self,数据库操作类型=''):
-       #self.sql语句 = """
-       #print('打开数据库连接')
-        # 打开数据库连接,
-        数据库执行 = pymysql.connect("localhost", "root", "", self.数据库名, charset="utf8")
-        # 使用cursor()方法获取操作游标
-        操作游标 = 数据库执行.cursor()
 
-        # 执行sql语句
-        操作游标.execute(self.sql语句)
-
-        if len(数据库操作类型)==0 or 数据库操作类型=='查询':#  为查询
-            # 获取所有记录列表
-            self.数据库内容组列表 = 操作游标.fetchall()
-            print('数据库完成查询')
-
-
-
-        else:  # 否则 为      数据库操作类型
-
-
-            try:
-                # 提交到数据库执行
-                数据库执行.commit()
-                print(数据库操作类型,'=提交至保存数据库')
-            except:
-
-                # 如果发生错误则回滚
-                print(数据库操作类型,'==========数据库执行发生错误:======')
-                数据库执行.rollback()
-
-
-
-
-
-        数据库执行.close()# 关闭数据库连接
 
 
             
