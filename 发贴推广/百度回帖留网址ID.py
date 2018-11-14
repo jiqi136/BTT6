@@ -326,13 +326,17 @@ class 类一一百度回帖留言(类一一采集公共库):  # 调用 类的模
             if 当前时间秒数 < 危险范围时间:
                 跳过循环 = '跳过循环'
             return 跳过循环  # 返回
-        self.模具一一高位换头部信息()
+
         self.测试打印 = '测试'
+        self.模具一一换手机头部信息()
+
         self.数据库名 = "影视发帖推广"
+
+
 
         self.模具一一提取数据库百度完好cookie()
 
-        time.sleep(10000)  # 等待
+
 
         """设置选项"""
         self.浏览器设置选项 = webdriver.ChromeOptions()  # 进入浏览器设置
@@ -378,10 +382,7 @@ class 类一一百度回帖留言(类一一采集公共库):  # 调用 类的模
 
         cookie组=self.cookie组列表[0]
         cookie字典列表 = cookie组[0]
-        for cookie字典 in cookie字典列表:
-            self.模具一一查看变量输出文本值("cookie字典", cookie字典, 8)
 
-        等待用户输入 = input("\n按下 enter 确认键后继续")
 
     def 模具一一重新检测留言帖子链接(self):
         重新检测留言帖子链接列表 = []
@@ -486,6 +487,8 @@ class 类一一百度回帖留言(类一一采集公共库):  # 调用 类的模
 
         self.浏览器操作.get(self.留言帖子链接)  # 打开 网址
 
+        等待用户输入 = input("\n按下 enter 确认键后继续")
+
 
         获取所有cookies列表 = self.浏览器操作.get_cookies()  # 获取所有cookies
         self.替换字典 = 获取所有cookies列表[0]
@@ -496,7 +499,7 @@ class 类一一百度回帖留言(类一一采集公共库):  # 调用 类的模
         #self.浏览器操作.set_page_load_timeout(5)  # 设置限定页面加载限制时间
         # os.system("taskkill /F /IM chromedriver.exe")  # 关闭程序名 chromedriver.exe
 
-        等待用户输入 = input("\n按下 enter 确认键后继续")
+
 
 
         """========================操作===================="""
@@ -617,8 +620,11 @@ class 类一一百度回帖留言(类一一采集公共库):  # 调用 类的模
     def 模具一一浏览器设置选项并启动(self):
 
         def 换头部信息():
-            self.模具一一高位换头部信息()
-            头部信息 = "user-agent=" + self.头部信息['User-Agent']
+
+            self.模具一一换手机头部信息()
+            #self.手机头部信息['Referer']= "http://tieba.baidu.com"
+            头部信息 = "user-agent=" + self.手机头部信息['User-Agent']
+            #头部信息 = "user-agent=" + self.手机头部信息
             print('头部信息:', 头部信息)
             self.浏览器设置选项.add_argument(头部信息)
 
@@ -626,10 +632,10 @@ class 类一一百度回帖留言(类一一采集公共库):  # 调用 类的模
 
         #option.add_argument('headless')  # 静默模式
         self.浏览器设置选项.add_argument('disable-infobars')  # 加启动配置 去除正在受到自动软件的控制
-        用户数据目录 = r'C:\Users\Administrator\AppData\Local\Google\Chrome\User Data'
-        self.浏览器设置选项.add_argument('--user-data-dir={}'.format(用户数据目录))  # '代入{}'  # 设置成用户自己的数据目录
+        # 用户数据目录 = r'C:\Users\Administrator\AppData\Local\Google\Chrome\User Data'
+        # self.浏览器设置选项.add_argument('--user-data-dir={}'.format(用户数据目录))  # '代入{}'  # 设置成用户自己的数据目录
         """配置不加载图片"""
-        配置不加载图片 = {"profile.managed_default_content_settings.images": 2}  # 配置不加载图片
+        # 配置不加载图片 = {"profile.managed_default_content_settings.images": 2}  # 配置不加载图片
         #self.浏览器设置选项.add_experimental_option("prefs", 配置不加载图片)
         #self.浏览器设置选项.add_extension(r'E:\PY学习文件\程序库\chrome插件\ublock+origin+1.7.6.crx')
 

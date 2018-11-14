@@ -428,6 +428,18 @@ class 类一一多项语法():  # 调用 类的模具 self.模具一一数据库
         等待用户输入=input("\n按下 enter 确认键后继续")
         Print输出不换行=" 在变量末尾加上 end=" "   "
         win下用表示换行 = "编码= 'gbk'  win下用 \r\n 表示换行  "
+        判断字典键 = """try:
+    print('字典值:', 字典["随机"])
+except KeyError:  # 异常处理
+    print('字典["随机"]', "不存在")
+else:
+    pass"""
+
+        # 删除左边空字符
+        print(s.rstrip())
+
+        # 删除右边空字符
+        print(s.lstrip())
 
 
 
@@ -955,13 +967,14 @@ class 类一一本地文件目录操作():  # 调用 类的模具 self.模具一
                 fout.close()
                 print('完成下载', 目录与种子名)
         def 读取文件():
-            try:  # 调用异常处理，应对易发生错误的位置
-                文本 = open(r"E:\PY学习文件\BTT影视剧\py快捷方式\代理IP.txt", 'r', encoding='UTF-8')
-                文本内容列表 = 文本.read()  # read() #全部读取   readlines每一行
+            文本路径=r"PY学习文件"
+            try:  # 调用异常处理，应对易发生错误的位置 {}.format()#'代入 '{}'
+                文本 = open(文本路径, 'r', encoding='UTF-8')
+                文本内容列表 = 文本.read()  # read() #全部读取   readlines 每一行
             except UnicodeDecodeError as 异常原因:  # 异常处理
                 print(异常原因)
-                文本 = open(r"E:\PY学习文件\BTT影视剧\py快捷方式\代理IP.txt", 'r', encoding='gbk')
-                文本内容列表 = 文本.read()  # read() #全部读取   readlines每一行
+                文本 = open(文本路径, 'r', encoding='gbk')
+                文本内容列表 = 文本.read()  # read() #全部读取   readlines 每一行
             else:  # 必须放在所有的except子句之后。这个子句将在try子句没有发生任何异常的时候执行。
                 文本.close()
             print('文本内容列表\n', 文本内容列表)

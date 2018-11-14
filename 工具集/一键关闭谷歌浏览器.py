@@ -2,7 +2,7 @@
 #
 import os
 
-
 os.system("taskkill /F /IM Chrome2.exe")  # 关闭程序名 chromedriver.exe
+os.system("taskkill /F /IM Chrome.exe")  # 关闭程序名 chromedriver.exe
 os.system("taskkill /F /IM GoogleUpdate.exe")  # 关闭程序名 chromedriver.exe
 os.system("taskkill /F /IM chromedriver.exe")  # 关闭程序名 chromedriver.exe
