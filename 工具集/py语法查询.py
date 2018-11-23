@@ -36,6 +36,9 @@ class 类一一多项语法():  # 调用 类的模具 self.模具一一数据库
         pass
 
 
+def 解决python在windows上运行弹出cmd窗口(self):
+    """将.py改成.pyw (这个其实就是使用脚本解析程序pythonw.exe)"""
+
     def 浏览器与IP设置(self):
         #=====浏览器与IP公用模具==============
         def 模具_网络异常等待60秒():
@@ -1127,6 +1130,30 @@ class 类一一本地文件目录操作():  # 调用 类的模具 self.模具一
                     self.二级子目录文件 = 二级子目录或文件路径
                     self.移动文件目录名 = 子目录
                     self.模具_子目录移动文件夹()
+
+    def 打开文件或程序(self):
+        def 打开文件并等待至关闭():
+            os.system(r'E:\go学习文件\src\测试\ooopic_1542767823.png')  # 打开1.txt文件,如果不存在，则创建
+
+        def 打开程序并等待至关闭():
+            import win32process
+            import win32event
+            handle = win32process.CreateProcess('C:\\Windows\\notepad.exe', '', None, None, 0,
+                                                     win32process.CREATE_NO_WINDOW, None, None,
+                                                     win32process.STARTUPINFO())  # 创建进程获得句柄
+            win32event.WaitForSingleObject(handle[0], -1)  # 等待进程结束
+
+        def 后台静默打开程序并():
+            import win32api
+
+            win32api.ShellExecute(0, 'open', 'notepad.exe', '', '', 0)  # 后台执行
+            win32api.ShellExecute(0, 'open', 'notepad.exe', '', '', 1)  # 前台打开
+            win32api.ShellExecute(0, 'open', 'notepad.exe', '1.txt', '', 1)  # 打开文件
+            win32api.ShellExecute(0, 'open', 'http://www.sohu.com', '', '', 1)  # 打开网页
+            win32api.ShellExecute(0, 'open', 'D:\\Opera.mp3', '', '', 1)  # 播放视频
+            win32api.ShellExecute(0, 'open', 'D:\\hello.py', '', '', 1)  # 运行程序
+
+
     def 模拟鼠标键盘操作(self):
 
 

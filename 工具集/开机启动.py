@@ -7,7 +7,10 @@ import os
 
 def 换ip连接():
     # coding:gbk
+
+
     print('宽带连接进行时.....')
+
     os.system(r"rasphone -h 宽带连接")  # xxx0是你的拨号名称，xp下默认是“宽带连接”。
     os.system(r"rasdial 宽带连接 02007044432@163.gd  77341859")  # xxx0同上，xxx1 拨号用户名 ，xxx2拨号密码。
 

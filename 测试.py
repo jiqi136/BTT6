@@ -1,23 +1,18 @@
 
-# -*- coding:utf-8
-import re  # 正则式
-import win32gui #窗口控件
-类名 = 'TkTopLevel'
-窗口标题 = ""
 
-if len(类名) == 0:
-	窗口句柄 = win32gui.FindWindow(None, 窗口标题)
-else:  #
-	窗口句柄 = win32gui.FindWindow(类名, None)
-类名 = win32gui.GetClassName(窗口句柄)
-窗口标题 = win32gui.GetWindowText(窗口句柄)
 
-win32gui.ShowWindow(窗口句柄, 11)  # 即使拥有窗口的线程被挂起也会最小化.在从其他线程最小化窗口时才使用这个参数
+import os
 
-文本列表 = 文本.split("n")
+print('宽带连接进行时.....')
+os.system(r"rasphone -h 宽带连接")  # xxx0是你的拨号名称,xp下默认是"宽带连接”.
+os.system(r"rasdial 宽带连接 02007044432@163.gd  77341859")  # xxx0同上,xxx1 拨号用户名 ,xxx2拨号密码.
 
-文本 = str(原文本).replace("25", "120") #替换   , 1) 次数 1
+print('换ip再连接完成')
 
-time.sleep(1) # 等待
-                    
 
+from_=30
+to=300
+length=400
+showvalue=10
+tickinterval=20
+resolution=10
